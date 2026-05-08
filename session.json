@@ -1,0 +1,495 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-1/",
+    "slides_folder": "sessions/session-1/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-1/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg, slide-03.jpg ... (exported from PowerPoint)",
+    "image_naming": "img-01.jpg, img-02.jpg ... OR descriptive names like 'led-circuit.jpg'",
+    "how_to_export_slides": "In PowerPoint → File → Export → Export to JPEG/PNG → All Slides",
+    "pdf_support": "You can also place a PDF here named 'slides.pdf' and it will be shown in an iframe"
+  },
+
+  "id": "session-1",
+  "number": 1,
+  "title": "Welcome to The Tinkering Lab",
+  "subtitle": "Introduction to STEAM & Electronics Basics",
+  "date": "Session 01",
+  "duration": "75 minutes",
+  "phase": "Foundation",
+  "color": "#FF6B35",
+  "icon": "⚡",
+  "tags": ["STEAM", "Tinkering", "Electronics", "LED", "Breadboard"],
+  "overview": "This is NOT a normal class. No memorising, no textbooks, no sitting quietly. You will BUILD things, BREAK things, and LEARN from both. In this lab, mistakes are not failures — they are data.",
+
+  "slides": {
+    "_note": "Export your PPT slides as images (JPG/PNG) into sessions/session-1/slides/ folder. Name them slide-01.jpg, slide-02.jpg etc. OR put your PDF as slides.pdf in this folder.",
+    "pdf": "sessions/session-1/slides/slides.pdf",
+    "_pdf_note": "If you have a PDF, set 'pdf' above to the path. The site will show it in an embedded viewer.",
+    "images": [
+      {
+        "file": "sessions/session-1/slides/slide-01.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Welcome to The Tinkering Lab",
+        "caption": "SESSION 01 — Build. Break. Learn. Repeat. | Grades 5–9 | STEAM Education"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-02.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "This Is NOT a Normal Class",
+        "caption": "No memorising. No textbooks. No sitting quietly."
+      },
+      {
+        "file": "sessions/session-1/slides/slide-03.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "What is STEAM?",
+        "caption": "Five subjects — one powerful way of thinking"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-04.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "What is Tinkering?",
+        "caption": "Tinkering = Learning by DOING"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-05.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Your Lab — What's Inside?",
+        "caption": "6 tools. Infinite possibilities."
+      },
+      {
+        "file": "sessions/session-1/slides/slide-06.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "What You Will Build This Year",
+        "caption": "Smart Light, Weather Station, Mini Robot, IoT Dashboard, 3D Printed Part, Smart Alert System"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-07.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Your Journey — The Roadmap",
+        "caption": "Foundation → Sensors → Motion → Connectivity → Final Project!"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-08.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Today's Session Plan (75 mins)",
+        "caption": "0–10 Introductions | 10–25 STEAM+Tinkering | 25–40 Explore Lab | 40–60 Hands-On | 60–75 Q&A"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-09.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Quick Electronics Primer",
+        "caption": "Voltage (V) | Current (I) | Resistance (R)"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-10.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Safety Rules — Non-Negotiable",
+        "caption": "No short circuits | Ask before power | Handle carefully | Respect components | Stop if odd"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-11.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Lab Culture — How We Roll",
+        "caption": "Fail Loudly | Team First | Ask Questions | Iterate Always | Leave it Better | Support Each Other"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-12.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Live Demo — Your First Circuit",
+        "caption": "LED + 220Ω Resistor + Breadboard + Arduino UNO"
+      },
+      {
+        "file": "sessions/session-1/slides/slide-13.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Hands-On Activity",
+        "caption": "Build your first LED circuit on a breadboard! 15–20 minutes, work in pairs."
+      },
+      {
+        "file": "sessions/session-1/slides/slide-14.jpg",
+        "_placeholder": "REPLACE with actual exported PPT slide image",
+        "title": "Sneak Peek — Next Session",
+        "caption": "Session 2: Arduino — Making Things THINK!"
+      }
+    ]
+  },
+
+  "images": {
+    "_note": "Add photos from the actual session here — lab photos, student work, activity shots, component closeups.",
+    "gallery": [
+      {
+        "file": "sessions/session-1/images/img-01.jpg",
+        "_placeholder": "ADD: Photo of breadboard with LED circuit",
+        "caption": "First LED circuit on breadboard",
+        "category": "Activity"
+      },
+      {
+        "file": "sessions/session-1/images/img-02.jpg",
+        "_placeholder": "ADD: Photo of students working in pairs",
+        "caption": "Students building their first circuits",
+        "category": "Lab"
+      },
+      {
+        "file": "sessions/session-1/images/img-03.jpg",
+        "_placeholder": "ADD: Close-up of LED glowing",
+        "caption": "LED glowing — Hello World of electronics!",
+        "category": "Activity"
+      },
+      {
+        "file": "sessions/session-1/images/img-04.jpg",
+        "_placeholder": "ADD: Photo of lab tools laid out",
+        "caption": "The Tinkering Lab tools",
+        "category": "Lab"
+      },
+      {
+        "file": "sessions/session-1/images/img-05.jpg",
+        "_placeholder": "ADD: Arduino UNO board photo",
+        "caption": "Arduino UNO — The Brain",
+        "category": "Components"
+      }
+    ]
+  },
+
+  "keyTopics": [
+    "What is STEAM — Science, Technology, Engineering, Arts, Mathematics",
+    "What is Tinkering — Learning by DOING",
+    "Lab tools overview: Arduino, Sensors, Motors, IoT, 3D Printing, Electronics",
+    "Electronics Primer: Voltage (V), Current (I), Resistance (R)",
+    "Safety Rules — Non-Negotiable",
+    "Lab Culture: Fail Loudly, Team First, Ask Questions, Iterate Always",
+    "Your First Circuit: LED on a Breadboard"
+  ],
+
+  "youtubeVideos": [
+    {
+      "title": "What is a Breadboard?",
+      "videoId": "6WReFkfrUIk",
+      "_note": "Replace videoId with the YouTube video ID from the URL: youtube.com/watch?v=VIDEO_ID_HERE",
+      "desc": "Learn how breadboards work — perfect for your first circuit!"
+    },
+    {
+      "title": "LED Circuit for Beginners",
+      "videoId": "CfdaJ4z4u4w",
+      "desc": "Build a basic LED circuit step by step."
+    },
+    {
+      "title": "What is STEAM Education?",
+      "videoId": "UEQmb8Qb3hE",
+      "desc": "Understand the STEAM approach to learning."
+    }
+  ],
+
+  "resources": [
+    {
+      "title": "Arduino Official Site",
+      "url": "https://www.arduino.cc",
+      "icon": "🔗",
+      "_note": "Add any website URL here"
+    },
+    {
+      "title": "Tinkercad Circuits (Free)",
+      "url": "https://www.tinkercad.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Wokwi Simulator",
+      "url": "https://wokwi.com",
+      "icon": "🔗"
+    }
+  ],
+
+  "activity": {
+    "title": "Build Your First LED Circuit",
+    "parts": [
+      "LED (any color)",
+      "220Ω Resistor",
+      "Breadboard",
+      "Arduino UNO or USB power",
+      "2 jumper wires"
+    ],
+    "steps": [
+      "Place resistor on breadboard (row A)",
+      "Place LED — long leg (+) to resistor end",
+      "Connect wire: – leg to GND",
+      "Connect wire: resistor to 5V / pin",
+      "Power ON → LED glows! 🎉"
+    ]
+  },
+
+  "quiz": [
+    {
+      "q": "What does STEAM stand for?",
+      "options": [
+        "Science, Technology, Engineering, Arts, Mathematics",
+        "Sports, Technology, Engineering, Art, Music",
+        "Science, Tools, Electricity, Art, Mechanics",
+        "Study, Think, Explore, Apply, Make"
+      ],
+      "answer": 0,
+      "explanation": "STEAM stands for Science, Technology, Engineering, Arts, and Mathematics — five subjects that work together in every real-world project."
+    },
+    {
+      "q": "What is tinkering?",
+      "options": [
+        "Reading about electronics in textbooks",
+        "Learning by doing — trying, failing, and improving",
+        "Watching videos about science",
+        "Memorising formulas"
+      ],
+      "answer": 1,
+      "explanation": "Tinkering = Learning by DOING! Try something → See what happens → Fix what broke → Try again — better!"
+    },
+    {
+      "q": "What does Voltage mean in electronics?",
+      "options": [
+        "The speed of electricity",
+        "The amount of water in a pipe",
+        "The force that pushes electricity (like water pressure)",
+        "How many components are in a circuit"
+      ],
+      "answer": 2,
+      "explanation": "Voltage (V) is like water pressure — it's the force that pushes electricity. Higher voltage = stronger push!"
+    },
+    {
+      "q": "What is Current in electronics?",
+      "options": [
+        "The voltage divided by resistance",
+        "How much electricity flows through the circuit (measured in Amps)",
+        "The colour of the wire",
+        "The number of batteries"
+      ],
+      "answer": 1,
+      "explanation": "Current (I) is measured in Amps (A). Think of it as how much water flows — the amount of electricity moving through the circuit."
+    },
+    {
+      "q": "What is Resistance in electronics?",
+      "options": [
+        "The power of the battery",
+        "Something that speeds up electricity",
+        "Opposition that slows down electrical flow (measured in Ohms)",
+        "The brightness of an LED"
+      ],
+      "answer": 2,
+      "explanation": "Resistance (R) is like a narrow pipe — it slows down the flow. Resistors protect components from too much current."
+    },
+    {
+      "q": "Why do we use a resistor with an LED?",
+      "options": [
+        "To make it glow brighter",
+        "To protect the LED from too much current",
+        "To make the circuit more complex",
+        "To change the colour of the LED"
+      ],
+      "answer": 1,
+      "explanation": "Without a resistor, too much current flows through the LED and burns it out. The resistor limits current to a safe level."
+    },
+    {
+      "q": "Which leg of an LED is positive (+)?",
+      "options": [
+        "The shorter leg",
+        "Both legs are the same",
+        "The longer leg",
+        "It doesn't matter"
+      ],
+      "answer": 2,
+      "explanation": "The longer leg of an LED is the positive (+) anode. The shorter leg is negative (–). Polarity matters!"
+    },
+    {
+      "q": "What is a breadboard used for?",
+      "options": [
+        "Cutting wires",
+        "Storing components",
+        "Building temporary circuits without soldering",
+        "Testing battery voltage"
+      ],
+      "answer": 2,
+      "explanation": "A breadboard lets you build circuits temporarily by plugging in components. No soldering needed — perfect for experimenting!"
+    },
+    {
+      "q": "What is Arduino?",
+      "options": [
+        "A type of LED",
+        "A microcontroller board that can run programs to control hardware",
+        "A breadboard brand",
+        "A type of battery"
+      ],
+      "answer": 1,
+      "explanation": "Arduino is a microcontroller board. It's the brain of your circuit — you write programs to control LEDs, motors, sensors and more!"
+    },
+    {
+      "q": "In the water analogy, what does a 'tap' represent?",
+      "options": [
+        "Resistor",
+        "LED",
+        "Switch",
+        "Wire"
+      ],
+      "answer": 2,
+      "explanation": "In the water analogy: Tap open = switch ON → electricity flows. Tap closed = switch OFF → electricity stops."
+    },
+    {
+      "q": "What happens if you reverse an LED?",
+      "options": [
+        "It glows brighter",
+        "It doesn't light up — LEDs only work in one direction",
+        "It explodes",
+        "It changes colour"
+      ],
+      "answer": 1,
+      "explanation": "LEDs are diodes — they only allow current to flow in ONE direction. Reverse it and no current flows."
+    },
+    {
+      "q": "What is a short circuit?",
+      "options": [
+        "A circuit that is very short in length",
+        "Connecting + directly to – without any component in between",
+        "A circuit with only one LED",
+        "A circuit that doesn't work"
+      ],
+      "answer": 1,
+      "explanation": "A short circuit happens when + connects directly to – without a component. This causes dangerous heat!"
+    },
+    {
+      "q": "What should you do if you smell burning from your circuit?",
+      "options": [
+        "Ignore it and keep going",
+        "Disconnect power immediately and tell the teacher",
+        "Add more components",
+        "Try to fix it while it's still connected"
+      ],
+      "answer": 1,
+      "explanation": "Safety first! Burning smell = disconnect immediately and tell the teacher. Never ignore warning signs!"
+    },
+    {
+      "q": "What does 'Fail Loudly' mean in our lab culture?",
+      "options": [
+        "Make loud noises when something breaks",
+        "Share your failures so everyone can learn from them",
+        "Fail on purpose to get attention",
+        "Complain about things not working"
+      ],
+      "answer": 1,
+      "explanation": "Fail Loudly means: If something doesn't work, SHARE IT! Everyone learns from your mistake. Failures are data!"
+    },
+    {
+      "q": "Which of these is a tool in the Tinkering Lab?",
+      "options": [
+        "Textbooks and pencils",
+        "Arduino, Sensors, and 3D Printers",
+        "Calculators and rulers",
+        "Chalk and blackboard"
+      ],
+      "answer": 1,
+      "explanation": "Your lab has 6 tools: Arduino (brain), Sensors (eyes & ears), Motors (muscles), IoT, 3D Printing, Electronics!"
+    },
+    {
+      "q": "What does IoT stand for?",
+      "options": [
+        "Internet of Things",
+        "Input or Transfer",
+        "Integrated Output Technology",
+        "Invention of Tools"
+      ],
+      "answer": 0,
+      "explanation": "IoT = Internet of Things! Connecting physical devices to the internet so they can send/receive data remotely."
+    },
+    {
+      "q": "Thomas Edison failed how many times before inventing the light bulb?",
+      "options": [
+        "10 times",
+        "100 times",
+        "1000 times",
+        "He got it right the first time"
+      ],
+      "answer": 2,
+      "explanation": "Thomas Edison failed about 1000 times! Each failure taught him something new. That's the tinkerer's mindset!"
+    },
+    {
+      "q": "What is the 'Hello World' of electronics?",
+      "options": [
+        "Building a robot",
+        "Making an LED blink",
+        "Connecting to WiFi",
+        "Programming a motor"
+      ],
+      "answer": 1,
+      "explanation": "Making an LED blink/glow is the 'Hello World' of electronics — the first thing every engineer builds!"
+    },
+    {
+      "q": "In the roadmap, what comes after 'Foundation'?",
+      "options": [
+        "Motion",
+        "Connectivity",
+        "Sensors",
+        "Final Project"
+      ],
+      "answer": 2,
+      "explanation": "The roadmap: 01 Foundation → 02 Sensors → 03 Motion → 04 Connectivity → Final Project!"
+    },
+    {
+      "q": "What is the job of a Motor in electronics?",
+      "options": [
+        "Store energy",
+        "Emit light",
+        "Convert electricity into movement",
+        "Measure temperature"
+      ],
+      "answer": 2,
+      "explanation": "Motors are the 'muscles' of electronics! They convert electrical energy into movement."
+    },
+    {
+      "q": "Why should you 'Ask before connecting power'?",
+      "options": [
+        "Because it takes too long",
+        "To make sure your circuit is safe and correct before powering on",
+        "Because the teacher likes being asked",
+        "Power is unlimited anyway"
+      ],
+      "answer": 1,
+      "explanation": "Always check with your teacher before powering on — prevents short circuits and safety hazards!"
+    },
+    {
+      "q": "What does 'Iterate Always' mean?",
+      "options": [
+        "Give up after the first failure",
+        "Version 1 is never the best — keep improving your design",
+        "Only build things once",
+        "Copy someone else's design"
+      ],
+      "answer": 1,
+      "explanation": "Iteration is the engineer's superpower! Version 1 is never the best. Keep testing and improving!"
+    },
+    {
+      "q": "In a circuit, Resistor slows current like:",
+      "options": [
+        "A giant water tank",
+        "A pump that speeds water up",
+        "Rocks in a pipe that slow water down",
+        "A fountain that shoots water up"
+      ],
+      "answer": 2,
+      "explanation": "A resistor is like rocks in a water pipe — they slow down the flow, protecting components from too much current."
+    },
+    {
+      "q": "What is special about 3D Printing in the lab?",
+      "options": [
+        "It prints normal paper documents",
+        "You can design custom parts and physically print them",
+        "It only prints in one colour",
+        "It requires expensive materials"
+      ],
+      "answer": 1,
+      "explanation": "3D Printing = The Maker! Design a custom part digitally and it gets physically printed in 3D!"
+    },
+    {
+      "q": "What should you bring to the next session?",
+      "options": [
+        "A textbook and notebook",
+        "Curiosity, a question you're still thinking about, and your enthusiasm!",
+        "A soldering iron",
+        "A completed project"
+      ],
+      "answer": 1,
+      "explanation": "Come with Curiosity + A question + Your enthusiasm! The best tool is your curious mind!"
+    }
+  ]
+}
