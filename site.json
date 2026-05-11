@@ -33,7 +33,6 @@
       }
     }
   },
-
   "site": {
     "name": "Vidya STEAM",
     "tagline": "Build. Break. Learn. Repeat.",
@@ -42,59 +41,226 @@
     "logo_emoji": "⚡",
     "accent_color": "#FF6B35"
   },
-
   "sessions": [
     {
       "id": "session-1",
       "number": 1,
-      "file": "sessions/session-1/session.json",
+      "file": "sessions/session-1/1session.json",
       "_note": "Path to this session's JSON file"
     },
     {
       "id": "session-2",
       "number": 2,
-      "file": "sessions/session-2/session.json"
+      "file": "sessions/session-2/2session.json"
     },
     {
       "id": "session-3",
       "number": 3,
-      "file": "sessions/session-3/session.json"
+      "file": "sessions/session-3/3session.json"
+    },
+    {
+      "id": "session-4",
+      "number": 4,
+      "file": "sessions/session-4/4session.json"
+    },
+    {
+      "id": "session-1",
+      "number": 1,
+      "file": "sessions/session-1/1session.json",
+      "_note": "Path to this session's JSON file"
+    },
+    {
+      "id": "session-2",
+      "number": 2,
+      "file": "sessions/session-2/2session.json"
+    },
+    {
+      "id": "session-3",
+      "number": 3,
+      "file": "sessions/session-3/3session.json"
+    },
+    {
+      "id": "session-4",
+      "number": 4,
+      "file": "sessions/session-4/4session.json"
+    },
+    {
+      "id": "session-1",
+      "number": 1,
+      "file": "sessions/session-1/1session.json",
+      "_note": "Path to this session's JSON file"
+    },
+    {
+      "id": "session-2",
+      "number": 2,
+      "file": "sessions/session-2/2session.json"
+    },
+    {
+      "id": "session-3",
+      "number": 3,
+      "file": "sessions/session-3/3session.json"
+    },
+    {
+      "id": "session-4",
+      "number": 4,
+      "file": "sessions/session-4/4session.json"
+    },
+    {
+      "id": "session-1",
+      "number": 1,
+      "file": "sessions/session-1/1session.json",
+      "_note": "Path to this session's JSON file"
+    },
+    {
+      "id": "session-2",
+      "number": 2,
+      "file": "sessions/session-2/2session.json"
+    },
+    {
+      "id": "session-3",
+      "number": 3,
+      "file": "sessions/session-3/3session.json"
+    },
+    {
+      "id": "session-4",
+      "number": 4,
+      "file": "sessions/session-4/4session.json"
     }
   ],
-
   "projects_file": "projects/projects.json",
-
   "roadmap": [
-    { "num": "01", "label": "Foundation",    "desc": "Electronics & Arduino basics",    "color": "#FF6B35" },
-    { "num": "02", "label": "Sensors",       "desc": "Inputs, outputs & coding logic",  "color": "#00D4FF" },
-    { "num": "03", "label": "Motion",        "desc": "Motors, servos & movement",       "color": "#00FF88" },
-    { "num": "04", "label": "Connectivity",  "desc": "IoT, Wi-Fi & dashboards",         "color": "#9B6BFF" },
-    { "num": "⭐", "label": "Final Project!", "desc": "Present to the world!",           "color": "#FFD600", "final": true }
+    {
+      "num": "01",
+      "label": "Foundation",
+      "desc": "Electronics & Arduino basics",
+      "color": "#FF6B35"
+    },
+    {
+      "num": "02",
+      "label": "Sensors",
+      "desc": "Inputs, outputs & coding logic",
+      "color": "#00D4FF"
+    },
+    {
+      "num": "03",
+      "label": "Motion",
+      "desc": "Motors, servos & movement",
+      "color": "#00FF88"
+    },
+    {
+      "num": "04",
+      "label": "Connectivity",
+      "desc": "IoT, Wi-Fi & dashboards",
+      "color": "#9B6BFF"
+    },
+    {
+      "num": "⭐",
+      "label": "Final Project!",
+      "desc": "Present to the world!",
+      "color": "#FFD600",
+      "final": true
+    }
   ],
-
   "lab_tools": [
-    { "icon": "🧠", "name": "Arduino",     "role": "The Brain",        "desc": "Programs that control hardware" },
-    { "icon": "👁️", "name": "Sensors",     "role": "Eyes & Ears",      "desc": "Detect light, sound, motion, temp" },
-    { "icon": "⚙️", "name": "Motors",      "role": "Muscles",          "desc": "Make things spin and move" },
-    { "icon": "🌐", "name": "IoT",         "role": "Connected Mind",   "desc": "Link your device to the internet" },
-    { "icon": "🖨️", "name": "3D Printing", "role": "The Maker",        "desc": "Print anything you can design" },
-    { "icon": "⚡", "name": "Electronics", "role": "The Blood",         "desc": "Circuits, LEDs, resistors & more" }
+    {
+      "icon": "🧠",
+      "name": "Arduino",
+      "role": "The Brain",
+      "desc": "Programs that control hardware"
+    },
+    {
+      "icon": "👁️",
+      "name": "Sensors",
+      "role": "Eyes & Ears",
+      "desc": "Detect light, sound, motion, temp"
+    },
+    {
+      "icon": "⚙️",
+      "name": "Motors",
+      "role": "Muscles",
+      "desc": "Make things spin and move"
+    },
+    {
+      "icon": "🌐",
+      "name": "IoT",
+      "role": "Connected Mind",
+      "desc": "Link your device to the internet"
+    },
+    {
+      "icon": "🖨️",
+      "name": "3D Printing",
+      "role": "The Maker",
+      "desc": "Print anything you can design"
+    },
+    {
+      "icon": "⚡",
+      "name": "Electronics",
+      "role": "The Blood",
+      "desc": "Circuits, LEDs, resistors & more"
+    }
   ],
-
   "steam": [
-    { "letter": "S", "name": "Science",     "desc": "Understand how nature works",        "color": "#EF4444" },
-    { "letter": "T", "name": "Technology",  "desc": "Build tools that solve problems",    "color": "#06B6D4" },
-    { "letter": "E", "name": "Engineering", "desc": "Design & test real solutions",       "color": "#F97316" },
-    { "letter": "A", "name": "Arts",        "desc": "Think creatively, design beautifully","color": "#A855F7" },
-    { "letter": "M", "name": "Mathematics", "desc": "The language of everything",         "color": "#22C55E" }
+    {
+      "letter": "S",
+      "name": "Science",
+      "desc": "Understand how nature works",
+      "color": "#EF4444"
+    },
+    {
+      "letter": "T",
+      "name": "Technology",
+      "desc": "Build tools that solve problems",
+      "color": "#06B6D4"
+    },
+    {
+      "letter": "E",
+      "name": "Engineering",
+      "desc": "Design & test real solutions",
+      "color": "#F97316"
+    },
+    {
+      "letter": "A",
+      "name": "Arts",
+      "desc": "Think creatively, design beautifully",
+      "color": "#A855F7"
+    },
+    {
+      "letter": "M",
+      "name": "Mathematics",
+      "desc": "The language of everything",
+      "color": "#22C55E"
+    }
   ],
-
   "lab_culture": [
-    { "icon": "💥", "title": "Fail Loudly",       "desc": "If something doesn't work, share it. Everyone learns from your mistake." },
-    { "icon": "🤝", "title": "Team First",         "desc": "No lone wolves. Build together, debug together, celebrate together." },
-    { "icon": "❓", "title": "Ask Questions",      "desc": "There are no dumb questions. Curiosity is your biggest tool here." },
-    { "icon": "🔄", "title": "Iterate Always",     "desc": "Version 1 is never the best. Improve, improve, improve." },
-    { "icon": "🧹", "title": "Leave it Better",    "desc": "Clean your workspace. Put components back. Respect shared tools." },
-    { "icon": "🌱", "title": "Support Each Other", "desc": "If you figure something out, help the person next to you." }
+    {
+      "icon": "💥",
+      "title": "Fail Loudly",
+      "desc": "If something doesn't work, share it. Everyone learns from your mistake."
+    },
+    {
+      "icon": "🤝",
+      "title": "Team First",
+      "desc": "No lone wolves. Build together, debug together, celebrate together."
+    },
+    {
+      "icon": "❓",
+      "title": "Ask Questions",
+      "desc": "There are no dumb questions. Curiosity is your biggest tool here."
+    },
+    {
+      "icon": "🔄",
+      "title": "Iterate Always",
+      "desc": "Version 1 is never the best. Improve, improve, improve."
+    },
+    {
+      "icon": "🧹",
+      "title": "Leave it Better",
+      "desc": "Clean your workspace. Put components back. Respect shared tools."
+    },
+    {
+      "icon": "🌱",
+      "title": "Support Each Other",
+      "desc": "If you figure something out, help the person next to you."
+    }
   ]
 }

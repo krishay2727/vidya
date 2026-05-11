@@ -10,10 +10,10 @@
   "projects": [
     {
       "id": "smart-light",
-      "title": "Smart Light",
+      "title": "hEXAPOD",
       "icon": "💡",
-      "level": "Beginner",
-      "session": 1,
+      "level": "Advanced",
+      "session": 30,
       "desc": "A light that turns on automatically when it gets dark!",
       "fullDesc": "Build a light-sensitive circuit using an LDR (Light Dependent Resistor). When the room gets dark, the Arduino detects the low light level and automatically turns on the LED or a small lamp. This is exactly how street lights and automatic night lamps work!",
       "image": "projects/images/smart-light.jpg",
