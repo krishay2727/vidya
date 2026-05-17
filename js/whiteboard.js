@@ -6,7 +6,7 @@ const svgs = {
     battery: `<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="0" width="12" height="12" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="83" y="0" width="12" height="12" fill="#e0e0e0" stroke="#000" stroke-width="2"/><circle cx="31" cy="0" r="5" fill="#ffffff"/><polygon points="83,0 89,-6 95,0" fill="#ffffff"/><rect x="5" y="12" width="110" height="103" rx="10" fill="#0f2b5c" stroke="#081836" stroke-width="2.5"/><rect x="5" y="12" width="110" height="28" rx="10" fill="#0056b3"/><text x="60" y="80" font-family="sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">9V</text><text x="31" y="32" font-family="sans-serif" font-size="22" fill="white" text-anchor="middle" font-weight="bold">+</text><text x="89" y="32" font-family="sans-serif" font-size="22" fill="white" text-anchor="middle" font-weight="bold">-</text></svg>`,
     led: `<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="60" width="10" height="30" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="80" y="60" width="10" height="30" fill="#e0e0e0" stroke="#000" stroke-width="2"/><path d="M 18 60 L 102 60 L 102 48 L 18 48 Z" fill="#800000"/><path d="M 18 48 C 18 -12 102 -12 102 48 Z" fill="#b30000" opacity="0.95"/><text x="35" y="108" font-family="sans-serif" font-size="26" fill="#ff4757" font-weight="bold" text-anchor="middle">+</text><text x="85" y="108" font-family="sans-serif" font-size="26" fill="#000" font-weight="bold" text-anchor="middle">-</text></svg>`,
     led_active: `<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="glow" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#ffcccc"/><stop offset="50%" stop-color="#ff0000"/><stop offset="100%" stop-color="#990000"/></radialGradient><filter id="blur"><feGaussianBlur stdDeviation="3"/></filter></defs><rect x="30" y="60" width="10" height="30" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="80" y="60" width="10" height="30" fill="#e0e0e0" stroke="#000" stroke-width="2"/><path d="M 18 48 C 18 -12 102 -12 102 48 Z" fill="#ff0000" filter="url(#blur)" opacity="0.65"/><path d="M 18 60 L 102 60 L 102 48 L 18 48 Z" fill="#cc0000"/><path d="M 18 48 C 18 -12 102 -12 102 48 Z" fill="url(#glow)"/><path d="M 30 40 C 30 12 48 12 48 40 Z" fill="#ffffff" opacity="0.85"/><text x="35" y="108" font-family="sans-serif" font-size="26" fill="#ff4757" font-weight="bold" text-anchor="middle">+</text><text x="85" y="108" font-family="sans-serif" font-size="26" fill="#000" font-weight="bold" text-anchor="middle">-</text></svg>`,
-    motor: `<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="48" fill="#e0e0e0" stroke="#a0a0a0" stroke-width="2.5"/><circle cx="60" cy="60" r="30" fill="#f0f0f0" stroke="#c0c0c0" stroke-width="2"/><text x="60" y="70" font-family="sans-serif" font-size="28" font-weight="bold" fill="#555" text-anchor="middle">M</text><rect x="30" y="98" width="10" height="22" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="80" y="98" width="10" height="22" fill="#e0e0e0" stroke="#000" stroke-width="2"/></svg>`,
+    motor: `<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect x="52" y="5" width="16" height="25" fill="#d0d0d0" stroke="#888" stroke-width="2"/><rect x="30" y="90" width="10" height="20" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="80" y="90" width="10" height="20" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="25" y="25" width="70" height="70" rx="6" fill="#e0e0e0" stroke="#a0a0a0" stroke-width="3"/><rect x="25" y="25" width="70" height="20" fill="#ffffff" opacity="0.5"/><line x1="35" y1="45" x2="85" y2="45" stroke="#999" stroke-width="2"/><line x1="35" y1="60" x2="85" y2="60" stroke="#999" stroke-width="2"/><line x1="35" y1="75" x2="85" y2="75" stroke="#999" stroke-width="2"/></svg>`,
     ir_sensor: `<svg width="100" height="130" viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="15" width="70" height="100" rx="8" fill="#0F3D7A" stroke="#082347" stroke-width="2.5"/><rect x="21" y="105" width="8" height="25" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="46" y="105" width="8" height="25" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="71" y="105" width="8" height="25" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="40" y="60" width="20" height="30" fill="#0056b3" rx="2"/><circle cx="50" cy="75" r="7" fill="#e0e0e0" stroke="#888" stroke-width="1"/><line x1="50" y1="68" x2="50" y2="82" stroke="#222" stroke-width="2"/><rect x="22" y="5" width="16" height="10" fill="#444"/><rect x="18" y="-12" width="24" height="22" fill="rgba(160, 196, 255, 0.4)" stroke="#a0c4ff" stroke-width="1" rx="3"/><path d="M 18 -12 C 18 -26 42 -26 42 -12 Z" fill="rgba(160, 196, 255, 0.4)" stroke="#a0c4ff" stroke-width="1"/><rect x="62" y="5" width="16" height="10" fill="#444"/><rect x="58" y="-12" width="24" height="22" fill="#0c0d10" rx="3" stroke="#222" stroke-width="1"/><path d="M 58 -12 C 58 -26 82 -26 82 -12 Z" fill="#0c0d10" stroke="#222" stroke-width="1"/><circle cx="25" cy="40" r="5" fill="#444"/><text x="25" y="102" font-family="sans-serif" font-size="10" fill="#ddd" font-weight="bold" text-anchor="middle">V</text><text x="50" y="102" font-family="sans-serif" font-size="10" fill="#ddd" font-weight="bold" text-anchor="middle">G</text><text x="75" y="102" font-family="sans-serif" font-size="10" fill="#ddd" font-weight="bold" text-anchor="middle">S</text></svg>`,
     ldr: `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="21" y="55" width="8" height="35" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="71" y="55" width="8" height="35" fill="#e0e0e0" stroke="#000" stroke-width="2"/><circle cx="50" cy="35" r="30" fill="#d0d0d0" stroke="#a0a0a0" stroke-width="3"/><path d="M 30 35 Q 35 20 40 35 T 50 35 T 60 35 T 70 35" fill="none" stroke="#cc0000" stroke-width="3"/></svg>`,
     potentiometer: `<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="80" width="10" height="30" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="55" y="80" width="10" height="30" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="80" y="80" width="10" height="30" fill="#e0e0e0" stroke="#000" stroke-width="2"/><rect x="15" y="15" width="90" height="80" rx="6" fill="#0F3D7A" stroke="#082347" stroke-width="2"/><circle cx="60" cy="55" r="35" fill="#e0e0e0" stroke="#a0a0a0" stroke-width="3"/></svg>`
@@ -338,6 +338,7 @@ window.initWhiteboard = () => {
             compType: 'power_supply',
             x: 100, y: 150,
             voltage: 9.0,
+            currentLimit: 2.0,
             rotation: 0
         });
     }
@@ -750,14 +751,36 @@ function simulateCircuit() {
                 }
                 
                 const vSupply = (bat.ref.voltage !== undefined) ? bat.ref.voltage : 9.0;
-                const vNet = vSupply - (loopLED ? 2.0 : 0.0);
-                let current = 0;
-                if (vNet > 0 && totalR > 0) current = vNet / totalR; 
+                const iLimit = (bat.ref.currentLimit !== undefined) ? bat.ref.currentLimit : 2.0;
+                const vNet = Math.max(0, vSupply - (loopLED ? 2.0 : 0.0));
                 
-                if (loopLED && current > 0.08) {
-                    loopLED.burned = true;
-                    soundBurn();
-                    current = 0; 
+                let theoreticalCurrent = 0;
+                if (vNet > 0 && totalR > 0) theoreticalCurrent = vNet / totalR; 
+                
+                let current = theoreticalCurrent;
+                if (theoreticalCurrent > iLimit) {
+                    current = iLimit;
+                    bat.ref.ccMode = true;
+                    bat.ref.actualVoltage = (current * totalR) + (loopLED ? 2.0 : 0.0);
+                } else {
+                    bat.ref.ccMode = false;
+                    bat.ref.actualVoltage = vSupply;
+                }
+                
+                if (loopLED) {
+                    if (theoreticalCurrent > 0.035) {
+                        loopLED.burned = true;
+                        loopLED.active = false;
+                        if (loopLED._justBurned !== true) {
+                            soundBurn();
+                            loopLED._justBurned = true;
+                        }
+                        current = 0; 
+                    } else {
+                        loopLED.burned = false;
+                        loopLED.active = (current > 0);
+                        loopLED._justBurned = false;
+                    }
                 }
                 
                 bat.ref.active = (current > 0);
@@ -771,6 +794,7 @@ function simulateCircuit() {
                         realEdge.ref.flowing = (current > 0);
                         realEdge.ref.flowDir = (realEdge.n1 === edge.n1) ? 1 : -1;
                     } else if (edge.type === 'motor' && current > 0) {
+                        edge.ref.voltageDrop = current * 15;
                         loopHasActiveMotor = true;
                     }
                 }
@@ -1013,11 +1037,18 @@ function drawComponent(el, x, y) {
     } else if (type === 'motor' && componentImages.motor?.complete) {
         wbCtx.drawImage(componentImages.motor, -60, -60, 120, 120);
         wbCtx.save();
-        wbCtx.rotate(el.active && wbIsRunning ? (Date.now() / 120) % (Math.PI * 2) : 0);
-        wbCtx.fillStyle = '#C0C0C0'; wbCtx.beginPath(); wbCtx.arc(0, 0, 16, 0, Math.PI*2); wbCtx.fill();
-        wbCtx.strokeStyle = '#222'; wbCtx.lineWidth = 4;
-        wbCtx.beginPath(); wbCtx.moveTo(-26, 0); wbCtx.lineTo(26, 0);
-        wbCtx.moveTo(0, -26); wbCtx.lineTo(0, 26); wbCtx.stroke();
+        wbCtx.translate(0, -55);
+        let rpm = 0;
+        if (el.active && wbIsRunning) {
+            const speed = el.voltageDrop || 0; 
+            rpm = (Date.now() / Math.max(15, 250 - speed * 40)) % (Math.PI * 2);
+        }
+        wbCtx.rotate(rpm);
+        wbCtx.fillStyle = '#ff4757';
+        wbCtx.beginPath(); wbCtx.ellipse(0, 0, 45, 8, 0, 0, Math.PI * 2); wbCtx.fill();
+        wbCtx.beginPath(); wbCtx.ellipse(0, 0, 8, 45, 0, 0, Math.PI * 2); wbCtx.fill();
+        wbCtx.fillStyle = '#222';
+        wbCtx.beginPath(); wbCtx.arc(0, 0, 6, 0, Math.PI*2); wbCtx.fill();
         wbCtx.restore();
     } else if (type === 'ldr' && componentImages.ldr?.complete) {
         wbCtx.drawImage(componentImages.ldr, -50, -50, 100, 100);
@@ -1158,8 +1189,11 @@ window.wbUpdatePropertiesPanel = () => {
         title.innerText = 'Bench Power Supply';
         document.getElementById('wbPropPowerSupply').style.display = 'flex';
         const v = (wbSelectedElement.voltage !== undefined) ? wbSelectedElement.voltage : 9.0;
+        const a = (wbSelectedElement.currentLimit !== undefined) ? wbSelectedElement.currentLimit : 2.0;
         document.getElementById('wbPSVoltage').value = v;
         document.getElementById('wbPSVoltageValue').innerText = `${v.toFixed(1)} V`;
+        document.getElementById('wbPSAmp').value = a;
+        document.getElementById('wbPSAmpValue').innerText = `${a.toFixed(3)} A`;
     } else if (wbSelectedElement.compType === 'ir_sensor') {
         title.innerText = 'IR Sensor Module';
         document.getElementById('wbPropIRSensor').style.display = 'flex';
@@ -1206,7 +1240,9 @@ window.wbUpdatePropertiesPanel = () => {
             const objDistVal = Math.round(Math.abs(wbSelectedElement.objDistance || -80));
             statusText = `<label class="wb-prop-label">Powered (VCC/GND):</label> ${powStatus}<br><label class="wb-prop-label">Object Distance:</label> <span style="font-family:monospace; color:var(--cyan);">${objDistVal} px</span><br><label class="wb-prop-label">Detection Status:</label> ${detStatus}`;
         } else if (wbSelectedElement.compType === 'power_supply') {
-            statusText = `<label class="wb-prop-label">Output Voltage:</label><span style="font-family:monospace; color:var(--green); font-size:1.1rem; font-weight:bold;">${wbSelectedElement.voltage.toFixed(1)} V</span>`;
+            const outV = (wbSelectedElement.ccMode && wbSelectedElement.actualVoltage !== undefined) ? wbSelectedElement.actualVoltage : wbSelectedElement.voltage;
+            statusText = `<label class="wb-prop-label">Output Voltage:</label><span style="font-family:monospace; color:var(--green); font-size:1.1rem; font-weight:bold;">${outV.toFixed(2)} V</span><br>
+            <label class="wb-prop-label">Mode:</label><span style="color:${wbSelectedElement.ccMode ? 'var(--orange)' : 'var(--cyan)'}; font-weight:bold;">${wbSelectedElement.ccMode ? 'CC (Current Limiting)' : 'CV (Constant Voltage)'}</span>`;
         }
         statsBox.innerHTML = statusText;
         panel.appendChild(statsBox);
@@ -1221,9 +1257,12 @@ window.wbUpdateComponent = () => {
         wbSelectedElement.resistance = val;
         window.wbRegenerateResistorImage(wbSelectedElement);
     } else if (wbSelectedElement.compType === 'power_supply') {
-        let val = parseFloat(document.getElementById('wbPSVoltage').value);
-        wbSelectedElement.voltage = val;
-        document.getElementById('wbPSVoltageValue').innerText = `${val.toFixed(1)} V`;
+        let v = parseFloat(document.getElementById('wbPSVoltage').value);
+        let a = parseFloat(document.getElementById('wbPSAmp').value);
+        wbSelectedElement.voltage = v;
+        wbSelectedElement.currentLimit = a;
+        document.getElementById('wbPSVoltageValue').innerText = `${v.toFixed(1)} V`;
+        document.getElementById('wbPSAmpValue').innerText = `${a.toFixed(3)} A`;
     } else if (wbSelectedElement.compType === 'ir_sensor') {
         let val = parseInt(document.getElementById('wbIRTriggerDist').value);
         wbSelectedElement.triggerDistance = val;

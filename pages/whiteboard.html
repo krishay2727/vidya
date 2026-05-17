@@ -61,8 +61,12 @@
           
           <div id="wbPropPowerSupply" class="wb-prop-group" style="display: none;">
               <label class="wb-prop-label">Voltage (V):</label>
-              <input type="range" id="wbPSVoltage" min="1" max="24" step="0.5" value="9" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
+              <input type="range" id="wbPSVoltage" min="0" max="30" step="0.1" value="9" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
               <span id="wbPSVoltageValue" style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">9.0 V</span>
+              
+              <label class="wb-prop-label" style="margin-top: 10px;">Max Current Limit (A):</label>
+              <input type="range" id="wbPSAmp" min="0" max="5" step="0.001" value="2.000" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
+              <span id="wbPSAmpValue" style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">2.000 A</span>
           </div>
 
           <div id="wbPropIRSensor" class="wb-prop-group" style="display: none;">
