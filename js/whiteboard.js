@@ -18,10 +18,94 @@ let wbCurrentPath = null;
 let wbPreviewWire = null;
 let wbIsDrawing = false;
 let wbDraggingElement = null;
-let wbSelectedElement = null; // New for properties panel
+let wbSelectedElement = null; 
 let wbLastPos = null;
 let wbIsRunning = false;
 let wbAnimationFrame = null;
+
+// Undo/Redo tracking system
+let wbHistory = [];
+let wbHistoryIndex = -1;
+
+window.wbSaveState = () => {
+    // Truncate redo history if we performed action after an undo
+    wbHistory = wbHistory.slice(0, wbHistoryIndex + 1);
+    const snapshot = wbElements.map(el => {
+        const copy = { ...el };
+        if (el.type === 'freehand') {
+            copy.points = el.points.map(pt => ({ ...pt }));
+        }
+        return copy;
+    });
+    wbHistory.push(snapshot);
+    wbHistoryIndex = wbHistory.length - 1;
+};
+
+window.wbUndo = () => {
+    if (wbHistoryIndex > 0) {
+        wbHistoryIndex--;
+        restoreFromHistoryState(wbHistory[wbHistoryIndex]);
+        wbSelectedElement = null;
+        if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
+        if (!wbIsRunning) wbRedraw();
+        else simulateCircuit();
+    }
+};
+
+window.wbRedo = () => {
+    if (wbHistoryIndex < wbHistory.length - 1) {
+        wbHistoryIndex++;
+        restoreFromHistoryState(wbHistory[wbHistoryIndex]);
+        wbSelectedElement = null;
+        if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
+        if (!wbIsRunning) wbRedraw();
+        else simulateCircuit();
+    }
+};
+
+function restoreFromHistoryState(state) {
+    wbElements = state.map(el => {
+        const copy = { ...el };
+        if (el.type === 'freehand') {
+            copy.points = el.points.map(pt => ({ ...pt }));
+        } else if (el.type === 'component' && el.compType === 'resistor') {
+            window.wbRegenerateResistorImage(copy);
+        }
+        return copy;
+    });
+}
+
+// Rotation tracking calculations
+function getRotatedTerminal(el, rx, ry) {
+    const rot = el.rotation || 0;
+    if (rot === 90) return { x: el.x - ry, y: el.y + rx };
+    if (rot === 180) return { x: el.x - rx, y: el.y - ry };
+    if (rot === 270) return { x: el.x + ry, y: el.y - rx };
+    return { x: el.x + rx, y: el.y + ry };
+}
+
+window.wbRotateSelected = () => {
+    if (wbSelectedElement && wbSelectedElement.type === 'component') {
+        wbSelectedElement.rotation = ((wbSelectedElement.rotation || 0) + 90) % 360;
+        wbSaveState();
+        if (wbIsRunning) {
+            simulateCircuit();
+        } else {
+            wbRedraw();
+        }
+    }
+};
+
+// Keyboard listener for undo/redo
+window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+        e.preventDefault();
+        window.wbUndo();
+    } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y') {
+        e.preventDefault();
+        window.wbRedo();
+    }
+});
 
 window.initWhiteboard = () => {
     wbCanvas = document.getElementById('whiteboardCanvas');
@@ -39,6 +123,12 @@ window.initWhiteboard = () => {
     
     if (wbAnimationFrame) cancelAnimationFrame(wbAnimationFrame);
     wbIsRunning = false;
+    
+    // Reset state & save initial empty board state
+    wbElements = [];
+    wbHistory = [];
+    wbHistoryIndex = -1;
+    wbSaveState();
     
     const resizeCanvas = () => {
         if (!wbCanvas || !wbCanvas.parentElement) return;
@@ -77,11 +167,12 @@ window.initWhiteboard = () => {
         
         if (wbMode === 'move') {
             const el = getElementAt(pos);
-            wbSelectedElement = el; // Track selected element
+            wbSelectedElement = el; 
             if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
             
             if (el) {
                 wbDraggingElement = el;
+                wbDraggingElement._dragStartPos = { x: el.x, y: el.y }; // Store start pos to check for actual movement
                 wbLastPos = pos;
                 wbIsDrawing = true;
             }
@@ -96,13 +187,14 @@ window.initWhiteboard = () => {
             } else if (wbMode === 'wire') {
                 wbPreviewWire = { type: 'wire', color: wbCurrentColor, x1: pos.x, y1: pos.y, x2: pos.x, y2: pos.y, flowing: false, flowDir: 1 };
             } else if (wbMode === 'component') {
-                const el = { type: 'component', compType: wbCurrentComp, x: pos.x, y: pos.y, active: false };
+                const el = { type: 'component', compType: wbCurrentComp, x: pos.x, y: pos.y, active: false, rotation: 0 };
                 if (wbCurrentComp === 'resistor') {
                     el.resistance = 220;
                     if(window.wbRegenerateResistorImage) window.wbRegenerateResistorImage(el);
                 }
                 wbElements.push(el);
-                wbSelectedElement = el; // Auto-select new component
+                wbSelectedElement = el; 
+                wbSaveState(); // Save component placement
                 if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
                 if (!wbIsRunning) wbRedraw();
                 wbIsDrawing = false; 
@@ -146,15 +238,23 @@ window.initWhiteboard = () => {
         if (!wbIsDrawing) return;
         wbIsDrawing = false;
         
-        if (wbMode === 'move') {
+        if (wbMode === 'move' && wbDraggingElement) {
+            // Save state if element was actually dragged/moved
+            const start = wbDraggingElement._dragStartPos;
+            if (start && (wbDraggingElement.x !== start.x || wbDraggingElement.y !== start.y)) {
+                wbSaveState();
+            }
+            delete wbDraggingElement._dragStartPos;
             wbDraggingElement = null;
         } else if (wbMode === 'pen' && wbCurrentPath) {
             wbElements.push(wbCurrentPath);
+            wbSaveState();
             wbCurrentPath = null;
         } else if (wbMode === 'wire' && wbPreviewWire) {
             const dist = Math.hypot(wbPreviewWire.x2 - wbPreviewWire.x1, wbPreviewWire.y2 - wbPreviewWire.y1);
             if(dist > 5) {
                 wbElements.push(wbPreviewWire);
+                wbSaveState();
             }
             wbPreviewWire = null;
         }
@@ -177,7 +277,6 @@ window.wbSetMode = (mode, val) => {
     wbMode = mode;
     if (mode === 'pen' || mode === 'wire') wbCurrentColor = val;
     if (mode === 'component') wbCurrentComp = val;
-    // Clear selection when changing tools
     if (mode !== 'move') {
         wbSelectedElement = null;
         if(window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
@@ -187,6 +286,7 @@ window.wbSetMode = (mode, val) => {
 window.wbClear = () => {
     wbElements = [];
     wbSelectedElement = null;
+    wbSaveState(); // Save cleared board state
     if(window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
     if (!wbIsRunning) wbRedraw();
 };
@@ -219,13 +319,21 @@ function simulateCircuit() {
             addEdge(`${el.x1},${el.y1}`, `${el.x2},${el.y2}`, 'wire', el, false);
         } else if (el.type === 'component') {
             if (el.compType === 'battery') {
-                batteries.push({ pos: `${el.x - 25},${el.y - 50}`, neg: `${el.x + 25},${el.y - 50}`, ref: el });
+                const posT = getRotatedTerminal(el, -25, -50);
+                const negT = getRotatedTerminal(el, 25, -50);
+                batteries.push({ pos: `${posT.x},${posT.y}`, neg: `${negT.x},${negT.y}`, ref: el });
             } else if (el.compType === 'led') {
-                addEdge(`${el.x - 25},${el.y + 25}`, `${el.x + 25},${el.y + 25}`, 'led', el, true); // Anode to Cathode ONLY
+                const posT = getRotatedTerminal(el, -25, 25);
+                const negT = getRotatedTerminal(el, 25, 25);
+                addEdge(`${posT.x},${posT.y}`, `${negT.x},${negT.y}`, 'led', el, true); // Anode to Cathode ONLY
             } else if (el.compType === 'resistor') {
-                addEdge(`${el.x - 50},${el.y}`, `${el.x + 50},${el.y}`, 'resistor', el, false);
+                const t1 = getRotatedTerminal(el, -50, 0);
+                const t2 = getRotatedTerminal(el, 50, 0);
+                addEdge(`${t1.x},${t1.y}`, `${t2.x},${t2.y}`, 'resistor', el, false);
             } else if (el.compType === 'motor') {
-                addEdge(`${el.x - 25},${el.y + 50}`, `${el.x + 25},${el.y + 50}`, 'motor', el, false);
+                const t1 = getRotatedTerminal(el, -25, 50);
+                const t2 = getRotatedTerminal(el, 25, 50);
+                addEdge(`${t1.x},${t1.y}`, `${t2.x},${t2.y}`, 'motor', el, false);
             }
         }
     }
@@ -278,7 +386,7 @@ window.wbToggleRun = () => {
             btn.style.color = 'white';
             btn.style.boxShadow = '0 0 15px rgba(255,71,87,0.8)';
         }
-        simulateCircuit(); // Calculate physics!
+        simulateCircuit(); 
         wbAnimationLoop();
     } else {
         if (btn) {
@@ -326,9 +434,27 @@ function wbAnimationLoop() {
     wbAnimationFrame = requestAnimationFrame(wbAnimationLoop);
 }
 
+// Draw a realistic golden PCB solder pad grid
+function drawPCBGrid() {
+    if (!wbCtx || !wbCanvas) return;
+    const gridSize = 25;
+    wbCtx.fillStyle = 'rgba(212, 175, 55, 0.25)'; // Gold copper solder pad color
+    for (let x = gridSize; x < wbCanvas.width; x += gridSize) {
+        for (let y = gridSize; y < wbCanvas.height; y += gridSize) {
+            wbCtx.beginPath();
+            wbCtx.arc(x, y, 2.5, 0, Math.PI * 2);
+            wbCtx.fill();
+        }
+    }
+}
+
 function wbRedraw() {
     if (!wbCtx || !wbCanvas) return;
     wbCtx.clearRect(0, 0, wbCanvas.width, wbCanvas.height);
+    
+    // Draw the gold copper pads first
+    drawPCBGrid();
+    
     wbCtx.lineCap = 'round';
     wbCtx.lineJoin = 'round';
 
@@ -367,6 +493,13 @@ function drawElement(el) {
 function drawComponent(el, x, y) {
     wbCtx.save();
     wbCtx.translate(x, y);
+    
+    // Rotate component relative to its center coordinate
+    const rot = el.rotation || 0;
+    if (rot !== 0) {
+        wbCtx.rotate(rot * Math.PI / 180);
+    }
+    
     const type = el.compType;
     
     if (type === 'battery' && componentImages.battery?.complete) {
@@ -393,6 +526,15 @@ function drawComponent(el, x, y) {
             wbCtx.beginPath(); wbCtx.arc(0, 8, 4, 0, Math.PI*2); wbCtx.fill();
             wbCtx.restore();
         }
+    }
+    
+    // Draw gold selected border if active component edit panel is open
+    if (wbSelectedElement === el && wbMode === 'move') {
+        wbCtx.strokeStyle = 'var(--cyan)';
+        wbCtx.lineWidth = 2;
+        wbCtx.setLineDash([5, 5]);
+        wbCtx.strokeRect(-52, -52, 104, 104);
+        wbCtx.setLineDash([]);
     }
     
     wbCtx.restore();
@@ -422,6 +564,7 @@ function eraseElementAt(pos) {
         const index = wbElements.indexOf(el);
         if (index > -1) {
             wbElements.splice(index, 1);
+            wbSaveState(); // Save deletion state
             if (!wbIsRunning) wbRedraw();
         }
     }
@@ -489,6 +632,7 @@ window.wbUpdateComponent = () => {
         if (isNaN(val) || val < 1) val = 1;
         wbSelectedElement.resistance = val;
         window.wbRegenerateResistorImage(wbSelectedElement);
+        wbSaveState(); // Save property updates
         if (!wbIsRunning) wbRedraw();
     }
 };

@@ -4,20 +4,20 @@
 
 .wb-page-inner {
   max-width: 100%;
-  padding: 80px 24px 40px;
+  padding: 65px 16px 16px;
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
 .wb-page-hero {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   text-align: left;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 15px;
 }
 
 /* Tinkercad-inspired Professional Toolbar */
@@ -26,7 +26,7 @@
   flex-direction: column;
   gap: 10px;
   background: var(--surface);
-  padding: 15px;
+  padding: 12px 15px;
   border-radius: 12px;
   border: 1px solid var(--border);
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -56,12 +56,10 @@
   flex: 1;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background-color: var(--bg2);
-  background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
-  background-size: 25px 25px;
+  background-color: #072213;
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.7);
   transition: border-color 0.3s;
 }
 
