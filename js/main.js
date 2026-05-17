@@ -40,12 +40,15 @@ async function init() {
   renderLeaderboard();
   renderAbout();
 
-  // Handle initial load based on path
-  const pathSegment = window.location.pathname.split('/').filter(Boolean).pop();
+  // Handle initial load based on hash
+  let pageName = 'home';
+  if (window.location.hash) {
+      pageName = window.location.hash.substring(1);
+  }
   const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail'];
   
-  if (pathSegment && validPages.includes(pathSegment)) {
-    showPage(pathSegment);
+  if (validPages.includes(pageName)) {
+    showPage(pageName);
   } else {
     showPage('home');
   }
@@ -55,11 +58,14 @@ async function init() {
 //  HISTORY NAV (Back/Forward)
 // =============================================
 window.addEventListener('popstate', () => {
-  const pathSegment = window.location.pathname.split('/').filter(Boolean).pop();
+  let pageName = 'home';
+  if (window.location.hash) {
+      pageName = window.location.hash.substring(1);
+  }
   const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail'];
   
-  if (pathSegment && validPages.includes(pathSegment)) {
-    showPage(pathSegment);
+  if (validPages.includes(pageName)) {
+    showPage(pageName);
   } else {
     showPage('home');
   }
