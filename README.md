@@ -257,3 +257,103 @@ npx serve .
 ---
 
 *Vidya STEAM Education · Build. Break. Learn. Repeat. ⚡*
+
+## 🎲 5. Adding Questions for Live Quiz
+
+Questions are stored in **`live-quiz-data/questions.json`**.
+
+### File Structure:
+```json
+{
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple_choice",
+      "text": "What does LED stand for?",
+      "options": ["Light Emitting Diode", "LED Device", "Light Electric Display"],
+      "answer": 0,
+      "marks": 10
+    },
+    {
+      "id": 2,
+      "type": "fill_blank",
+      "text": "The unit of electric current is _____",
+      "answer": "Ampere",
+      "marks": 10
+    }
+  ]
+}
+```
+
+### Supported Question Types:
+- **`multiple_choice`** - Multiple choice questions
+- **`fill_blank`** - Fill-in-the-blank
+- **`short_answer`** - Short answer (case-insensitive matching)
+
+### How to Add Questions:
+1. Open `live-quiz-data/questions.json`
+2. Add your question to the `questions` array
+3. Make sure to add the correct answer!
+
+---
+
+## 👥 6. Adding Students & Teachers
+
+Student and teacher credentials are in **`live-quiz-data/students.json`** and **`live-quiz-data/teachers.json`**.
+
+### File Structures:
+
+**`students.json`**:
+```json
+{
+  "school_name": "Vidya STEAM School",
+  "students": [
+    { "name": "Ravi Kumar", "password": "123" },
+    { "name": "Priya Sharma", "password": "456" }
+  ]
+}
+```
+
+**`teachers.json`**:
+```json
+{
+  "teachers": [
+    { "name": "Mr. Gupta", "password": "teacher123" },
+    { "name": "Ms. Desai", "password": "teacher456" }
+  ]
+}
+```
+
+### How to Add Credentials:
+
+**For Students:**
+```json
+{
+  "name": "Student Name",
+  "password": "password123"
+}
+```
+
+**For Teachers:**
+```json
+{
+  "name": "Teacher Name",
+  "password": "teacher123"
+}
+```
+
+---
+
+## 📋 Quick Setup Summary:
+
+| File | Purpose |
+|------|---------|
+| `site.json` | Website config (sessions list) |
+| `sessions/session-X/session.json` | Individual session data |
+| `sessions/session-X/slides/*.jpg` | PPT slides (export from PowerPoint) |
+| `sessions/session-X/images/*.jpg` | Activity photos |
+| `projects/projects.json` | Project descriptions and links |
+| `projects/images/*.jpg` | Project photos |
+| `live-quiz-data/questions.json` | Quiz questions |
+| `live-quiz-data/students.json` | Student credentials |
+| `live-quiz-data/teachers.json` | Teacher credentials |

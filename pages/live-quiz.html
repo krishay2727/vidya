@@ -1,0 +1,194 @@
+<style>
+  #live-quiz-app {
+      font-family: var(--font-body);
+      max-width: 800px;
+      margin: 0 auto;
+      perspective: 1000px;
+  }
+  #live-quiz-app input, #live-quiz-app select { 
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  }
+  #live-quiz-app input:focus, #live-quiz-app select:focus { 
+      transform: scale(1.02); 
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2), inset 0 2px 4px rgba(0,0,0,0.1); 
+      border-color: var(--cyan); 
+      outline: none;
+  }
+  #live-quiz-app .card { 
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      border: 1px solid rgba(255,255,255,0.05);
+      background: linear-gradient(145deg, var(--surface), var(--bg2));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  #live-quiz-app .card:hover { 
+      transform: translateY(-5px) rotateX(2deg); 
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4); 
+      border-color: rgba(255, 107, 53, 0.3); 
+  }
+  .lq-btn { 
+      transition: all 0.3s ease; 
+      position: relative; 
+      overflow: hidden; 
+      letter-spacing: 0.5px;
+  }
+  .lq-btn:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25); 
+      filter: brightness(1.1);
+  }
+  .lq-btn:active { 
+      transform: translateY(1px); 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2); 
+  }
+  .option-btn {
+      background: var(--surface2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      text-align: left;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      width: 100%;
+  }
+  .option-btn:hover {
+      background: var(--surface);
+      border-color: var(--cyan);
+  }
+  .lq-interactive-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      display: inline-block;
+      animation: floatIcon 3s ease-in-out infinite;
+  }
+  @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+  }
+</style>
+
+<div class="page-inner">
+  <div id="live-quiz-app">
+      <div id="lq-home-page" class="lq-view active" style="text-align: center;">
+          <div class="lq-interactive-icon">🚀</div>
+          <h1 style="font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">STEM Live Quiz</h1>
+          <p style="margin-bottom: 30px; color: var(--text-muted); font-size: 1.1rem;">Ready to test your knowledge?</p>
+          <div class="card" style="max-width: 500px; margin: 0 auto;">
+              <div style="position: relative;">
+                  <span style="position: absolute; left: 15px; top: 23px; color: var(--text-dim);">🔢</span>
+                  <input type="text" id="lq-join-code" placeholder="Enter Room Code" maxlength="6" style="padding-left: 45px;">
+              </div>
+              <div style="position: relative;">
+                  <span style="position: absolute; left: 15px; top: 23px; color: var(--text-dim);">👤</span>
+                  <input type="text" id="lq-join-name" placeholder="Enter Your Name" style="padding-left: 45px;">
+              </div>
+              <div style="position: relative;">
+                  <span style="position: absolute; left: 15px; top: 23px; color: var(--text-dim);">🔑</span>
+                  <input type="password" id="lq-join-pass" placeholder="Enter Password" style="padding-left: 45px;">
+              </div>
+              <button onclick="lqJoinGame()" class="btn-primary lq-btn" style="width: 100%; margin-top: 20px; font-size: 1.2rem; padding: 14px;">🎮 Join Game</button>
+              
+              <hr style="border: none; border-top: 1px dashed var(--border); margin: 30px 0;">
+              
+              <button onclick="window.lqShowView('lq-teacher-login-page')" class="btn-outline lq-btn" style="width: 100%; border-radius: 8px;">👨‍🏫 Teacher Login (Host)</button>
+          </div>
+      </div>
+
+      <div id="lq-teacher-login-page" class="lq-view" style="text-align: center;">
+          <div class="lq-interactive-icon">👨‍🏫</div>
+          <h1 style="font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">Teacher Login</h1>
+          <p style="margin-bottom: 30px; color: var(--text-muted); font-size: 1.1rem;">Log in to create and host a room</p>
+          <div class="card" style="max-width: 500px; margin: 0 auto;">
+              <input type="text" id="lq-host-name" placeholder="Teacher Name">
+              <input type="password" id="lq-host-pass" placeholder="Password">
+              
+              <label for="lq-host-grade" style="display:block; text-align:left; margin: 20px 0 8px; color: var(--cyan); font-weight: bold; font-size: 0.95rem;">Select Class/Grade Quiz:</label>
+              <select id="lq-host-grade" style="width: 100%; padding: 14px; margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; background: var(--surface2); color: var(--text);">
+                  <option value="grade1">Grade 1</option>
+                  <option value="grade2">Grade 2</option>
+                  <option value="grade3">Grade 3</option>
+                  <option value="grade4">Grade 4</option>
+                  <option value="grade5">Grade 5</option>
+                  <option value="grade6">Grade 6</option>
+                  <option value="grade7">Grade 7</option>
+                  <option value="grade8">Grade 8</option>
+                  <option value="grade9">Grade 9</option>
+              </select>
+
+              <button onclick="lqHostLogin()" class="btn-primary lq-btn" style="width: 100%; margin-top: 20px; font-size: 1.2rem; padding: 14px;">🚀 Login & Host</button>
+              <button onclick="window.lqShowView('lq-home-page')" class="btn-outline lq-btn" style="width: 100%; margin-top: 15px; border-radius: 8px;">⬅️ Back</button>
+          </div>
+      </div>
+
+      <div id="lq-host-setup-page" class="lq-view" style="text-align: center;">
+          <h2>Host Dashboard 👨‍🏫</h2>
+          <div class="card" style="max-width: 600px; margin: 0 auto;">
+              <p style="color: var(--text-dim); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Room Code</p>
+              <h1 id="lq-display-room-code" class="huge-text" style="font-family: var(--font-head); font-size: 4.5rem; color: var(--orange); margin: 10px 0; letter-spacing: 5px; text-shadow: var(--glow-orange);">---</h1>
+              <h3 style="margin: 30px 0 15px; font-weight: normal;">Players Joined: <span id="lq-host-player-count" style="color: var(--cyan); font-weight: bold; font-size: 1.5rem;">0</span></h3>
+              <ul id="lq-host-player-list" class="player-list" style="text-align: left; max-height: 250px; overflow-y: auto; background: var(--bg2); border-radius: 8px; padding: 15px;"></ul>
+              <button onclick="lqStartGame()" class="btn-primary lq-btn" style="width: 100%; margin-top: 30px; font-size: 1.3rem; padding: 16px;">▶️ Start Quiz (10 Min Timer)</button>
+          </div>
+      </div>
+
+      <div id="lq-player-waiting-page" class="lq-view" style="text-align: center;">
+          <div class="lq-interactive-icon" style="animation-duration: 2s;">⏳</div>
+          <h2>Waiting for host to start...</h2>
+          <div class="card" style="max-width: 500px; margin: 30px auto;">
+            <p style="font-size: 1.2rem;">You are in room: <strong id="lq-waiting-room-code" style="font-size: 2rem; color: var(--primary); display: block; margin-top: 10px;"></strong></p>
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 20px 0;">
+            <p style="margin-top: 10px; font-size: 1.1rem;">Players playing right now: <strong id="lq-players-count" style="color: var(--cyan); font-size: 1.5rem;">0</strong></p>
+            <div class="loader" style="border-top-color: var(--orange); margin-top: 30px;"></div>
+          </div>
+      </div>
+
+      <div id="lq-quiz-page" class="lq-view">
+          <div style="display: flex; gap: 24px; text-align: left; align-items: flex-start; flex-wrap: wrap;">
+              
+              <!-- LEFT SIDEBAR: LIVE LEADERBOARD (NO SCORES) -->
+              <div class="card" style="flex: 1; min-width: 250px; max-width: 300px; padding: 20px;">
+                  <h3 style="color: var(--cyan); margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; font-family: var(--font-head);">
+                      <span>Live Rank</span>
+                      <span>🏆</span>
+                  </h3>
+                  <ul id="lq-live-sidebar-list" class="player-list" style="list-style: none; padding: 0;"></ul>
+              </div>
+
+              <!-- RIGHT SIDE: QUIZ CONTENT -->
+              <div class="card" style="flex: 2; min-width: 300px; padding: 30px;">
+                  <div class="quiz-header" style="display: flex; justify-content: space-between; margin-bottom: 25px; font-weight: bold; font-size: 1.3rem; border-bottom: 1px solid var(--border); padding-bottom: 15px;">
+                      <span id="lq-timer-display" style="color: var(--orange); display: flex; align-items: center; gap: 8px;">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                          10:00
+                      </span>
+                      <!-- Score has been removed from the header as requested -->
+                  </div>
+                  <h2 id="lq-question-text" style="margin-bottom: 30px; font-size: 1.6rem; font-family: var(--font-head); line-height: 1.4;">Loading question...</h2>
+                  <div id="lq-options-container" class="options-grid" style="display: flex; flex-direction: column; gap: 15px;"></div>
+
+                  <div id="lq-host-controls" style="display:none; margin-top: 40px; padding-top: 25px; border-top: 1px dashed var(--border);">
+                      <h4 style="margin-bottom: 15px; color: var(--cyan); font-family: var(--font-head);">👨‍🏫 Host Controls</h4>
+                      <div style="display: flex; gap: 15px;">
+                        <button onclick="lqNextQuestion()" class="btn-primary lq-btn" style="flex: 1; padding: 12px; font-size: 1.1rem;">Next Question ➡️</button>
+                        <button onclick="lqEndQuiz()" class="btn-danger lq-btn" style="flex: 1; padding: 12px; font-size: 1.1rem;">End Quiz 🛑</button>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+
+      <div id="lq-leaderboard-page" class="lq-view" style="text-align: center;">
+          <div class="lq-interactive-icon" style="animation-duration: 4s;">🎉</div>
+          <h2 style="font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">Final Rank</h2>
+          <div class="card" style="max-width: 600px; margin: 0 auto;">
+            <!-- No scores in this list either -->
+            <ul id="lq-leaderboard-list" class="player-list" style="text-align: left; font-size: 1.2rem; line-height: 2;"></ul>
+          </div>
+          <div id="lq-final-host-controls" style="display:none; margin-top: 30px;">
+              <button onclick="lqDownloadCSV()" class="btn-primary lq-btn" style="padding: 14px 24px; font-size: 1.1rem; margin-right: 15px;">📊 Download Full Results (Excel)</button>
+              <button onclick="window.lqShowView('lq-home-page')" class="btn-secondary lq-btn" style="padding: 14px 24px; font-size: 1.1rem;">Exit to Home</button>
+          </div>
+      </div>
+  </div>
+</div>

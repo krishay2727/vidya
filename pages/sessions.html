@@ -1,0 +1,21 @@
+<div id="page-sessions" class="page active">
+  <div class="page-inner">
+    <div class="page-hero">
+      <h1>All Sessions</h1>
+      <p>Click any session to explore slides, videos, resources, and take the quiz!</p>
+      
+      <div class="sessions-filter" style="margin-top: 20px;">
+        <label for="gradeFilter" style="font-weight: 600; margin-right: 10px;">Filter by Grade:</label>
+        <select id="gradeFilter" onchange="renderSessionsList()" style="padding: 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text);">
+          <option value="all">All Grades</option>
+          <option value="5">Grade 5</option>
+          <option value="6">Grade 6</option>
+          <option value="7">Grade 7</option>
+          <option value="8">Grade 8</option>
+          <option value="9">Grade 9</option>
+        </select>
+      </div>
+    </div>
+    <div class="sessions-list-grid" id="sessionsListGrid"></div>
+  </div>
+</div>
