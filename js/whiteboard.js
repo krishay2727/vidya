@@ -6,7 +6,8 @@ const svgs = {
     led: `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="50" width="6" height="25" fill="#ccc"/><rect x="72" y="50" width="6" height="25" fill="#ccc"/><path d="M 15 50 L 85 50 L 85 40 L 15 40 Z" fill="#800000"/><path d="M 15 40 C 15 -10 85 -10 85 40 Z" fill="#b30000" opacity="0.9"/><text x="25" y="90" font-family="sans-serif" font-size="24" fill="#ff4757" font-weight="bold" text-anchor="middle">+</text><text x="75" y="90" font-family="sans-serif" font-size="24" fill="#ccc" font-weight="bold" text-anchor="middle">-</text></svg>`,
     led_active: `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="glow" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#ffcccc"/><stop offset="50%" stop-color="#ff0000"/><stop offset="100%" stop-color="#990000"/></radialGradient><filter id="blur"><feGaussianBlur stdDeviation="3"/></filter></defs><rect x="22" y="50" width="6" height="25" fill="#ccc"/><rect x="72" y="50" width="6" height="25" fill="#ccc"/><path d="M 15 40 C 15 -10 85 -10 85 40 Z" fill="#ff0000" filter="url(#blur)" opacity="0.6"/><path d="M 15 50 L 85 50 L 85 40 L 15 40 Z" fill="#cc0000"/><path d="M 15 40 C 15 -10 85 -10 85 40 Z" fill="url(#glow)"/><path d="M 25 35 C 25 10 40 10 40 35 Z" fill="#ffffff" opacity="0.8"/><text x="25" y="90" font-family="sans-serif" font-size="24" fill="#ff4757" font-weight="bold" text-anchor="middle">+</text><text x="75" y="90" font-family="sans-serif" font-size="24" fill="#ccc" font-weight="bold" text-anchor="middle">-</text></svg>`,
     resistor: `<svg width="100" height="50" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="23" width="100" height="4" fill="#ccc"/><path d="M 20 15 L 80 15 C 85 15 85 35 80 35 L 20 35 C 15 35 15 15 20 15 Z" fill="#d3a77a" stroke="#a67c52" stroke-width="2"/><rect x="30" y="15" width="6" height="20" fill="#cc0000"/><rect x="45" y="15" width="6" height="20" fill="#000000"/><rect x="60" y="15" width="6" height="20" fill="#cc0000"/><rect x="75" y="15" width="4" height="20" fill="#b8860b"/></svg>`,
-    motor: `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="#ddd" stroke="#999" stroke-width="2"/><circle cx="50" cy="50" r="25" fill="#eee" stroke="#aaa" stroke-width="2"/><text x="50" y="58" font-family="sans-serif" font-size="24" font-weight="bold" fill="#666" text-anchor="middle">M</text><rect x="20" y="80" width="10" height="20" fill="#ffd700"/><rect x="70" y="80" width="10" height="20" fill="#ffd700"/></svg>`
+    motor: `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="#ddd" stroke="#999" stroke-width="2"/><circle cx="50" cy="50" r="25" fill="#eee" stroke="#aaa" stroke-width="2"/><text x="50" y="58" font-family="sans-serif" font-size="24" font-weight="bold" fill="#666" text-anchor="middle">M</text><rect x="20" y="80" width="10" height="20" fill="#ffd700"/><rect x="70" y="80" width="10" height="20" fill="#ffd700"/></svg>`,
+    ir_sensor: `<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="10" width="90" height="80" rx="6" fill="#0b381a" stroke="#061c0e" stroke-width="2"/><rect x="35" y="42" width="30" height="20" fill="#0056b3" rx="2"/><circle cx="50" cy="52" r="7" fill="#ffd700"/><line x1="50" y1="45" x2="50" y2="59" stroke="#222" stroke-width="2"/><rect x="15" y="-8" width="20" height="18" fill="#555" rx="1"/><circle cx="25" cy="-6" r="8" fill="#a0c4ff" opacity="0.95"/><rect x="65" y="-8" width="20" height="18" fill="#555" rx="1"/><circle cx="75" cy="-6" r="8" fill="#151515"/><circle cx="25" cy="30" r="5" fill="#444"/><rect x="22" y="90" width="6" height="10" fill="#ffd700"/><rect x="47" y="90" width="6" height="10" fill="#ffd700"/><rect x="72" y="90" width="6" height="10" fill="#ffd700"/><text x="25" y="84" font-family="sans-serif" font-size="10" fill="#bbb" font-weight="bold" text-anchor="middle">V</text><text x="50" y="84" font-family="sans-serif" font-size="10" fill="#bbb" font-weight="bold" text-anchor="middle">G</text><text x="75" y="84" font-family="sans-serif" font-size="10" fill="#bbb" font-weight="bold" text-anchor="middle">S</text></svg>`
 };
 
 const componentImages = {};
@@ -26,7 +27,7 @@ let wbLastPos = null;
 let wbIsRunning = false;
 let wbAnimationFrame = null;
 
-// Undo/Redo history stack
+// Undo/Redo history stacks
 let wbHistory = [];
 let wbHistoryIndex = -1;
 
@@ -89,7 +90,7 @@ const soundError = () => {
     playTone(180, 'triangle', 0.2, 0.2);
 };
 
-// Continuous motor hum with frequency vibrato tremolo modulation
+// Continuous motor hum with tremolo
 let motorOsc = null;
 let motorGain = null;
 function startMotorHum() {
@@ -181,7 +182,7 @@ function restoreFromHistoryState(state) {
 }
 
 // =============================================
-//  ROTATION & TERMINALS snap locking
+//  ROTATION & TERMINALS Snap Locking
 // =============================================
 function getRotatedTerminal(el, rx, ry) {
     const rot = el.rotation || 0;
@@ -224,6 +225,12 @@ function getComponentTerminals(el) {
             { name: '1', label: 'Terminal 1', ...getRotatedTerminal(el, -25, 50), el },
             { name: '2', label: 'Terminal 2', ...getRotatedTerminal(el, 25, 50), el }
         ];
+    } else if (el.compType === 'ir_sensor') {
+        return [
+            { name: 'VCC', label: 'VCC (+)', ...getRotatedTerminal(el, -25, 50), el },
+            { name: 'GND', label: 'GND (-)', ...getRotatedTerminal(el, 0, 50), el },
+            { name: 'OUT', label: 'Signal (OUT)', ...getRotatedTerminal(el, 25, 50), el }
+        ];
     }
     return [];
 }
@@ -252,7 +259,15 @@ function findNearestTerminal(pos, threshold = 25) {
     return best;
 }
 
-function alertToast(msg) {
+function getAbsoluteObjPos(el) {
+    const dy = el.objDistance || -80;
+    const rad = (el.rotation || 0) * Math.PI / 180;
+    const rx = -dy * Math.sin(rad);
+    const ry = dy * Math.cos(rad);
+    return { x: el.x + rx, y: el.y + ry };
+}
+
+function alertToast() {
     const container = document.getElementById('wbCanvasContainer');
     if (container) {
         container.style.borderColor = 'var(--red)';
@@ -262,7 +277,7 @@ function alertToast(msg) {
     }
 }
 
-// Keyboard shortcuts for Undo/Redo
+// Keyboard listeners
 window.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
         e.preventDefault();
@@ -274,14 +289,14 @@ window.addEventListener('keydown', (e) => {
 });
 
 // =============================================
-//  CANVAS Initialization and Interactions
+//  CANVAS Interactions & Event Handlers
 // =============================================
 window.initWhiteboard = () => {
     wbCanvas = document.getElementById('whiteboardCanvas');
     if (!wbCanvas) return;
     wbCtx = wbCanvas.getContext('2d');
     
-    // Preload component SVGs
+    // Preload SVG component images
     for (const [key, svgStr] of Object.entries(svgs)) {
         if (!componentImages[key]) {
             const img = new Image();
@@ -294,7 +309,6 @@ window.initWhiteboard = () => {
     wbIsRunning = false;
     stopMotorHum();
     
-    // Initial states
     wbElements = [];
     wbHistory = [];
     wbHistoryIndex = -1;
@@ -335,6 +349,21 @@ window.initWhiteboard = () => {
     const handleDown = (e) => {
         const pos = getPos(e);
         
+        // Handle dragging interactive IR Sensor "OBJ" Dot
+        if (wbIsRunning) {
+            for (const el of wbElements) {
+                if (el.type === 'component' && el.compType === 'ir_sensor') {
+                    const objPos = getAbsoluteObjPos(el);
+                    if (Math.hypot(objPos.x - pos.x, objPos.y - pos.y) < 18) {
+                        wbDraggingElement = { type: 'ir_obj', sensor: el };
+                        wbLastPos = pos;
+                        wbIsDrawing = true;
+                        return; 
+                    }
+                }
+            }
+        }
+
         if (wbMode === 'move') {
             const el = getElementAt(pos);
             wbSelectedElement = el; 
@@ -355,7 +384,6 @@ window.initWhiteboard = () => {
                 const rawPos = { x: e.clientX - wbCanvas.getBoundingClientRect().left, y: e.clientY - wbCanvas.getBoundingClientRect().top };
                 wbCurrentPath = { type: 'freehand', color: wbCurrentColor, points: [rawPos] };
             } else if (wbMode === 'wire') {
-                // Lock starting terminal
                 const term = findNearestTerminal(pos, 25);
                 if (term) {
                     wbPreviewWire = { 
@@ -372,7 +400,11 @@ window.initWhiteboard = () => {
                     wbPreviewWire = null;
                 }
             } else if (wbMode === 'component') {
-                const el = { type: 'component', compType: wbCurrentComp, x: pos.x, y: pos.y, active: false, rotation: 0, burned: false };
+                const el = { 
+                    type: 'component', compType: wbCurrentComp, 
+                    x: pos.x, y: pos.y, active: false, rotation: 0, burned: false,
+                    triggerDistance: 100, objDistance: -80 
+                };
                 if (wbCurrentComp === 'resistor') {
                     el.resistance = 220;
                     if(window.wbRegenerateResistorImage) window.wbRegenerateResistorImage(el);
@@ -395,6 +427,14 @@ window.initWhiteboard = () => {
         if (!wbIsDrawing) return;
         if (e.cancelable) e.preventDefault();
         const pos = getPos(e);
+
+        if (wbDraggingElement && wbDraggingElement.type === 'ir_obj') {
+            const sensor = wbDraggingElement.sensor;
+            const dist = Math.hypot(pos.x - sensor.x, pos.y - sensor.y);
+            sensor.objDistance = -Math.max(20, Math.min(220, dist));
+            simulateCircuit(); 
+            return;
+        }
 
         if (wbMode === 'move' && wbDraggingElement) {
             const dx = pos.x - wbLastPos.x;
@@ -430,6 +470,11 @@ window.initWhiteboard = () => {
         if (!wbIsDrawing) return;
         wbIsDrawing = false;
         
+        if (wbDraggingElement && wbDraggingElement.type === 'ir_obj') {
+            wbDraggingElement = null;
+            return;
+        }
+
         if (wbMode === 'move' && wbDraggingElement) {
             const start = wbDraggingElement._dragStartPos;
             if (start && (wbDraggingElement.x !== start.x || wbDraggingElement.y !== start.y)) {
@@ -442,7 +487,6 @@ window.initWhiteboard = () => {
             wbSaveState();
             wbCurrentPath = null;
         } else if (wbMode === 'wire' && wbPreviewWire) {
-            // Lock ending terminal
             const term = findNearestTerminal({ x: wbPreviewWire.x2, y: wbPreviewWire.y2 }, 25);
             if (term && (term.x !== wbPreviewWire.x1 || term.y !== wbPreviewWire.y1)) {
                 wbPreviewWire.x2 = term.x;
@@ -492,10 +536,27 @@ window.wbClear = () => {
 };
 
 // =============================================
-//  PHYSICS ENGINE (Ohm's Law Solver)
+//  PHYSICS ENGINE (Loop Solver & Secondary Power Nodes)
 // =============================================
+function pathExists(start, end, nodes) {
+    const visited = new Set();
+    function dfs(curr) {
+        if (curr === end) return true;
+        visited.add(curr);
+        if (nodes[curr]) {
+            for (const edge of nodes[curr]) {
+                if (!visited.has(edge.n2)) {
+                    if (dfs(edge.n2)) return true;
+                }
+            }
+        }
+        return false;
+    }
+    return dfs(start);
+}
+
 function simulateCircuit() {
-    // Reset temporary states
+    // Reset component states
     for (const el of wbElements) {
         if (el.type === 'wire') {
             el.flowing = false;
@@ -523,6 +584,8 @@ function simulateCircuit() {
     }
 
     const batteries = [];
+    const mainBatteries = [];
+
     for (const el of wbElements) {
         if (el.type === 'wire') {
             addEdge(`${el.x1},${el.y1}`, `${el.x2},${el.y2}`, 'wire', el, false);
@@ -530,14 +593,13 @@ function simulateCircuit() {
             if (el.compType === 'battery') {
                 const posT = getRotatedTerminal(el, -25, -50);
                 const negT = getRotatedTerminal(el, 25, -50);
-                batteries.push({ pos: `${posT.x},${posT.y}`, neg: `${negT.x},${negT.y}`, ref: el });
-            } else if (el.compType === 'led') {
-                // If LED is already burned out, it acts as a broken/open switch!
-                if (!el.burned) {
-                    const posT = getRotatedTerminal(el, -25, 25);
-                    const negT = getRotatedTerminal(el, 25, 25);
-                    addEdge(`${posT.x},${posT.y}`, `${negT.x},${negT.y}`, 'led', el, true); 
-                }
+                const batObj = { pos: `${posT.x},${posT.y}`, neg: `${negT.x},${negT.y}`, ref: el };
+                batteries.push(batObj);
+                mainBatteries.push(batObj);
+            } else if (el.compType === 'led' && !el.burned) {
+                const posT = getRotatedTerminal(el, -25, 25);
+                const negT = getRotatedTerminal(el, 25, 25);
+                addEdge(`${posT.x},${posT.y}`, `${negT.x},${negT.y}`, 'led', el, true); 
             } else if (el.compType === 'resistor') {
                 const t1 = getRotatedTerminal(el, -50, 0);
                 const t2 = getRotatedTerminal(el, 50, 0);
@@ -546,21 +608,64 @@ function simulateCircuit() {
                 const t1 = getRotatedTerminal(el, -25, 50);
                 const t2 = getRotatedTerminal(el, 25, 50);
                 addEdge(`${t1.x},${t1.y}`, `${t2.x},${t2.y}`, 'motor', el, false);
+            } else if (el.compType === 'ir_sensor') {
+                const vccT = getRotatedTerminal(el, -25, 50);
+                const gndT = getRotatedTerminal(el, 0, 50);
+                const outT = getRotatedTerminal(el, 25, 50);
+                addEdge(`${vccT.x},${vccT.y}`, `${gndT.x},${gndT.y}`, 'ir_pow', el, false);
+            }
+        }
+    }
+
+    // Phase 1: Determine which IR Sensors are successfully powered
+    for (const el of wbElements) {
+        if (el.type === 'component' && el.compType === 'ir_sensor') {
+            el.powered = false;
+            el.detected = false;
+            const vccT = getRotatedTerminal(el, -25, 50);
+            const gndT = getRotatedTerminal(el, 0, 50);
+            const vccStr = `${vccT.x},${vccT.y}`;
+            const gndStr = `${gndT.x},${gndT.y}`;
+            
+            for (const bat of mainBatteries) {
+                const hasVccPath = pathExists(bat.pos, vccStr, nodes);
+                const hasGndPath = pathExists(gndStr, bat.neg, nodes);
+                if (hasVccPath && hasGndPath) {
+                    el.powered = true;
+                    el.active = true;
+                    // Trigger detection test
+                    const dist = Math.abs(el.objDistance || -80);
+                    const trigger = el.triggerDistance || 100;
+                    if (dist <= trigger) {
+                        el.detected = true;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    // Phase 2: Treat powered & active OUT pins as secondary positive voltage sources
+    for (const el of wbElements) {
+        if (el.type === 'component' && el.compType === 'ir_sensor' && el.powered && el.detected) {
+            const outT = getRotatedTerminal(el, 25, 50);
+            for (const bat of mainBatteries) {
+                // Secondary closed loop path back to ground negative
+                batteries.push({ pos: `${outT.x},${outT.y}`, neg: bat.neg, ref: el });
             }
         }
     }
 
     let loopHasActiveMotor = false;
 
-    // Resolve closed loops
+    // Phase 3: Solve series paths
     for (const bat of batteries) {
         const visited = new Set();
         const path = [];
         
         function dfs(currNode) {
             if (currNode === bat.neg) {
-                // Closed Loop Active! Calculate Ohm's Law
-                let totalR = 5; // Base track copper resistance
+                let totalR = 5; 
                 let loopLED = null;
                 const pathComponents = [];
                 
@@ -569,30 +674,26 @@ function simulateCircuit() {
                     if (edge.type === 'resistor') {
                         totalR += edge.ref.resistance || 220;
                     } else if (edge.type === 'motor') {
-                        totalR += 15; // 15 ohm motor impedance
+                        totalR += 15; 
                     } else if (edge.type === 'led') {
-                        totalR += 2;  // 2 ohm diode impedance
+                        totalR += 2;  
                         loopLED = edge.ref;
                     }
                 }
                 
-                // Red LED forward voltage drop = 2.0V
                 const vDropLED = loopLED ? 2.0 : 0.0;
                 const vNet = 9.0 - vDropLED;
                 let current = 0;
-                
                 if (vNet > 0 && totalR > 0) {
-                    current = vNet / totalR; // Loop current in Amperes
+                    current = vNet / totalR; 
                 }
                 
-                // LED burn check
-                if (loopLED && current > 0.08) { // > 80mA burns the LED
+                if (loopLED && current > 0.08) {
                     loopLED.burned = true;
                     soundBurn();
                     current = 0; 
                 }
                 
-                // Apply computed stats to path elements
                 bat.ref.active = (current > 0);
                 bat.ref.current = current;
                 
@@ -608,7 +709,6 @@ function simulateCircuit() {
                         loopHasActiveMotor = true;
                     }
                 }
-                
                 return true; 
             }
             
@@ -629,7 +729,6 @@ function simulateCircuit() {
         dfs(bat.pos);
     }
 
-    // Toggle continuous motor hum based on active status
     if (loopHasActiveMotor && wbIsRunning) {
         startMotorHum();
     } else {
@@ -699,7 +798,7 @@ function wbAnimationLoop() {
     wbAnimationFrame = requestAnimationFrame(wbAnimationLoop);
 }
 
-// Gold solder pad layout
+// Gold solder grid circles
 function drawPCBGrid() {
     if (!wbCtx || !wbCanvas) return;
     const gridSize = 25;
@@ -769,7 +868,6 @@ function drawComponent(el, x, y) {
         wbCtx.drawImage(componentImages.battery, -50, -50, 100, 100);
     } else if (type === 'led') {
         if (el.burned) {
-            // smoldering gray burnt appearance
             wbCtx.drawImage(componentImages.led, -50, -50, 100, 100);
             
             wbCtx.beginPath();
@@ -777,7 +875,6 @@ function drawComponent(el, x, y) {
             wbCtx.fillStyle = 'rgba(50, 48, 48, 0.88)';
             wbCtx.fill();
             
-            // Burnt glass cracks
             wbCtx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
             wbCtx.lineWidth = 2.5;
             wbCtx.beginPath();
@@ -785,12 +882,10 @@ function drawComponent(el, x, y) {
             wbCtx.moveTo(2, -12); wbCtx.lineTo(18, -2);
             wbCtx.stroke();
             
-            // Pop label
             wbCtx.fillStyle = '#ff3b30';
             wbCtx.font = 'bold 11px Courier New';
             wbCtx.fillText("BURNT!", -22, -15);
         } else if (el.active && wbIsRunning) {
-            // Glow intensity scales with current!
             const currentMa = (el.current || 0) * 1000;
             const pulseGlow = 12 + Math.sin(Date.now() / 80) * 3;
             
@@ -810,16 +905,13 @@ function drawComponent(el, x, y) {
     } else if (type === 'motor' && componentImages.motor?.complete) {
         wbCtx.drawImage(componentImages.motor, -50, -50, 100, 100);
         
-        // Spin golden motor shaft axle with rotating gear vanes
         wbCtx.save();
         const rotAngle = el.active && wbIsRunning ? (Date.now() / 120) % (Math.PI * 2) : 0;
         wbCtx.rotate(rotAngle);
         
-        // Axle base
-        wbCtx.fillStyle = '#D4AF37'; // Gold
+        wbCtx.fillStyle = '#D4AF37'; 
         wbCtx.beginPath(); wbCtx.arc(0, 0, 14, 0, Math.PI*2); wbCtx.fill();
         
-        // Axle indicators
         wbCtx.strokeStyle = '#222';
         wbCtx.lineWidth = 3.5;
         wbCtx.beginPath();
@@ -827,9 +919,37 @@ function drawComponent(el, x, y) {
         wbCtx.moveTo(0, -22); wbCtx.lineTo(0, 22);
         wbCtx.stroke();
         wbCtx.restore();
+    } else if (type === 'ir_sensor' && componentImages.ir_sensor?.complete) {
+        wbCtx.drawImage(componentImages.ir_sensor, -50, -50, 100, 100);
+        
+        // Draw active sensor features during simulation
+        if (wbIsRunning) {
+            const beamDist = el.triggerDistance || 100;
+            
+            // Draw visual light emission beam
+            const grad = wbCtx.createLinearGradient(0, -10, 0, -10 - beamDist);
+            grad.addColorStop(0, el.detected ? 'rgba(0, 255, 136, 0.28)' : 'rgba(255, 71, 87, 0.22)');
+            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            
+            wbCtx.fillStyle = grad;
+            wbCtx.beginPath();
+            wbCtx.moveTo(-15, -10);
+            wbCtx.lineTo(-30, -10 - beamDist);
+            wbCtx.lineTo(30, -10 - beamDist);
+            wbCtx.lineTo(15, -10);
+            wbCtx.fill();
+            
+            // On-board status detection indicator LED (VCC side)
+            if (el.powered) {
+                wbCtx.fillStyle = el.detected ? '#00FF88' : '#FF4757';
+                wbCtx.shadowColor = el.detected ? '#00FF88' : '#FF4757';
+                wbCtx.shadowBlur = 8;
+                wbCtx.beginPath(); wbCtx.arc(-25, 30, 5, 0, Math.PI*2); wbCtx.fill();
+                wbCtx.shadowBlur = 0;
+            }
+        }
     }
     
-    // Highlight active element dash border in Move mode
     if (wbSelectedElement === el && wbMode === 'move') {
         wbCtx.strokeStyle = 'var(--cyan)';
         wbCtx.lineWidth = 2;
@@ -839,6 +959,38 @@ function drawComponent(el, x, y) {
     }
     
     wbCtx.restore();
+
+    // Draw external absolute draggable object dot for active IR Sensors during simulation
+    if (wbIsRunning && type === 'ir_sensor') {
+        const objPos = getAbsoluteObjPos(el);
+        
+        // Draw connection beam line to the absolute object position
+        wbCtx.strokeStyle = el.detected ? 'rgba(0, 255, 136, 0.4)' : 'rgba(255, 255, 255, 0.15)';
+        wbCtx.lineWidth = 2;
+        wbCtx.setLineDash([3, 3]);
+        wbCtx.beginPath();
+        wbCtx.moveTo(x, y);
+        wbCtx.lineTo(objPos.x, objPos.y);
+        wbCtx.stroke();
+        wbCtx.setLineDash([]);
+
+        wbCtx.beginPath();
+        wbCtx.arc(objPos.x, objPos.y, 14, 0, Math.PI * 2);
+        wbCtx.fillStyle = el.detected ? '#00FF88' : '#ff6b6b';
+        wbCtx.strokeStyle = '#fff';
+        wbCtx.lineWidth = 2.5;
+        wbCtx.shadowColor = 'rgba(0,0,0,0.5)';
+        wbCtx.shadowBlur = 6;
+        wbCtx.fill();
+        wbCtx.shadowBlur = 0;
+        wbCtx.stroke();
+        
+        wbCtx.fillStyle = el.detected ? '#000' : '#fff';
+        wbCtx.font = 'bold 9px monospace';
+        wbCtx.textAlign = 'center';
+        wbCtx.textBaseline = 'middle';
+        wbCtx.fillText('OBJ', objPos.x, objPos.y);
+    }
 }
 
 function getElementAt(pos) {
@@ -901,15 +1053,15 @@ function distToSegmentSquared(p, v, w) {
 }
 function distToSegment(p, v, w) { return Math.sqrt(distToSegmentSquared(p, v, w)); }
 
-// Properties panel UI displaying real-time Ohm's Law statistics
+// Properties panel UI
 window.wbUpdatePropertiesPanel = () => {
     const panel = document.getElementById('wbPropertiesPanel');
     const rDiv = document.getElementById('wbPropResistor');
     const bDiv = document.getElementById('wbPropBattery');
+    const irDiv = document.getElementById('wbPropIRSensor');
     const title = document.getElementById('wbPropTitle');
     if (!panel) return;
 
-    // Strip previous stats box
     const oldStats = document.getElementById('wbPropPhysicsStats');
     if (oldStats) oldStats.remove();
 
@@ -921,6 +1073,7 @@ window.wbUpdatePropertiesPanel = () => {
     panel.style.display = 'block';
     rDiv.style.display = 'none';
     bDiv.style.display = 'none';
+    irDiv.style.display = 'none';
     title.innerText = wbSelectedElement.compType.toUpperCase();
 
     if (wbSelectedElement.compType === 'resistor') {
@@ -930,6 +1083,12 @@ window.wbUpdatePropertiesPanel = () => {
     } else if (wbSelectedElement.compType === 'battery') {
         title.innerText = '9V Battery';
         bDiv.style.display = 'flex';
+    } else if (wbSelectedElement.compType === 'ir_sensor') {
+        title.innerText = 'IR Sensor Module';
+        irDiv.style.display = 'flex';
+        const triggerDist = wbSelectedElement.triggerDistance || 100;
+        document.getElementById('wbIRTriggerDist').value = triggerDist;
+        document.getElementById('wbIRTriggerValue').innerText = `${triggerDist} px`;
     }
 
     // Generate real-time physics status display
@@ -959,6 +1118,15 @@ window.wbUpdatePropertiesPanel = () => {
             } else {
                 statusText += `<br><span style="color:var(--text-muted); font-size:0.95rem;">💤 STATUS: INACTIVE</span>`;
             }
+        } else if (wbSelectedElement.compType === 'ir_sensor') {
+            const powStatus = wbSelectedElement.powered ? '<span style="color:var(--green); font-weight:bold;">YES</span>' : '<span style="color:var(--red); font-weight:bold;">NO</span>';
+            const detStatus = wbSelectedElement.detected ? '<span style="color:var(--green); font-weight:bold;">DETECTED!</span>' : '<span style="color:var(--text-muted);">CLEAR</span>';
+            const objDistVal = Math.round(Math.abs(wbSelectedElement.objDistance || -80));
+            statusText = `
+                <label class="wb-prop-label">Powered (VCC/GND):</label> ${powStatus}
+                <br><label class="wb-prop-label">Object Distance:</label> <span style="font-family:monospace; color:var(--cyan);">${objDistVal} px</span>
+                <br><label class="wb-prop-label">Detection Status:</label> ${detStatus}
+            `;
         }
         
         statsBox.innerHTML = statusText;
@@ -967,17 +1135,23 @@ window.wbUpdatePropertiesPanel = () => {
 };
 
 window.wbUpdateComponent = () => {
-    if (wbSelectedElement && wbSelectedElement.compType === 'resistor') {
+    if (!wbSelectedElement) return;
+    
+    if (wbSelectedElement.compType === 'resistor') {
         let val = parseInt(document.getElementById('wbResistorValue').value);
         if (isNaN(val) || val < 1) val = 1;
         wbSelectedElement.resistance = val;
         window.wbRegenerateResistorImage(wbSelectedElement);
         wbSaveState(); 
-        if (wbIsRunning) {
-            simulateCircuit();
-        } else {
-            wbRedraw();
-        }
+        if (wbIsRunning) simulateCircuit();
+        else wbRedraw();
+    } else if (wbSelectedElement.compType === 'ir_sensor') {
+        let val = parseInt(document.getElementById('wbIRTriggerDist').value);
+        wbSelectedElement.triggerDistance = val;
+        document.getElementById('wbIRTriggerValue').innerText = `${val} px`;
+        wbSaveState(); 
+        if (wbIsRunning) simulateCircuit();
+        else wbRedraw();
     }
 };
 

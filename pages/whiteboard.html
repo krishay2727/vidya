@@ -26,6 +26,7 @@
             <button class="btn-sm" onclick="wbSetMode('component', 'led')" style="background: #FF4757; color: white; font-size: 0.82rem; padding: 5px 10px;">💡 LED</button>
             <button class="btn-sm" onclick="wbSetMode('component', 'resistor')" style="background: #e8c396; color: black; font-size: 0.82rem; padding: 5px 10px;">〰️ Resistor</button>
             <button class="btn-sm" onclick="wbSetMode('component', 'motor')" style="background: #ccc; color: black; font-size: 0.82rem; padding: 5px 10px;">⚙️ Motor</button>
+            <button class="btn-sm" onclick="wbSetMode('component', 'ir_sensor')" style="background: #0A361B; color: white; border: 1px solid #1f502d; font-size: 0.82rem; padding: 5px 10px;">📡 IR Sensor</button>
         </div>
         <div class="wb-toolbar-row" style="border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 2px;">
             <span class="wb-toolbar-title" style="color: var(--orange); font-size: 0.82rem; letter-spacing: 0.5px;">TRACKS / WIRES:</span>
@@ -59,6 +60,12 @@
           <div id="wbPropBattery" class="wb-prop-group">
               <label class="wb-prop-label">Voltage:</label>
               <input type="text" value="9V" disabled class="wb-prop-input">
+          </div>
+
+          <div id="wbPropIRSensor" class="wb-prop-group" style="display: none;">
+              <label class="wb-prop-label">Trigger Range (Potentiometer):</label>
+              <input type="range" id="wbIRTriggerDist" min="30" max="200" value="100" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
+              <span id="wbIRTriggerValue" style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">100 px</span>
           </div>
 
           <!-- Rotation & Edit Tools for Components -->
