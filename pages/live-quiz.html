@@ -71,12 +71,12 @@
   <div id="live-quiz-app">
       <div id="lq-home-page" class="lq-view active" style="text-align: center;">
           <div class="lq-interactive-icon">🚀</div>
-          <h1 style="font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">STEM Live Quiz</h1>
+          <h1 style="font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">STEM Live Exams</h1>
           <p style="margin-bottom: 30px; color: var(--text-muted); font-size: 1.1rem;">Ready to test your knowledge?</p>
           <div class="card" style="max-width: 500px; margin: 0 auto;">
               <div style="position: relative;">
                   <span style="position: absolute; left: 15px; top: 23px; color: var(--text-dim);">🔢</span>
-                  <input type="text" id="lq-join-code" placeholder="Enter Room Code" maxlength="6" style="padding-left: 45px;">
+                  <input type="text" id="lq-join-code" placeholder="Enter Classroom Code" maxlength="6" style="padding-left: 45px;">
               </div>
               <div style="position: relative;">
                   <span style="position: absolute; left: 15px; top: 23px; color: var(--text-dim);">👤</span>
@@ -102,7 +102,7 @@
               <input type="text" id="lq-host-name" placeholder="Teacher Name">
               <input type="password" id="lq-host-pass" placeholder="Password">
               
-              <label for="lq-host-grade" style="display:block; text-align:left; margin: 20px 0 8px; color: var(--cyan); font-weight: bold; font-size: 0.95rem;">Select Class/Grade Quiz:</label>
+              <label for="lq-host-grade" style="display:block; text-align:left; margin: 20px 0 8px; color: var(--cyan); font-weight: bold; font-size: 0.95rem;">Select Class/Grade:</label>
               <select id="lq-host-grade" style="width: 100%; padding: 14px; margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; background: var(--surface2); color: var(--text);">
                   <option value="grade1">Grade 1</option>
                   <option value="grade2">Grade 2</option>
@@ -115,6 +115,15 @@
                   <option value="grade9">Grade 9</option>
               </select>
 
+              <label for="lq-host-unit" style="display:block; text-align:left; margin: 10px 0 8px; color: var(--cyan); font-weight: bold; font-size: 0.95rem;">Select Unit:</label>
+              <select id="lq-host-unit" style="width: 100%; padding: 14px; margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 1.1rem; background: var(--surface2); color: var(--text);">
+                  <option value="unit1">Unit 1</option>
+                  <option value="unit2">Unit 2</option>
+                  <option value="unit3">Unit 3</option>
+                  <option value="unit4">Unit 4</option>
+                  <option value="unit5">Unit 5</option>
+              </select>
+
               <button onclick="lqHostLogin()" class="btn-primary lq-btn" style="width: 100%; margin-top: 20px; font-size: 1.2rem; padding: 14px;">🚀 Login & Host</button>
               <button onclick="window.lqShowView('lq-home-page')" class="btn-outline lq-btn" style="width: 100%; margin-top: 15px; border-radius: 8px;">⬅️ Back</button>
           </div>
@@ -123,21 +132,21 @@
       <div id="lq-host-setup-page" class="lq-view" style="text-align: center;">
           <h2>Host Dashboard 👨‍🏫</h2>
           <div class="card" style="max-width: 600px; margin: 0 auto;">
-              <p style="color: var(--text-dim); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Room Code</p>
+              <p style="color: var(--text-dim); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Classroom Code</p>
               <h1 id="lq-display-room-code" class="huge-text" style="font-family: var(--font-head); font-size: 4.5rem; color: var(--orange); margin: 10px 0; letter-spacing: 5px; text-shadow: var(--glow-orange);">---</h1>
-              <h3 style="margin: 30px 0 15px; font-weight: normal;">Players Joined: <span id="lq-host-player-count" style="color: var(--cyan); font-weight: bold; font-size: 1.5rem;">0</span></h3>
+              <h3 style="margin: 30px 0 15px; font-weight: normal;">Students Joined: <span id="lq-host-player-count" style="color: var(--cyan); font-weight: bold; font-size: 1.5rem;">0</span></h3>
               <ul id="lq-host-player-list" class="player-list" style="text-align: left; max-height: 250px; overflow-y: auto; background: var(--bg2); border-radius: 8px; padding: 15px;"></ul>
-              <button onclick="lqStartGame()" class="btn-primary lq-btn" style="width: 100%; margin-top: 30px; font-size: 1.3rem; padding: 16px;">▶️ Start Quiz (10 Min Timer)</button>
+              <button onclick="lqStartGame()" class="btn-primary lq-btn" style="width: 100%; margin-top: 30px; font-size: 1.3rem; padding: 16px;">▶️ Start Exam (10 Min Timer)</button>
           </div>
       </div>
 
       <div id="lq-player-waiting-page" class="lq-view" style="text-align: center;">
           <div class="lq-interactive-icon" style="animation-duration: 2s;">⏳</div>
-          <h2>Waiting for host to start...</h2>
+          <h2>Waiting for teacher to start...</h2>
           <div class="card" style="max-width: 500px; margin: 30px auto;">
-            <p style="font-size: 1.2rem;">You are in room: <strong id="lq-waiting-room-code" style="font-size: 2rem; color: var(--primary); display: block; margin-top: 10px;"></strong></p>
+            <p style="font-size: 1.2rem;">You are in classroom: <strong id="lq-waiting-room-code" style="font-size: 2rem; color: var(--primary); display: block; margin-top: 10px;"></strong></p>
             <hr style="border: none; border-top: 1px solid var(--border); margin: 20px 0;">
-            <p style="margin-top: 10px; font-size: 1.1rem;">Players playing right now: <strong id="lq-players-count" style="color: var(--cyan); font-size: 1.5rem;">0</strong></p>
+            <p style="margin-top: 10px; font-size: 1.1rem;">Students currently joined: <strong id="lq-players-count" style="color: var(--cyan); font-size: 1.5rem;">0</strong></p>
             <div class="loader" style="border-top-color: var(--orange); margin-top: 30px;"></div>
           </div>
       </div>
