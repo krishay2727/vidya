@@ -134,9 +134,19 @@
           <div class="card" style="max-width: 600px; margin: 0 auto;">
               <p style="color: var(--text-dim); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px;">Classroom Code</p>
               <h1 id="lq-display-room-code" class="huge-text" style="font-family: var(--font-head); font-size: 4.5rem; color: var(--orange); margin: 10px 0; letter-spacing: 5px; text-shadow: var(--glow-orange);">---</h1>
-              <h3 style="margin: 30px 0 15px; font-weight: normal;">Students Joined: <span id="lq-host-player-count" style="color: var(--cyan); font-weight: bold; font-size: 1.5rem;">0</span></h3>
-              <ul id="lq-host-player-list" class="player-list" style="text-align: left; max-height: 250px; overflow-y: auto; background: var(--bg2); border-radius: 8px; padding: 15px;"></ul>
-              <button onclick="lqStartGame()" class="btn-primary lq-btn" style="width: 100%; margin-top: 30px; font-size: 1.3rem; padding: 16px;">▶️ Start Exam (10 Min Timer)</button>
+              
+              <div id="lq-host-pre-start">
+                  <h3 style="margin: 30px 0 15px; font-weight: normal;">Students Joined: <span id="lq-host-player-count" style="color: var(--cyan); font-weight: bold; font-size: 1.5rem;">0</span></h3>
+                  <ul id="lq-host-player-list" class="player-list" style="text-align: left; max-height: 250px; overflow-y: auto; background: var(--bg2); border-radius: 8px; padding: 15px;"></ul>
+                  <button onclick="lqStartGame()" class="btn-primary lq-btn" style="width: 100%; margin-top: 30px; font-size: 1.3rem; padding: 16px;">▶️ Start Exam (10 Min Timer)</button>
+              </div>
+
+              <div id="lq-host-active-dashboard" style="display:none; margin-top: 20px;">
+                  <h3 style="color:var(--orange);" id="lq-host-timer-display">⏱️ 10:00</h3>
+                  <h3 style="margin: 20px 0 15px; font-weight: normal; color:var(--cyan);">Exam in Progress...</h3>
+                  <p style="color: var(--text-muted); margin-bottom: 20px;">Students are currently taking the exam.</p>
+                  <button onclick="lqEndQuiz()" class="btn-danger lq-btn" style="width: 100%; font-size: 1.2rem; padding: 14px;">🛑 End Exam for Everyone</button>
+              </div>
           </div>
       </div>
 
