@@ -3,10 +3,14 @@
    ============================================= */
 
 #live-quiz-app {
-    font-family: var(--font-body);
+    font-family: 'Inter', sans-serif !important;
     max-width: 800px;
     margin: 0 auto;
     perspective: 1000px;
+}
+
+#live-quiz-app * {
+    font-family: 'Inter', sans-serif !important;
 }
 
 #live-quiz-app input, #live-quiz-app select { 

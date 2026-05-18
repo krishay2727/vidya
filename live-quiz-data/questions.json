@@ -1532,5 +1532,439 @@
         }
       ]
     }
+  },
+  "teachers_baseline_2": {
+    "unit1": {
+      "quiz_title": "Teachers Baseline STEM & Tinkering Exam - Paper 2",
+      "duration": 25,
+      "questions": [
+        {
+          "id": 1,
+          "type": "multiple_choice",
+          "text": "Why is a diode used in an electrical circuit?",
+          "options": [
+            "To allow electric current to flow in only one direction",
+            "To step up the voltage of the source power",
+            "To store energy in an electromagnetic field"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 2,
+          "type": "multiple_choice",
+          "text": "What is the function of the shaft in a DC motor?",
+          "options": [
+            "The rotating rod that outputs mechanical power to turn wheels or gears",
+            "The plastic outer shell protecting the motor core",
+            "The terminal pins where power wires are connected"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 3,
+          "type": "multiple_choice",
+          "text": "What is the primary use of an RFID system in smart systems?",
+          "options": [
+            "To wirelessly read data stored on tags for tracking and identification",
+            "To measure soil moisture levels in smart gardens",
+            "To regulate voltage levels supplied to microcontroller chips"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 4,
+          "type": "multiple_choice",
+          "text": "In a 4-band resistor, what does the first color band represent?",
+          "options": [
+            "The first digit of the resistance value",
+            "The multiplier value",
+            "The tolerance percentage"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 5,
+          "type": "multiple_choice",
+          "text": "Which resistor band color represents a multiplier value of 100?",
+          "options": [
+            "Red",
+            "Brown",
+            "Black"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 6,
+          "type": "multiple_choice",
+          "text": "What is the tolerance value of a resistor ending with a gold band?",
+          "options": [
+            "5%",
+            "10%",
+            "1%"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 7,
+          "type": "multiple_choice",
+          "text": "Calculate the voltage if the current is 2A and the resistance is 10 Ohms.",
+          "options": [
+            "20 Volts",
+            "5 Volts",
+            "12 Volts"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 8,
+          "type": "multiple_choice",
+          "text": "Calculate the current flowing if the voltage is 12V and the resistance is 4 Ohms.",
+          "options": [
+            "3 Amperes",
+            "48 Amperes",
+            "8 Amperes"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 9,
+          "type": "multiple_choice",
+          "text": "Calculate the resistance in a circuit with 9V voltage and 3A current.",
+          "options": [
+            "3 Ohms",
+            "27 Ohms",
+            "12 Ohms"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 10,
+          "type": "multiple_choice",
+          "text": "Where are resistors used and why?",
+          "options": [
+            "In circuits to limit current flow and protect sensitive components",
+            "Inside chemical batteries to generate charge",
+            "In mechanical motors to increase raw rotation speed"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 11,
+          "type": "multiple_choice",
+          "text": "How are the outer power rails along the edges of this board connected?",
+          "image": "data/BreadBoard.jpg",
+          "options": [
+            "Horizontally along the entire length of the row",
+            "Vertically in columns of five connected holes",
+            "They are separate and not interconnected at all"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 12,
+          "type": "multiple_choice",
+          "text": "What is this development board primarily used for in electronics prototyping?",
+          "image": "data/Nodemcu-Pinout.webp",
+          "options": [
+            "IoT projects requiring built-in Wi-Fi connectivity",
+            "Providing high-torque mechanical rotation to robotic arms",
+            "Charging industrial Lithium batteries safely"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 13,
+          "type": "multiple_choice",
+          "text": "What does this sensor primarily detect in security or automation systems?",
+          "image": "data/PIR-Motion-sensor.jpg",
+          "options": [
+            "Infrared radiation emitted by moving warm bodies",
+            "Ultrasonic echo signals for distance calculations",
+            "Ambient visible light levels in a room"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 14,
+          "type": "multiple_choice",
+          "text": "What motor type is shown in this image?",
+          "image": "data/TT-Motor.jpg",
+          "options": [
+            "DC Geared Motor",
+            "Servo Motor",
+            "Stepper Motor"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 15,
+          "type": "multiple_choice",
+          "text": "What is the primary function of this item?",
+          "image": "data/jumper-wire.webp",
+          "options": [
+            "Making temporary electrical connections on a breadboard",
+            "Soldering heavy power joints together permanently",
+            "Insulating open high-voltage power lines safely"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 16,
+          "type": "multiple_choice",
+          "text": "What tool is used to melt solder and permanently join electrical components on a board?",
+          "options": [
+            "Soldering Iron",
+            "Glue Gun",
+            "Multimeter"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 17,
+          "type": "multiple_choice",
+          "text": "Which lead of a standard light-emitting diode is shorter and connects to ground?",
+          "options": [
+            "Cathode",
+            "Anode",
+            "Gate"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 18,
+          "type": "multiple_choice",
+          "text": "Which software tool is used to write, compile, and upload code sketches to an Arduino?",
+          "options": [
+            "Arduino IDE",
+            "Wokwi Simulator",
+            "Bambu Studio"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 19,
+          "type": "multiple_choice",
+          "text": "Which component generates audio tones using the piezoelectric effect?",
+          "options": [
+            "Piezo Buzzer",
+            "DC Motor",
+            "Resistor"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 20,
+          "type": "multiple_choice",
+          "text": "What safety equipment protects your eyes from flying solder or wire clippings in a lab?",
+          "options": [
+            "Safety Goggles",
+            "Ear Muffs",
+            "Thermal Gloves"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 21,
+          "type": "true_false",
+          "text": "A resistor has strict polarity and must only be connected in a specific direction in a circuit.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer": 1,
+          "marks": 2
+        },
+        {
+          "id": 22,
+          "type": "true_false",
+          "text": "A diode acts as a one-way electrical valve, allowing current to flow freely in both directions.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer": 1,
+          "marks": 2
+        },
+        {
+          "id": 23,
+          "type": "true_false",
+          "text": "The ESP8266-based development board features built-in Wi-Fi capabilities for smart connections.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 24,
+          "type": "true_false",
+          "text": "Exposing an LDR to higher light intensity causes its electrical resistance to decrease significantly.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 25,
+          "type": "true_false",
+          "text": "RFID tags must have direct, clear line-of-sight contact with the reader antenna to be scanned.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer": 1,
+          "marks": 2
+        },
+        {
+          "id": 26,
+          "type": "true_false",
+          "text": "An ultrasonic sensor uses high-frequency light waves to calculate distances to obstacles.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer": 1,
+          "marks": 2
+        },
+        {
+          "id": 27,
+          "type": "true_false",
+          "text": "The center isolation groove of a breadboard splits and separates the column connections on either side.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 28,
+          "type": "true_false",
+          "text": "A DC motor shaft only rotates when a sufficient voltage is applied across its terminal pins.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer": 0,
+          "marks": 2
+        },
+        {
+          "id": 29,
+          "type": "match_following",
+          "text": "Match the motor/electronic parts to their correct description:",
+          "left": [
+            "Motor Shaft",
+            "Servo Gear",
+            "Relay Switch",
+            "Diode Valve"
+          ],
+          "right": [
+            "Rotates mechanical load",
+            "Controls precise angles",
+            "Switches high voltage",
+            "Restricts current direction"
+          ],
+          "answer": {
+            "Motor Shaft": "Rotates mechanical load",
+            "Servo Gear": "Controls precise angles",
+            "Relay Switch": "Switches high voltage",
+            "Diode Valve": "Restricts current direction"
+          },
+          "marks": 4
+        },
+        {
+          "id": 30,
+          "type": "match_following",
+          "text": "Match the Ohm's Law electrical properties to their correct definitions:",
+          "left": [
+            "Voltage",
+            "Current",
+            "Resistance",
+            "Power"
+          ],
+          "right": [
+            "Electrical pressure (Volts)",
+            "Flow of charge (Amperes)",
+            "Opposition to flow (Ohms)",
+            "Rate of energy work (Watts)"
+          ],
+          "answer": {
+            "Voltage": "Electrical pressure (Volts)",
+            "Current": "Flow of charge (Amperes)",
+            "Resistance": "Opposition to flow (Ohms)",
+            "Power": "Rate of energy work (Watts)"
+          },
+          "marks": 4
+        },
+        {
+          "id": 31,
+          "type": "match_following",
+          "text": "Match the popular STEAM software platforms to their primary use cases:",
+          "left": [
+            "Arduino IDE",
+            "PictoBlox",
+            "Wokwi",
+            "Bambu Studio"
+          ],
+          "right": [
+            "Writing C++ sketches",
+            "Scratch-based programming",
+            "Online circuit emulation",
+            "Slicing 3D printing STL models"
+          ],
+          "answer": {
+            "Arduino IDE": "Writing C++ sketches",
+            "PictoBlox": "Scratch-based programming",
+            "Wokwi": "Online circuit emulation",
+            "Bambu Studio": "Slicing 3D printing STL models"
+          },
+          "marks": 4
+        },
+        {
+          "id": 32,
+          "type": "fill_blank",
+          "text": "What is the full form of PWM?",
+          "answer": "Pulse Width Modulation",
+          "marks": 4
+        },
+        {
+          "id": 33,
+          "type": "fill_blank",
+          "text": "The horizontal outer connection strips along the sides of a breadboard are called ______.",
+          "answer": "power rails",
+          "marks": 4
+        },
+        {
+          "id": 34,
+          "type": "fill_blank",
+          "text": "The biodegradable thermoplastic filament commonly used in standard FDM 3D printers is called ______.",
+          "answer": "PLA",
+          "marks": 4
+        }
+      ]
+    }
   }
 }
