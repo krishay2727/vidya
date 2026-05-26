@@ -1,0 +1,262 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-showcase-gallery-walk/",
+        "slides_folder": "sessions/session-showcase-gallery-walk/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-showcase-gallery-walk/images/   ← Put activity photos, student projects here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-showcase-gallery-walk",
+    "number": 12,
+    "title": "Showcase + Gallery Walk",
+    "subtitle": "present, explore, inspire!",
+    "date": "Session 12",
+    "duration": "2 Hours",
+    "phase": "Presentation & Reflection",
+    "color": "#FF6B6B",
+    "icon": "🖼️",
+    "tags": [
+        "Presentation",
+        "Creativity",
+        "Innovation",
+        "Teamwork",
+        "Communication"
+    ],
+    "overview": "In this session, students present their STEAM projects in a creative showcase and participate in a gallery walk where they observe, learn, and appreciate the work of other teams. The activity develops confidence, communication skills, observation skills, and peer learning.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-showcase-gallery-walk/slides.pdf"
+    },
+    "images": {
+        "_note": "Add real photos from the showcase event — project displays, student presentations, poster displays, gallery walk moments, judges interaction, and group photos.",
+        "gallery": [
+            {
+                "file": "data/project-display.jpg",
+                "_placeholder": "ADD: Photo of student projects displayed on tables",
+                "caption": "Students displaying their STEAM projects during the showcase",
+                "category": "Exhibition"
+            },
+            {
+                "file": "data/gallery-walk.jpg",
+                "_placeholder": "ADD: Photo of students observing projects",
+                "caption": "Gallery Walk — students exploring and learning from each other's work",
+                "category": "Activity"
+            },
+            {
+                "file": "data/student-presentation.jpg",
+                "_placeholder": "ADD: Photo of a student explaining project",
+                "caption": "Students presenting their ideas confidently",
+                "category": "Presentation"
+            },
+            {
+                "file": "data/teamwork.jpg",
+                "_placeholder": "ADD: Group photo of project team",
+                "caption": "Team collaboration and creative problem solving",
+                "category": "Teamwork"
+            },
+            {
+                "file": "data/poster-display.jpg",
+                "_placeholder": "ADD: Photo of posters/charts displayed",
+                "caption": "Creative posters and charts prepared by students",
+                "category": "Creativity"
+            },
+            {
+                "file": "data/judges-feedback.jpg",
+                "_placeholder": "ADD: Photo of teachers/judges giving feedback",
+                "caption": "Teachers and visitors interacting with students",
+                "category": "Feedback"
+            },
+            {
+                "file": "data/certificate-moment.jpg",
+                "_placeholder": "ADD: Photo of appreciation/certificate distribution",
+                "caption": "Celebrating effort, innovation, and learning",
+                "category": "Celebration"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is a Showcase Presentation?",
+        "How to Explain a Project Clearly",
+        "Importance of Teamwork and Communication",
+        "Gallery Walk — Observe, Learn, Appreciate",
+        "Giving Positive Feedback to Peers",
+        "Creativity and Innovation in STEAM",
+        "Confidence Building Through Presentation",
+        "Learning from Other Student Projects"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "How to Present a School Project",
+            "videoId": "M0mh2sJ2M8I",
+            "_note": "Replace with actual YouTube video ID if needed",
+            "desc": "Tips and techniques for confidently presenting school projects."
+        },
+        {
+            "title": "STEAM Project Exhibition Ideas",
+            "videoId": "njtfsMolFGA",
+            "_note": "Replace with actual YouTube video ID if needed",
+            "desc": "Creative STEAM project ideas and exhibition inspiration for students."
+        },
+        {
+            "title": "Communication Skills for Students",
+            "videoId": "HAnw168huqA",
+            "desc": "Learn how to communicate ideas clearly and confidently."
+        },
+        {
+            "title": "Teamwork and Collaboration Activities",
+            "videoId": "KJ31jQxh7U4",
+            "desc": "Understanding teamwork through fun student activities."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Canva Presentation Templates",
+            "url": "https://www.canva.com/presentations/templates/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Science Exhibition Project Ideas",
+            "url": "https://www.sciencebuddies.org/science-fair-projects",
+            "icon": "🔗"
+        },
+        {
+            "title": "Student Presentation Tips",
+            "url": "https://edu.gcfglobal.org/en/presentationskills/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "STEAM Showcase + Gallery Walk",
+        "parts": [
+            "Student Projects",
+            "Charts and Posters",
+            "Presentation Tables",
+            "Sticky Notes for Feedback",
+            "Markers and Labels",
+            "Project Explanation Cards"
+        ],
+        "steps": [
+            "Arrange all student projects neatly on display tables",
+            "Each team prepares a short 2-minute explanation",
+            "Students present their projects to classmates and teachers",
+            "Visitors walk around and observe different projects",
+            "Students ask questions and share feedback using sticky notes",
+            "Teachers appreciate creativity, teamwork, and innovation",
+            "End with reflection and group discussion"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is the main purpose of a Gallery Walk?",
+            "options": [
+                "To play games",
+                "To observe and learn from different projects",
+                "To conduct exams",
+                "To clean the classroom"
+            ],
+            "answer": 1,
+            "explanation": "A Gallery Walk helps students explore and learn from the projects created by others."
+        },
+        {
+            "q": "Why is communication important during a project showcase?",
+            "options": [
+                "To confuse people",
+                "To explain ideas clearly and confidently",
+                "To finish quickly",
+                "To decorate the classroom"
+            ],
+            "answer": 1,
+            "explanation": "Good communication helps others understand your project and ideas."
+        },
+        {
+            "q": "What should students do while observing other projects?",
+            "options": [
+                "Ignore the projects",
+                "Ask questions and appreciate ideas",
+                "Touch and damage materials",
+                "Leave the classroom"
+            ],
+            "answer": 1,
+            "explanation": "Gallery Walks encourage curiosity, appreciation, and peer learning."
+        },
+        {
+            "q": "Which skill improves when students present projects publicly?",
+            "options": [
+                "Sleeping",
+                "Confidence and public speaking",
+                "Drawing only",
+                "Running speed"
+            ],
+            "answer": 1,
+            "explanation": "Presenting projects helps students become more confident speakers."
+        },
+        {
+            "q": "What is teamwork?",
+            "options": [
+                "Working alone",
+                "Fighting with teammates",
+                "Working together to achieve a goal",
+                "Ignoring responsibilities"
+            ],
+            "answer": 2,
+            "explanation": "Teamwork means collaborating and helping each other to complete a task."
+        },
+        {
+            "q": "What can students use to give feedback during the Gallery Walk?",
+            "options": [
+                "Sticky notes",
+                "Water bottles",
+                "Shoes",
+                "Lunch boxes"
+            ],
+            "answer": 0,
+            "explanation": "Sticky notes are commonly used to write positive feedback and suggestions."
+        },
+        {
+            "q": "What should a good project presentation include?",
+            "options": [
+                "Clear explanation and demonstration",
+                "Only decorations",
+                "No speaking",
+                "Random guessing"
+            ],
+            "answer": 0,
+            "explanation": "A good presentation explains the idea clearly and demonstrates how it works."
+        },
+        {
+            "q": "What is innovation?",
+            "options": [
+                "Copying exactly",
+                "Creating new ideas or improving existing ones",
+                "Avoiding work",
+                "Watching videos only"
+            ],
+            "answer": 1,
+            "explanation": "Innovation means thinking creatively and developing useful ideas or solutions."
+        },
+        {
+            "q": "How should students behave during a showcase event?",
+            "options": [
+                "Respectfully and confidently",
+                "Loudly and carelessly",
+                "Without listening",
+                "Ignoring others"
+            ],
+            "answer": 0,
+            "explanation": "Respectful behavior creates a positive and enjoyable learning environment."
+        },
+        {
+            "q": "What is one benefit of observing other student projects?",
+            "options": [
+                "Learning new ideas and inspiration",
+                "Wasting time",
+                "Avoiding participation",
+                "Skipping activities"
+            ],
+            "answer": 0,
+            "explanation": "Students gain inspiration and new learning ideas by observing others' work."
+        }
+    ]
+}

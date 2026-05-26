@@ -1,0 +1,256 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Using Functions in Programming",
+    "subtitle": "Write once, use many times!",
+    "date": "Session 02",
+    "duration": "1 Hour",
+    "phase": "Programming Basics",
+    "color": "#FF9800",
+    "icon": "⚙️",
+    "tags": [
+        "Programming",
+        "Functions",
+        "Coding",
+        "Logic"
+    ],
+    "overview": "This session introduces students to functions in programming. Students learn how functions help organize code, reduce repetition, and make programming easier and smarter using simple examples and activities.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — coding practice, whiteboard explanations, students using computers, function diagrams.",
+        "gallery": [
+            {
+                "file": "data/function-blocks.jpg",
+                "_placeholder": "ADD: Function block diagram photo",
+                "caption": "Functions help reuse code easily",
+                "category": "Concept"
+            },
+            {
+                "file": "data/student-coding.jpg",
+                "_placeholder": "ADD: Students writing code",
+                "caption": "Students practicing coding functions",
+                "category": "Lab"
+            },
+            {
+                "file": "data/python-function.png",
+                "_placeholder": "ADD: Python function example screenshot",
+                "caption": "Simple Python function example",
+                "category": "Programming"
+            },
+            {
+                "file": "data/function-flowchart.jpg",
+                "_placeholder": "ADD: Function flowchart diagram",
+                "caption": "Function call flow explanation",
+                "category": "Concept"
+            },
+            {
+                "file": "data/arduino-function.jpg",
+                "_placeholder": "ADD: Arduino custom function coding",
+                "caption": "Using functions in Arduino programming",
+                "category": "Programming"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is a Function?",
+        "Why Functions are Important",
+        "Write Once — Reuse Many Times",
+        "Function Declaration and Calling",
+        "Input and Output in Functions",
+        "Functions in Python",
+        "Functions in Arduino Programming",
+        "Real-life Examples of Functions"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "Functions Explained for Beginners",
+            "videoId": "NSbOtYzIQI0",
+            "desc": "Simple explanation of programming functions for beginners."
+        },
+        {
+            "title": "Python Functions Tutorial",
+            "videoId": "9Os0o3wzS_I",
+            "desc": "Learn how to create and use functions in Python."
+        },
+        {
+            "title": "Arduino Functions Tutorial",
+            "videoId": "fJWR7dBuc18",
+            "desc": "Understanding functions in Arduino coding."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Python Official Documentation",
+            "url": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions",
+            "icon": "🔗"
+        },
+        {
+            "title": "W3Schools Python Functions",
+            "url": "https://www.w3schools.com/python/python_functions.asp",
+            "icon": "🔗"
+        },
+        {
+            "title": "Arduino Function Reference",
+            "url": "https://www.arduino.cc/reference/en/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Create Your Own Function",
+        "parts": [
+            "Computer/Laptop",
+            "Python IDE or Arduino IDE",
+            "Notebook",
+            "Projector"
+        ],
+        "steps": [
+            "Open Python or Arduino IDE",
+            "Write a simple function named greet()",
+            "Inside the function print 'Hello Students!'",
+            "Call the function multiple times",
+            "Create another function to add two numbers",
+            "Challenge: Create your own custom function"
+        ]
+    },
+    "examples": [
+        {
+            "title": "Python Function Example",
+            "code": "def greet():\n    print('Hello Students!')\n\ngreet()\ngreet()",
+            "explanation": "The greet() function prints the same message every time it is called."
+        },
+        {
+            "title": "Addition Function Example",
+            "code": "def add(a, b):\n    return a + b\n\nresult = add(5, 3)\nprint(result)",
+            "explanation": "This function adds two numbers and returns the result."
+        },
+        {
+            "title": "Arduino Function Example",
+            "code": "void blinkLED() {\n  digitalWrite(LED_BUILTIN, HIGH);\n  delay(1000);\n  digitalWrite(LED_BUILTIN, LOW);\n  delay(1000);\n}",
+            "explanation": "This custom Arduino function blinks the LED."
+        }
+    ],
+    "quiz": [
+        {
+            "q": "What is a function in programming?",
+            "options": [
+                "A type of battery",
+                "A reusable block of code",
+                "A hardware component",
+                "A computer virus"
+            ],
+            "answer": 1,
+            "explanation": "A function is a reusable block of code that performs a specific task."
+        },
+        {
+            "q": "Why do programmers use functions?",
+            "options": [
+                "To damage the computer",
+                "To repeat code many times manually",
+                "To organize and reuse code easily",
+                "To make programs slower"
+            ],
+            "answer": 2,
+            "explanation": "Functions help organize code and avoid writing the same code repeatedly."
+        },
+        {
+            "q": "Which keyword is used to create a function in Python?",
+            "options": [
+                "func",
+                "define",
+                "def",
+                "function"
+            ],
+            "answer": 2,
+            "explanation": "In Python, functions are created using the 'def' keyword."
+        },
+        {
+            "q": "What is the purpose of calling a function?",
+            "options": [
+                "To delete the function",
+                "To execute the code inside the function",
+                "To stop the program",
+                "To restart the computer"
+            ],
+            "answer": 1,
+            "explanation": "Calling a function runs the instructions written inside it."
+        },
+        {
+            "q": "What will this function do?\n\ndef hello():\n   print('Hi')",
+            "options": [
+                "Add numbers",
+                "Turn OFF computer",
+                "Print 'Hi'",
+                "Blink LED"
+            ],
+            "answer": 2,
+            "explanation": "The function prints 'Hi' when called."
+        },
+        {
+            "q": "Functions help reduce:",
+            "options": [
+                "Electricity",
+                "Code repetition",
+                "Computer memory",
+                "Internet speed"
+            ],
+            "answer": 1,
+            "explanation": "Functions reduce repeated code by reusing the same block multiple times."
+        },
+        {
+            "q": "Which symbol is used after a function name in Python?",
+            "options": [
+                "[]",
+                "{}",
+                "()",
+                "<>"
+            ],
+            "answer": 2,
+            "explanation": "Parentheses () are used after the function name."
+        },
+        {
+            "q": "What does a return statement do?",
+            "options": [
+                "Ends the computer",
+                "Returns a value from the function",
+                "Deletes variables",
+                "Restarts the code"
+            ],
+            "answer": 1,
+            "explanation": "The return statement sends a value back from the function."
+        },
+        {
+            "q": "Which of these is a function call?",
+            "options": [
+                "def greet",
+                "greet()",
+                "return greet",
+                "print greet"
+            ],
+            "answer": 1,
+            "explanation": "greet() is the correct way to call a function."
+        },
+        {
+            "q": "Functions make programs:",
+            "options": [
+                "Hard to understand",
+                "More organized and readable",
+                "Slower always",
+                "Impossible to debug"
+            ],
+            "answer": 1,
+            "explanation": "Functions improve readability and organization in programs."
+        }
+    ]
+}

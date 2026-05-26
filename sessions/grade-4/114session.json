@@ -1,0 +1,289 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Ultrasonic Sensor",
+    "subtitle": "measure distance with sound!",
+    "date": "Session 02",
+    "duration": "1.5 Hours",
+    "phase": "Foundation",
+    "color": "#4A90E2",
+    "icon": "📡",
+    "tags": [
+        "Sensors",
+        "Arduino",
+        "Electronics",
+        "STEM"
+    ],
+    "overview": "This session introduces students to the Ultrasonic Sensor and how it measures distance using sound waves. Students will learn about echo, distance calculation, Arduino connections, and real-world applications like obstacle detection, automatic doors, robots, and parking systems.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add actual photos from the session — ultrasonic sensor close-up, Arduino wiring, obstacle detection activity, student projects.",
+        "gallery": [
+            {
+                "file": "data/ultrasonic-sensor.jpg",
+                "_placeholder": "ADD: Photo of HC-SR04 ultrasonic sensor",
+                "caption": "HC-SR04 Ultrasonic Sensor used for measuring distance",
+                "category": "Components"
+            },
+            {
+                "file": "data/arduino-ultrasonic.jpg",
+                "_placeholder": "ADD: Arduino connected with ultrasonic sensor",
+                "caption": "Arduino UNO connected with Ultrasonic Sensor",
+                "category": "Circuit"
+            },
+            {
+                "file": "data/object-detection.jpg",
+                "_placeholder": "ADD: Students testing obstacle detection",
+                "caption": "Students checking object distance using sound waves",
+                "category": "Lab"
+            },
+            {
+                "file": "data/smart-parking.jpg",
+                "_placeholder": "ADD: Smart parking system model",
+                "caption": "Real-life use — Smart Parking System",
+                "category": "Applications"
+            },
+            {
+                "file": "data/robot-obstacle.jpg",
+                "_placeholder": "ADD: Obstacle avoiding robot image",
+                "caption": "Obstacle Avoiding Robot using Ultrasonic Sensor",
+                "category": "Projects"
+            },
+            {
+                "file": "data/automatic-door.jpg",
+                "_placeholder": "ADD: Automatic door example image",
+                "caption": "Automatic Door using distance sensing",
+                "category": "Applications"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is an Ultrasonic Sensor?",
+        "How sound waves help measure distance",
+        "TRIG pin sends sound signal",
+        "ECHO pin receives reflected sound",
+        "Distance calculation using time",
+        "Obstacle detection systems",
+        "Arduino + Ultrasonic Sensor wiring",
+        "Real-life applications of ultrasonic sensors"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "Ultrasonic Sensor Explained for Beginners",
+            "videoId": "ZejQOX69K5M",
+            "_note": "Replace with actual YouTube video ID if needed",
+            "desc": "Learn how the HC-SR04 ultrasonic sensor measures distance using sound waves."
+        },
+        {
+            "title": "Arduino Ultrasonic Sensor Project",
+            "videoId": "6F1B_N6LuKw",
+            "desc": "Build a simple distance measuring project using Arduino UNO."
+        },
+        {
+            "title": "Obstacle Avoiding Robot using Ultrasonic Sensor",
+            "videoId": "1n_KjpMfVT0",
+            "desc": "See how robots detect and avoid obstacles automatically."
+        },
+        {
+            "title": "How Sound Waves Work",
+            "videoId": "px3oVGXr4mo",
+            "desc": "Understanding sound waves and echo in simple language."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Arduino Official Website",
+            "url": "https://www.arduino.cc/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Wokwi Arduino Simulator",
+            "url": "https://wokwi.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "HC-SR04 Sensor Guide",
+            "url": "https://randomnerdtutorials.com/complete-guide-for-ultrasonic-sensor-hc-sr04/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Distance Measurement using Ultrasonic Sensor",
+        "parts": [
+            "Arduino UNO",
+            "HC-SR04 Ultrasonic Sensor",
+            "Breadboard",
+            "Jumper Wires",
+            "USB Cable",
+            "Laptop with Arduino IDE"
+        ],
+        "steps": [
+            "Connect VCC pin to 5V on Arduino",
+            "Connect GND pin to GND",
+            "Connect TRIG pin to Arduino digital pin 9",
+            "Connect ECHO pin to Arduino digital pin 10",
+            "Upload the Arduino code",
+            "Open Serial Monitor",
+            "Place an object in front of the sensor",
+            "Observe distance values changing in centimeters"
+        ]
+    },
+    "exampleCode": {
+        "language": "Arduino C++",
+        "code": "#define trigPin 9\n#define echoPin 10\n\nlong duration;\nint distance;\n\nvoid setup() {\n  pinMode(trigPin, OUTPUT);\n  pinMode(echoPin, INPUT);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  digitalWrite(trigPin, LOW);\n  delayMicroseconds(2);\n\n  digitalWrite(trigPin, HIGH);\n  delayMicroseconds(10);\n  digitalWrite(trigPin, LOW);\n\n  duration = pulseIn(echoPin, HIGH);\n\n  distance = duration * 0.034 / 2;\n\n  Serial.print(\"Distance: \");\n  Serial.print(distance);\n  Serial.println(\" cm\");\n\n  delay(500);\n}"
+    },
+    "realLifeApplications": [
+        "Obstacle Avoiding Robots",
+        "Smart Parking Systems",
+        "Automatic Doors",
+        "Water Level Measurement",
+        "Distance Measuring Devices",
+        "Reverse Parking Sensors in Cars"
+    ],
+    "quiz": [
+        {
+            "q": "What does an Ultrasonic Sensor measure?",
+            "options": [
+                "Temperature",
+                "Light",
+                "Distance",
+                "Voltage"
+            ],
+            "answer": 2,
+            "explanation": "Ultrasonic sensors are mainly used to measure distance using sound waves."
+        },
+        {
+            "q": "Which type of waves are used in an Ultrasonic Sensor?",
+            "options": [
+                "Light waves",
+                "Sound waves",
+                "Radio waves",
+                "Heat waves"
+            ],
+            "answer": 1,
+            "explanation": "Ultrasonic sensors use high-frequency sound waves to detect objects."
+        },
+        {
+            "q": "What is the function of the TRIG pin?",
+            "options": [
+                "Receives sound",
+                "Stores data",
+                "Sends ultrasonic sound signal",
+                "Controls LED brightness"
+            ],
+            "answer": 2,
+            "explanation": "The TRIG pin sends ultrasonic pulses toward the object."
+        },
+        {
+            "q": "What is the function of the ECHO pin?",
+            "options": [
+                "Receives reflected sound",
+                "Controls motor",
+                "Stores power",
+                "Turns ON Arduino"
+            ],
+            "answer": 0,
+            "explanation": "The ECHO pin receives the reflected ultrasonic signal."
+        },
+        {
+            "q": "Ultrasonic sensors work based on:",
+            "options": [
+                "Gravity",
+                "Echo principle",
+                "Magnetism",
+                "Heat transfer"
+            ],
+            "answer": 1,
+            "explanation": "The sensor measures the time taken for sound to return back as echo."
+        },
+        {
+            "q": "Which Arduino board is commonly used with HC-SR04?",
+            "options": [
+                "Arduino UNO",
+                "Motherboard",
+                "CPU",
+                "Graphic Card"
+            ],
+            "answer": 0,
+            "explanation": "Arduino UNO is commonly used for beginner sensor projects."
+        },
+        {
+            "q": "What happens when an object comes closer to the sensor?",
+            "options": [
+                "Distance value increases",
+                "Distance value decreases",
+                "Sensor turns OFF",
+                "Arduino restarts"
+            ],
+            "answer": 1,
+            "explanation": "As the object moves closer, the measured distance becomes smaller."
+        },
+        {
+            "q": "Which real-life device uses ultrasonic sensors?",
+            "options": [
+                "TV Remote",
+                "Car reverse parking sensor",
+                "Tube light",
+                "Calculator"
+            ],
+            "answer": 1,
+            "explanation": "Cars use ultrasonic sensors for reverse parking assistance."
+        },
+        {
+            "q": "What is the approximate unit used to display measured distance?",
+            "options": [
+                "Volt",
+                "Ampere",
+                "Centimeter",
+                "Watt"
+            ],
+            "answer": 2,
+            "explanation": "Distance is commonly displayed in centimeters (cm)."
+        },
+        {
+            "q": "Why is the Ultrasonic Sensor useful in robots?",
+            "options": [
+                "For decoration",
+                "To play music",
+                "To detect obstacles",
+                "To increase battery size"
+            ],
+            "answer": 2,
+            "explanation": "Robots use ultrasonic sensors to avoid hitting obstacles."
+        },
+        {
+            "q": "What does HC-SR04 stand for?",
+            "options": [
+                "A type of LED",
+                "A sensor module model",
+                "A battery",
+                "A motor driver"
+            ],
+            "answer": 1,
+            "explanation": "HC-SR04 is the model name of a popular ultrasonic sensor module."
+        },
+        {
+            "q": "What is needed to program the Ultrasonic Sensor project?",
+            "options": [
+                "Arduino IDE",
+                "MS Paint",
+                "PowerPoint",
+                "Chrome Browser"
+            ],
+            "answer": 0,
+            "explanation": "Arduino IDE is used to upload code to Arduino boards."
+        }
+    ]
+}

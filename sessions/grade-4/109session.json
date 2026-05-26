@@ -1,0 +1,255 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/",
+        "images_folder": "sessions/session-2/images/",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ...",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Decomposition",
+    "subtitle": "Break Big Problems into Small Parts!",
+    "date": "Session 02",
+    "duration": "1 Hours",
+    "phase": "Foundation",
+    "color": "#FF9800",
+    "icon": "🧩",
+    "tags": [
+        "Computational Thinking",
+        "Problem Solving",
+        "Coding",
+        "Logic"
+    ],
+    "overview": "This session introduces students to the concept of Decomposition — breaking a big problem into smaller, simpler parts to make it easier to understand and solve.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add classroom activity photos, chart paper activities, coding tasks, and teamwork images.",
+        "gallery": [
+            {
+                "file": "data/decomposition-puzzle.jpg",
+                "_placeholder": "ADD: Students solving puzzle in groups",
+                "caption": "Breaking a puzzle into smaller pieces makes it easier to solve",
+                "category": "Concept"
+            },
+            {
+                "file": "data/sandwich-steps.jpg",
+                "_placeholder": "ADD: Sandwich making activity photo",
+                "caption": "Making a sandwich step-by-step using decomposition",
+                "category": "Activity"
+            },
+            {
+                "file": "data/robot-steps.png",
+                "_placeholder": "ADD: Students giving instructions to robot",
+                "caption": "Students dividing tasks into simple instructions",
+                "category": "Lab"
+            },
+            {
+                "file": "data/coding-blocks.jpg",
+                "_placeholder": "ADD: Scratch/Pictoblox coding image",
+                "caption": "Coding becomes easier by breaking the project into blocks",
+                "category": "Coding"
+            },
+            {
+                "file": "data/teamwork.jpg",
+                "_placeholder": "ADD: Team activity photo",
+                "caption": "Students solving problems together using decomposition",
+                "category": "Activity"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is Decomposition?",
+        "Breaking big problems into smaller parts",
+        "Step-by-step thinking",
+        "Using decomposition in daily life",
+        "Decomposition in coding and robotics",
+        "Planning before solving a problem",
+        "Teamwork and task division",
+        "Logical thinking using decomposition"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "What is Decomposition?",
+            "videoId": "bQqO7nMKGD8",
+            "_note": "Replace with actual YouTube video ID if needed",
+            "desc": "Simple explanation of decomposition in computational thinking."
+        },
+        {
+            "title": "Computational Thinking for Kids",
+            "videoId": "qbnTZCj0ugI",
+            "desc": "Learn decomposition, pattern recognition and algorithms in fun way."
+        },
+        {
+            "title": "Problem Solving Using Decomposition",
+            "videoId": "e4uY9alVHmI",
+            "desc": "How to solve big problems by dividing them into smaller tasks."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Scratch Coding",
+            "url": "https://scratch.mit.edu",
+            "icon": "🔗"
+        },
+        {
+            "title": "Pictoblox",
+            "url": "https://thestempedia.com/product/pictoblox/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Computational Thinking Activities",
+            "url": "https://code.org",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Making a Sandwich Using Decomposition",
+        "parts": [
+            "Bread slices",
+            "Butter/Jam",
+            "Knife",
+            "Plate",
+            "Paper for writing steps"
+        ],
+        "steps": [
+            "Take two bread slices",
+            "Open the butter or jam box",
+            "Use knife to spread butter/jam",
+            "Place bread slices together",
+            "Cut sandwich into two parts",
+            "Serve and eat!"
+        ]
+    },
+    "realLifeExamples": [
+        {
+            "title": "School Bag Packing",
+            "example": "Packing a school bag can be divided into books, lunchbox, bottle, notebook and stationery."
+        },
+        {
+            "title": "Cleaning a Room",
+            "example": "Cleaning includes arranging books, sweeping floor, folding clothes and cleaning table."
+        },
+        {
+            "title": "Coding a Game",
+            "example": "Game development can be divided into character design, movement, scoring and sounds."
+        }
+    ],
+    "quiz": [
+        {
+            "q": "What is Decomposition?",
+            "options": [
+                "Breaking a big problem into smaller parts",
+                "Drawing pictures",
+                "Playing games",
+                "Writing only code"
+            ],
+            "answer": 0,
+            "explanation": "Decomposition means dividing a big task into smaller, easier tasks."
+        },
+        {
+            "q": "Why do we use decomposition?",
+            "options": [
+                "To make problems harder",
+                "To confuse people",
+                "To solve problems easily step-by-step",
+                "To avoid teamwork"
+            ],
+            "answer": 2,
+            "explanation": "Breaking problems into smaller parts helps us solve them more easily."
+        },
+        {
+            "q": "Which is an example of decomposition?",
+            "options": [
+                "Making a sandwich step-by-step",
+                "Sleeping all day",
+                "Watching TV",
+                "Jumping randomly"
+            ],
+            "answer": 0,
+            "explanation": "Making a sandwich requires dividing the work into simple steps."
+        },
+        {
+            "q": "In coding, decomposition helps programmers to:",
+            "options": [
+                "Make coding confusing",
+                "Break programs into smaller blocks",
+                "Delete all code",
+                "Avoid planning"
+            ],
+            "answer": 1,
+            "explanation": "Programmers divide big programs into smaller manageable parts."
+        },
+        {
+            "q": "Which activity can use decomposition?",
+            "options": [
+                "Cleaning a room",
+                "Packing a bag",
+                "Cooking food",
+                "All of the above"
+            ],
+            "answer": 3,
+            "explanation": "Many daily activities can be divided into smaller tasks."
+        },
+        {
+            "q": "What comes first in decomposition?",
+            "options": [
+                "Breaking the problem into parts",
+                "Ignoring the problem",
+                "Giving up",
+                "Random guessing"
+            ],
+            "answer": 0,
+            "explanation": "The first step is dividing the big problem into smaller parts."
+        },
+        {
+            "q": "Decomposition improves:",
+            "options": [
+                "Confusion",
+                "Logical thinking",
+                "Messiness",
+                "Laziness"
+            ],
+            "answer": 1,
+            "explanation": "Decomposition develops logical and organized thinking."
+        },
+        {
+            "q": "Which of these is NOT decomposition?",
+            "options": [
+                "Dividing tasks among team members",
+                "Following steps one-by-one",
+                "Breaking project into modules",
+                "Doing everything randomly"
+            ],
+            "answer": 3,
+            "explanation": "Random work is not decomposition."
+        },
+        {
+            "q": "How does decomposition help teamwork?",
+            "options": [
+                "Everyone does same work",
+                "No one works",
+                "Different people can handle different tasks",
+                "It creates confusion"
+            ],
+            "answer": 2,
+            "explanation": "Tasks can be divided among team members for better efficiency."
+        },
+        {
+            "q": "Which subject commonly uses decomposition?",
+            "options": [
+                "Coding and Robotics",
+                "Problem Solving",
+                "Mathematics",
+                "All of the above"
+            ],
+            "answer": 3,
+            "explanation": "Decomposition is useful in many subjects and real-life situations."
+        }
+    ]
+}

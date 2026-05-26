@@ -1,0 +1,277 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put debugging activity photos, coding screenshots, team discussions here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Group Debug Session",
+    "subtitle": "Find Bugs, Fix Problems, Learn Together!",
+    "date": "Session 02",
+    "duration": "1.5 Hours",
+    "phase": "Foundation",
+    "color": "#FF6B35",
+    "icon": "🐞",
+    "tags": [
+        "Debugging",
+        "Arduino",
+        "Coding",
+        "Problem Solving",
+        "Teamwork"
+    ],
+    "overview": "This session introduces students to debugging concepts through group activities and real-world coding examples. Students learn how to identify errors, test circuits, solve problems collaboratively, and improve their logical thinking skills.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual debug session — students checking circuits, debugging code, testing LEDs, Arduino setups, teamwork moments.",
+        "gallery": [
+            {
+                "file": "data/debugging-team.jpg",
+                "_placeholder": "ADD: Students working together on debugging activity",
+                "caption": "Students solving coding bugs together",
+                "category": "Teamwork"
+            },
+            {
+                "file": "data/arduino-debug.jpg",
+                "_placeholder": "ADD: Arduino circuit debugging photo",
+                "caption": "Debugging Arduino connections step-by-step",
+                "category": "Lab"
+            },
+            {
+                "file": "data/error-code.png",
+                "_placeholder": "ADD: Screenshot of coding error",
+                "caption": "Finding syntax errors in Arduino code",
+                "category": "Coding"
+            },
+            {
+                "file": "data/led-test.jpg",
+                "_placeholder": "ADD: LED testing activity photo",
+                "caption": "Testing LED blinking output",
+                "category": "Experiment"
+            },
+            {
+                "file": "data/team-discussion.jpg",
+                "_placeholder": "ADD: Group discussion during debugging",
+                "caption": "Students discussing possible solutions",
+                "category": "Discussion"
+            },
+            {
+                "file": "data/breadboard-check.jpg",
+                "_placeholder": "ADD: Breadboard checking activity",
+                "caption": "Checking breadboard wiring carefully",
+                "category": "Components"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is Debugging? — Finding and fixing mistakes in code or circuits",
+        "Syntax Error — Mistakes in writing code",
+        "Logic Error — Code runs but output is wrong",
+        "Connection Error — Wrong wiring in the circuit",
+        "Testing Step-by-Step — Check one part at a time",
+        "Serial Monitor — Used to find program errors",
+        "Team Debugging — Discuss and solve problems together",
+        "Trial and Error — Learn by testing repeatedly"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "What is Debugging?",
+            "videoId": "g9Rj4Q9cQ9M",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "A beginner-friendly explanation of debugging and how programmers solve errors."
+        },
+        {
+            "title": "Arduino Troubleshooting Guide",
+            "videoId": "Q9M9kQ2wP8E",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "Learn common Arduino mistakes and how to fix them easily."
+        },
+        {
+            "title": "Common Coding Errors Explained",
+            "videoId": "8mAITcNt710",
+            "desc": "Understanding syntax, logic, and runtime errors with simple examples."
+        },
+        {
+            "title": "How to Use Serial Monitor in Arduino",
+            "videoId": "t0R6h8Y4x2M",
+            "desc": "Learn how Serial Monitor helps in debugging Arduino projects."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Arduino Official Documentation",
+            "url": "https://www.arduino.cc/reference/en/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Wokwi Arduino Simulator",
+            "url": "https://wokwi.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Tinkercad Circuits",
+            "url": "https://www.tinkercad.com/circuits",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Find the Bug Challenge",
+        "parts": [
+            "Arduino UNO",
+            "Breadboard",
+            "LED",
+            "220Ω Resistor",
+            "Jumper wires",
+            "USB Cable",
+            "Laptop with Arduino IDE"
+        ],
+        "steps": [
+            "Teacher provides a circuit with intentional mistakes",
+            "Students observe the LED not blinking properly",
+            "Check power connections carefully",
+            "Verify resistor and LED polarity",
+            "Read Arduino code and identify syntax errors",
+            "Upload corrected code",
+            "Test the circuit again",
+            "Discuss how the issue was solved as a team"
+        ]
+    },
+    "exampleDebugCase": {
+        "title": "LED Not Blinking Example",
+        "problem": "The LED does not blink even after uploading the program.",
+        "possibleErrors": [
+            "LED connected in reverse direction",
+            "Wrong Arduino pin number in code",
+            "Loose jumper wire connection",
+            "Missing resistor",
+            "Code syntax mistake"
+        ],
+        "solutionSteps": [
+            "Check LED polarity — long leg should connect to positive",
+            "Verify pin number in code matches circuit",
+            "Reconnect loose wires",
+            "Add proper resistor",
+            "Fix code syntax and upload again"
+        ],
+        "result": "LED starts blinking successfully after debugging."
+    },
+    "quiz": [
+        {
+            "q": "What does debugging mean?",
+            "options": [
+                "Decorating the circuit",
+                "Finding and fixing errors",
+                "Changing LED colors",
+                "Deleting the code"
+            ],
+            "answer": 1,
+            "explanation": "Debugging means finding and fixing mistakes in code or circuits."
+        },
+        {
+            "q": "Which tool helps check Arduino output messages?",
+            "options": [
+                "Paint",
+                "Calculator",
+                "Serial Monitor",
+                "Browser"
+            ],
+            "answer": 2,
+            "explanation": "Serial Monitor helps programmers see messages and debug Arduino programs."
+        },
+        {
+            "q": "If the LED is connected in reverse, what may happen?",
+            "options": [
+                "LED glows brighter",
+                "LED will not glow",
+                "Motor spins faster",
+                "Arduino shuts down"
+            ],
+            "answer": 1,
+            "explanation": "LEDs work only in one direction. Reverse connection stops it from glowing."
+        },
+        {
+            "q": "A syntax error happens when:",
+            "options": [
+                "Wires are loose",
+                "Battery is low",
+                "Code writing rules are broken",
+                "LED is bright"
+            ],
+            "answer": 2,
+            "explanation": "Syntax errors occur when coding rules or spelling are incorrect."
+        },
+        {
+            "q": "What is the best way to debug a circuit?",
+            "options": [
+                "Ignore the error",
+                "Replace everything",
+                "Check one part step-by-step",
+                "Restart computer only"
+            ],
+            "answer": 2,
+            "explanation": "Good debugging means checking each part carefully one-by-one."
+        },
+        {
+            "q": "Why is teamwork important in debugging?",
+            "options": [
+                "More people can find mistakes faster",
+                "It makes LEDs brighter",
+                "It changes resistor value",
+                "It increases voltage"
+            ],
+            "answer": 0,
+            "explanation": "Group discussion helps identify errors and solutions more quickly."
+        },
+        {
+            "q": "What is a logic error?",
+            "options": [
+                "Code does not upload",
+                "Circuit catches fire",
+                "Program runs but gives wrong result",
+                "Battery is removed"
+            ],
+            "answer": 2,
+            "explanation": "Logic errors happen when code runs but output is incorrect."
+        },
+        {
+            "q": "Which component protects the LED from too much current?",
+            "options": [
+                "Switch",
+                "Motor",
+                "Resistor",
+                "Battery"
+            ],
+            "answer": 2,
+            "explanation": "A resistor limits current and protects the LED."
+        },
+        {
+            "q": "What should students do first when debugging?",
+            "options": [
+                "Panic",
+                "Check connections calmly",
+                "Throw away components",
+                "Change computer"
+            ],
+            "answer": 1,
+            "explanation": "Start by checking connections and components carefully."
+        },
+        {
+            "q": "What happens after successful debugging?",
+            "options": [
+                "The project works correctly",
+                "The battery disappears",
+                "The LED breaks",
+                "The code deletes itself"
+            ],
+            "answer": 0,
+            "explanation": "After fixing errors properly, the project runs successfully."
+        }
+    ]
+}

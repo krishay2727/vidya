@@ -1,0 +1,309 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put animation activity photos here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Animations & Transitions",
+    "subtitle": "make slides move magically!",
+    "date": "Session 02",
+    "duration": "1 Hours",
+    "phase": "Foundation",
+    "color": "#FF6B6B",
+    "icon": "🎬",
+    "tags": [
+        "PowerPoint",
+        "Animations",
+        "Transitions",
+        "Creativity"
+    ],
+    "overview": "This session introduces students to PowerPoint animations and transitions. Students will learn how to make text, images, and slides move creatively to create engaging presentations.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from animation practice sessions, student presentations, and PowerPoint activities.",
+        "gallery": [
+            {
+                "file": "data/ppt-animation.gif",
+                "_placeholder": "ADD: Students learning animation effects",
+                "caption": "Students adding animations to text and images",
+                "category": "Activity"
+            },
+            {
+                "file": "data/transition-effect.jpg",
+                "_placeholder": "ADD: Slide transition practice photo",
+                "caption": "Creative slide transitions in PowerPoint",
+                "category": "Concept"
+            },
+            {
+                "file": "data/fade-animation.gif",
+                "_placeholder": "ADD: Fade effect example screenshot",
+                "caption": "Fade Animation Effect Example",
+                "category": "Examples"
+            },
+            {
+                "file": "data/zoom-transition.jpg",
+                "_placeholder": "ADD: Zoom transition slide screenshot",
+                "caption": "Zoom Transition between slides",
+                "category": "Examples"
+            },
+            {
+                "file": "data/student-presentation.jpg",
+                "_placeholder": "ADD: Student presenting animated PPT",
+                "caption": "Students presenting creative slides",
+                "category": "Presentation"
+            },
+            {
+                "file": "data/motion-path.gif",
+                "_placeholder": "ADD: Motion path activity screenshot",
+                "caption": "Motion Path Animation in action",
+                "category": "Lab"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What are Animations in PowerPoint?",
+        "What are Transitions between slides?",
+        "Difference between Animation and Transition",
+        "Types of Animation Effects — Entrance, Emphasis, Exit, Motion Paths",
+        "Popular Transitions — Fade, Push, Wipe, Morph",
+        "Animation Pane and Timing Control",
+        "Adding sound and effects to slides",
+        "Creating interactive and engaging presentations"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "PowerPoint Animations for Beginners",
+            "videoId": "M0n5Cz4n6qU",
+            "_note": "Replace videoId with actual YouTube video ID",
+            "desc": "Learn the basics of animations in PowerPoint step by step."
+        },
+        {
+            "title": "Transitions in PowerPoint Explained",
+            "videoId": "qz0aGYrrlhU",
+            "_note": "Replace videoId with actual YouTube video ID",
+            "desc": "Simple explanation of slide transitions with examples."
+        },
+        {
+            "title": "Motion Path Animation Tutorial",
+            "videoId": "4Y5M6u1Q8nE",
+            "desc": "Create moving object animations using motion paths."
+        },
+        {
+            "title": "Creative PowerPoint Presentation Ideas",
+            "videoId": "YbJOTdZBX1g",
+            "desc": "Fun presentation tricks and animation ideas for students."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Microsoft PowerPoint Official",
+            "url": "https://www.microsoft.com/en/microsoft-365/powerpoint",
+            "icon": "🔗"
+        },
+        {
+            "title": "Canva Presentation Templates",
+            "url": "https://www.canva.com/presentations/templates/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Slidesgo Free Templates",
+            "url": "https://slidesgo.com/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Create an Animated Presentation",
+        "parts": [
+            "Computer/Laptop",
+            "Microsoft PowerPoint",
+            "Images for slides",
+            "Text content",
+            "Creative ideas"
+        ],
+        "steps": [
+            "Open Microsoft PowerPoint",
+            "Create 3 slides on any topic",
+            "Add text and pictures",
+            "Apply Entrance animation to text",
+            "Add Transition between slides",
+            "Preview slideshow mode",
+            "Challenge: Add sound and motion path animation"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is an Animation in PowerPoint?",
+            "options": [
+                "Changing slide background color",
+                "Making text or objects move on a slide",
+                "Printing slides",
+                "Deleting slides"
+            ],
+            "answer": 1,
+            "explanation": "Animations make objects like text and images move or appear in different ways on a slide."
+        },
+        {
+            "q": "What is a Transition in PowerPoint?",
+            "options": [
+                "Movement between one slide and another",
+                "Changing font size",
+                "Adding pictures",
+                "Typing text"
+            ],
+            "answer": 0,
+            "explanation": "Transitions are visual effects that happen when moving from one slide to the next."
+        },
+        {
+            "q": "Which tab is used to add animations?",
+            "options": [
+                "Insert",
+                "Design",
+                "Animations",
+                "Review"
+            ],
+            "answer": 2,
+            "explanation": "The Animations tab contains all animation effects and settings."
+        },
+        {
+            "q": "Which of these is a transition effect?",
+            "options": [
+                "Fade",
+                "Bold",
+                "Underline",
+                "Font Color"
+            ],
+            "answer": 0,
+            "explanation": "Fade is a popular slide transition effect in PowerPoint."
+        },
+        {
+            "q": "Which animation makes an object appear on the slide?",
+            "options": [
+                "Exit",
+                "Entrance",
+                "Motion Path",
+                "Emphasis"
+            ],
+            "answer": 1,
+            "explanation": "Entrance animations make objects appear on the slide."
+        },
+        {
+            "q": "Which animation makes an object disappear?",
+            "options": [
+                "Exit",
+                "Entrance",
+                "Zoom",
+                "Fade"
+            ],
+            "answer": 0,
+            "explanation": "Exit animations remove objects from the slide."
+        },
+        {
+            "q": "What does the Animation Pane do?",
+            "options": [
+                "Prints slides",
+                "Controls and manages animations",
+                "Changes background",
+                "Adds videos"
+            ],
+            "answer": 1,
+            "explanation": "The Animation Pane helps manage the order and timing of animations."
+        },
+        {
+            "q": "Which transition creates a smooth blending effect?",
+            "options": [
+                "Morph",
+                "Cut",
+                "Split",
+                "Random Bars"
+            ],
+            "answer": 0,
+            "explanation": "Morph creates smooth movement and transformation between slides."
+        },
+        {
+            "q": "Which option controls how long an animation lasts?",
+            "options": [
+                "Timing",
+                "Insert",
+                "Layout",
+                "Home"
+            ],
+            "answer": 0,
+            "explanation": "Timing settings control animation speed and duration."
+        },
+        {
+            "q": "What is a Motion Path animation?",
+            "options": [
+                "Changes font color",
+                "Moves an object along a path",
+                "Deletes images",
+                "Prints presentation"
+            ],
+            "answer": 1,
+            "explanation": "Motion Path animations allow objects to move in a custom direction or path."
+        },
+        {
+            "q": "Which feature makes presentations more attractive?",
+            "options": [
+                "Animations and Transitions",
+                "Deleting slides",
+                "Small font size",
+                "Plain white slides"
+            ],
+            "answer": 0,
+            "explanation": "Animations and transitions make presentations engaging and interactive."
+        },
+        {
+            "q": "Which shortcut starts a slideshow from beginning?",
+            "options": [
+                "F1",
+                "F5",
+                "Ctrl + P",
+                "Alt + Tab"
+            ],
+            "answer": 1,
+            "explanation": "F5 starts the slideshow from the beginning."
+        },
+        {
+            "q": "Which transition effect slides one slide over another?",
+            "options": [
+                "Push",
+                "Zoom",
+                "Spin",
+                "Bounce"
+            ],
+            "answer": 0,
+            "explanation": "Push transition moves one slide over another smoothly."
+        },
+        {
+            "q": "Animations are applied to:",
+            "options": [
+                "Entire computer",
+                "Only printers",
+                "Objects on slides",
+                "Internet browser"
+            ],
+            "answer": 2,
+            "explanation": "Animations are applied to text, images, shapes, and other objects."
+        },
+        {
+            "q": "Why should animations be used carefully?",
+            "options": [
+                "Too many effects can distract viewers",
+                "Animations break the computer",
+                "Animations remove slides",
+                "Animations stop saving"
+            ],
+            "answer": 0,
+            "explanation": "Using too many animations can make presentations distracting and confusing."
+        }
+    ]
+}

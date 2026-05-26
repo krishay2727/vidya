@@ -1,0 +1,307 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Algorithms & Sequencing",
+    "subtitle": "step by step thinking!",
+    "date": "Session 02",
+    "duration": "1 Hours",
+    "phase": "Foundation",
+    "color": "#FF9F1C",
+    "icon": "🧠",
+    "tags": [
+        "Algorithms",
+        "Sequencing",
+        "Coding",
+        "Logic"
+    ],
+    "overview": "This session introduces students to algorithms and sequencing using fun real-life examples and activities. Students learn how computers follow step-by-step instructions to complete tasks correctly.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — classroom activities, students arranging steps, coding games, whiteboard logic diagrams.",
+        "gallery": [
+            {
+                "file": "data/algorithm-steps.jpg",
+                "_placeholder": "ADD: Photo of step-by-step activity",
+                "caption": "Students arranging steps in correct order",
+                "category": "Activity"
+            },
+            {
+                "file": "data/flowchart-basic.png",
+                "_placeholder": "ADD: Photo of flowchart explanation on board",
+                "caption": "Understanding flowcharts and sequencing",
+                "category": "Concept"
+            },
+            {
+                "file": "data/robot-following-command.jpg",
+                "_placeholder": "ADD: Photo of robot activity",
+                "caption": "Robots follow instructions exactly!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/making-sandwich.jpg",
+                "_placeholder": "ADD: Sandwich making activity photo",
+                "caption": "Making sandwich using an algorithm",
+                "category": "Lab"
+            },
+            {
+                "file": "data/traffic-light-sequence.jpg",
+                "_placeholder": "ADD: Traffic light sequence activity",
+                "caption": "Traffic lights follow a sequence",
+                "category": "Example"
+            },
+            {
+                "file": "data/student-group-activity.jpg",
+                "_placeholder": "ADD: Group sequencing activity photo",
+                "caption": "Students solving sequencing challenges together",
+                "category": "Lab"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is an Algorithm? — Step-by-step instructions",
+        "Sequencing — Correct order of actions",
+        "Real-life Algorithms — Brushing teeth, making tea, school routine",
+        "Computers follow instructions exactly",
+        "Flowcharts — Visual representation of steps",
+        "Debugging — Finding and fixing mistakes",
+        "Importance of order in coding",
+        "Introduction to logical thinking"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "What is an Algorithm?",
+            "videoId": "6hfOvs8pY1k",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "A simple explanation of algorithms for kids using daily life examples."
+        },
+        {
+            "title": "Sequencing for Beginners",
+            "videoId": "bA7x8HgWc7Q",
+            "desc": "Understanding sequencing and why order matters."
+        },
+        {
+            "title": "Flowcharts Explained",
+            "videoId": "SWRDqTx8d4k",
+            "desc": "Learn how flowcharts help visualize algorithms."
+        },
+        {
+            "title": "Coding Logic for Kids",
+            "videoId": "PkZNo7MFNFg",
+            "desc": "Fun coding logic and problem-solving introduction."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Scratch Coding",
+            "url": "https://scratch.mit.edu",
+            "icon": "🔗"
+        },
+        {
+            "title": "Blockly Games",
+            "url": "https://blockly.games",
+            "icon": "🔗"
+        },
+        {
+            "title": "Code.org Activities",
+            "url": "https://code.org",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Make a Sandwich Algorithm Activity",
+        "parts": [
+            "Bread slices",
+            "Butter or jam",
+            "Plastic knife",
+            "Paper sheets",
+            "Marker"
+        ],
+        "steps": [
+            "Write the steps to make a sandwich",
+            "Arrange steps in correct sequence",
+            "Exchange algorithms with another group",
+            "Follow only written instructions exactly",
+            "Identify missing or incorrect steps",
+            "Fix mistakes and improve the algorithm"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is an Algorithm?",
+            "options": [
+                "A random guess",
+                "A computer game",
+                "Step-by-step instructions to solve a problem",
+                "A type of robot"
+            ],
+            "answer": 2,
+            "explanation": "An algorithm is a set of step-by-step instructions used to complete a task or solve a problem."
+        },
+        {
+            "q": "Why is sequencing important?",
+            "options": [
+                "Because order does not matter",
+                "Because computers need correct order of instructions",
+                "To make things slower",
+                "To confuse the computer"
+            ],
+            "answer": 1,
+            "explanation": "Computers follow instructions exactly in the order given."
+        },
+        {
+            "q": "Which of these is an example of an algorithm?",
+            "options": [
+                "Drawing randomly",
+                "Making tea step-by-step",
+                "Sleeping",
+                "Watching TV"
+            ],
+            "answer": 1,
+            "explanation": "Making tea involves following a sequence of steps, making it an algorithm."
+        },
+        {
+            "q": "What happens if steps are in the wrong order?",
+            "options": [
+                "The task works perfectly",
+                "Nothing changes",
+                "The result may be wrong",
+                "The computer becomes faster"
+            ],
+            "answer": 2,
+            "explanation": "Wrong sequencing can cause errors or incorrect results."
+        },
+        {
+            "q": "What is a flowchart?",
+            "options": [
+                "A drawing competition",
+                "A map showing steps visually",
+                "A coding language",
+                "A type of robot"
+            ],
+            "answer": 1,
+            "explanation": "A flowchart visually represents steps in an algorithm."
+        },
+        {
+            "q": "Computers follow instructions:",
+            "options": [
+                "Sometimes",
+                "Only when they want",
+                "Exactly as written",
+                "Randomly"
+            ],
+            "answer": 2,
+            "explanation": "Computers do exactly what we tell them through code and instructions."
+        },
+        {
+            "q": "What is debugging?",
+            "options": [
+                "Adding bugs to code",
+                "Finding and fixing mistakes",
+                "Turning off the computer",
+                "Drawing pictures"
+            ],
+            "answer": 1,
+            "explanation": "Debugging means identifying and correcting errors."
+        },
+        {
+            "q": "Which activity needs sequencing?",
+            "options": [
+                "Brushing teeth",
+                "Cooking noodles",
+                "Crossing the road safely",
+                "All of the above"
+            ],
+            "answer": 3,
+            "explanation": "Many daily life activities require correct sequencing."
+        },
+        {
+            "q": "What will happen if a robot gets unclear instructions?",
+            "options": [
+                "It understands automatically",
+                "It may do the wrong task",
+                "It becomes intelligent",
+                "It stops forever"
+            ],
+            "answer": 1,
+            "explanation": "Robots and computers need clear instructions."
+        },
+        {
+            "q": "Which comes FIRST while brushing teeth?",
+            "options": [
+                "Rinse mouth",
+                "Apply toothpaste",
+                "Sleep",
+                "Wash plate"
+            ],
+            "answer": 1,
+            "explanation": "Applying toothpaste is one of the first steps."
+        },
+        {
+            "q": "A sequence means:",
+            "options": [
+                "Correct order of steps",
+                "Random actions",
+                "Skipping steps",
+                "Fast typing"
+            ],
+            "answer": 0,
+            "explanation": "Sequence means arranging actions in proper order."
+        },
+        {
+            "q": "Traffic lights follow:",
+            "options": [
+                "Random colors",
+                "A sequence",
+                "Music",
+                "Games"
+            ],
+            "answer": 1,
+            "explanation": "Traffic lights work in a fixed sequence: Red → Yellow → Green."
+        },
+        {
+            "q": "Which skill improves by learning algorithms?",
+            "options": [
+                "Logical thinking",
+                "Problem solving",
+                "Critical thinking",
+                "All of the above"
+            ],
+            "answer": 3,
+            "explanation": "Algorithms help improve many thinking and problem-solving skills."
+        },
+        {
+            "q": "What should we do after finding a mistake in steps?",
+            "options": [
+                "Ignore it",
+                "Delete everything",
+                "Fix and improve it",
+                "Stop working"
+            ],
+            "answer": 2,
+            "explanation": "Mistakes should be corrected through debugging."
+        },
+        {
+            "q": "Which is easier for a computer to understand?",
+            "options": [
+                "Clear step-by-step instructions",
+                "Confusing sentences",
+                "Random ideas",
+                "Incomplete steps"
+            ],
+            "answer": 0,
+            "explanation": "Computers work best with clear instructions in correct order."
+        }
+    ]
+}

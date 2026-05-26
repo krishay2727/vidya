@@ -1,0 +1,316 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Formatting Text",
+    "subtitle": "Make Your Text Beautiful!",
+    "date": "Session 02",
+    "duration": "1 Hour",
+    "phase": "Foundation",
+    "color": "#FF6B6B",
+    "icon": "📝",
+    "tags": [
+        "MS Word",
+        "Formatting",
+        "Computer Basics",
+        "Digital Skills"
+    ],
+    "overview": "In this session, students will learn how to format text using different tools like bold, italic, underline, font size, colors, alignment, and styles in MS Word. Students will create attractive documents using formatting features.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — computer lab photos, typing practice, formatting activities, and student work.",
+        "gallery": [
+            {
+                "file": "data/bold-text.png",
+                "_placeholder": "ADD: Screenshot of bold formatted text",
+                "caption": "Bold text makes important words darker and stronger",
+                "category": "Formatting"
+            },
+            {
+                "file": "data/italic-text.png",
+                "_placeholder": "ADD: Screenshot of italic formatted text",
+                "caption": "Italic text gives a stylish slanted appearance",
+                "category": "Formatting"
+            },
+            {
+                "file": "data/underline-text.png",
+                "_placeholder": "ADD: Screenshot of underline formatted text",
+                "caption": "Underline helps highlight important information",
+                "category": "Formatting"
+            },
+            {
+                "file": "data/font-size.png",
+                "_placeholder": "ADD: Screenshot showing different font sizes",
+                "caption": "Different font sizes make titles and headings attractive",
+                "category": "Formatting"
+            },
+            {
+                "file": "data/text-color.png",
+                "_placeholder": "ADD: Screenshot showing colorful text",
+                "caption": "Text color makes documents attractive and creative",
+                "category": "Formatting"
+            },
+            {
+                "file": "data/alignment.png",
+                "_placeholder": "ADD: Screenshot showing text alignment",
+                "caption": "Left, center, right and justify alignment examples",
+                "category": "Concept"
+            },
+            {
+                "file": "data/student-lab.jpg",
+                "_placeholder": "ADD: Students practicing formatting in computer lab",
+                "caption": "Students learning text formatting practically",
+                "category": "Lab"
+            }
+        ]
+    },
+    "keyTopics": [
+        "Bold Text — Makes text darker and important",
+        "Italic Text — Slanted stylish text",
+        "Underline — Draws a line below text",
+        "Font Size — Increase or decrease text size",
+        "Font Style — Change text appearance",
+        "Text Color — Add colors to text",
+        "Alignment — Left, Center, Right, Justify",
+        "Highlight Text — Mark important words",
+        "Copy Formatting using Format Painter",
+        "Create Attractive Documents using formatting tools"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "MS Word Text Formatting Basics",
+            "videoId": "eJ0cX7m1K9A",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "Learn the basics of formatting text in MS Word including bold, italic, underline and font size."
+        },
+        {
+            "title": "Font Style and Text Color in MS Word",
+            "videoId": "2G0yA8J4rKQ",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "Understand how to change font styles and add colors to text."
+        },
+        {
+            "title": "Text Alignment Explained",
+            "videoId": "oGiV6W5H6mQ",
+            "desc": "Learn left, center, right and justified alignment with examples."
+        },
+        {
+            "title": "Formatting Text Practice Activity",
+            "videoId": "hL8V8r9w3XY",
+            "desc": "A beginner-friendly activity for practicing text formatting."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Microsoft Word Official Guide",
+            "url": "https://support.microsoft.com/en-us/word",
+            "icon": "🔗"
+        },
+        {
+            "title": "Typing Practice Website",
+            "url": "https://www.typingclub.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Free Online MS Word Practice",
+            "url": "https://edu.gcfglobal.org/en/word/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Create a Beautiful School Notice",
+        "parts": [
+            "Computer or Laptop",
+            "MS Word",
+            "Keyboard and Mouse"
+        ],
+        "steps": [
+            "Open MS Word",
+            "Type a school notice or paragraph",
+            "Make the heading Bold and increase font size",
+            "Apply Italic and Underline to important words",
+            "Change text color for headings",
+            "Align heading to Center",
+            "Save the document with your name",
+            "Show your formatted document to the teacher"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "Which formatting option makes text darker and thicker?",
+            "options": [
+                "Italic",
+                "Underline",
+                "Bold",
+                "Highlight"
+            ],
+            "answer": 2,
+            "explanation": "Bold formatting makes text darker and more noticeable."
+        },
+        {
+            "q": "Which formatting style makes text slanted?",
+            "options": [
+                "Bold",
+                "Italic",
+                "Underline",
+                "Font Color"
+            ],
+            "answer": 1,
+            "explanation": "Italic text appears slanted and stylish."
+        },
+        {
+            "q": "What does Underline do?",
+            "options": [
+                "Changes text color",
+                "Makes text bigger",
+                "Draws a line below text",
+                "Deletes text"
+            ],
+            "answer": 2,
+            "explanation": "Underline adds a line below the selected text."
+        },
+        {
+            "q": "Which option is used to change text size?",
+            "options": [
+                "Font Size",
+                "Alignment",
+                "Highlight",
+                "Spacing"
+            ],
+            "answer": 0,
+            "explanation": "Font Size helps increase or decrease the size of text."
+        },
+        {
+            "q": "Which alignment places text in the middle of the page?",
+            "options": [
+                "Left Align",
+                "Right Align",
+                "Center Align",
+                "Justify"
+            ],
+            "answer": 2,
+            "explanation": "Center alignment places text in the center."
+        },
+        {
+            "q": "Which tool changes the color of text?",
+            "options": [
+                "Bold",
+                "Text Color",
+                "Italic",
+                "Clipboard"
+            ],
+            "answer": 1,
+            "explanation": "Text Color option changes the appearance color of text."
+        },
+        {
+            "q": "Which alignment keeps text evenly aligned on both sides?",
+            "options": [
+                "Center",
+                "Left",
+                "Justify",
+                "Right"
+            ],
+            "answer": 2,
+            "explanation": "Justify alignment makes both left and right edges neat."
+        },
+        {
+            "q": "What is the shortcut key for Bold in MS Word?",
+            "options": [
+                "Ctrl + U",
+                "Ctrl + I",
+                "Ctrl + B",
+                "Ctrl + P"
+            ],
+            "answer": 2,
+            "explanation": "Ctrl + B is used for Bold formatting."
+        },
+        {
+            "q": "What is the shortcut key for Italic?",
+            "options": [
+                "Ctrl + B",
+                "Ctrl + I",
+                "Ctrl + U",
+                "Ctrl + S"
+            ],
+            "answer": 1,
+            "explanation": "Ctrl + I applies italic formatting."
+        },
+        {
+            "q": "Which shortcut key is used for Underline?",
+            "options": [
+                "Ctrl + U",
+                "Ctrl + P",
+                "Ctrl + L",
+                "Ctrl + T"
+            ],
+            "answer": 0,
+            "explanation": "Ctrl + U adds underline formatting."
+        },
+        {
+            "q": "Why do we use formatting in documents?",
+            "options": [
+                "To make documents attractive and readable",
+                "To delete text",
+                "To close MS Word",
+                "To print automatically"
+            ],
+            "answer": 0,
+            "explanation": "Formatting improves appearance and readability of documents."
+        },
+        {
+            "q": "Which formatting tool highlights important text using color?",
+            "options": [
+                "Highlight Text",
+                "Bold",
+                "Font Size",
+                "Alignment"
+            ],
+            "answer": 0,
+            "explanation": "Highlight Text tool marks important words with color."
+        },
+        {
+            "q": "What happens when you increase font size?",
+            "options": [
+                "Text becomes smaller",
+                "Text becomes colorful",
+                "Text becomes bigger",
+                "Text disappears"
+            ],
+            "answer": 2,
+            "explanation": "Increasing font size makes text larger."
+        },
+        {
+            "q": "Which option helps copy formatting from one text to another?",
+            "options": [
+                "Clipboard",
+                "Format Painter",
+                "Save",
+                "Undo"
+            ],
+            "answer": 1,
+            "explanation": "Format Painter copies formatting styles quickly."
+        },
+        {
+            "q": "Which alignment is commonly used for titles and headings?",
+            "options": [
+                "Center Align",
+                "Left Align",
+                "Justify",
+                "Right Align"
+            ],
+            "answer": 0,
+            "explanation": "Center alignment is mostly used for titles and headings."
+        }
+    ]
+}

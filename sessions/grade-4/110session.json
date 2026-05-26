@@ -1,0 +1,308 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put activity photos, AI demo pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Pattern Recognition",
+    "subtitle": "AI can identify patterns!",
+    "date": "Session 02",
+    "duration": "1 Hours",
+    "phase": "Foundation",
+    "color": "#8A2BE2",
+    "icon": "🧠",
+    "tags": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Patterns",
+        "Technology"
+    ],
+    "overview": "This session introduces students to Pattern Recognition — how humans and computers identify similarities, shapes, sounds, numbers, and behaviors to make decisions. Students will learn how AI uses pattern recognition in face unlock, voice assistants, handwriting recognition, and smart applications.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — AI activity photos, pattern cards, classroom activities, computer demos.",
+        "gallery": [
+            {
+                "file": "data/pattern-shapes.jpg",
+                "_placeholder": "ADD: Shape pattern recognition activity photo",
+                "caption": "Students identifying repeating shape patterns",
+                "category": "Activity"
+            },
+            {
+                "file": "data/face-recognition.jpg",
+                "_placeholder": "ADD: Face unlock or AI recognition demo",
+                "caption": "Face Recognition used in smartphones",
+                "category": "AI Examples"
+            },
+            {
+                "file": "data/voice-assistant.jpg",
+                "_placeholder": "ADD: Smart assistant image",
+                "caption": "Voice assistants recognize speech patterns",
+                "category": "AI Examples"
+            },
+            {
+                "file": "data/handwriting-ai.jpg",
+                "_placeholder": "ADD: Handwriting recognition activity",
+                "caption": "AI recognizing handwritten numbers and letters",
+                "category": "Concept"
+            },
+            {
+                "file": "data/color-patterns.jpg",
+                "_placeholder": "ADD: Students arranging colored blocks",
+                "caption": "Learning patterns using colors and sequences",
+                "category": "Lab"
+            },
+            {
+                "file": "data/emoji-pattern.jpg",
+                "_placeholder": "ADD: Emoji matching game photo",
+                "caption": "Recognizing emoji and visual patterns",
+                "category": "Fun Activity"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is a Pattern?",
+        "Pattern Recognition in Daily Life",
+        "Human Brain vs Artificial Intelligence",
+        "Face Recognition in Smartphones",
+        "Voice Recognition in Alexa / Google Assistant",
+        "Handwriting Recognition",
+        "Pattern Matching with Shapes and Colors",
+        "How AI Learns from Data"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "What is Pattern Recognition?",
+            "videoId": "7oVxJ1s3T6A",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "Simple introduction to pattern recognition and AI for beginners."
+        },
+        {
+            "title": "How Face Recognition Works",
+            "videoId": "4poKQdp5v3c",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "Learn how phones identify faces using AI."
+        },
+        {
+            "title": "Machine Learning for Kids",
+            "videoId": "ukzFI9rgwfU",
+            "desc": "A beginner-friendly explanation of machine learning and patterns."
+        },
+        {
+            "title": "AI in Everyday Life",
+            "videoId": "2ePf9rue1Ao",
+            "desc": "Examples of AI systems using pattern recognition around us."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Google Teachable Machine",
+            "url": "https://teachablemachine.withgoogle.com/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Scratch AI Projects",
+            "url": "https://scratch.mit.edu/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Machine Learning for Kids",
+            "url": "https://machinelearningforkids.co.uk/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Find the Next Pattern Game",
+        "parts": [
+            "Printed shape cards",
+            "Color blocks",
+            "Whiteboard",
+            "Markers",
+            "Emoji cards"
+        ],
+        "steps": [
+            "Show students a sequence of colors or shapes",
+            "Ask students to identify the repeating pattern",
+            "Students predict the next shape or color",
+            "Discuss how humans recognize patterns quickly",
+            "Explain how AI also learns patterns from examples",
+            "Challenge: Create your own pattern for friends to solve"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is a pattern?",
+            "options": [
+                "A random drawing",
+                "Something that repeats in a predictable way",
+                "A type of computer",
+                "A battery"
+            ],
+            "answer": 1,
+            "explanation": "A pattern is something that repeats in a predictable order or sequence."
+        },
+        {
+            "q": "Which device commonly uses face recognition?",
+            "options": [
+                "Fan",
+                "Television remote",
+                "Smartphone",
+                "Calculator"
+            ],
+            "answer": 2,
+            "explanation": "Smartphones use face recognition for unlocking and security."
+        },
+        {
+            "q": "Pattern recognition helps AI to:",
+            "options": [
+                "Cook food",
+                "Understand similarities in data",
+                "Charge batteries",
+                "Print books"
+            ],
+            "answer": 1,
+            "explanation": "AI uses pattern recognition to identify similarities and make decisions."
+        },
+        {
+            "q": "Which of these is an example of voice recognition?",
+            "options": [
+                "Torch light",
+                "Alexa understanding your voice",
+                "A water bottle",
+                "A ruler"
+            ],
+            "answer": 1,
+            "explanation": "Voice assistants like Alexa recognize speech patterns."
+        },
+        {
+            "q": "What comes next in the pattern? 🔴 🔵 🔴 🔵 ___",
+            "options": [
+                "🟢",
+                "🔴",
+                "🟡",
+                "⚫"
+            ],
+            "answer": 1,
+            "explanation": "The colors repeat in the order red, blue, red, blue."
+        },
+        {
+            "q": "AI learns patterns using:",
+            "options": [
+                "Magic",
+                "Data and examples",
+                "Water",
+                "Paper only"
+            ],
+            "answer": 1,
+            "explanation": "AI systems learn by studying data and examples."
+        },
+        {
+            "q": "Which subject is closely related to pattern recognition?",
+            "options": [
+                "Artificial Intelligence",
+                "Cooking",
+                "Painting walls",
+                "Swimming"
+            ],
+            "answer": 0,
+            "explanation": "Pattern recognition is an important part of Artificial Intelligence."
+        },
+        {
+            "q": "Which example shows a visual pattern?",
+            "options": [
+                "Dog barking",
+                "123123123",
+                "Water boiling",
+                "Fan spinning randomly"
+            ],
+            "answer": 1,
+            "explanation": "The number sequence repeats in a clear pattern."
+        },
+        {
+            "q": "Handwriting recognition helps computers to:",
+            "options": [
+                "Recognize written letters and numbers",
+                "Wash clothes",
+                "Charge phones",
+                "Play cricket"
+            ],
+            "answer": 0,
+            "explanation": "AI can identify handwritten text using pattern recognition."
+        },
+        {
+            "q": "What does AI stand for?",
+            "options": [
+                "Automatic Internet",
+                "Artificial Intelligence",
+                "Advanced Input",
+                "Artificial Images"
+            ],
+            "answer": 1,
+            "explanation": "AI stands for Artificial Intelligence."
+        },
+        {
+            "q": "Which is a repeating pattern?",
+            "options": [
+                "⭐⭕⭐⭕⭐⭕",
+                "⭐⭕🔺🔵",
+                "1 4 7 9",
+                "A B D F"
+            ],
+            "answer": 0,
+            "explanation": "The star and circle repeat again and again."
+        },
+        {
+            "q": "Pattern recognition in humans mainly happens in the:",
+            "options": [
+                "Brain",
+                "Hand",
+                "Leg",
+                "Nose"
+            ],
+            "answer": 0,
+            "explanation": "Our brain recognizes patterns quickly using memory and observation."
+        },
+        {
+            "q": "Google Assistant uses pattern recognition to:",
+            "options": [
+                "Recognize your voice commands",
+                "Clean the room",
+                "Cook food",
+                "Charge batteries"
+            ],
+            "answer": 0,
+            "explanation": "Voice assistants identify voice patterns to understand commands."
+        },
+        {
+            "q": "What comes next in the number pattern? 2, 4, 6, 8, ___",
+            "options": [
+                "9",
+                "10",
+                "11",
+                "12"
+            ],
+            "answer": 1,
+            "explanation": "The pattern increases by 2 each time."
+        },
+        {
+            "q": "Why is pattern recognition important in AI?",
+            "options": [
+                "It helps machines make smart decisions",
+                "It paints walls",
+                "It grows plants",
+                "It changes batteries"
+            ],
+            "answer": 0,
+            "explanation": "AI uses patterns to recognize objects, voices, faces, and make predictions."
+        }
+    ]
+}

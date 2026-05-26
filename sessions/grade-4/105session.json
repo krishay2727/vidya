@@ -1,309 +1,260 @@
 {
   "_instructions": {
-    "folder_structure": "sessions/session-2/",
-    "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
-    "images_folder": "sessions/session-2/images/   ← Put cyber safety activity photos here (JPG/PNG)",
+    "folder_structure": "sessions/session-dht-classroom-station/",
+    "slides_folder": "sessions/session-dht-classroom-station/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-dht-classroom-station/images/   ← Put activity photos, sensor setup pics here (JPG/PNG)",
     "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
     "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
   },
-  "id": "session-2",
+  "id": "session-dht-classroom-station",
   "number": 2,
-  "title": "Safe Web Browsing",
-  "subtitle": "Stay Smart, Stay Safe Online!",
+  "title": "DHT Classroom Station",
+  "subtitle": "Temperature & Humidity Monitoring System",
   "date": "Session 02",
-  "duration": "1 Hours",
-  "phase": "Digital Safety",
-  "color": "#4CAF50",
-  "icon": "🛡️",
+  "duration": "1.5 Hours",
+  "phase": "IoT Foundation",
+  "color": "#00C896",
+  "icon": "🌡️",
   "tags": [
-    "Cyber Safety",
-    "Internet",
-    "Technology",
-    "Digital Literacy"
+    "IoT",
+    "Arduino",
+    "Sensors",
+    "Temperature",
+    "Humidity"
   ],
-  "overview": "This session helps students learn how to browse the internet safely, protect personal information, identify fake websites, avoid cyber threats, and become responsible digital citizens.",
+  "overview": "In this session, students learn how to build a DHT Classroom Station using Arduino UNO and the DHT11 sensor. Students will understand temperature and humidity monitoring, sensor working principles, and how smart classrooms use environmental monitoring systems.",
   "grades": [
     4
   ],
   "slides": {
-    "pdf": "sessions/session-2/slides.pdf"
+    "pdf": "sessions/session-dht-classroom-station/slides.pdf"
   },
   "images": {
-    "_note": "Add photos from cyber safety activities, safe browsing demos, students discussing phishing examples, and classroom presentations.",
+    "_note": "Add actual classroom station photos, DHT sensor wiring, Arduino setup, student activity photos and monitoring screen images.",
     "gallery": [
       {
-        "file": "data/safe-web.jpg",
-        "_placeholder": "ADD: Poster showing safe web browsing rules",
-        "caption": "Students learning the rules of safe internet browsing",
-        "category": "Concept"
+        "file": "data/dht11-sensor.jpg",
+        "_placeholder": "ADD: Clear photo of DHT11 sensor",
+        "caption": "DHT11 Sensor — Measures temperature and humidity",
+        "category": "Components"
       },
       {
-        "file": "data/password-security.jpg",
-        "_placeholder": "ADD: Password safety activity photo",
-        "caption": "Strong passwords help protect online accounts",
-        "category": "Cyber Safety"
+        "file": "data/arduino-uno.jpg",
+        "_placeholder": "ADD: Arduino UNO board photo",
+        "caption": "Arduino UNO — Brain of the classroom station",
+        "category": "Components"
       },
       {
-        "file": "data/phishing-email.jpg",
-        "_placeholder": "ADD: Example phishing email screenshot",
-        "caption": "Students identifying fake phishing emails",
-        "category": "Examples"
+        "file": "data/jumper-wires.jpg",
+        "_placeholder": "ADD: Jumper wires connection photo",
+        "caption": "Jumper wires used for sensor connections",
+        "category": "Components"
       },
       {
-        "file": "data/secure-website.jpg",
-        "_placeholder": "ADD: Browser showing HTTPS secure lock icon",
-        "caption": "Always check for HTTPS and the lock symbol",
-        "category": "Concept"
-      },
-      {
-        "file": "data/computer-lab.jpg",
-        "_placeholder": "ADD: Students using computers safely",
-        "caption": "Practicing safe browsing in the computer lab",
+        "file": "data/breadboard-dht.jpg",
+        "_placeholder": "ADD: Breadboard setup with DHT11",
+        "caption": "Students building DHT sensor circuit",
         "category": "Lab"
       },
       {
-        "file": "data/cyber-awareness.png",
-        "_placeholder": "ADD: Cyber awareness classroom activity",
-        "caption": "Cyber awareness discussion with students",
+        "file": "data/serial-monitor.png",
+        "_placeholder": "ADD: Screenshot of Arduino Serial Monitor",
+        "caption": "Live temperature and humidity readings",
+        "category": "Output"
+      },
+      {
+        "file": "data/classroom-monitoring.jpg",
+        "_placeholder": "ADD: Classroom monitoring activity photo",
+        "caption": "Students observing classroom environment data",
         "category": "Activity"
       }
     ]
   },
   "keyTopics": [
-    "What is Safe Web Browsing?",
-    "Importance of keeping personal information private",
-    "Strong Passwords — Mix letters, numbers, and symbols",
-    "HTTPS & Lock Symbol — Safe websites",
-    "Phishing Scams — Fake emails and messages",
-    "Cyberbullying Awareness and Reporting",
-    "Avoiding Unsafe Downloads and Unknown Links",
-    "Responsible Social Media Usage",
-    "Digital Footprint — What you post stays online",
-    "Using Antivirus and Safe Search Tools"
+    "What is IoT (Internet of Things)?",
+    "Introduction to DHT11 Sensor",
+    "Difference between Temperature and Humidity",
+    "How Sensors Collect Environmental Data",
+    "Arduino UNO as a Microcontroller",
+    "Reading Sensor Values using Arduino",
+    "Serial Monitor Output",
+    "Applications of Smart Classroom Monitoring Systems"
   ],
   "youtubeVideos": [
     {
-      "title": "Internet Safety for Kids",
-      "videoId": "yiKeLOKc1tw",
-      "_note": "Replace videoId with actual YouTube video ID from the URL",
-      "desc": "A beginner-friendly introduction to internet safety and smart online behavior."
+      "title": "DHT11 Sensor with Arduino Tutorial",
+      "videoId": "SNq4bqTN_DQ",
+      "_note": "Replace with preferred YouTube video ID if needed",
+      "desc": "Learn how to connect and use the DHT11 temperature and humidity sensor with Arduino UNO."
     },
     {
-      "title": "How to Create Strong Passwords",
-      "videoId": "3NjQ9b3pgIg",
-      "desc": "Learn how strong passwords protect your accounts from hackers."
+      "title": "What is IoT?",
+      "videoId": "LlhmzVL5bm8",
+      "desc": "Simple introduction to Internet of Things for beginners."
     },
     {
-      "title": "What is Phishing?",
-      "videoId": "XBkzBrXlle0",
-      "desc": "Understanding phishing scams and how to avoid fake emails and websites."
+      "title": "Arduino for Beginners",
+      "videoId": "nL34zDTPkcs",
+      "desc": "Understanding Arduino UNO and basic electronics."
     },
     {
-      "title": "Cyber Safety Tips for Students",
-      "videoId": "HxySrSbSY7o",
-      "desc": "Important cyber safety tips every student should know."
+      "title": "Humidity Explained",
+      "videoId": "mZ7h0Ww8W4g",
+      "desc": "Learn what humidity means and why it is important."
     }
   ],
   "resources": [
     {
-      "title": "Google Safety Center",
-      "url": "https://safety.google",
+      "title": "Arduino Official Website",
+      "url": "https://www.arduino.cc/",
       "icon": "🔗"
     },
     {
-      "title": "Cyber Safety Tips for Kids",
-      "url": "https://www.internetmatters.org",
+      "title": "Wokwi Arduino Simulator",
+      "url": "https://wokwi.com/",
       "icon": "🔗"
     },
     {
-      "title": "Safe Search Engine for Students",
-      "url": "https://www.kiddle.co",
+      "title": "DHT11 Sensor Guide",
+      "url": "https://components101.com/sensors/dht11-temperature-sensor",
       "icon": "🔗"
     }
   ],
   "activity": {
-    "title": "Spot the Safe Website Activity",
+    "title": "Build a DHT Classroom Monitoring Station",
     "parts": [
-      "Computer or Laptop",
-      "Internet Browser",
-      "Projector",
-      "Sample Website Links",
-      "Cyber Safety Worksheet"
+      "Arduino UNO",
+      "DHT11 Sensor",
+      "Breadboard",
+      "Jumper Wires",
+      "USB Cable",
+      "Laptop with Arduino IDE"
     ],
     "steps": [
-      "Open different example websites",
-      "Check whether the URL starts with HTTPS",
-      "Look for the lock icon in the browser",
-      "Identify fake popups or suspicious ads",
-      "Discuss which websites are safe or unsafe",
-      "Create a list of internet safety rules"
+      "Place the DHT11 sensor on the breadboard",
+      "Connect VCC pin to Arduino 5V",
+      "Connect GND pin to Arduino GND",
+      "Connect DATA pin to Arduino Digital Pin 2",
+      "Upload the DHT sensor code using Arduino IDE",
+      "Open Serial Monitor to view temperature and humidity",
+      "Observe changes in readings by breathing near the sensor"
     ]
+  },
+  "code": {
+    "language": "Arduino",
+    "fileName": "dht_classroom_station.ino",
+    "content": "#include <DHT.h>\n\n#define DHTPIN 2\n#define DHTTYPE DHT11\n\nDHT dht(DHTPIN, DHTTYPE);\n\nvoid setup() {\n  Serial.begin(9600);\n  dht.begin();\n  Serial.println(\"DHT Classroom Station Started\");\n}\n\nvoid loop() {\n  float humidity = dht.readHumidity();\n  float temperature = dht.readTemperature();\n\n  if (isnan(humidity) || isnan(temperature)) {\n    Serial.println(\"Failed to read from DHT sensor!\");\n    return;\n  }\n\n  Serial.print(\"Temperature: \");\n  Serial.print(temperature);\n  Serial.println(\" °C\");\n\n  Serial.print(\"Humidity: \");\n  Serial.print(humidity);\n  Serial.println(\" %\");\n\n  Serial.println(\"------------------------\");\n\n  delay(2000);\n}"
   },
   "quiz": [
     {
-      "q": "What should you check before entering personal information on a website?",
+      "q": "What does the DHT11 sensor measure?",
       "options": [
-        "Website color",
-        "HTTPS and lock symbol",
-        "Number of ads",
-        "Background music"
+        "Distance and motion",
+        "Temperature and humidity",
+        "Light intensity",
+        "Sound level"
       ],
       "answer": 1,
-      "explanation": "HTTPS and the lock symbol show that the website connection is secure."
+      "explanation": "The DHT11 sensor measures temperature and humidity from the environment."
     },
     {
-      "q": "Which of these is a strong password?",
+      "q": "What is humidity?",
       "options": [
-        "123456",
-        "password",
-        "MyDog@2026",
-        "abcd"
+        "Amount of light",
+        "Amount of dust",
+        "Amount of water vapor in air",
+        "Amount of oxygen"
       ],
       "answer": 2,
-      "explanation": "Strong passwords use letters, numbers, and symbols together."
+      "explanation": "Humidity means the amount of water vapor present in the air."
     },
     {
-      "q": "What is phishing?",
+      "q": "Which board is used as the brain of the project?",
       "options": [
-        "Playing online games",
-        "A fake attempt to steal information online",
-        "Watching videos",
-        "Downloading music"
-      ],
-      "answer": 1,
-      "explanation": "Phishing scams trick users into giving personal information."
-    },
-    {
-      "q": "What should you do if a stranger messages you online?",
-      "options": [
-        "Share your address",
-        "Reply immediately",
-        "Ignore and tell a trusted adult",
-        "Send your password"
+        "Motor driver",
+        "Relay module",
+        "Arduino UNO",
+        "Battery"
       ],
       "answer": 2,
-      "explanation": "Never share personal information with strangers online."
+      "explanation": "Arduino UNO acts as the microcontroller and controls the project."
     },
     {
-      "q": "Which symbol usually means a website is secure?",
+      "q": "Which software is used to upload code into Arduino?",
       "options": [
-        "Star",
-        "Heart",
-        "Lock",
-        "Arrow"
+        "MS Word",
+        "Arduino IDE",
+        "Paint",
+        "Scratch"
+      ],
+      "answer": 1,
+      "explanation": "Arduino IDE is used to write and upload programs to Arduino boards."
+    },
+    {
+      "q": "Which pin of DHT11 sends data to Arduino?",
+      "options": [
+        "VCC",
+        "GND",
+        "DATA",
+        "RESET"
       ],
       "answer": 2,
-      "explanation": "A lock symbol indicates a secure website connection."
+      "explanation": "The DATA pin sends sensor readings to Arduino."
     },
     {
-      "q": "What should you do before downloading a file?",
+      "q": "What is the full form of IoT?",
       "options": [
-        "Download immediately",
-        "Check if the source is trusted",
-        "Ignore warnings",
-        "Turn off antivirus"
+        "Internet of Technology",
+        "Input of Things",
+        "Internet of Things",
+        "Interface of Technology"
       ],
-      "answer": 1,
-      "explanation": "Only download files from trusted websites."
+      "answer": 2,
+      "explanation": "IoT stands for Internet of Things."
     },
     {
-      "q": "What is cyberbullying?",
+      "q": "What happens when you breathe near the DHT11 sensor?",
       "options": [
-        "Helping others online",
-        "Bullying someone using digital devices",
-        "Creating passwords",
-        "Watching videos"
-      ],
-      "answer": 1,
-      "explanation": "Cyberbullying means hurting or harassing others online."
-    },
-    {
-      "q": "Why should you avoid clicking unknown links?",
-      "options": [
-        "They may contain viruses or scams",
-        "They make the internet slow",
-        "They change screen color",
-        "They delete games"
+        "Humidity value increases",
+        "Arduino turns off",
+        "Temperature becomes zero",
+        "The sensor stops working"
       ],
       "answer": 0,
-      "explanation": "Unknown links can lead to unsafe websites or malware."
+      "explanation": "Breathing near the sensor increases moisture in the air, increasing humidity readings."
     },
     {
-      "q": "What is a digital footprint?",
+      "q": "Which monitor shows sensor readings in Arduino IDE?",
       "options": [
-        "Your shoe size",
-        "Information you leave online",
-        "A computer virus",
-        "A gaming account"
-      ],
-      "answer": 1,
-      "explanation": "Everything you post online becomes part of your digital footprint."
-    },
-    {
-      "q": "Who should you tell if something online makes you uncomfortable?",
-      "options": [
-        "Nobody",
-        "Online strangers",
-        "A trusted adult or teacher",
-        "Random websites"
+        "LCD Monitor",
+        "Device Manager",
+        "Serial Monitor",
+        "Task Manager"
       ],
       "answer": 2,
-      "explanation": "Always tell a trusted adult if you face problems online."
+      "explanation": "Serial Monitor displays live sensor data from Arduino."
     },
     {
-      "q": "Which is safe to share online?",
+      "q": "What type of device is DHT11?",
       "options": [
-        "Password",
-        "Home address",
-        "Favorite hobby",
-        "Bank details"
-      ],
-      "answer": 2,
-      "explanation": "Personal and financial information should never be shared online."
-    },
-    {
-      "q": "What does antivirus software do?",
-      "options": [
-        "Makes games faster",
-        "Protects devices from harmful software",
-        "Deletes homework",
-        "Changes passwords"
+        "Actuator",
+        "Sensor",
+        "Motor",
+        "Battery"
       ],
       "answer": 1,
-      "explanation": "Antivirus software helps detect and remove harmful programs."
+      "explanation": "DHT11 is a sensor because it collects environmental data."
     },
     {
-      "q": "What should you do after using a public computer?",
+      "q": "Where can DHT classroom stations be useful?",
       "options": [
-        "Leave accounts open",
-        "Log out from your accounts",
-        "Share passwords",
-        "Turn off internet forever"
+        "Smart classrooms",
+        "Weather stations",
+        "Greenhouses",
+        "All of the above"
       ],
-      "answer": 1,
-      "explanation": "Always log out from accounts on shared or public computers."
-    },
-    {
-      "q": "Which website is safer?",
-      "options": [
-        "http://randomsite.com",
-        "https://schoolwebsite.com",
-        "fake-login-page.net",
-        "unknown-freegift.com"
-      ],
-      "answer": 1,
-      "explanation": "HTTPS websites are generally safer and encrypted."
-    },
-    {
-      "q": "Why is safe web browsing important?",
-      "options": [
-        "To protect personal information and devices",
-        "To slow down the internet",
-        "To stop learning",
-        "To avoid homework"
-      ],
-      "answer": 0,
-      "explanation": "Safe browsing protects users from scams, viruses, and online dangers."
+      "answer": 3,
+      "explanation": "DHT monitoring systems are useful in classrooms, weather stations and greenhouses."
     }
   ]
 }

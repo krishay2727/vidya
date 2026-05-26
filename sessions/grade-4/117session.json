@@ -1,0 +1,317 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put image editing activity photos here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Working with Images",
+    "subtitle": "edit, create, and explore!",
+    "date": "Session 02",
+    "duration": "1 Hours",
+    "phase": "Foundation",
+    "color": "#FF9800",
+    "icon": "🖼️",
+    "tags": [
+        "Images",
+        "Editing",
+        "Creativity",
+        "Digital Skills"
+    ],
+    "overview": "This session introduces students to digital images, image editing tools, and creative design concepts. Students will learn how to crop, resize, draw, add text, and apply effects to images using beginner-friendly software tools.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add classroom photos, image editing practice screenshots, student creativity work, and digital art examples.",
+        "gallery": [
+            {
+                "file": "data/image-editing.jpg",
+                "_placeholder": "ADD: Screenshot of image editing software",
+                "caption": "Students learning basic image editing tools",
+                "category": "Concept"
+            },
+            {
+                "file": "data/crop-tool.png",
+                "_placeholder": "ADD: Screenshot showing crop tool",
+                "caption": "Crop Tool — remove unwanted parts from an image",
+                "category": "Tools"
+            },
+            {
+                "file": "data/resize-image.jpg",
+                "_placeholder": "ADD: Screenshot showing image resize",
+                "caption": "Resize Tool — changing image size",
+                "category": "Tools"
+            },
+            {
+                "file": "data/text-tool.png",
+                "_placeholder": "ADD: Screenshot of adding text on image",
+                "caption": "Text Tool — write captions and titles",
+                "category": "Tools"
+            },
+            {
+                "file": "data/paint-brush.jpg",
+                "_placeholder": "ADD: Screenshot of drawing using brush tool",
+                "caption": "Brush Tool — digital drawing and painting",
+                "category": "Tools"
+            },
+            {
+                "file": "data/filter-effects.jpg",
+                "_placeholder": "ADD: Screenshot of image filters/effects",
+                "caption": "Filters and Effects make images creative",
+                "category": "Creativity"
+            },
+            {
+                "file": "data/student-project.jpg",
+                "_placeholder": "ADD: Photo of students creating posters",
+                "caption": "Students designing creative posters",
+                "category": "Lab"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is a Digital Image?",
+        "Pixels — Tiny dots that make a picture",
+        "Crop Tool — Cut unwanted parts",
+        "Resize Tool — Make image bigger or smaller",
+        "Rotate Tool — Turn image left or right",
+        "Brush Tool — Draw digitally",
+        "Text Tool — Add words and captions",
+        "Filters and Effects — Improve image appearance",
+        "Save vs Save As — Understanding file formats",
+        "Creativity using image editing software"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "Introduction to Digital Images",
+            "videoId": "g1Y6X0M3KRE",
+            "_note": "Replace with actual educational YouTube video ID",
+            "desc": "Learn what digital images are and how computers display pictures."
+        },
+        {
+            "title": "Basic Image Editing for Beginners",
+            "videoId": "M0mx8S05v60",
+            "_note": "Replace with actual educational YouTube video ID",
+            "desc": "Simple introduction to crop, resize, rotate, and draw tools."
+        },
+        {
+            "title": "How Pixels Work",
+            "videoId": "15aqFQQVBWU",
+            "desc": "Understanding pixels and digital image quality."
+        },
+        {
+            "title": "Create Posters Using Images",
+            "videoId": "4cM0B8jF0dA",
+            "desc": "Creative activity using text, shapes, and images."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Canva for Education",
+            "url": "https://www.canva.com/education/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Pixlr Online Image Editor",
+            "url": "https://pixlr.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Photopea Free Editor",
+            "url": "https://www.photopea.com",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Create a Creative Poster Using Images",
+        "parts": [
+            "Computer/Laptop",
+            "Image editing software",
+            "Sample pictures",
+            "Internet connection (optional)"
+        ],
+        "steps": [
+            "Open the image editing software",
+            "Insert a picture into the workspace",
+            "Crop unwanted parts from the image",
+            "Resize the image properly",
+            "Add text with a title and caption",
+            "Apply color effects or filters",
+            "Save the final poster as JPG or PNG",
+            "Present the poster to the class"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is a digital image made of?",
+            "options": [
+                "Wires",
+                "Pixels",
+                "Buttons",
+                "Circuits"
+            ],
+            "answer": 1,
+            "explanation": "Digital images are made of tiny dots called pixels."
+        },
+        {
+            "q": "Which tool is used to remove unwanted parts of an image?",
+            "options": [
+                "Brush Tool",
+                "Crop Tool",
+                "Text Tool",
+                "Rotate Tool"
+            ],
+            "answer": 1,
+            "explanation": "Crop Tool helps remove unwanted areas from an image."
+        },
+        {
+            "q": "What does the Resize Tool do?",
+            "options": [
+                "Adds color",
+                "Changes image size",
+                "Deletes image",
+                "Adds sound"
+            ],
+            "answer": 1,
+            "explanation": "Resize Tool makes an image bigger or smaller."
+        },
+        {
+            "q": "Which tool is used to add words to an image?",
+            "options": [
+                "Text Tool",
+                "Brush Tool",
+                "Crop Tool",
+                "Zoom Tool"
+            ],
+            "answer": 0,
+            "explanation": "Text Tool is used to add titles and captions."
+        },
+        {
+            "q": "What does the Rotate Tool do?",
+            "options": [
+                "Turns the image",
+                "Deletes the image",
+                "Changes color",
+                "Zooms image"
+            ],
+            "answer": 0,
+            "explanation": "Rotate Tool turns the image left, right, or upside down."
+        },
+        {
+            "q": "Which tool is best for digital drawing?",
+            "options": [
+                "Brush Tool",
+                "Crop Tool",
+                "Resize Tool",
+                "Save Tool"
+            ],
+            "answer": 0,
+            "explanation": "Brush Tool allows freehand drawing and painting."
+        },
+        {
+            "q": "Why are filters used in image editing?",
+            "options": [
+                "To improve image appearance",
+                "To delete images",
+                "To close software",
+                "To connect internet"
+            ],
+            "answer": 0,
+            "explanation": "Filters make images look creative and attractive."
+        },
+        {
+            "q": "Which file format is commonly used for images?",
+            "options": [
+                "MP3",
+                "JPG",
+                "PDF",
+                "TXT"
+            ],
+            "answer": 1,
+            "explanation": "JPG is one of the most common image file formats."
+        },
+        {
+            "q": "What happens when image size becomes too large?",
+            "options": [
+                "It loads slower",
+                "It becomes invisible",
+                "It changes to video",
+                "It deletes automatically"
+            ],
+            "answer": 0,
+            "explanation": "Large images take more storage and load slowly."
+        },
+        {
+            "q": "What is the purpose of Save As?",
+            "options": [
+                "Delete the image",
+                "Save with a new name or format",
+                "Print the image",
+                "Rotate the image"
+            ],
+            "answer": 1,
+            "explanation": "Save As creates a new copy with a different name or format."
+        },
+        {
+            "q": "Which software can be used for online image editing?",
+            "options": [
+                "Pixlr",
+                "Calculator",
+                "Notepad",
+                "Chrome only"
+            ],
+            "answer": 0,
+            "explanation": "Pixlr is a popular online image editing tool."
+        },
+        {
+            "q": "Pixels together form a:",
+            "options": [
+                "Sound file",
+                "Video game",
+                "Digital image",
+                "Keyboard"
+            ],
+            "answer": 2,
+            "explanation": "Thousands of pixels combine to create a digital image."
+        },
+        {
+            "q": "What should students do after completing image editing?",
+            "options": [
+                "Delete the image",
+                "Save the project",
+                "Turn off computer immediately",
+                "Disconnect keyboard"
+            ],
+            "answer": 1,
+            "explanation": "Always save your creative work properly."
+        },
+        {
+            "q": "What is creativity in image editing?",
+            "options": [
+                "Using imagination to design images",
+                "Only typing text",
+                "Deleting pictures",
+                "Closing software"
+            ],
+            "answer": 0,
+            "explanation": "Creativity means making unique and attractive designs using imagination."
+        },
+        {
+            "q": "Which activity helps students learn image editing better?",
+            "options": [
+                "Watching only",
+                "Hands-on practice",
+                "Sleeping",
+                "Memorizing keyboard"
+            ],
+            "answer": 1,
+            "explanation": "Hands-on practice improves digital creativity and editing skills."
+        }
+    ]
+}

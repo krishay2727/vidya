@@ -1,0 +1,253 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put parking sensor project photos here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Parking Sensor System",
+    "subtitle": "smart parking alert project!",
+    "date": "Session 02",
+    "duration": "2 Hours",
+    "phase": "Intermediate",
+    "color": "#FF6B35",
+    "icon": "🚗",
+    "tags": [
+        "Arduino",
+        "Sensors",
+        "Automation",
+        "IoT"
+    ],
+    "overview": "In this session, students will learn how a parking sensor system works using Arduino UNO and an ultrasonic sensor. The system detects nearby obstacles and alerts the user using a buzzer and LEDs.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add actual parking sensor project photos, ultrasonic sensor setup, Arduino wiring, and student activity photos.",
+        "gallery": [
+            {
+                "file": "data/ultrasonic-sensor.jpg",
+                "_placeholder": "ADD: Photo of HC-SR04 ultrasonic sensor",
+                "caption": "HC-SR04 Ultrasonic Sensor used for distance measurement",
+                "category": "Components"
+            },
+            {
+                "file": "data/arduino-uno.jpg",
+                "_placeholder": "ADD: Photo of Arduino UNO board",
+                "caption": "Arduino UNO — the smart brain of the parking sensor system",
+                "category": "Components"
+            },
+            {
+                "file": "data/buzzer.jpg",
+                "_placeholder": "ADD: Photo of active buzzer component",
+                "caption": "Buzzer gives sound alerts when obstacle comes near",
+                "category": "Components"
+            },
+            {
+                "file": "data/parking-led.jpg",
+                "_placeholder": "ADD: Photo of LED indicators",
+                "caption": "LED indicators show safe and danger zones",
+                "category": "Components"
+            },
+            {
+                "file": "data/breadboard.jpg",
+                "_placeholder": "ADD: Photo of complete breadboard setup",
+                "caption": "Students building the parking sensor circuit",
+                "category": "Lab"
+            },
+            {
+                "file": "data/parking-project.jpg",
+                "_placeholder": "ADD: Photo of final parking sensor project",
+                "caption": "Complete Smart Parking Sensor System",
+                "category": "Project"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is a Parking Sensor?",
+        "How Ultrasonic Sensors Measure Distance",
+        "Arduino UNO as Smart Controller",
+        "Using Buzzer for Warning Alerts",
+        "LED Indicators for Safe and Danger Zones",
+        "Distance Detection using Echo and Trigger Pins",
+        "Automation in Smart Vehicles",
+        "Real-world Applications of Parking Sensors"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "Arduino Parking Sensor Project",
+            "videoId": "KxW596vM8pY",
+            "_note": "Replace videoId with actual YouTube video ID if needed",
+            "desc": "Learn how to build a smart parking sensor using Arduino and ultrasonic sensor."
+        },
+        {
+            "title": "How Ultrasonic Sensors Work",
+            "videoId": "ZejQOX69K5M",
+            "desc": "Simple explanation of ultrasonic distance measurement."
+        },
+        {
+            "title": "Arduino Beginner Tutorial",
+            "videoId": "nL34zDTPkcs",
+            "desc": "Introduction to Arduino UNO for beginners."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Wokwi Arduino Simulator",
+            "url": "https://wokwi.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Arduino Official Website",
+            "url": "https://www.arduino.cc",
+            "icon": "🔗"
+        },
+        {
+            "title": "HC-SR04 Sensor Guide",
+            "url": "https://randomnerdtutorials.com/complete-guide-for-ultrasonic-sensor-hc-sr04/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Build a Smart Parking Sensor System",
+        "parts": [
+            "Arduino UNO",
+            "HC-SR04 Ultrasonic Sensor",
+            "Breadboard",
+            "Buzzer",
+            "Red LED",
+            "Green LED",
+            "220Ω Resistors",
+            "Jumper wires",
+            "USB Cable"
+        ],
+        "steps": [
+            "Connect the ultrasonic sensor to Arduino",
+            "Connect Trigger pin to Arduino digital pin",
+            "Connect Echo pin to Arduino digital pin",
+            "Connect LEDs with resistors",
+            "Connect buzzer to output pin",
+            "Upload Arduino code",
+            "Move an object near the sensor",
+            "Observe buzzer sound and LED changes based on distance"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "Which sensor is commonly used in a parking sensor project?",
+            "options": [
+                "Temperature Sensor",
+                "Ultrasonic Sensor",
+                "Smoke Sensor",
+                "Touch Sensor"
+            ],
+            "answer": 1,
+            "explanation": "The HC-SR04 ultrasonic sensor is used to measure distance in parking systems."
+        },
+        {
+            "q": "What does the ultrasonic sensor measure?",
+            "options": [
+                "Temperature",
+                "Light",
+                "Distance",
+                "Pressure"
+            ],
+            "answer": 2,
+            "explanation": "Ultrasonic sensors measure the distance between the sensor and an object."
+        },
+        {
+            "q": "What happens when a car gets too close to an obstacle?",
+            "options": [
+                "LED turns OFF",
+                "Buzzer gives warning sound",
+                "Sensor stops working",
+                "Arduino shuts down"
+            ],
+            "answer": 1,
+            "explanation": "The buzzer alerts the driver when the vehicle comes too close to an object."
+        },
+        {
+            "q": "What is the role of Arduino UNO in this project?",
+            "options": [
+                "Stores water",
+                "Acts as a battery",
+                "Controls the sensor and outputs",
+                "Produces sound"
+            ],
+            "answer": 2,
+            "explanation": "Arduino UNO acts as the smart brain of the parking sensor system."
+        },
+        {
+            "q": "Which pin sends ultrasonic waves in HC-SR04?",
+            "options": [
+                "Echo Pin",
+                "VCC Pin",
+                "Trigger Pin",
+                "GND Pin"
+            ],
+            "answer": 2,
+            "explanation": "The Trigger pin sends ultrasonic signals from the sensor."
+        },
+        {
+            "q": "Which component produces sound alerts?",
+            "options": [
+                "LED",
+                "Motor",
+                "Buzzer",
+                "Switch"
+            ],
+            "answer": 2,
+            "explanation": "The buzzer creates warning sounds during obstacle detection."
+        },
+        {
+            "q": "Why are LEDs used in parking sensor systems?",
+            "options": [
+                "For decoration only",
+                "To show warning indications",
+                "To charge the battery",
+                "To store current"
+            ],
+            "answer": 1,
+            "explanation": "LEDs visually indicate safe or danger distance levels."
+        },
+        {
+            "q": "What type of waves are used in ultrasonic sensors?",
+            "options": [
+                "Light Waves",
+                "Radio Waves",
+                "Sound Waves",
+                "Water Waves"
+            ],
+            "answer": 2,
+            "explanation": "Ultrasonic sensors use high-frequency sound waves."
+        },
+        {
+            "q": "Which component is used for temporary circuit building?",
+            "options": [
+                "Battery",
+                "Breadboard",
+                "Fan",
+                "Relay"
+            ],
+            "answer": 1,
+            "explanation": "Breadboards are used to make temporary circuits without soldering."
+        },
+        {
+            "q": "Where are parking sensor systems commonly used?",
+            "options": [
+                "Cars",
+                "Television",
+                "Refrigerator",
+                "Calculator"
+            ],
+            "answer": 0,
+            "explanation": "Parking sensors are mainly used in cars to help drivers park safely."
+        }
+    ]
+}

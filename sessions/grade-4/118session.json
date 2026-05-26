@@ -1,0 +1,342 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "Sorting & Filtering",
+    "subtitle": "organize, search, analyze!",
+    "date": "Session 02",
+    "duration": "1 Hours",
+    "phase": "Digital Skills",
+    "color": "#FF9800",
+    "icon": "📊",
+    "tags": [
+        "Sorting",
+        "Filtering",
+        "Excel",
+        "Spreadsheet",
+        "Data Analysis"
+    ],
+    "overview": "This session introduces students to Sorting and Filtering in spreadsheets. Students will learn how to organize data in ascending and descending order, apply filters, and quickly find useful information from tables using Microsoft Excel or Google Sheets.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add classroom photos, spreadsheet screenshots, sorting activities, and student practice images.",
+        "gallery": [
+            {
+                "file": "data/excel-sheet.jpg",
+                "_placeholder": "ADD: Screenshot of spreadsheet table",
+                "caption": "Students learning spreadsheet tables",
+                "category": "Concept"
+            },
+            {
+                "file": "data/sorting-data.jpg",
+                "_placeholder": "ADD: Screenshot of sorting names A-Z",
+                "caption": "Sorting names in alphabetical order",
+                "category": "Sorting"
+            },
+            {
+                "file": "data/filter-option.jpg",
+                "_placeholder": "ADD: Screenshot of filter dropdown menu",
+                "caption": "Using filter to find selected data",
+                "category": "Filtering"
+            },
+            {
+                "file": "data/student-practice.jpg",
+                "_placeholder": "ADD: Students practicing on computer",
+                "caption": "Students practicing sorting and filtering",
+                "category": "Lab"
+            },
+            {
+                "file": "data/marks-table.jpg",
+                "_placeholder": "ADD: Marksheet sorting activity",
+                "caption": "Sorting student marks from highest to lowest",
+                "category": "Activity"
+            },
+            {
+                "file": "data/filter-color.jpg",
+                "_placeholder": "ADD: Filter by color example",
+                "caption": "Filtering data based on categories",
+                "category": "Filtering"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is a Spreadsheet?",
+        "Sorting Data — A to Z and Z to A",
+        "Sorting Numbers — Smallest to Largest",
+        "Filtering Data — Show only selected information",
+        "Using Filter Dropdown Menu",
+        "Finding Top Scores using Sorting",
+        "Filtering Students by Grade or Section",
+        "Difference between Sorting and Filtering"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "Sorting and Filtering in Excel for Beginners",
+            "videoId": "E3m6M6iK4vY",
+            "_note": "Replace with actual YouTube video ID if needed",
+            "desc": "A beginner-friendly explanation of sorting and filtering in spreadsheets."
+        },
+        {
+            "title": "Excel Sort Feature Explained",
+            "videoId": "3JdYkN6H6VQ",
+            "desc": "Learn how to sort names, numbers, and marks easily."
+        },
+        {
+            "title": "Filter Data in Excel",
+            "videoId": "6a7E9W91s0M",
+            "desc": "Understand how filtering helps find specific information quickly."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Microsoft Excel Official Website",
+            "url": "https://www.microsoft.com/en-in/microsoft-365/excel",
+            "icon": "🔗"
+        },
+        {
+            "title": "Google Sheets",
+            "url": "https://www.google.com/sheets/about/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Spreadsheet Practice Activities",
+            "url": "https://edu.gcfglobal.org/en/excel/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Student Marks Sorting & Filtering Activity",
+        "parts": [
+            "Computer or Laptop",
+            "Microsoft Excel or Google Sheets",
+            "Student Marks Table",
+            "Keyboard and Mouse"
+        ],
+        "steps": [
+            "Open the spreadsheet containing student marks",
+            "Select the complete table",
+            "Click on Sort A-Z to arrange names alphabetically",
+            "Sort marks from Highest to Lowest",
+            "Apply Filter from the toolbar",
+            "Filter only students who scored above 80",
+            "Challenge: Find only Grade A students using filter"
+        ]
+    },
+    "exampleTable": {
+        "title": "Student Marks Example",
+        "columns": [
+            "Name",
+            "Class",
+            "Marks",
+            "Grade"
+        ],
+        "rows": [
+            [
+                "Aarav",
+                "6A",
+                92,
+                "A"
+            ],
+            [
+                "Riya",
+                "6A",
+                75,
+                "B"
+            ],
+            [
+                "Kabir",
+                "6B",
+                88,
+                "A"
+            ],
+            [
+                "Anaya",
+                "6B",
+                64,
+                "C"
+            ],
+            [
+                "Vivaan",
+                "6A",
+                95,
+                "A"
+            ]
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is the purpose of Sorting in a spreadsheet?",
+            "options": [
+                "To delete data",
+                "To arrange data in order",
+                "To change colors",
+                "To print the sheet"
+            ],
+            "answer": 1,
+            "explanation": "Sorting arranges data in a proper order like A-Z or smallest to largest."
+        },
+        {
+            "q": "Which option arranges names alphabetically?",
+            "options": [
+                "Filter",
+                "Delete",
+                "Sort A-Z",
+                "Zoom"
+            ],
+            "answer": 2,
+            "explanation": "Sort A-Z arranges text alphabetically from A to Z."
+        },
+        {
+            "q": "What does Filtering do?",
+            "options": [
+                "Deletes rows",
+                "Shows only selected data",
+                "Changes font size",
+                "Adds new sheets"
+            ],
+            "answer": 1,
+            "explanation": "Filtering displays only the data matching selected conditions."
+        },
+        {
+            "q": "Which sorting option arranges numbers from highest to lowest?",
+            "options": [
+                "Ascending",
+                "Descending",
+                "Filter",
+                "Zoom"
+            ],
+            "answer": 1,
+            "explanation": "Descending order arranges numbers from largest to smallest."
+        },
+        {
+            "q": "Where can you find the Filter option in Excel?",
+            "options": [
+                "Insert tab",
+                "Home tab only",
+                "Data tab",
+                "View tab"
+            ],
+            "answer": 2,
+            "explanation": "The Filter tool is available in the Data tab."
+        },
+        {
+            "q": "If you want to see only students from Class 6A, what should you use?",
+            "options": [
+                "Sorting",
+                "Filtering",
+                "Delete",
+                "Merge"
+            ],
+            "answer": 1,
+            "explanation": "Filtering helps display only selected category data like Class 6A."
+        },
+        {
+            "q": "Sorting marks from smallest to largest is called:",
+            "options": [
+                "Ascending order",
+                "Descending order",
+                "Filtering",
+                "Formatting"
+            ],
+            "answer": 0,
+            "explanation": "Ascending order arranges values from small to large."
+        },
+        {
+            "q": "Which tool helps quickly find students scoring above 90?",
+            "options": [
+                "Paint",
+                "Filter",
+                "Calculator",
+                "Shapes"
+            ],
+            "answer": 1,
+            "explanation": "Filtering allows users to display only scores above a selected value."
+        },
+        {
+            "q": "What symbol usually appears when Filter is applied?",
+            "options": [
+                "Star",
+                "Arrow dropdown",
+                "Circle",
+                "Triangle"
+            ],
+            "answer": 1,
+            "explanation": "A dropdown arrow appears in column headings after applying Filter."
+        },
+        {
+            "q": "Which software can be used for Sorting and Filtering?",
+            "options": [
+                "Paint",
+                "PowerPoint",
+                "Excel or Google Sheets",
+                "Notepad"
+            ],
+            "answer": 2,
+            "explanation": "Excel and Google Sheets are spreadsheet software used for sorting and filtering."
+        },
+        {
+            "q": "Filtering removes data permanently.",
+            "options": [
+                "True",
+                "False"
+            ],
+            "answer": 1,
+            "explanation": "Filtering only hides unwanted data temporarily; it does not delete it."
+        },
+        {
+            "q": "Which option is useful for arranging roll numbers?",
+            "options": [
+                "Sorting",
+                "Drawing",
+                "Painting",
+                "Animation"
+            ],
+            "answer": 0,
+            "explanation": "Sorting helps arrange roll numbers in proper order."
+        },
+        {
+            "q": "Which feature helps organize messy data quickly?",
+            "options": [
+                "Sorting",
+                "Typing",
+                "Printing",
+                "Scanning"
+            ],
+            "answer": 0,
+            "explanation": "Sorting organizes data neatly and systematically."
+        },
+        {
+            "q": "What happens when multiple filters are applied?",
+            "options": [
+                "All data is deleted",
+                "Only matching data is displayed",
+                "The computer shuts down",
+                "The sheet becomes blank"
+            ],
+            "answer": 1,
+            "explanation": "Multiple filters display only rows matching all selected conditions."
+        },
+        {
+            "q": "Why is Sorting & Filtering important?",
+            "options": [
+                "For gaming",
+                "To organize and analyze data easily",
+                "To draw pictures",
+                "To increase internet speed"
+            ],
+            "answer": 1,
+            "explanation": "Sorting and Filtering help users quickly organize and analyze information."
+        }
+    ]
+}

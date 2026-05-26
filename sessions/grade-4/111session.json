@@ -1,0 +1,270 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-2/",
+        "slides_folder": "sessions/session-2/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-2/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-2",
+    "number": 2,
+    "title": "IR Motion Alarm System",
+    "subtitle": "detect motion, trigger alarm!",
+    "date": "Session 02",
+    "duration": "1.5 Hours",
+    "phase": "Electronics & Sensors",
+    "color": "#FF5733",
+    "icon": "🚨",
+    "tags": [
+        "Arduino",
+        "IR Sensor",
+        "Electronics",
+        "Security",
+        "STEM"
+    ],
+    "overview": "In this session, students learn how an IR motion sensor detects nearby objects and triggers a buzzer alarm using Arduino UNO. Students understand sensors, automation, and basic security systems through hands-on activities.",
+    "grades": [
+        4
+    ],
+    "slides": {
+        "pdf": "sessions/session-2/slides.pdf"
+    },
+    "images": {
+        "_note": "Add real classroom photos, Arduino setup photos, IR sensor demos, buzzer activity, and student experiments.",
+        "gallery": [
+            {
+                "file": "data/ir-sensor.jpg",
+                "_placeholder": "ADD: Photo of IR sensor module",
+                "caption": "IR Sensor — detects nearby objects using infrared light",
+                "category": "Components"
+            },
+            {
+                "file": "data/buzzer.jpg",
+                "_placeholder": "ADD: Photo of active buzzer",
+                "caption": "Buzzer — produces alarm sound",
+                "category": "Components"
+            },
+            {
+                "file": "data/arduino-uno.jpg",
+                "_placeholder": "ADD: Photo of Arduino UNO board",
+                "caption": "Arduino UNO — the smart brain controlling the alarm",
+                "category": "Components"
+            },
+            {
+                "file": "data/jumper-wires.jpg",
+                "_placeholder": "ADD: Photo of jumper wire connections",
+                "caption": "Jumper wires connecting all components together",
+                "category": "Components"
+            },
+            {
+                "file": "data/breadboard.jpg",
+                "_placeholder": "ADD: Students assembling the circuit",
+                "caption": "Students building the IR motion alarm circuit",
+                "category": "Lab"
+            },
+            {
+                "file": "data/alarm-project.jpg",
+                "_placeholder": "ADD: Completed project photo",
+                "caption": "IR Motion Alarm project working successfully",
+                "category": "Project"
+            }
+        ]
+    },
+    "keyTopics": [
+        "What is an IR Sensor?",
+        "Infrared light and object detection",
+        "How motion alarms work",
+        "Arduino UNO programming basics",
+        "Buzzer alarm system",
+        "Input and Output devices",
+        "Digital signal from sensor",
+        "Real-life applications of motion sensors"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "IR Sensor Working Explained",
+            "videoId": "1W7qJ9b1S8E",
+            "_note": "Replace with actual YouTube video ID if needed",
+            "desc": "Simple explanation of how IR sensors detect objects."
+        },
+        {
+            "title": "Arduino IR Sensor Alarm Project",
+            "videoId": "0zH6b8b7Q5M",
+            "_note": "Replace with actual YouTube video ID if needed",
+            "desc": "Learn to build a motion alarm using Arduino and IR sensor."
+        },
+        {
+            "title": "How Buzzers Work",
+            "videoId": "Y4w9dF7pK3Y",
+            "desc": "Understanding active and passive buzzers."
+        },
+        {
+            "title": "Arduino for Beginners",
+            "videoId": "fJWR7dBuc18",
+            "desc": "Introduction to Arduino UNO and coding basics."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Arduino Official Website",
+            "url": "https://www.arduino.cc/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Wokwi Arduino Simulator",
+            "url": "https://wokwi.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Tinkercad Circuits",
+            "url": "https://www.tinkercad.com/circuits",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Build an IR Motion Alarm System",
+        "parts": [
+            "Arduino UNO",
+            "IR Sensor Module",
+            "Active Buzzer",
+            "Breadboard",
+            "Jumper Wires",
+            "USB Cable"
+        ],
+        "steps": [
+            "Place the IR sensor on the breadboard",
+            "Connect VCC to Arduino 5V",
+            "Connect GND to Arduino GND",
+            "Connect OUT pin of IR sensor to digital pin 2",
+            "Connect buzzer positive pin to digital pin 8",
+            "Connect buzzer negative pin to GND",
+            "Upload Arduino code",
+            "Move hand in front of sensor",
+            "Buzzer alarm activates when motion is detected!"
+        ]
+    },
+    "exampleCode": {
+        "language": "Arduino C++",
+        "code": "#define IR_SENSOR 2\n#define BUZZER 8\n\nvoid setup() {\n  pinMode(IR_SENSOR, INPUT);\n  pinMode(BUZZER, OUTPUT);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int motion = digitalRead(IR_SENSOR);\n\n  if (motion == LOW) {\n    digitalWrite(BUZZER, HIGH);\n    Serial.println(\"Motion Detected!\");\n  }\n  else {\n    digitalWrite(BUZZER, LOW);\n    Serial.println(\"No Motion\");\n  }\n\n  delay(100);\n}"
+    },
+    "realLifeApplications": [
+        "Home security alarm systems",
+        "Automatic doors in malls",
+        "Smart parking systems",
+        "Object detection robots",
+        "Automatic lights",
+        "Intruder detection systems"
+    ],
+    "quiz": [
+        {
+            "q": "What does IR stand for?",
+            "options": [
+                "Internal Resistance",
+                "Infrared",
+                "Input Relay",
+                "Integrated Response"
+            ],
+            "answer": 1,
+            "explanation": "IR stands for Infrared — a type of invisible light used in sensors."
+        },
+        {
+            "q": "What is the main function of an IR sensor?",
+            "options": [
+                "To produce sound",
+                "To store electricity",
+                "To detect nearby objects",
+                "To rotate motors"
+            ],
+            "answer": 2,
+            "explanation": "IR sensors detect objects by sending and receiving infrared light."
+        },
+        {
+            "q": "Which component produces the alarm sound?",
+            "options": [
+                "LED",
+                "Motor",
+                "Buzzer",
+                "Resistor"
+            ],
+            "answer": 2,
+            "explanation": "The buzzer creates sound when motion is detected."
+        },
+        {
+            "q": "Which board is used as the brain of the project?",
+            "options": [
+                "Battery",
+                "Arduino UNO",
+                "Breadboard",
+                "Switch"
+            ],
+            "answer": 1,
+            "explanation": "Arduino UNO controls the entire motion alarm system."
+        },
+        {
+            "q": "What happens when motion is detected?",
+            "options": [
+                "LED turns off",
+                "Buzzer alarm turns ON",
+                "Battery disconnects",
+                "Motor stops"
+            ],
+            "answer": 1,
+            "explanation": "The buzzer activates to alert users when motion is detected."
+        },
+        {
+            "q": "Which pin of the IR sensor sends signal to Arduino?",
+            "options": [
+                "VCC",
+                "GND",
+                "OUT",
+                "5V"
+            ],
+            "answer": 2,
+            "explanation": "The OUT pin sends detection signals to Arduino."
+        },
+        {
+            "q": "What type of signal does the IR sensor give?",
+            "options": [
+                "Water signal",
+                "Digital signal",
+                "Voice signal",
+                "Heat signal"
+            ],
+            "answer": 1,
+            "explanation": "The IR sensor provides digital HIGH/LOW signals."
+        },
+        {
+            "q": "Which component helps connect parts without soldering?",
+            "options": [
+                "Breadboard",
+                "Battery",
+                "Motor",
+                "Fan"
+            ],
+            "answer": 0,
+            "explanation": "Breadboards allow easy circuit building and testing."
+        },
+        {
+            "q": "What is the use of jumper wires?",
+            "options": [
+                "To store power",
+                "To connect components",
+                "To make sound",
+                "To detect light"
+            ],
+            "answer": 1,
+            "explanation": "Jumper wires connect electronic components together."
+        },
+        {
+            "q": "Where are IR motion alarms commonly used?",
+            "options": [
+                "Security systems",
+                "Water bottles",
+                "School bags",
+                "Pencils"
+            ],
+            "answer": 0,
+            "explanation": "IR motion alarms are widely used in security and automation systems."
+        }
+    ]
+}
