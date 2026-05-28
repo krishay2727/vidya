@@ -24,8 +24,6 @@
   ],
   "overview": "In this session, students discover how Python libraries supercharge their programs — from math to graphics to data. They also learn the art of debugging: reading error messages, understanding common error types, and fixing bugs step by step. No more fear of the red text!",
   "grades": [
-    6,
-    7,
     8
   ],
   "slides": {

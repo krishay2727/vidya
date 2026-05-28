@@ -1,0 +1,150 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-file-compression/",
+    "slides_folder": "sessions/session-file-compression/slides/",
+    "images_folder": "sessions/session-file-compression/images/",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "file-compression",
+  "number": 6,
+  "title": "File Compression Concept",
+  "subtitle": "Understand why zipping files helps, demo with simple tool",
+  "date": "Session 06",
+  "duration": "1 Hours",
+  "phase": "Foundation",
+  "color": "#A020F0",
+  "icon": "🗜️",
+  "tags": [
+    "Technology",
+    "Digital Literacy",
+    "Computer Science"
+  ],
+  "overview": "In this interactive digital literacy session, students dive into how data is organized and packed efficiently. They explore the core principles of file compression, understand the difference between original data and zipped data, and use a simple software tool to compress files to save disk storage and speed up transmission.",
+  "grades": [
+    5,
+    6,
+    7
+  ],
+  "slides": {
+    "pdf": "sessions/session-file-compression/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — component photos, activity shots, student experiments, whiteboard diagrams.",
+    "gallery": [
+      {
+        "file": "data/compression-analogy.jpg",
+        "_placeholder": "ADD: Diagram or photo showing clothes spread out vs tightly packed into a travel suitcase",
+        "caption": "Suitcase Analogy: Squeezing data tightly together to take up less physical space!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/zipping-process.gif",
+        "_placeholder": "ADD: Screenshot/GIF animation of right-clicking a folder and selecting 'Compress to ZIP file'",
+        "caption": "The Magic Trick: Converting scattered folders into a single packed archive file",
+        "category": "Lab"
+      },
+      {
+        "file": "data/unzip-extract.jpg",
+        "_placeholder": "ADD: Photo of the user interface window showing the 'Extract All...' action option",
+        "caption": "Unzipping: Restoring data back to its original size with zero loss of quality",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "What is File Compression? — The digital process of shrinking file sizes by removing redundant patterns without losing the core information",
+    "Why Zip Files? — To reduce storage usage on hard drives and group multiple files together into a single item that transmits quickly over the internet",
+    "Suitcase Analogy — Packing files is like neatly folding scattered garments into a compact suitcase so they take up less visual volume",
+    "Abbreviation Trick — How computers save space by replacing long repeating words with tiny custom code patterns (e.g., 'AAAAAA' becomes '6A')",
+    "Lossless vs. Lossy — Lossless compression keeps data intact perfectly (ZIP, PNG), while Lossy discards unnoticeable data to get tiny footprints (MP3, JPEG)",
+    "Zipping and Unzipping — 'Zipping' encodes and compresses data together; 'Unzipping' extracts and unpacks the contents back into their original scale"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "How File Compression Works Under the Hood",
+      "videoId": "OtDxDvCp74c",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "An engaging, simple explanation of compression algorithms using human sentences and letter puzzles."
+    },
+    {
+      "title": "How to ZIP and UNZIP Files on Windows 11 (Tutorial)",
+      "videoId": "r97Wf8gCgL0",
+      "desc": "A crisp, step-by-step video guide for beginners showing native zip tools in action."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Online Text Compression Algorithm Simulator",
+      "url": "https://www.falstad.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Data Compression Explained Simply",
+      "url": "https://computer.howstuffworks.com/file-compression.htm",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "The Ultimate Digital Packing Challenge",
+    "parts": [
+      "Computer running Windows or macOS",
+      "A test folder packed with high-resolution image files or uncompressed text",
+      "Built-in Archive Tool (Windows Send to ZIP or Mac Archive Utility)"
+    ],
+    "steps": [
+      "Create a folder named 'Heavy_Project' and drop multiple large text or image documents inside it",
+      "Right-click the folder, navigate to 'Properties' or 'Get Info', and write down the exact file size metric",
+      "Right-click the folder, go to 'Compress to ZIP file' (or 'Send to' -> 'Compressed (zipped) folder')",
+      "Observe the newly generated '.zip' archive file that has appeared next to your original folder",
+      "Check the properties of this new ZIP file. Contrast the new size with the original scale you logged!",
+      "Delete one of the original source files, then right-click the ZIP archive and select 'Extract All' to safely restore it!"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What is the primary purpose of compressing files into a ZIP archive?",
+      "options": [
+        "To scan the files for dangerous internet viruses",
+        "To reduce file sizes and pack items together to optimize storage and transfer speeds",
+        "To change the color of folder layout graphics",
+        "To encrypt files so they can never be opened again"
+      ],
+      "answer": 1,
+      "explanation": "Compression shrinks file footprints and packs multiple documents into one container, making it easy to share via email or save disk space."
+    },
+    {
+      "q": "In our travel suitcase analogy, what does 'unzipping' a folder match up with?",
+      "options": [
+        "Buying brand new clothes at a shopping mall",
+        "Unpacking the suitcase at your destination hotel and pulling the clothes back out to wear",
+        "Throwing the suitcase away because it is too heavy",
+        "Locking the suitcase with a digital passcode pad"
+      ],
+      "answer": 1,
+      "explanation": "Unzipping is exactly like opening a packed travel suitcase and taking your folded clothes back out so they look exactly like they did before."
+    },
+    {
+      "q": "which of these is an example of lossless compression?",
+      "options": [
+        "a blurry phone photo (jpeg)",
+        "a song converted to mp3",
+        "a zip archive of documents",
+        "a streaming video file"
+      ],
+      "answer": 2,
+      "explanation": "A ZIP archive preserves all the original data perfectly — no quality is lost, unlike MP3 or JPEG formats which remove data to reduce file size."
+    },
+    {
+      "q": "which situation is a great reason to zip your files before sending them?",
+      "options": [
+        "when the person receiving the files has a very slow internet connection",
+        "when you are sharing one single text document file",
+        "when you want the recipient to see the original folder structure exactly as is",
+        "when the files are already very small in size"
+      ],
+      "answer": 0,
+      "explanation": "Zipping creates smaller files that travel faster over slow internet. It is perfect for sharing large batches of documents with friends or colleagues."
+    }
+  ]
+}

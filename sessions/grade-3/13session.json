@@ -1,0 +1,199 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-browser-navigation/",
+        "slides_folder": "sessions/session-browser-navigation/slides/",
+        "images_folder": "sessions/session-browser-navigation/images/",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "web-browser-navigation",
+    "number": 9,
+    "title": "Web Browser Navigation",
+    "subtitle": "Mastering the UI: URL bar, back/forward buttons, and refresh!",
+    "date": "Session 09",
+    "duration": "1 Hours",
+    "phase": "Foundation",
+    "color": "#4285F4",
+    "icon": "🌐",
+    "tags": [
+        "Technology",
+        "Digital Literacy"
+    ],
+    "overview": "In this interactive digital literacy session, students learn how to command a web browser. By exploring the core control elements—the URL address bar, navigation arrows, and the refresh action—students transform from passive internet viewers into confident digital navigators.",
+    "grades": [
+        5,
+        6,
+        7
+    ],
+    "slides": {
+        "pdf": "sessions/session-browser-navigation/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — component photos, activity shots, student experiments, whiteboard diagrams.",
+        "gallery": [
+            {
+                "file": "data/browser-anatomy.jpg",
+                "_placeholder": "ADD: Diagram labeling the Back, Forward, Refresh, and URL Address Bar in a browser window",
+                "caption": "Anatomy of a Browser: The essential control buttons we use to surf the web",
+                "category": "Concept"
+            },
+            {
+                "file": "data/map-analogy.jpg",
+                "_placeholder": "ADD: Whiteboard illustration comparing a URL to a global positioning system coordinate map",
+                "caption": "The Address Analogy: A URL is a precise, unique map coordinate for a digital house",
+                "category": "Concept"
+            },
+            {
+                "file": "data/student-browsing.jpg",
+                "_placeholder": "ADD: Photo of students practicing entering addresses into the URL bar manually",
+                "caption": "Lab Practice: Students typing custom URLs and managing multiple web paths",
+                "category": "Lab"
+            },
+            {
+                "file": "data/refresh-loading.gif",
+                "_placeholder": "ADD: Screencast/GIF showing a page reload circle spinning upon clicking refresh",
+                "caption": "Reloading: Forcing the browser to fetch a fresh, updated copy of a web page",
+                "category": "Lab"
+            }
+        ]
+    },
+    "keyTopics": [
+        "The Web Browser — The software application (like Chrome, Firefox, or Edge) that acts as a translator, turning raw web code into beautiful images and text",
+        "URL Address Bar — The long box at the top where you type the exact digital home address (Universal Resource Locator) of a website",
+        "Back Button (⬅️) — The time-travel tool that takes you back to the exact webpage you were looking at just before this one",
+        "Forward Button (➡️) — The companion arrow that lets you step forward again along your history path after you have gone back",
+        "Refresh / Reload (🔄) — The button that wipes the current page view and requests a brand new, up-to-the-second copy from the live server",
+        "Browser History — The internal ledger or breadcrumb trail the browser silently saves so it remembers where your navigation arrows should lead"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "What is a Web Browser and How Does it Work?",
+            "videoId": "BrXPcaRlBqo",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "A simple, kid-friendly explanation of what browsers do and how they read pages from the internet."
+        },
+        {
+            "title": "Understanding URLs: What do they mean?",
+            "videoId": "7_V6E_fVwK8",
+            "desc": "Breaking down a web address piece by piece, from HTTP to domains and paths."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Interactive Safe Browsing Sandbox Simulator",
+            "url": "https://www.falstad.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Common Sense Media: Digital Navigation Guide",
+            "url": "https://www.commonsense.org",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "The Digital Breadcrumb Internet Scavenger Hunt",
+        "parts": [
+            "Computer or tablet connected to the internet",
+            "Installed web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, etc.)",
+            "Scavenger Hunt worksheet with destination checkpoints"
+        ],
+        "steps": [
+            "Launch your web browser and click your mouse cursor directly inside the empty URL address bar at the top",
+            "Type 'https://wokwi.com' completely and hit the Enter key to land on your first checkpoint",
+            "Click on any interactive link on that page to move deeper into a sub-page directory layout",
+            "Locate and press the 'Back' arrow button (⬅️). Verify that you have stepped safely back to the main homepage",
+            "Press the 'Forward' arrow button (➡️) and see how the browser instantly restores the deep sub-page from its memory",
+            "Challenge: Change your browser tab window, navigate to a live clock website, and tap 'Refresh' (🔄) to verify that the time updating metrics reload precisely!"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is a URL?",
+            "options": [
+                "A hidden virus program that locks your computer screen",
+                "The unique digital address string used to find a specific website on the internet",
+                "A hardware cord used to plug monitors into the wall",
+                "The speed rating of an internet router"
+            ],
+            "answer": 1,
+            "explanation": "URL stands for Uniform Resource Locator. It is simply the exact text address you type into a browser to visit a webpage, like code.org or wikipedia.org."
+        },
+        {
+            "q": "Where must you type a website's address to navigate to it directly?",
+            "options": [
+                "Inside the operating system file search box",
+                "Inside the browser's URL Address Bar located at the top of the window",
+                "Inside a text document editor page",
+                "On the desktop wallpaper screen background"
+            ],
+            "answer": 1,
+            "explanation": "The long white input field at the very top of your browser is the URL bar. Typing an address here instructs the browser exactly where to travel."
+        },
+        {
+            "q": "If you click a link that takes you to the wrong page, which button brings you back to safety?",
+            "options": [
+                "The Refresh button",
+                "The Back arrow button (⬅️)",
+                "The Forward arrow button (➡️)",
+                "The Power button on your monitor"
+            ],
+            "answer": 1,
+            "explanation": "The Back button tracks your history step-by-step. Clicking it shifts your view backwards one page, returning you to where you were before."
+        },
+        {
+            "q": "Why is the 'Forward' arrow button grayed out and unclickable sometimes?",
+            "options": [
+                "Because your internet data connection has broken down",
+                "Because you haven't used the 'Back' button yet, meaning there is no future history path to step forward into",
+                "Because the website has blocked you from exploring further",
+                "Because your mouse cursor is moving too slowly"
+            ],
+            "answer": 1,
+            "explanation": "The Forward button can only look ahead if you have traveled back first! If you are already at the newest page you've opened, there is nothing forward to load."
+        },
+        {
+            "q": "When would you need to press the 'Refresh / Reload' button (🔄)?",
+            "options": [
+                "When you want to turn off the computer completely",
+                "When a webpage stops loading halfway, or you want to look for updated text values on a live score page",
+                "When you want to erase your history records forever",
+                "When you want to type a brand new web address link"
+            ],
+            "answer": 1,
+            "explanation": "Refreshing commands your browser to clear out its current view, reconnect to the remote host server, and fetch the newest version of that page's data."
+        },
+        {
+            "q": "In a real-life analogy, browsing through pages using 'Back' and 'Forward' buttons is like:",
+            "options": [
+                "Flipping pages backward and forward in a storybook you are reading",
+                "Throwing a notebook directly into a recycling bin",
+                "Writing down ideas with an ink pen",
+                "Painting a canvas wall layout"
+            ],
+            "answer": 0,
+            "explanation": "Browser navigation maps perfectly to flipping through book chapters! You can page backward to reread earlier sections, or page forward to return to where you left off."
+        },
+        {
+            "q": "What happens to a website if you press 'Refresh' while typing an incomplete message inside a text box?",
+            "options": [
+                "The text box will grow much larger",
+                "The page reloads completely, which may clear your unsaved text out of the box entry loops",
+                "The browser will automatically correct your spelling mistakes",
+                "The text is sent as an email to your teacher"
+            ],
+            "answer": 1,
+            "explanation": "Be careful! Tapping refresh rebuilds the page from scratch, which frequently drops transient, unsaved information like partially completed text entries."
+        },
+        {
+            "q": "What core competence did students gain during the classroom hunt simulation activity?",
+            "options": [
+                "They mastered how to manually assemble physical computer power components",
+                "They achieved spatial control over basic browser UI elements to navigate web targets without assistance",
+                "They programmed an automatic loop routine using complex math algorithms",
+                "They practiced using a physical mail tracking index card"
+            ],
+            "answer": 1,
+            "explanation": "By interacting with live navigation tools independently, students concrete their spatial awareness of core web control options, making them self-sufficient online explorers!"
+        }
+    ]
+}

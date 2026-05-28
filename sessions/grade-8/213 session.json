@@ -24,8 +24,6 @@
   ],
   "overview": "Ever wondered how a computer actually understands the code you write? In this session, students explore the journey from human-readable code to machine instructions — learning the difference between compilers and interpreters, why some languages use one over the other, and what really happens behind the scenes when you press RUN.",
   "grades": [
-    6,
-    7,
     8
   ],
   "slides": {

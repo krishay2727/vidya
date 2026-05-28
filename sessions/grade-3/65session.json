@@ -1,0 +1,305 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-1/",
+        "slides_folder": "sessions/session-1/slides/",
+        "images_folder": "sessions/session-1/images/",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-1",
+    "number": 1,
+    "title": "File Types & Extensions",
+    "subtitle": "Recognize .doc, .jpg, .png, .xlsx",
+    "date": "Session 01",
+    "duration": "1 Hours",
+    "phase": "Foundation",
+    "color": "#2ECC71",
+    "icon": "📁",
+    "tags": [
+        "Computer Basics",
+        "Files",
+        "Extensions",
+        "Digital Skills"
+    ],
+    "overview": "This session helps students understand different file types and extensions used in real life such as documents, images, and spreadsheets.",
+    "grades": [
+        5,
+        6,
+        7
+    ],
+    "slides": {
+        "pdf": "sessions/session-1/slides.pdf"
+    },
+    "images": {
+        "_note": "Add screenshots of file icons, folders, and examples of documents and images.",
+        "gallery": [
+            {
+                "file": "data/doc-file.jpg",
+                "_placeholder": "ADD: Screenshot of Word document file",
+                "caption": ".doc file used for typing notes and letters",
+                "category": "Document"
+            },
+            {
+                "file": "data/jpg-image.jpg",
+                "_placeholder": "ADD: Screenshot of JPG image file",
+                "caption": ".jpg file stores photos from camera or mobile",
+                "category": "Images"
+            },
+            {
+                "file": "data/png-image.png",
+                "_placeholder": "ADD: Screenshot of PNG image file",
+                "caption": ".png file used for transparent images and logos",
+                "category": "Images"
+            },
+            {
+                "file": "data/xlsx-file.jpg",
+                "_placeholder": "ADD: Screenshot of Excel spreadsheet file",
+                "caption": ".xlsx file used for marksheets and calculations",
+                "category": "Spreadsheet"
+            },
+            {
+                "file": "data/folder-view.jpg",
+                "_placeholder": "ADD: Screenshot of folder with multiple file types",
+                "caption": "Different files stored inside a folder",
+                "category": "Concept"
+            },
+            {
+                "file": "data/student-file-practice.jpg",
+                "_placeholder": "ADD: Students identifying file types",
+                "caption": "Students learning file extensions",
+                "category": "Lab"
+            },
+            {
+                "file": "data/real-life-files.jpg",
+                "_placeholder": "ADD: Real life examples of files",
+                "caption": "School notes, photos, and marksheets saved digitally",
+                "category": "Real Life"
+            }
+        ]
+    },
+    "keyTopics": [
+        "File — A digital item stored on a computer",
+        "Extension — Letters after the dot showing file type",
+        ".doc — Word document file for typing text",
+        ".jpg — Photo/image file from camera or mobile",
+        ".png — Image file with transparent background",
+        ".xlsx — Spreadsheet file for tables and calculations",
+        "Folder — Used to organize files",
+        "File Icons — Help identify different file types quickly"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "Introduction to File Extensions",
+            "videoId": "8w4L8s5x6xE",
+            "_note": "Replace with preferred educational video",
+            "desc": "Learn about different file types and extensions."
+        },
+        {
+            "title": "Understanding JPG PNG and DOC Files",
+            "videoId": "fH9N6m4xA2Q",
+            "desc": "Simple explanation of common file formats."
+        },
+        {
+            "title": "Microsoft Excel Basics",
+            "videoId": "Vl0H-qTclOg",
+            "desc": "Learn how spreadsheet files work."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Computer File Types Guide",
+            "url": "https://edu.gcfglobal.org/en/computerbasics/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Microsoft Office Support",
+            "url": "https://support.microsoft.com/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Identify File Extensions",
+        "parts": [
+            "Computer or Laptop",
+            "Sample files",
+            "Folder with documents and images"
+        ],
+        "steps": [
+            "Open a folder containing different files",
+            "Identify .doc document files",
+            "Identify .jpg photo files",
+            "Identify .png image files",
+            "Identify .xlsx spreadsheet files",
+            "Double click each file to open it",
+            "Observe different file icons",
+            "Create a new folder and organize files"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is a file extension?",
+            "options": [
+                "A computer game",
+                "Letters after the dot in a file name",
+                "A keyboard key",
+                "A monitor setting"
+            ],
+            "answer": 1,
+            "explanation": "File extensions help identify the type of file."
+        },
+        {
+            "q": "Which extension is used for Word documents?",
+            "options": [
+                ".jpg",
+                ".png",
+                ".doc",
+                ".mp3"
+            ],
+            "answer": 2,
+            "explanation": ".doc files are used for text documents."
+        },
+        {
+            "q": "Which file type is commonly used for photos?",
+            "options": [
+                ".xlsx",
+                ".jpg",
+                ".doc",
+                ".txt"
+            ],
+            "answer": 1,
+            "explanation": ".jpg files are commonly used for photos."
+        },
+        {
+            "q": "Which file extension is used for spreadsheets?",
+            "options": [
+                ".xlsx",
+                ".jpg",
+                ".png",
+                ".mp4"
+            ],
+            "answer": 0,
+            "explanation": ".xlsx files are spreadsheet files used in Excel."
+        },
+        {
+            "q": "What is a PNG file mainly used for?",
+            "options": [
+                "Music",
+                "Video",
+                "Transparent images and logos",
+                "Typing essays"
+            ],
+            "answer": 2,
+            "explanation": ".png files support transparent backgrounds."
+        },
+        {
+            "q": "Which file type is used for calculations and tables?",
+            "options": [
+                ".xlsx",
+                ".jpg",
+                ".png",
+                ".gif"
+            ],
+            "answer": 0,
+            "explanation": "Spreadsheet files help with calculations and tables."
+        },
+        {
+            "q": "What does a folder do?",
+            "options": [
+                "Deletes files",
+                "Organizes files",
+                "Turns off computer",
+                "Increases internet speed"
+            ],
+            "answer": 1,
+            "explanation": "Folders help keep files organized."
+        },
+        {
+            "q": "Which extension belongs to an image file?",
+            "options": [
+                ".jpg",
+                ".xlsx",
+                ".doc",
+                ".exe"
+            ],
+            "answer": 0,
+            "explanation": ".jpg is an image file extension."
+        },
+        {
+            "q": "Which software usually opens .doc files?",
+            "options": [
+                "Paint",
+                "Excel",
+                "Word Processor",
+                "Calculator"
+            ],
+            "answer": 2,
+            "explanation": "Word processor software opens document files."
+        },
+        {
+            "q": "What can file icons help us do?",
+            "options": [
+                "Identify file types quickly",
+                "Repair keyboard",
+                "Increase battery",
+                "Charge speakers"
+            ],
+            "answer": 0,
+            "explanation": "Icons visually represent different file types."
+        },
+        {
+            "q": "Which extension is NOT an image file?",
+            "options": [
+                ".jpg",
+                ".png",
+                ".xlsx",
+                ".gif"
+            ],
+            "answer": 2,
+            "explanation": ".xlsx is a spreadsheet file, not an image."
+        },
+        {
+            "q": "What is stored in a .doc file?",
+            "options": [
+                "Music",
+                "Videos",
+                "Text and documents",
+                "Games"
+            ],
+            "answer": 2,
+            "explanation": ".doc files mainly store written text."
+        },
+        {
+            "q": "Where are photos from mobile phones usually saved?",
+            "options": [
+                ".jpg files",
+                ".xlsx files",
+                ".doc files",
+                ".exe files"
+            ],
+            "answer": 0,
+            "explanation": "Most mobile photos are saved as JPG files."
+        },
+        {
+            "q": "Which file type is useful for school marksheets?",
+            "options": [
+                ".xlsx",
+                ".jpg",
+                ".mp3",
+                ".png"
+            ],
+            "answer": 0,
+            "explanation": "Spreadsheet files are useful for marks and calculations."
+        },
+        {
+            "q": "Why are file extensions important?",
+            "options": [
+                "They help computers know how to open files",
+                "They increase monitor size",
+                "They clean the keyboard",
+                "They charge the battery"
+            ],
+            "answer": 0,
+            "explanation": "Extensions tell the computer which program should open the file."
+        }
+    ]
+}

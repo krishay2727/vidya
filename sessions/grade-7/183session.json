@@ -23,8 +23,6 @@
   ],
   "overview": "Students explore the three memory heroes of every computer — RAM, ROM, and Storage (HDD/SSD). Using real-world analogies like a chef's kitchen, students understand where data lives, how fast it moves, and why computers need different types of memory. Includes a hands-on comparison activity and deep dive into how the CPU talks to each one.",
   "grades": [
-    5,
-    6,
     7
   ],
   "slides": {
@@ -173,17 +171,77 @@
   ],
   "comparisonTable": {
     "title": "RAM vs ROM vs HDD vs SSD — Quick Comparison",
-    "headers": ["Feature", "RAM", "ROM", "HDD", "SSD"],
+    "headers": [
+      "Feature",
+      "RAM",
+      "ROM",
+      "HDD",
+      "SSD"
+    ],
     "rows": [
-      ["Full Name", "Random Access Memory", "Read-Only Memory", "Hard Disk Drive", "Solid State Drive"],
-      ["Type", "Volatile (temporary)", "Non-Volatile (permanent)", "Non-Volatile (permanent)", "Non-Volatile (permanent)"],
-      ["Speed", "Very Fast", "Fast (read only)", "Slow (spinning)", "Very Fast"],
-      ["Data on Power Off", "LOST ❌", "KEPT ✅", "KEPT ✅", "KEPT ✅"],
-      ["Can be Written?", "Yes, freely", "No (or rarely)", "Yes", "Yes"],
-      ["Typical Size", "8–64 GB", "A few MB", "500 GB – 4 TB", "256 GB – 2 TB"],
-      ["Used For", "Running programs", "BIOS / Firmware", "Long-term file storage", "Fast long-term storage"],
-      ["Kitchen Analogy", "Counter workspace", "Recipe book", "Spinning pantry", "Smart instant pantry"],
-      ["Cost", "Medium", "Low", "Cheapest per GB", "Higher per GB"]
+      [
+        "Full Name",
+        "Random Access Memory",
+        "Read-Only Memory",
+        "Hard Disk Drive",
+        "Solid State Drive"
+      ],
+      [
+        "Type",
+        "Volatile (temporary)",
+        "Non-Volatile (permanent)",
+        "Non-Volatile (permanent)",
+        "Non-Volatile (permanent)"
+      ],
+      [
+        "Speed",
+        "Very Fast",
+        "Fast (read only)",
+        "Slow (spinning)",
+        "Very Fast"
+      ],
+      [
+        "Data on Power Off",
+        "LOST ❌",
+        "KEPT ✅",
+        "KEPT ✅",
+        "KEPT ✅"
+      ],
+      [
+        "Can be Written?",
+        "Yes, freely",
+        "No (or rarely)",
+        "Yes",
+        "Yes"
+      ],
+      [
+        "Typical Size",
+        "8–64 GB",
+        "A few MB",
+        "500 GB – 4 TB",
+        "256 GB – 2 TB"
+      ],
+      [
+        "Used For",
+        "Running programs",
+        "BIOS / Firmware",
+        "Long-term file storage",
+        "Fast long-term storage"
+      ],
+      [
+        "Kitchen Analogy",
+        "Counter workspace",
+        "Recipe book",
+        "Spinning pantry",
+        "Smart instant pantry"
+      ],
+      [
+        "Cost",
+        "Medium",
+        "Low",
+        "Cheapest per GB",
+        "Higher per GB"
+      ]
     ]
   },
   "activity": {

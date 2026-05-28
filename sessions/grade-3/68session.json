@@ -1,0 +1,166 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-data-backup/",
+    "slides_folder": "sessions/session-data-backup/slides/",
+    "images_folder": "sessions/session-data-backup/images/",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "backing-up-data",
+  "number": 4,
+  "title": "Backing Up Data",
+  "subtitle": "Introduction to USB backup process. Keep your files safe!",
+  "date": "Session 04",
+  "duration": "1 Hours",
+  "phase": "Foundation",
+  "color": "#00FF66",
+  "icon": "💾",
+  "tags": [
+    "Technology",
+    "Digital Literacy"
+  ],
+  "overview": "In this vital digital literacy session, students learn the importance of preventing data loss. They explore what a backup is, discover the 3-2-1 backup rule, and master how to safely copy, transfer, and eject files using a physical USB flash drive.",
+  "grades": [
+    5,
+    6,
+    7
+  ],
+  "slides": {
+    "pdf": "sessions/session-data-backup/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — component photos, activity shots, student experiments, whiteboard diagrams.",
+    "gallery": [
+      {
+        "file": "data/backup-concept.jpg",
+        "_placeholder": "ADD: Diagram illustrating data duplication from computer to external drive",
+        "caption": "Data Backup: Creating an exact duplicate copy to protect against accidents",
+        "category": "Concept"
+      },
+      {
+        "file": "data/usb-drive.jpg",
+        "_placeholder": "ADD: Photo of the USB Flash Drives distributed to students",
+        "caption": "USB Flash Drive — Our pocket-sized data vault!",
+        "category": "Components"
+      },
+      {
+        "file": "data/file-transfer.gif",
+        "_placeholder": "ADD: Screen capture/GIF showing copy-pasting a folder into a USB drive window",
+        "caption": "Dragging and dropping files into the USB drive folder",
+        "category": "Lab"
+      },
+      {
+        "file": "data/safe-eject.jpg",
+        "_placeholder": "ADD: Screenshot of 'Safely Remove Hardware and Eject Media' notification box",
+        "caption": "Crucial Step: Always safely eject before pulling out the drive!",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "What is Data Loss? — When original files get accidentally deleted, corrupted by viruses, or lost due to computer hardware failure",
+    "The Data Backup Concept — Making an identical copy of your work and storing it in a completely separate location",
+    "Photocopy Analogy — A backup is like photocopying your school homework notebook so if the original gets lost, you do not have to rewrite everything",
+    "USB Flash Drive — A removable storage device that uses flash memory to store digital data without needing electricity",
+    "Copy vs. Move — 'Copying' duplicates the file (leaves original behind ✅), while 'Moving' cuts and transfers it (erases original from computer ❌)",
+    "Safely Ejecting — Informing the computer operating system to finish writing lingering memory tasks before physical removal to prevent data corruption"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "Why backing up your data is so important!",
+      "videoId": "8ZpZfH_G88M",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A fun, short cartoon explaining what happens when data isn't backed up, and why external storage saves the day."
+    },
+    {
+      "title": "How to Use a USB Flash Drive on Windows & Mac",
+      "videoId": "v4mNidgU3wE",
+      "desc": "A beginner's step-by-step walkthrough on plugging in, transferring files, and safely ejecting a flash drive."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Interactive Operating System File Simulator",
+      "url": "https://www.falstad.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "The 3-2-1 Backup Strategy Guide",
+      "url": "https://www.backblaze.com/blog/the-3-2-1-backup-strategy/",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "The USB Time Capsule Mission",
+    "parts": [
+      "Desktop Computer or Laptop",
+      "USB Flash Drive (FAT32 or NTFS formatted)",
+      "Sample project files (Images, Text documents)"
+    ],
+    "steps": [
+      "Create a new folder on the computer desktop and name it 'My_Time_Capsule'",
+      "Put 3 sample files inside the folder (e.g., a drawing or written document)",
+      "Locate the physical USB port on your machine and gently insert the USB flash drive",
+      "Open File Explorer, right-click your 'My_Time_Capsule' folder, and select 'Copy'",
+      "Navigate inside the USB drive folder, right-click an empty space, and select 'Paste'",
+      "Verify the files exist in both locations, right-click the USB drive icon, select 'Eject', and safely unplug it!"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What is a data backup?",
+      "options": [
+        "Deleting old files to free up computer space",
+        "An identical copy of your files stored in a separate location",
+        "Changing the file names to make them look nice",
+        "Locking your computer with a strong password"
+      ],
+      "answer": 1,
+      "explanation": "A backup creates a duplicate copy of your data to keep it safe."
+    },
+    {
+      "q": "What is the safest way to remove a USB flash drive from a computer?",
+      "options": [
+        "Pull it out quickly",
+        "Yank it out hard",
+        "Use 'Safely Remove Hardware' option",
+        "Leave it plugged in"
+      ],
+      "answer": 2,
+      "explanation": "Always use the 'Safely Remove Hardware' option to prevent data corruption."
+    },
+    {
+      "q": "Which option duplicates a file?",
+      "options": [
+        "Move",
+        "Cut",
+        "Copy",
+        "Rename"
+      ],
+      "answer": 2,
+      "explanation": "'Copy' creates a duplicate while 'Move' transfers the original."
+    },
+    {
+      "q": "What is the best way to keep your files safe from computer crashes?",
+      "options": [
+        "Shutting down the computer properly",
+        "Regularly backing up files",
+        "Using a screensaver",
+        "Keeping the desktop clean"
+      ],
+      "answer": 1,
+      "explanation": "Regular backups ensure you don't lose important data if something goes wrong."
+    },
+    {
+      "q": "What is a USB flash drive primarily used for?",
+      "options": [
+        "Printing documents",
+        "Storing and carrying data",
+        "Listening to music",
+        "Playing heavy video games"
+      ],
+      "answer": 1,
+      "explanation": "USB flash drives are designed for portable data storage and transfer."
+    }
+  ]
+}

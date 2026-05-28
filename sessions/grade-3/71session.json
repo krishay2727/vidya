@@ -1,0 +1,205 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-smart-street-light/",
+        "slides_folder": "sessions/session-smart-street-light/slides/",
+        "images_folder": "sessions/session-smart-street-light/images/",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "smart-street-light",
+    "number": 7,
+    "title": "Smart Street Light",
+    "subtitle": "LDR + LED: Auto ON at dark, OFF in light. Cover and uncover to test!",
+    "date": "Session 07",
+    "duration": "1 Hours",
+    "phase": "Foundation",
+    "color": "#FFC107",
+    "icon": "🛣️",
+    "tags": [
+        "Science",
+        "Technology",
+        "Engineering",
+        "Mathematics"
+    ],
+    "overview": "In this exciting, real-world engineering project, students build an automation circuit using a Light Dependent Resistor (LDR) and an LED. They discover how automation saves city energy resources by programming a microcontroller to read ambient light states and toggle illumination automatically.",
+    "grades": [
+        5,
+        6,
+        7
+    ],
+    "slides": {
+        "pdf": "sessions/session-smart-street-light/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — component photos, activity shots, student experiments, whiteboard diagrams.",
+        "gallery": [
+            {
+                "file": "data/ldr-working.jpg",
+                "_placeholder": "ADD: व्हाइटबोर्ड डायग्राम या इमेज जो दिखाती है कि उजाले और अंधेरे में LDR का प्रतिरोध कैसे बदलता है",
+                "caption": "LDR Mechanism: Light hits → Resistance drops 📉 | Dark environment → Resistance spikes 📈",
+                "category": "Concept"
+            },
+            {
+                "file": "data/photoresistor-component.jpg",
+                "_placeholder": "ADD: Photo of LDR component up close showing its wavy track design",
+                "caption": "The Light Dependent Resistor (LDR) — a sensor that can feel light levels!",
+                "category": "Components"
+            },
+            {
+                "file": "data/smart-street-light-circuit.jpg",
+                "_placeholder": "ADD: Photo of actual breadboard layout with an LDR and an LED connected to an Arduino",
+                "caption": "The complete Smart Street Light automation circuit engineered on a breadboard",
+                "category": "Lab"
+            },
+            {
+                "file": "data/testing-darkness.gif",
+                "_placeholder": "ADD: Student finger covering the LDR to trigger the LED instantly",
+                "caption": "Testing Automation: Covering the LDR mimics night, making the LED instantly light up!",
+                "category": "Lab"
+            }
+        ]
+    },
+    "keyTopics": [
+        "Light Dependent Resistor (LDR) — A special sensor whose electrical resistance changes based on how much light falls on it",
+        "Resistance and Light — More Light = Less Resistance (Easy current flow) | Dark = Huge Resistance (Blocks current)",
+        "Analog Inputs — Reading variable real-world values (like smooth shade shifts from 0 to 1023) instead of simple ON/OFF digital triggers",
+        "Voltage Divider Circuit — Using a standard resistor paired with a sensor to convert varying resistance into readable voltage data",
+        "Threshold Level — The custom baseline value set in code to divide light values from dark values",
+        "Automation in Real Life — How modern cities automatically control highways using structural light logic rather than human manual operation switches"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "How an LDR (Photoresistor) Works Under the Hood",
+            "videoId": "niS76V2qXCI",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "An easy-to-understand animation breaking down how photons hitting a semi-conductor surface change its electrical resistance parameters."
+        },
+        {
+            "title": "Arduino Smart Street Light Project Tutorial",
+            "videoId": "1G8NcoBofZ8",
+            "desc": "A perfect step-by-step physical build and code walkthrough linking an LDR sensor system with an output indicator LED."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Wokwi — Free LDR + LED Automation Simulator Box",
+            "url": "https://wokwi.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Interactive LDR Voltage Divider Simulation",
+            "url": "https://www.falstad.com/circuit/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Building the Auto Night-Light Circuit",
+        "parts": [
+            "Arduino UNO",
+            "Breadboard",
+            "LDR (Photoresistor)",
+            "10kΩ Resistor (for the Voltage Divider)",
+            "LED (any color)",
+            "220Ω Resistor (for the LED protection)",
+            "Jumper Wires"
+        ],
+        "steps": [
+            "Insert the LDR onto your breadboard matrix",
+            "Connect one leg of the LDR to 5V and the other leg to Arduino Analog Pin A0",
+            "Connect a 10kΩ resistor from that same A0 junction point down to a Ground (GND) port to build a voltage divider",
+            "Wire your street light LED along with its 220Ω protective resistor onto Digital Pin 13",
+            "Upload the automation sketch checking values via `analogRead(A0)`",
+            "Test Mission: Cover the LDR with your thumb or a thick piece of cardboard. Watch the LED switch ON automatically! Uncover it to watch it go OFF!"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What happens to the internal electrical resistance of an LDR when light brightness increases?",
+            "options": [
+                "The resistance increases heavily",
+                "The resistance drops down and decreases",
+                "The resistance jumps completely to infinity",
+                "The resistance stays exactly the same"
+            ],
+            "answer": 1,
+            "explanation": "LDRs share an inverse connection with light. More photons striking its surface clear out electron pathways, decreasing the internal resistance!"
+        },
+        {
+            "q": "What configuration structure reads continuous, gradual light variations instead of simple ON/OFF signals?",
+            "options": [
+                "Digital Output channels",
+                "Analog Input channels",
+                "Pulse Width Modulation channels",
+                "Serial Communication channels"
+            ],
+            "answer": 1,
+            "explanation": "Analog Inputs (`analogRead`) process fluctuating values across a gradual range (0 to 1023), letting us capture varying shades of dusk and dawn."
+        },
+        {
+            "q": "Why do we add a 10kΩ static resistor alongside our LDR on the breadboard?",
+            "options": [
+                "To make the LED glow much brighter",
+                "To form a voltage divider that changes a shift in sensor resistance into a shifting voltage reading the Arduino can interpret",
+                "To change the light color of the LDR",
+                "To provide power storage for the system when the computer is shut down"
+            ],
+            "answer": 1,
+            "explanation": "Microcontrollers cannot read raw resistance levels directly; they can only sense changes in voltage. A voltage divider uses a fixed resistor to map resistance fluctuations to a readable voltage scale."
+        },
+        {
+            "q": "What parameter do we use in code to specify the exact line separating dark states from light states?",
+            "options": [
+                "The Loop Delay interval",
+                "A Threshold Value",
+                "A Pin Mode assignment",
+                "A Serial Baud Rate setting"
+            ],
+            "answer": 1,
+            "explanation": "A threshold value is our target marker! For instance, if our threshold is 500, any sensor value below 500 triggers night mode, and anything above acts as daylight."
+        },
+        {
+            "q": "Which code check successfully switches a light ON when raw environment readings drop below a threshold level?",
+            "options": [
+                "if (lightValue > threshold) { digitalWrite(13, HIGH); }",
+                "if (lightValue < threshold) { digitalWrite(13, HIGH); }",
+                "if (lightValue == 1023) { digitalWrite(13, LOW); }",
+                "while (lightValue == 0) { pinMode(13, INPUT); }"
+            ],
+            "answer": 1,
+            "explanation": "When environmental lighting levels drop *below* (`<`) our safety threshold limit, we trigger `digitalWrite(13, HIGH)` to automatically activate our street lamp."
+        },
+        {
+            "q": "In our standard water analogy layout, what component behaves exactly like an LDR system?",
+            "options": [
+                "A rigid plastic water storage tank",
+                "An automated pipe valve that adjusts its opening based on the pressure hitting it",
+                "A simple manual toggle switch",
+                "A standard hollow delivery pipe hose"
+            ],
+            "answer": 1,
+            "explanation": "An LDR acts like a dynamic water valve that automatically constricts or expands depending on environmental forces, changing the flow of current down the line."
+        },
+        {
+            "q": "What real-world benefit does engineering automated smart street lights bring to our community?",
+            "options": [
+                "It prevents street lamps from consuming excessive power during bright sunny days",
+                "It removes the need for municipal workers to travel around toggling thousands of individual switches manually every day",
+                "It minimizes systemic operational wear-and-tear and reduces global electrical waste",
+                "All of the above"
+            ],
+            "answer": 3,
+            "explanation": "Smart automation saves thousands of kilowatt-hours, limits human workload errors, and coordinates energy grids efficiently!"
+        },
+        {
+            "q": "What physical verification test did students perform to prove their code was working?",
+            "options": [
+                "They shook the breadboard to test its durability",
+                "They covered the LDR to simulate nighttime and observed if the LED turned on automatically",
+                "They disconnected the power source to see if it would stay illuminated",
+                "They mapped out code variables on paper using a pencil"
+            ],
+            "answer": 1,
+            "explanation": "By covering the LDR, students artificially blocked incoming photons, mimicking darkness. This verified if their code would trigger automation correctly!"
+        }
+    ]
+}

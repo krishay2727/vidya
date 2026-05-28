@@ -24,8 +24,6 @@
   ],
   "overview": "Students build a working calculator using a 4x4 keypad and 16x2 LCD display connected to an Arduino. By pressing number keys and operator keys, the result is computed and shown live on the LCD — combining hardware wiring, library usage, and logic programming.",
   "grades": [
-    5,
-    6,
     7
   ],
   "slides": {

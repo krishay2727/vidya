@@ -23,8 +23,6 @@
   ],
   "overview": "Explore how computers represent all information using just two digits — 0 and 1. Learn why binary and hexadecimal are the languages computers speak, and write real code to convert between number systems.",
   "grades": [
-    5,
-    6,
     7
   ],
   "slides": {

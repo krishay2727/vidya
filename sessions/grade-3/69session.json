@@ -1,0 +1,203 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-pushbutton/",
+    "slides_folder": "sessions/session-pushbutton/slides/",
+    "images_folder": "sessions/session-pushbutton/images/",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "push-button-independent",
+  "number": 5,
+  "title": "Push Button Independently",
+  "subtitle": "Students wire and upload push button LED code alone.",
+  "date": "Session 05",
+  "duration": "1 Hours",
+  "phase": "Foundation",
+  "color": "#E6007E",
+  "icon": "🔘",
+  "tags": [
+    "Technology",
+    "Engineering",
+    "Programming"
+  ],
+  "overview": "In this standalone engineering session, students cross the bridge into independent practice. Moving away from step-by-step guidance, they will individually wire a tactile push button to an Arduino microcontroller, configure pull-up resistors in code, and process digital inputs independently.",
+  "grades": [
+    5,
+    6,
+    7
+  ],
+  "slides": {
+    "pdf": "sessions/session-pushbutton/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — component photos, activity shots, student experiments, whiteboard diagrams.",
+    "gallery": [
+      {
+        "file": "data/pushbutton-internal.jpg",
+        "_placeholder": "ADD: Diagram or photo of a push button showing internal structural connections",
+        "caption": "Push Button Architecture: Understanding which legs connect when pressed",
+        "category": "Concept"
+      },
+      {
+        "file": "data/tactile-switch.jpg",
+        "_placeholder": "ADD: Close-up photo of a 4-pin tactile switch button",
+        "caption": "Four-pin tactile switch — the gateway to processing digital user inputs",
+        "category": "Components"
+      },
+      {
+        "file": "data/independent-wiring.jpg",
+        "_placeholder": "ADD: Photo of a student working by themselves, wiring up their hardware breadboard",
+        "caption": "Independent Practice: Students tracking schematics to map out input/output channels",
+        "category": "Lab"
+      },
+      {
+        "file": "data/button-success.gif",
+        "_placeholder": "ADD: GIF showing button press dynamically triggering an LED to instantly light up",
+        "caption": "Code works! Pressing down bridges the gap to switch the light source status",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "Digital Inputs — Learning how microcontrollers sense external binary actions (HIGH/Pressed or LOW/Released)",
+    "Push Button Mechanics — How mechanical springs physically close an open circuit to form a working trace path",
+    "Pull-up Resistors — The mechanism used to firmly anchor floating pins to 5V to stop erratic system behavior",
+    "pinMode(INPUT_PULLUP) — Using the internal hardware processing engine within Arduino to clean up raw input logic",
+    "Conditional Statements — Coding with 'if' and 'else' parameters so the controller acts based on human choices",
+    "Independent Troubleshooting — Moving systematically from wiring verification to structural code alignment"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "How a 4-Pin Push Button Works on a Breadboard",
+      "videoId": "j0mS4F_yFMc",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A visual explanation of the inside of a tactical button, showing how pins connect to avoid short circuits."
+    },
+    {
+      "title": "Arduino Digital Inputs: pinMode INPUT_PULLUP Tutorial",
+      "videoId": "wKSlK9fS0bU",
+      "desc": "Learn how internal pull-up parameters protect microcontrollers from reading static electric noise."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Wokwi — Independent Push Button Simulator Sandbox",
+      "url": "https://wokwi.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Interactive Digital Switch Circuit Mechanics",
+      "url": "https://www.falstad.com/circuit/",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "The Solo Doorbell Circuit Challenge",
+    "parts": [
+      "Arduino UNO",
+      "Breadboard",
+      "Tactile Push Button (4-pin)",
+      "LED",
+      "220Ω Resistor",
+      "Jumper Wires"
+    ],
+    "steps": [
+      "Straddle the tactile push button over the center channel partition line of your breadboard",
+      "Connect one leg of the switch to Arduino Digital Pin 2",
+      "Connect the matching opposite structural leg of the button to an Arduino GND port",
+      "Wire your output indicator LED along with its 220Ω protection resistor to Digital Pin 13",
+      "Independently write a sketch configuring Pin 2 as an INPUT_PULLUP and Pin 13 as an OUTPUT",
+      "Implement an if/else conditional check: when the button is pressed, drive the target LED to light up!"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What type of electrical parameter is a button press categorized as?",
+      "options": [
+        "Analog Output",
+        "Digital Input",
+        "Analog Input",
+        "Digital Output"
+      ],
+      "answer": 1,
+      "explanation": "A button press is a Digital Input! It only has two clear states: pressed or released (ON or OFF)."
+    },
+    {
+      "q": "Why does a standard push button have 4 pins?",
+      "options": [
+        "It needs two connections for power and two for ground lines",
+        "Pins are paired internally into sets of constant connections to help build strong physical links across a breadboard channel",
+        "It changes internal options based on which pin pairs receive power",
+        "It allows the single button to control four separate motors at once"
+      ],
+      "answer": 1,
+      "explanation": "Inside a 4-pin switch, pins are coupled into pairs. Pressing the button down connects these two pairs to complete the circuit loop."
+    },
+    {
+      "q": "What happens when an Arduino input pin is left floating with no connection?",
+      "options": [
+        "It stays locked securely at exactly 0 Volts",
+        "It reads random atmospheric electric noise, causing values to flicker erratically between HIGH and LOW",
+        "The board will trigger a safety reset",
+        "The component locks up and stops running its loop"
+      ],
+      "answer": 1,
+      "explanation": "A floating pin acts like a tiny antenna! It absorbs ambient static charge, making it flicker until anchored by a pull-up or pull-down resistor."
+    },
+    {
+      "q": "What configuration fix does setup function code pinMode(2, INPUT_PULLUP) apply?",
+      "options": [
+        "It routes massive amounts of extra current directly out of Pin 2",
+        "It activates an internal resistor that pulls the idle state up to a stable 5V HIGH mark",
+        "It converts Pin 2 into an analog fading pin",
+        "It disconnects Pin 2 from the controller's brain"
+      ],
+      "answer": 1,
+      "explanation": "INPUT_PULLUP turns on a built-in resistor inside the chip. It pulls the signal to a safe HIGH state until you press the button and drop it to ground (LOW)."
+    },
+    {
+      "q": "Using INPUT_PULLUP configuration parameters, what value does digitalRead() return when the button is actively pressed?",
+      "options": [
+        "HIGH",
+        "LOW",
+        "1023",
+        "Undefined"
+      ],
+      "answer": 1,
+      "explanation": "With a pull-up configuration, pressing the button connects the pin directly to GND, dropping the reading down to LOW. Pressing the button reads LOW!"
+    },
+    {
+      "q": "Which code snippet correctly checks if a button pin has dropped down to a low reference ground state?",
+      "options": [
+        "if (digitalRead(2) = LOW)",
+        "if (digitalRead(2) == LOW)",
+        "if (digitalWrite(2) == HIGH)",
+        "if (pinMode(2) == INPUT)"
+      ],
+      "answer": 1,
+      "explanation": "The double equal sign `==` compares values in programming. `digitalRead(2) == LOW` checks if the button on pin 2 is pressed down."
+    },
+    {
+      "q": "What structural role does an 'else' block play within a standard conditional code construct?",
+      "options": [
+        "It loops the main program forever",
+        "It provides an alternative backup instruction route when the initial 'if' check is false",
+        "It forces the hardware setup variables to clear out",
+        "It speeds up execution timing"
+      ],
+      "answer": 1,
+      "explanation": "The 'else' block acts as a fallback plan! If the 'if' condition isn't met (e.g., button is not pressed), the instructions inside the 'else' block run instead."
+    },
+    {
+      "q": "What goal did students reach by completing this session completely solo?",
+      "options": [
+        "They memorized code definitions for a written test",
+        "They independent mapped out inputs, assembled circuits, and debugged logic without code templates",
+        "They replaced all breadboards with wireless internet connections",
+        "They built an automatic motor without writing any lines of code"
+      ],
+      "answer": 1,
+      "explanation": "Working independently helps students master wiring layouts, build spatial recognition on breadboards, and think critically to solve real engineering problems!"
+    }
+  ]
+}

@@ -24,8 +24,6 @@
   ],
   "overview": "In this session, students explore Graphical User Interface (GUI) programming using Python's Tkinter library. They learn how to create windows, add widgets like buttons, labels, and text boxes, and handle user events — turning their code into real, clickable applications!",
   "grades": [
-    6,
-    7,
     8
   ],
   "slides": {

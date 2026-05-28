@@ -1,0 +1,288 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-what-is-internet/",
+    "slides_folder": "sessions/session-what-is-internet/slides/",
+    "images_folder": "sessions/session-what-is-internet/images/",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "what-is-the-internet",
+  "number": 8,
+  "title": "What Is the Internet?",
+  "subtitle": "Story-based intro: A global network of computing friends!",
+  "date": "Session 08",
+  "duration": "1 Hours",
+  "phase": "Foundation",
+  "color": "#1A73E8",
+  "icon": "🌐",
+  "tags": [
+    "Technology",
+    "Digital Literacy",
+    "Computer Science"
+  ],
+  "overview": "In this story-based introductory session, students explore how computers communicate across the globe. Through the narrative of passing interconnected messages, they uncover the layout of the internet, understanding hardware elements like clients, servers, routers, and under-sea cables.",
+  "grades": [
+    5,
+    6,
+    7
+  ],
+  "slides": {
+    "pdf": "sessions/session-what-is-internet/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — component photos, activity shots, student experiments, whiteboard diagrams.",
+    "gallery": [
+      {
+        "file": "data/global-network-story.jpg",
+        "_placeholder": "ADD: Story illustration of kids in different countries sending message packets to each other",
+        "caption": "The Internet Story: Devices connecting across mountains and oceans to share data!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/postal-analogy.jpg",
+        "_placeholder": "ADD: Whiteboard diagram mapping a data packet to a stamped postal envelope with addresses",
+        "caption": "Postal Analogy: IP Addresses act exactly like mailing addresses on physical envelopes",
+        "category": "Concept"
+      },
+      {
+        "file": "data/server-hardware.jpg",
+        "_placeholder": "ADD: Photo of a warehouse data center / server stack setup",
+        "caption": "Data Centers: Massive computers that stay turned on 24/7 to serve files to the world",
+        "category": "Components"
+      },
+      {
+        "file": "data/string-phone-activity.jpg",
+        "_placeholder": "ADD: Photo of students playing a localized networking game using strings to cross-connect tablets",
+        "caption": "Lab Simulation: Students mapping out communication lines to understand network routing paths",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "What is a Network? — A group of two or more interconnected computers that talk to each other to share data resources",
+    "The Internet — A massive, global web connecting millions of smaller networks together across the entire planet",
+    "The Postal Analogy — Sending data over the internet is exactly like mailing a letter split into separate envelopes, each containing a sequence number and structural addresses",
+    "Clients and Servers — The Client is your phone/laptop asking for a webpage (the buyer); the Server is a powerful machine serving up that stored data layout (the shopkeeper)",
+    "IP Address — The custom digital destination label (e.g., 192.168.1.1) assigned to every single device on earth so traffic finds them without getting lost",
+    "Routers — Digital traffic officers that inspect moving chunks of data and direct them down the fastest wire path toward their final destination",
+    "Undersea Fiber Cables — Thick glass bundles resting on the deep ocean floors that use high-speed pulses of light to zip internet traffic across continents"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "What is the Internet? (Simple Animated Explanation)",
+      "videoId": "Dxcc6ycZ73M",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A fun, graphic introduction to how information travels over the physical infrastructure of the internet."
+    },
+    {
+      "title": "The Invisible Network: Undersea Fiber Optic Cables",
+      "videoId": "IlAJJI-qG2k",
+      "desc": "An incredible look at how ships drop thousands of miles of glass wire along the sea floor to wire up global communication tracks."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Interactive Global Undersea Cable Map Visualizer",
+      "url": "https://www.submarinecablemap.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "How Stuff Works: Basic Internet Routing Logic",
+      "url": "https://computer.howstuffworks.com/internet/basics/internet.htm",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "The Human Data Packet Express",
+    "parts": [
+      "Blank index cards / sticky notes",
+      "Colored markers",
+      "A long layout string tangle map spread across classroom desks"
+    ],
+    "steps": [
+      "Assign roles to students: 2 Clients (senders/receivers), 4 Routers (traffic path coordinators), and 1 Server (hosting a photo draw card)",
+      "The Client writes down a request message: 'Send Me The Picture Note!'",
+      "The Routers hand-pass this card along explicit desk tracks until it reaches the targeted Server student",
+      "The Server splits a drawn picture card into 3 numbered pieces ('packets'), labeling each piece with the destination Client's ID number",
+      "The Routers pass the packets along completely different paths around the classroom to mimic network balancing load routes",
+      "The receiving Client gathers all 3 incoming packet fragments, sequences them by their index number, and pieces the digital image back together!"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What is the internet at its most basic structural level?",
+      "options": [
+        "A magical wireless cloud that generates apps out of thin air",
+        "A physical global network of millions of interconnected computing devices sharing data lines",
+        "A giant satellite sitting directly above our school roof",
+        "A single supercomputer located inside a secret mountain cave"
+      ],
+      "answer": 1,
+      "explanation": "The internet isn't magic! It is a massive physical network of wires, cables, routers, and computer hard drives tied together across the entire world."
+    },
+    {
+      "q": "In our story-based postal analogy, what part of the internet does a router act as?",
+      "options": [
+        "The starting letter written by the sender",
+        "A smart mail sorter that directs packages along specific paths",
+        "The final picture the receiver looks at",
+        "The mailbox sitting on the front porch"
+      ],
+      "answer": 1,
+      "explanation": "Routers are the digital traffic police! They inspect incoming packets and choose the best path for them to travel next."
+    },
+    {
+      "q": "Which of these components is NOT actually part of the internet's physical structure?",
+      "options": [
+        "Thick glass undersea cables resting on the ocean floor",
+        "Smartphone screens and laptops used as client endpoints",
+        "High-speed fiberoptic lines running beneath city streets",
+        "A giant glowing cloud floating in the sky above the atmosphere"
+      ],
+      "answer": 3,
+      "explanation": "Clouds can't carry data! The internet is made of real physical things like glass cables, copper wires, fiber optics, routers, and servers."
+    },
+    {
+      "q": "What is a server's main job in the context of the internet?",
+      "options": [
+        "To constantly send out random requests to find new websites",
+        "To stay turned on 24/7, hosting and delivering requested data to clients",
+        "To act as a temporary storage spot for messages that might get lost",
+        "To filter out bad data packets before they reach other devices"
+      ],
+      "answer": 1,
+      "explanation": "Servers are like dedicated librarians or shopkeepers. They wait patiently until a client asks for a specific piece of data, and then they serve it up."
+    }
+  ],
+  "extension": {
+    "title": "Build a Local Network with Ethernet Cables (Optional)",
+    "description": "If you have extra Ethernet cables and network-ready devices (like laptops or a router), you can physically build a mini-internet network right in the classroom!",
+    "steps": [
+      "Connect an Ethernet cable directly from a router's LAN port into a laptop's Ethernet port",
+      "Connect another cable from the router's LAN port into a second laptop",
+      "Turn on both laptops and check if they can access the internet (if the router has an internet connection)",
+      "Discuss how this small network represents the basic idea of interconnected devices, just like the huge global internet!"
+    ],
+    "note": "This activity requires working with Ethernet cables and a router. Adult supervision is essential.",
+    "materials": [
+      "Ethernet cables (Cat 5e or Cat 6)",
+      "Laptop with Ethernet port",
+      "Router with at least two LAN ports",
+      "Internet connection for the router (optional, for testing internet access)"
+    ]
+  },
+  "code": {
+    "name": "None - Conceptual Activity",
+    "note": "This session focuses on the concept of the internet through story-based activities, not coding.",
+    "steps": []
+  },
+  "lessonPlan": {
+    "duration": 60,
+    "parts": [
+      {
+        "duration": 5,
+        "title": "Welcome & Hook",
+        "description": "Start with a story: Two kids on opposite sides of the world want to share a drawing. How do they do it? (They can't just throw it across the ocean!) Lead into the idea of a global network.",
+        "content": "Storytelling introduction - 'How do we send messages across mountains and oceans?'"
+      },
+      {
+        "duration": 10,
+        "title": "The Postal Analogy Activity",
+        "description": "Walk through the postal analogy: Writing an address on an envelope (IP address), sealing it (encapsulation), and dropping it in a mailbox (sending to a router).",
+        "content": "Interactive: Writing and addressing envelopes for digital messages"
+      },
+      {
+        "duration": 15,
+        "title": "Hardware Components Exploration",
+        "description": "Introduce clients (your devices), servers (big computers that store data), and routers (traffic directors). Show real photos or videos of data centers and undersea cables.",
+        "content": "Visuals: Photos of servers, routers, and undersea fiber optic cables"
+      },
+      {
+        "duration": 15,
+        "title": "Human Data Packet Express (Activity)",
+        "description": "Assign roles (clients, routers, server) and have students pass message cards around the room following specific paths. This simulates packets taking different routes across the network.",
+        "content": "Physical activity: Students act as data packets moving through a simulated network"
+      },
+      {
+        "duration": 10,
+        "title": "Recap & Discussion",
+        "description": "Review the key concepts: What is a network? What does a router do? Why do we need undersea cables? Tie everything back to the original story of sharing messages across the globe.",
+        "content": "Q&A session and concept reinforcement"
+      },
+      {
+        "duration": 5,
+        "title": "Wrap-up & Extension Preview",
+        "description": "Briefly mention how this same idea applies to the internet at home and how devices connect. Preview next topic (e.g., what happens after packets arrive).",
+        "content": "Session summary and teaser for future topics"
+      }
+    ],
+    "learningOutcomes": [
+      "Understand that the internet is a physical network, not a cloud",
+      "Identify the basic roles of clients, servers, and routers",
+      "Appreciate how data travels across the globe (including undersea cables)",
+      "Explain the basic idea of IP addresses using the postal analogy",
+      "Understand that data can take multiple paths across a network"
+    ],
+    "materials": [
+      "Projector and screen",
+      "Whiteboard or flip chart",
+      "Markers",
+      "Index cards or sticky notes",
+      "Pictures/slides of servers, routers, data centers, undersea cables",
+      "Optional: Ethernet cables and a router for extension activity"
+    ],
+    "teachingStrategy": [
+      "Story-based learning",
+      "Interactive analogies",
+      "Visual aids (photos/videos)",
+      "Physical activity/simulation",
+      "Q&A and discussion"
+    ],
+    "assessment": [
+      "Oral participation in discussions",
+      "Ability to explain concepts during activities",
+      "Responses to quiz questions",
+      "Understanding demonstrated in hands-on activity"
+    ]
+  },
+  "metadata": {
+    "requiresComputer": true,
+    "requiresInternet": true,
+    "requiresProjector": true,
+    "setupTime": 10,
+    "preparationTime": 20,
+    "indoorActivity": true,
+    "ageGroup": "5-7",
+    "parentalInvolvement": "Low",
+    "computerAccessPerStudent": 0.3,
+    "techAccess": [
+      "Projector",
+      "Whiteboard",
+      "Internet",
+      "Computer"
+    ]
+  },
+  "relatedLearningStandards": [
+    {
+      "board": "CBSE",
+      "standard": 5,
+      "subject": "EVS (Environmental Studies)",
+      "topic": "Human Impact on Environment - Communication and Interdependence",
+      "description": "Understanding how humans communicate and depend on each other, including through telecommunication networks."
+    },
+    {
+      "board": "NCERT",
+      "standard": 6,
+      "subject": "Computer Science / Integrated Science",
+      "topic": "Basics of Computer Networks and Communication",
+      "description": "Introduction to how computers are interconnected to share information and resources."
+    },
+    {
+      "board": "IB PYP",
+      "standard": "Year 3-4 (Ages 8-10)",
+      "subject": "How We Organize Ourselves",
+      "topic": "Communication Systems",
+      "description": "Exploring different forms of communication and how they connect people across the globe."
+    }
+  ]
+}

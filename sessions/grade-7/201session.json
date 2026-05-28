@@ -23,8 +23,6 @@
   ],
   "overview": "Build a real working smart lock! An authorized RFID card makes a relay click and a servo motor swing the door open. Any other card gets denied — red LED, buzzer beep, and 'Access Denied' on the LCD. The same system used in offices, hotels, and secure labs — built by YOU on a breadboard.",
   "grades": [
-    5,
-    6,
     7
   ],
   "slides": {

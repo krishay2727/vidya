@@ -22,6 +22,8 @@ let lqQuizData = null;  // Contains the specific grade & unit being played
 let lqCurrentQuestionIndex = -1;
 let lqQuestionOrder = []; // Shuffled order of questions
 let lqMyScore = 0;
+let lqCategoryScores = {}; // Tracks score per category: critical_thinking, problem_solving, safety, ethics
+let lqCurrentGrade = "";  // Tracks the current grade (e.g. 'grade1') for special rendering
 let lqAnsweredCurrent = false;
 let studentsData = null;
 let teachersData = null;
@@ -36,25 +38,31 @@ window.lqShowView = (viewId) => {
 
 window.initLiveQuiz = async () => {
     try {
-        const snapshot = await get(ref(db, 'liveQuizData'));
-        if (snapshot.exists()) {
-            const data = snapshot.val();
-            allQuizData = data.questions;
-            studentsData = data.students;
-            teachersData = data.teachers;
-        } else {
-            console.error("No live quiz data available in database");
-        }
+        const [questionsRes, teachersRes] = await Promise.all([
+            fetch('live-quiz-data/questions.json'),
+            fetch('live-quiz-data/teachers.json')
+        ]);
+        if (!questionsRes.ok || !teachersRes.ok) throw new Error('Quiz data files not found');
+        allQuizData = await questionsRes.json();
+        teachersData = await teachersRes.json();
     } catch (e) {
-        console.error("Failed to load live quiz data from database", e);
+        console.error("Failed to load live quiz data from local files:", e);
+        const homeEl = document.getElementById('lq-home-page');
+        if (homeEl) {
+            const warn = document.createElement('p');
+            warn.style.cssText = 'color:var(--red);margin-top:12px;font-weight:bold;';
+            warn.innerText = '⚠️ Quiz data failed to load. Please refresh the page.';
+            homeEl.appendChild(warn);
+        }
     }
 };
 
 window.lqHostLogin = async () => {
     const hostName = document.getElementById('lq-host-name').value.trim();
     const hostPass = document.getElementById('lq-host-pass').value.trim();
+    const schoolSelect = document.getElementById('lq-host-school').value;
     const gradeSelect = document.getElementById('lq-host-grade').value;
-    const unitSelect = document.getElementById('lq-host-unit') ? document.getElementById('lq-host-unit').value : 'unit1';
+    const unitSelect = document.getElementById('lq-host-unit') ? document.getElementById('lq-host-unit').value : 'baseline';
 
     if (teachersData && teachersData.teachers) {
         const teachersArray = Array.isArray(teachersData.teachers) ? teachersData.teachers : Object.values(teachersData.teachers);
@@ -76,11 +84,14 @@ window.lqHostLogin = async () => {
     lqQuizData = allQuizData[gradeSelect][unitSelect];
     lqPlayerName = hostName; // Host plays under their own name!
 
-    await lqCreateRoom();
+    await lqCreateRoom(schoolSelect, gradeSelect, unitSelect);
 };
 
-async function lqCreateRoom() {
+async function lqCreateRoom(schoolSelect, gradeSelect, unitSelect) {
     isHost = true;
+    lqCurrentGrade = gradeSelect;
+    lqCategoryScores = {};
+    lqMyScore = 0;
     lqRoomCode = Math.floor(100000 + Math.random() * 900000).toString(); // 6 digit code
     document.getElementById('lq-display-room-code').innerText = lqRoomCode;
 
@@ -89,6 +100,9 @@ async function lqCreateRoom() {
         status: 'waiting',
         currentQuestion: -1,
         hostId: lqPlayerName,
+        school: schoolSelect,
+        grade: gradeSelect,
+        unit: unitSelect,
         quiz: lqQuizData,
         startTime: 0,
         players: {},
@@ -134,21 +148,26 @@ window.lqEndQuiz = () => {
 
 window.lqJoinGame = async () => {
     lqRoomCode = document.getElementById('lq-join-code').value.trim();
-    lqPlayerName = document.getElementById('lq-join-name').value.trim();
-    const lqPlayerPass = document.getElementById('lq-join-pass').value.trim();
+    const rawName = document.getElementById('lq-join-name').value.trim();
 
-    if (lqRoomCode.length !== 6 || lqPlayerName === "" || lqPlayerPass === "") {
-        alert("Please enter a valid 6-digit code, name, and password!");
+    if (lqRoomCode.length !== 6) {
+        alert("Please enter a valid 6-digit Classroom Code!");
         return;
     }
 
-    if (studentsData && studentsData.students) {
-        const studentsArray = Array.isArray(studentsData.students) ? studentsData.students : Object.values(studentsData.students);
-        const validStudent = studentsArray.find(s => s && s.name === lqPlayerName && s.password === lqPlayerPass);
-        if (!validStudent) {
-            alert("Invalid Name or Password!");
-            return;
-        }
+    // Clean and normalize name: compress consecutive spaces to a single space
+    lqPlayerName = rawName.replace(/\s+/g, ' ');
+
+    if (lqPlayerName.length <= 3) {
+        alert("Name must be more than 3 letters long!");
+        return;
+    }
+
+    // Enforce letters and single spaces only (no numbers, no symbols)
+    const nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+    if (!nameRegex.test(lqPlayerName)) {
+        alert("Name must contain only letters (no numbers or symbols allowed)!");
+        return;
     }
 
     const roomSnapshot = await get(ref(db, `rooms/${lqRoomCode}`));
@@ -162,11 +181,20 @@ window.lqJoinGame = async () => {
     // Read the room's quiz data so the client knows the questions
     const roomData = roomSnapshot.val();
     lqQuizData = roomData.quiz;
+    lqCurrentGrade = roomData.grade || "";
+    lqCategoryScores = {};
+    lqMyScore = 0;
+
+    // Prevent duplicate player names inside the same classroom to keep it professional
+    if (roomData.players && roomData.players[lqPlayerName]) {
+        alert("This name is already taken in this classroom! Please use a different name.");
+        return;
+    }
 
     await set(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), { 
         name: lqPlayerName,
         score: 0,
-        school: studentsData?.school_name || "Unknown"
+        school: roomData.school || "Unknown"
     });
 
     document.getElementById('lq-waiting-room-code').innerText = lqRoomCode;
@@ -330,83 +358,94 @@ function lqRenderQuestion() {
     let realIndex = lqQuestionOrder[lqCurrentQuestionIndex];
     let qData = lqQuizData?.questions[realIndex];
     if (!qData) return;
-    
+
+    const qCategory = qData.category || 'uncategorized';
+
+    // Category badge label
+    const categoryLabels = {
+        critical_thinking: '🧠 Critical Thinking',
+        problem_solving: '🔧 Problem Solving',
+        safety: '🦺 Safety',
+        ethics: '⚖️ Ethics'
+    };
+    const categoryLabel = categoryLabels[qCategory] || '';
+
     let qText = qData.text || qData.question;
-    if (qData.image) {
-        qText += `<br><img src="${qData.image}" style="max-width:100%; border-radius:12px; margin-top:15px; box-shadow: 0 6px 15px rgba(0,0,0,0.3); border: 2px solid var(--border);">`;
+    let headerHTML = '';
+    if (categoryLabel) {
+        headerHTML = `<span style="display:inline-block;font-size:0.8rem;background:var(--surface2);color:var(--cyan);padding:4px 12px;border-radius:20px;margin-bottom:14px;font-weight:700;border:1px solid var(--border);letter-spacing:0.5px;">${categoryLabel}</span><br>`;
     }
-    document.getElementById('lq-question-text').innerHTML = qText;
+    let imgHTML = '';
+    if (qData.image) {
+        imgHTML = `<br><img src="${qData.image}" style="max-width:100%;border-radius:12px;margin-top:15px;box-shadow:0 6px 15px rgba(0,0,0,0.3);border:2px solid var(--border);">`;
+    }
+    document.getElementById('lq-question-text').innerHTML = headerHTML + qText + imgHTML;
 
     const optionsContainer = document.getElementById('lq-options-container');
     optionsContainer.innerHTML = '';
 
-    if (qData.type === 'mcq' || qData.type === 'multiple_choice' || qData.type === 'true_false') {
-        qData.options.forEach((opt, index) => {
+    const correctVal = (typeof qData.answer === 'number') ? qData.options[qData.answer] : qData.answer;
+
+    // ── Grade 1 special True/False: large emoji buttons ──
+    if (qData.type === 'true_false' && lqCurrentGrade === 'grade1') {
+        const tfWrap = document.createElement('div');
+        tfWrap.style.cssText = 'display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:24px;';
+        qData.options.forEach((opt) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn lq-btn';
+            btn.innerHTML = opt;
+            btn.style.cssText = 'font-size:2rem;padding:28px 48px;border-radius:20px;min-width:160px;flex:1;line-height:1.4;font-weight:800;';
+            btn.onclick = () => window.lqSubmitAnswer(opt, correctVal, qData.marks, btn, qCategory);
+            tfWrap.appendChild(btn);
+        });
+        optionsContainer.appendChild(tfWrap);
+
+    } else if (qData.type === 'mcq' || qData.type === 'multiple_choice' || qData.type === 'true_false') {
+        qData.options.forEach((opt) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn lq-btn';
             btn.innerText = opt;
-            // Support both string answers and index answers
-            const correctVal = (typeof qData.answer === 'number') ? qData.options[qData.answer] : qData.answer;
-            btn.onclick = () => window.lqSubmitAnswer(opt, correctVal, qData.marks, btn);
+            btn.onclick = () => window.lqSubmitAnswer(opt, correctVal, qData.marks, btn, qCategory);
             optionsContainer.appendChild(btn);
         });
+
     } else if (qData.type === 'fill_blank' || qData.type === 'short_answer') {
         const input = document.createElement('input');
         input.type = 'text';
         input.id = 'lq-text-answer';
         input.placeholder = 'Type your answer here...';
-        input.style.width = '100%';
-        input.style.padding = '15px';
-        input.style.borderRadius = '8px';
-        input.style.border = '2px solid var(--border)';
-        input.style.background = 'var(--surface2)';
-        input.style.color = 'var(--text)';
-        input.style.fontSize = '1.1rem';
-        
+        input.style.cssText = 'width:100%;padding:15px;border-radius:8px;border:2px solid var(--border);background:var(--surface2);color:var(--text);font-size:1.1rem;';
         const btn = document.createElement('button');
         btn.className = 'btn-primary lq-btn';
         btn.innerText = 'Submit';
         btn.style.marginTop = '15px';
-        btn.onclick = () => window.lqSubmitAnswer(document.getElementById('lq-text-answer').value, qData.answer, qData.marks, btn);
+        btn.onclick = () => window.lqSubmitAnswer(
+            document.getElementById('lq-text-answer').value,
+            qData.answer, qData.marks, btn, qCategory
+        );
         optionsContainer.appendChild(input);
         optionsContainer.appendChild(btn);
+
     } else if (qData.type === 'match_following') {
         const wrap = document.createElement('div');
         wrap.className = 'match-grid';
-        wrap.style.display = 'flex';
-        wrap.style.flexDirection = 'column';
-        wrap.style.gap = '15px';
+        wrap.style.cssText = 'display:flex;flex-direction:column;gap:15px;';
 
         qData.left.forEach((leftItem, i) => {
             const row = document.createElement('div');
-            row.style.display = 'flex';
-            row.style.gap = '15px';
-            row.style.alignItems = 'center';
+            row.style.cssText = 'display:flex;gap:15px;align-items:center;';
 
             const leftLbl = document.createElement('div');
             leftLbl.innerText = leftItem;
-            leftLbl.style.flex = '1';
-            leftLbl.style.padding = '12px 15px';
-            leftLbl.style.background = 'var(--surface)';
-            leftLbl.style.borderRadius = '8px';
-            leftLbl.style.border = '1px solid var(--cyan)';
-            leftLbl.style.fontWeight = 'bold';
+            leftLbl.style.cssText = 'flex:1;padding:12px 15px;background:var(--surface);border-radius:8px;border:1px solid var(--cyan);font-weight:bold;';
 
             const rightSel = document.createElement('select');
             rightSel.className = 'lq-match-select';
-            rightSel.style.flex = '1';
-            rightSel.style.padding = '12px 15px';
-            rightSel.style.borderRadius = '8px';
-            rightSel.style.border = '1px solid var(--border)';
-            rightSel.style.background = 'var(--bg2)';
-            rightSel.style.color = 'var(--text)';
-            
+            rightSel.style.cssText = 'flex:1;padding:12px 15px;border-radius:8px;border:1px solid var(--border);background:var(--bg2);color:var(--text);';
             const defOpt = document.createElement('option');
             defOpt.innerText = '-- Select Match --';
             defOpt.value = '';
             rightSel.appendChild(defOpt);
-
-            // Scramble right items for the dropdown
             const rightScrambled = [...qData.right].sort(() => Math.random() - 0.5);
             rightScrambled.forEach(rightItem => {
                 const opt = document.createElement('option');
@@ -430,61 +469,64 @@ function lqRenderQuestion() {
             let correctCount = 0;
             let allSelected = true;
             selects.forEach((sel, i) => {
-                if(!sel.value) allSelected = false;
+                if (!sel.value) allSelected = false;
                 userAns[qData.left[i]] = sel.value;
                 if (sel.value === qData.answer[qData.left[i]]) correctCount++;
             });
-            if(!allSelected) { alert("Please match all items!"); return; }
+            if (!allSelected) { alert("Please match all items!"); return; }
             const isCorrect = correctCount === qData.left.length;
-            window.lqSubmitAnswer(JSON.stringify(userAns), JSON.stringify(qData.answer), isCorrect ? qData.marks : 0, btn, isCorrect);
+            window.lqSubmitAnswer(
+                JSON.stringify(userAns), JSON.stringify(qData.answer),
+                isCorrect ? qData.marks : 0, btn, qCategory, isCorrect
+            );
         };
-
         optionsContainer.appendChild(wrap);
         optionsContainer.appendChild(btn);
     }
 }
 
-window.lqSubmitAnswer = (selected, correct, marks, btnElement, customIsCorrect = null) => {
+// category: 'critical_thinking' | 'problem_solving' | 'safety' | 'ethics' | 'uncategorized'
+window.lqSubmitAnswer = (selected, correct, marks, btnElement, category = 'uncategorized', customIsCorrect = null) => {
     if (lqAnsweredCurrent) return;
     lqAnsweredCurrent = true;
 
-    const isCorrect = customIsCorrect !== null ? customIsCorrect : (selected.toString().toLowerCase().trim() === correct.toString().toLowerCase().trim());
+    const isCorrect = customIsCorrect !== null
+        ? customIsCorrect
+        : (selected.toString().toLowerCase().trim() === correct.toString().toLowerCase().trim());
 
     if (isCorrect) {
         lqMyScore += marks;
-        update(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), { score: lqMyScore });
+        lqCategoryScores[category] = (lqCategoryScores[category] || 0) + marks;
+        update(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), {
+            score: lqMyScore,
+            categoryScores: lqCategoryScores
+        });
     }
 
-    const answerData = {
-        answer: selected.toString(),
-        correct: isCorrect
-    };
-    
+    const answerData = { answer: selected.toString(), correct: isCorrect };
     let realIndex = lqQuestionOrder[lqCurrentQuestionIndex];
     set(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}/answers/${realIndex}`), answerData);
     set(ref(db, `rooms/${lqRoomCode}/responses/${realIndex}/${lqPlayerName}`), answerData);
 
     if (btnElement) {
-        btnElement.style.backgroundColor = 'var(--green)';
-        btnElement.style.color = '#111';
-        btnElement.style.borderColor = 'var(--green)';
+        btnElement.style.backgroundColor = isCorrect ? 'var(--green)' : 'var(--red)';
+        btnElement.style.color = '#fff';
+        btnElement.style.borderColor = isCorrect ? 'var(--green)' : 'var(--red)';
         btnElement.style.transform = 'scale(1.05)';
     }
 
-    // Disable all options so they can't click again
+    // Lock all options
     document.querySelectorAll('#lq-options-container .lq-btn').forEach(b => {
         b.style.pointerEvents = 'none';
-        if (b !== btnElement) {
-            b.style.opacity = '0.5';
-        }
+        if (b !== btnElement) b.style.opacity = '0.45';
     });
 
     const optionsContainer = document.getElementById('lq-options-container');
     const nextBtnContainer = document.createElement('div');
     nextBtnContainer.style.marginTop = '20px';
-    
+
     if (lqCurrentQuestionIndex >= lqQuizData.questions.length - 1) {
-        nextBtnContainer.innerHTML = '<h4 style="color:var(--cyan);">Answer submitted! Waiting for host to end the session...</h4>';
+        nextBtnContainer.innerHTML = '<h4 style="color:var(--cyan);">✅ All done! Waiting for the teacher to end the session...</h4>';
     } else {
         const nextBtn = document.createElement('button');
         nextBtn.className = 'btn-primary lq-btn';
@@ -521,35 +563,69 @@ function lqShowLeaderboard(players) {
 
 window.lqDownloadCSV = async () => {
     try {
-        const snapshot = await get(ref(db, `rooms/${lqRoomCode}/players`));
-        const players = snapshot.val() || {};
-        
-        // Header
-        let csvContent = "Name,Total Score";
-        for(let i=0; i<lqQuizData.questions.length; i++) {
-            csvContent += `,Q${i+1} Answer`;
-        }
-        csvContent += "\n";
+        const roomSnapshot = await get(ref(db, `rooms/${lqRoomCode}`));
+        if (!roomSnapshot.exists()) throw new Error("Room data not found in database.");
+        const roomData = roomSnapshot.val();
+        const players = roomData.players || {};
 
-        // Sort players by score
+        const schoolVal = roomData.school || "School";
+        const gradeVal = roomData.grade || "grade";
+        const unitVal  = roomData.unit  || "baseline";
+
+        // ── Filename numbers (e.g. HHmm-DMS-1-1.csv) ──
+        const now = new Date();
+        const hhmm = now.getHours().toString().padStart(2,'0') + now.getMinutes().toString().padStart(2,'0');
+
+        let gradeNum = gradeVal;
+        if (gradeVal.startsWith("grade")) gradeNum = gradeVal.substring(5);
+        else if (gradeVal === "teachers_baseline")   gradeNum = "T1";
+        else if (gradeVal === "teachers_baseline_2") gradeNum = "T2";
+
+        let unitNum = unitVal;
+        if (unitVal === "baseline") unitNum = "1";
+        else if (unitVal.startsWith("unit")) unitNum = unitVal.substring(4);
+
+        const filename = `${hhmm}-${schoolVal}-${gradeNum}-${unitNum}.csv`;
+
+        // ── Display values for CSV body ──
+        let gradeDisplay = gradeVal;
+        if (gradeVal.startsWith("grade")) gradeDisplay = "Grade " + gradeVal.substring(5);
+        else if (gradeVal === "teachers_baseline")   gradeDisplay = "Teachers Baseline 1";
+        else if (gradeVal === "teachers_baseline_2") gradeDisplay = "Teachers Baseline 2";
+
+        let unitDisplay = unitVal;
+        if (unitVal === "baseline") unitDisplay = "Baseline";
+        else if (unitVal.startsWith("unit")) unitDisplay = "Unit " + unitVal.substring(4);
+
+        const timestampStr = now.toLocaleString();
+
+        // ── CSV Header ──
+        let csvContent = "Timestamp,School Name,Grade,Student Name,Overall Marks,Critical Thinking,Problem Solving,Safety,Ethics\n";
+
+        // ── Sort by score descending ──
         const sortedPlayers = Object.entries(players).sort((a,b) => b[1].score - a[1].score);
 
-        // Player rows
         for (const [pName, player] of sortedPlayers) {
-            let row = `"${player.name || pName}",${player.score || 0}`;
-            for(let i=0; i<lqQuizData.questions.length; i++) {
-                const ans = (player.answers && player.answers[i]) ? player.answers[i].answer : "Not Answered";
-                const escapedAns = ans.replace(/"/g, '""');
-                row += `,"${escapedAns}"`;
-            }
+            const cs = player.categoryScores || {};
+            const row = [
+                `"${timestampStr}"`,
+                `"${schoolVal}"`,
+                `"${gradeDisplay}"`,
+                `"${(player.name || pName).replace(/"/g, '""')}"`,
+                player.score || 0,
+                cs.critical_thinking || 0,
+                cs.problem_solving   || 0,
+                cs.safety            || 0,
+                cs.ethics            || 0
+            ].join(',');
             csvContent += row + "\n";
         }
 
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
+        const url  = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.setAttribute("href", url);
-        link.setAttribute("download", `Quiz_Results_Room_${lqRoomCode}.csv`);
+        link.setAttribute("download", filename);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

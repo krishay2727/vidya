@@ -23,8 +23,6 @@
   ],
   "overview": "Students level up from basic Arduino blink sketches to writing clean, structured code using functions, arrays, and for-loops. By the end, they will refactor messy repetitive code into elegant, reusable sketches — the mark of a real programmer!",
   "grades": [
-    5,
-    6,
     7
   ],
   "slides": {

@@ -24,10 +24,7 @@
   ],
   "overview": "Students build a smart attendance system using PIR Motion Sensor and RTC module. If a person enters before 9:00 AM and motion is detected, the system marks attendance automatically.",
   "grades": [
-    6,
-    7,
-    8,
-    9
+    7
   ],
   "slides": {
     "pdf": "sessions/session-216/slides.pdf"

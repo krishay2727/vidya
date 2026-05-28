@@ -23,8 +23,6 @@
   ],
   "overview": "Discover how computers 'see' images — not as pictures, but as grids of numbers! Explore pixels, RGB colour channels, grayscale, and how a computer reads an image the same way it reads data. Then write real Python code to load, inspect, and manipulate images pixel by pixel — the foundation of all AI vision systems.",
   "grades": [
-    5,
-    6,
     7
   ],
   "slides": {

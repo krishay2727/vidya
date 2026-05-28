@@ -1,71 +1,190 @@
 {
   "grade1": {
-    "unit1": {
-      "quiz_title": "Grade 1 STEM Quiz - Unit 1",
+    "baseline": {
+      "quiz_title": "Grade 1 STEM Baseline",
+      "duration": 10,
       "questions": [
         {
           "id": 1,
+          "category": "critical_thinking",
           "type": "multiple_choice",
-          "text": "Which animal can fly?",
-          "options": [
-            "Dog",
-            "Bird",
-            "Fish"
-          ],
+          "text": "Which of these is a LIVING thing? 🌱",
+          "options": ["Stone 🪨", "Bird 🐦", "Brick 🧱"],
           "answer": 1,
-          "marks": 10
+          "marks": 5
         },
         {
           "id": 2,
+          "category": "critical_thinking",
           "type": "true_false",
-          "text": "The sun rises in the East.",
-          "options": [
-            "True",
-            "False"
-          ],
-          "answer": 0,
-          "marks": 10
+          "text": "☀️ The sun rises in the East every morning.",
+          "options": ["✅ True", "❌ False"],
+          "answer": "✅ True",
+          "marks": 5
         },
         {
           "id": 3,
-          "type": "fill_blank",
-          "text": "Ice is the ______ state of water.",
-          "answer": "solid",
-          "marks": 10
+          "category": "critical_thinking",
+          "type": "true_false",
+          "text": "🌿 Plants need sunlight to grow.",
+          "options": ["✅ True", "❌ False"],
+          "answer": "✅ True",
+          "marks": 5
         },
         {
           "id": 4,
-          "type": "match_following",
-          "text": "Match the animal to its feature:",
-          "left": [
-            "Bird",
-            "Fish",
-            "Dog"
-          ],
-          "right": [
-            "Wings",
-            "Gills",
-            "Paws"
-          ],
-          "answer": {
-            "Bird": "Wings",
-            "Fish": "Gills",
-            "Dog": "Paws"
-          },
-          "marks": 10
+          "category": "critical_thinking",
+          "type": "multiple_choice",
+          "text": "What is this component? 👇",
+          "image": "data/BreadBoard.jpg",
+          "options": ["Battery 🔋", "Breadboard", "Motor ⚙️"],
+          "answer": 1,
+          "marks": 5
         },
         {
           "id": 5,
+          "category": "critical_thinking",
+          "type": "true_false",
+          "text": "🧊 Ice is a solid form of water.",
+          "options": ["✅ True", "❌ False"],
+          "answer": "✅ True",
+          "marks": 5
+        },
+        {
+          "id": 6,
+          "category": "problem_solving",
           "type": "multiple_choice",
-          "text": "Identify this component:",
-          "image": "data/BreadBoard.jpg",
-          "options": [
-            "Breadboard",
-            "Battery",
-            "LED"
-          ],
-          "answer": 0,
-          "marks": 10
+          "text": "You have 3 apples 🍎 and eat 1. How many are left?",
+          "options": ["1", "2", "3"],
+          "answer": 1,
+          "marks": 5
+        },
+        {
+          "id": 7,
+          "category": "problem_solving",
+          "type": "true_false",
+          "text": "⚡ A broken wire will STOP electricity from flowing.",
+          "options": ["✅ True", "❌ False"],
+          "answer": "✅ True",
+          "marks": 5
+        },
+        {
+          "id": 8,
+          "category": "problem_solving",
+          "type": "multiple_choice",
+          "text": "What is this device used for? 👇",
+          "image": "data/Arduino-uno.jpg",
+          "options": ["Cooking food 🍳", "Programming & controlling 💻", "Watering plants 🌱"],
+          "answer": 1,
+          "marks": 5
+        },
+        {
+          "id": 9,
+          "category": "problem_solving",
+          "type": "multiple_choice",
+          "text": "Which shape has 4 equal sides? 🔷",
+          "options": ["Triangle", "Circle", "Square"],
+          "answer": 2,
+          "marks": 5
+        },
+        {
+          "id": 10,
+          "category": "problem_solving",
+          "type": "true_false",
+          "text": "🔋 A battery gives power to a light bulb.",
+          "options": ["✅ True", "❌ False"],
+          "answer": "✅ True",
+          "marks": 5
+        },
+        {
+          "id": 11,
+          "category": "safety",
+          "type": "true_false",
+          "text": "💧⚡ You should touch electrical wires with WET hands.",
+          "options": ["✅ True", "❌ False"],
+          "answer": "❌ False",
+          "marks": 5
+        },
+        {
+          "id": 12,
+          "category": "safety",
+          "type": "multiple_choice",
+          "text": "🔥 What should you do if you see fire in the lab?",
+          "options": ["Ignore it", "Alert the teacher immediately 🏃", "Fan it with paper"],
+          "answer": 1,
+          "marks": 5
+        },
+        {
+          "id": 13,
+          "category": "safety",
+          "type": "true_false",
+          "text": "🔌 Is it safe to put your fingers in an electrical socket?",
+          "options": ["✅ True", "❌ False"],
+          "answer": "❌ False",
+          "marks": 5
+        },
+        {
+          "id": 14,
+          "category": "safety",
+          "type": "multiple_choice",
+          "text": "👁️ What do you wear to protect your eyes in a lab?",
+          "options": ["Hat 🎩", "Safety Goggles 🥽", "Scarf 🧣"],
+          "answer": 1,
+          "marks": 5
+        },
+        {
+          "id": 15,
+          "category": "safety",
+          "type": "true_false",
+          "text": "🧹 You should always clean up after finishing a lab activity.",
+          "options": ["✅ True", "❌ False"],
+          "answer": "✅ True",
+          "marks": 5
+        },
+        {
+          "id": 16,
+          "category": "ethics",
+          "type": "true_false",
+          "text": "📝 Is it okay to copy another student's answers?",
+          "options": ["✅ True", "❌ False"],
+          "answer": "❌ False",
+          "marks": 5
+        },
+        {
+          "id": 17,
+          "category": "ethics",
+          "type": "multiple_choice",
+          "text": "🔧 If you accidentally break a lab tool, you should...",
+          "options": ["Hide it and say nothing", "Tell the teacher honestly 🙋", "Blame a classmate"],
+          "answer": 1,
+          "marks": 5
+        },
+        {
+          "id": 18,
+          "category": "ethics",
+          "type": "true_false",
+          "text": "🤝 You should share your ideas with your team.",
+          "options": ["✅ True", "❌ False"],
+          "answer": "✅ True",
+          "marks": 5
+        },
+        {
+          "id": 19,
+          "category": "ethics",
+          "type": "multiple_choice",
+          "text": "🔬 What should you do if you make a mistake in an experiment?",
+          "options": ["Give up and go home", "Try again and learn from it 💡", "Copy from a friend"],
+          "answer": 1,
+          "marks": 5
+        },
+        {
+          "id": 20,
+          "category": "ethics",
+          "type": "true_false",
+          "text": "😊 You should be kind and respectful to everyone in the classroom.",
+          "options": ["✅ True", "❌ False"],
+          "answer": "✅ True",
+          "marks": 5
         }
       ]
     },
@@ -86,8 +205,8 @@
     }
   },
   "grade2": {
-    "unit1": {
-      "quiz_title": "Grade 2 STEM Quiz - Unit 1",
+    "baseline": {
+      "quiz_title": "Grade 2 STEM Quiz - Baseline",
       "questions": [
         {
           "id": 1,
@@ -172,8 +291,8 @@
     }
   },
   "grade3": {
-    "unit1": {
-      "quiz_title": "Grade 3 STEM Quiz - Unit 1",
+    "baseline": {
+      "quiz_title": "Grade 3 STEM Quiz - Baseline",
       "questions": [
         {
           "id": 1,
@@ -258,8 +377,8 @@
     }
   },
   "grade4": {
-    "unit1": {
-      "quiz_title": "Grade 4 STEM Quiz - Unit 1",
+    "baseline": {
+      "quiz_title": "Grade 4 STEM Quiz - Baseline",
       "questions": [
         {
           "id": 1,
@@ -395,8 +514,8 @@
     }
   },
   "grade5": {
-    "unit1": {
-      "quiz_title": "Grade 5 STEM Quiz - Unit 1",
+    "baseline": {
+      "quiz_title": "Grade 5 STEM Quiz - Baseline",
       "questions": [
         {
           "id": 1,
@@ -537,8 +656,8 @@
     }
   },
   "grade6": {
-    "unit1": {
-      "quiz_title": "Grade 6 STEM Quiz - Unit 1",
+    "baseline": {
+      "quiz_title": "Grade 6 STEM Quiz - Baseline",
       "questions": [
         {
           "id": 1,
@@ -679,8 +798,8 @@
     }
   },
   "grade7": {
-    "unit1": {
-      "quiz_title": "Grade 7 STEM Quiz - Unit 1",
+    "baseline": {
+      "quiz_title": "Grade 7 STEM Quiz - Baseline",
       "questions": [
         {
           "id": 1,
@@ -821,8 +940,8 @@
     }
   },
   "grade8": {
-    "unit1": {
-      "quiz_title": "Grade 8 STEM Quiz - Unit 1",
+    "baseline": {
+      "quiz_title": "Grade 8 STEM Quiz - Baseline",
       "questions": [
         {
           "id": 1,
@@ -963,8 +1082,8 @@
     }
   },
   "grade9": {
-    "unit1": {
-      "quiz_title": "Grade 9 STEM Quiz - Unit 1",
+    "baseline": {
+      "quiz_title": "Grade 9 STEM Quiz - Baseline",
       "questions": [
         {
           "id": 1,
@@ -1105,7 +1224,7 @@
     }
   },
   "teachers_baseline": {
-    "unit1": {
+    "baseline": {
       "quiz_title": "Teachers Baseline STEM & Tinkering Exam",
       "duration": 20,
       "questions": [
@@ -1534,7 +1653,7 @@
     }
   },
   "teachers_baseline_2": {
-    "unit1": {
+    "baseline": {
       "quiz_title": "Teachers Baseline STEM & Tinkering Exam - Paper 2",
       "duration": 25,
       "questions": [

@@ -1,0 +1,203 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-smooth-led/",
+        "slides_folder": "sessions/session-smooth-led/slides/",
+        "images_folder": "sessions/session-smooth-led/images/",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "smooth-led-pwm",
+    "number": 2,
+    "title": "Smooth LED (PWM)",
+    "subtitle": "Students modify delay and brightness values. See the difference.",
+    "date": "Session 02",
+    "duration": "1 Hours",
+    "phase": "Foundation",
+    "color": "#FFD400",
+    "icon": "💡",
+    "tags": [
+        "Technology",
+        "Engineering",
+        "Programming",
+        "Mathematics"
+    ],
+    "overview": "In this session, students discover how microcontrollers simulate analog brightness using Pulse Width Modulation (PWM). By modifying delay and brightness values in code, they directly observe how timing transforms a harsh blink into a smooth fade.",
+    "grades": [
+        3
+    ],
+    "slides": {
+        "pdf": "sessions/session-smooth-led/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — component photos, activity shots, student experiments, whiteboard diagrams.",
+        "gallery": [
+            {
+                "file": "data/pwm-wave.gif",
+                "_placeholder": "ADD: Animation or drawing showing Duty Cycle (ON vs OFF times)",
+                "caption": "PWM — Changing the ON time vs OFF time to change brightness",
+                "category": "Concept"
+            },
+            {
+                "file": "data/led-fading.gif",
+                "_placeholder": "ADD: Photo/GIF of LED smoothly fading up and down",
+                "caption": "Smooth LED Fading in action!",
+                "category": "Components"
+            },
+            {
+                "file": "data/arduino-pwm-pins.jpg",
+                "_placeholder": "ADD: Close-up photo of Arduino PWM pins indicated by the tilde (~) symbol",
+                "caption": "Look closely for the ~ symbol next to the digital pins!",
+                "category": "Components"
+            },
+            {
+                "file": "data/student-coding.jpg",
+                "_placeholder": "ADD: Photo of students editing delay and brightness values in IDE",
+                "caption": "Students tweaking values in code to change fading speed",
+                "category": "Lab"
+            }
+        ]
+    },
+    "keyTopics": [
+        "Digital vs. Analog — Digital is ON/OFF (0 or 1), Analog is smooth (0% to 100%)",
+        "PWM (Pulse Width Modulation) — Cinema Trick! Blinking so fast that our human eyes see it as dimming",
+        "Duty Cycle — The percentage of time the electricity is turned ON vs turned OFF in a single cycle",
+        "The ~ Symbol — The tilde sign on Arduino that marks special pins capable of outputting PWM signals",
+        "analogWrite() — The magic instruction that sets PWM brightness from 0 (completely off) to 255 (fully bright)",
+        "Delay Modification — Changing code wait times to make the LED breathe faster or slower",
+        "Persistence of Vision (POV) — Why our brain is fooled into seeing continuous light instead of high-speed blinking"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "What is PWM (Pulse Width Modulation)?",
+            "videoId": "YmPziPfaByw",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "An easy-to-understand visual guide explaining how Pulse Width Modulation works using simple animations."
+        },
+        {
+            "title": "Arduino Analog Output (analogWrite) Explained",
+            "videoId": "fJWR7dBucv8",
+            "desc": "Learn how to use PWM pins on Arduino to control LED brightness smoothly."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Wokwi — Free Arduino PWM Fading Simulator",
+            "url": "https://wokwi.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Interactive PWM Duty Cycle Simulator",
+            "url": "https://www.falstad.com/circuit/",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "The Breathing LED Challenge",
+        "parts": [
+            "Arduino UNO",
+            "Breadboard",
+            "LED (any color)",
+            "220Ω Resistor",
+            "Jumper wires",
+            "USB Cable & Computer with Arduino IDE/Wokwi"
+        ],
+        "steps": [
+            "Connect the resistor to the LED's long leg (Anode)",
+            "Connect the other end of the resistor specifically to a PWM Pin (like Pin 9, marked with ~)",
+            "Connect the LED's short leg (Cathode) to the Arduino GND pin",
+            "Upload the fade sketch and observe the LED 'breathing' smoothly",
+            "Challenge 1: Change the delay values in code to make the LED breathe super fast like a heartbeat!",
+            "Challenge 2: Limit the maximum brightness variable to 50 instead of 255 and see the difference"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What does PWM stand for?",
+            "options": [
+                "Power Wave Management",
+                "Pulse Width Modulation",
+                "Programmed Wire Motion",
+                "Phase Width Measurement"
+            ],
+            "answer": 1,
+            "explanation": "PWM stands for Pulse Width Modulation! It means modulating (adjusting) the width of electrical pulses to control power."
+        },
+        {
+            "q": "How does PWM make an LED look dimmer?",
+            "options": [
+                "It physically lowers the battery voltage going to the LED",
+                "It turns the LED ON and OFF so fast that our eyes average it out",
+                "It increases the resistance inside the wire automatically",
+                "It changes the color of the LED light"
+            ],
+            "answer": 1,
+            "explanation": "PWM is a cinema trick! It blinks the LED hundreds of times per second. Because it's so fast, our eyes experience it as smooth dimming."
+        },
+        {
+            "q": "Which symbol marks PWM-capable pins on an Arduino Uno board?",
+            "options": [
+                "Plus sign (+)",
+                "Asterisk (*)",
+                "Tilde sign (~)",
+                "Hash sign (#)"
+            ],
+            "answer": 2,
+            "explanation": "Look for the small wave or tilde symbol (~) next to pins like 3, 5, 6, 9, 10, and 11 on your Arduino!"
+        },
+        {
+            "q": "What range of values can we pass inside the analogWrite() function?",
+            "options": [
+                "0 to 10",
+                "0 to 100",
+                "0 to 255",
+                "0 to 1023"
+            ],
+            "answer": 2,
+            "explanation": "analogWrite uses 8-bit values, meaning it accepts numbers from 0 (0% duty cycle / Off) up to 255 (100% duty cycle / Fully On)."
+        },
+        {
+            "q": "If an LED has a 10% Duty Cycle, how will it appear?",
+            "options": [
+                "Very bright",
+                "Completely turned off",
+                "Very dim, because it is only ON for 10% of the time",
+                "It will blink slowly once every 10 seconds"
+            ],
+            "answer": 2,
+            "explanation": "A lower duty cycle means the electricity is ON for a short time and OFF for a long time, making the LED look very dim."
+        },
+        {
+            "q": "What happens if you decrease the delay value in a fading code script?",
+            "options": [
+                "The LED fades much faster",
+                "The LED fades much slower",
+                "The LED stops fading and stays fully bright",
+                "The color changes from red to green"
+            ],
+            "answer": 0,
+            "explanation": "Smaller delay means the program waits less time between shifting brightness steps, making the LED breathe/fade much faster!"
+        },
+        {
+            "q": "If you connect an LED to a normal digital pin (like Pin 7) and try analogWrite(), what happens?",
+            "options": [
+                "It fades perfectly anyway",
+                "The board will burn out",
+                "It won't fade; it behaves like normal digitalWrite (either full ON or full OFF)",
+                "The LED explodes"
+            ],
+            "answer": 2,
+            "explanation": "Normal digital pins cannot modulate pulse widths. They only understand absolute 0 or 1, so the LED will just turn ON or OFF without fading."
+        },
+        {
+            "q": "Which real-life scenario uses PWM technology?",
+            "options": [
+                "Adjusting phone screen brightness smoothly",
+                "Controlling the speed of a ceiling fan or drone motor",
+                "The transition of a smart ambient light fading to sleep mode",
+                "All of the above"
+            ],
+            "answer": 3,
+            "explanation": "PWM is used everywhere! It controls screen brightness, dimming lamps, and regulating motor speeds smoothly."
+        }
+    ]
+}

@@ -24,8 +24,6 @@
   ],
   "overview": "Students discover what Artificial Intelligence really means — and how it differs from regular programming. Through fun comparisons and activities, they learn that traditional (explicit) programming follows strict rules written by humans, while Machine Learning lets computers learn patterns from data on their own — just like how we learn from experience!",
   "grades": [
-    5,
-    6,
     7
   ],
   "slides": {
@@ -157,15 +155,47 @@
   },
   "comparisonTable": {
     "title": "Explicit Programming vs Machine Learning",
-    "columns": ["Feature", "Explicit Programming", "Machine Learning"],
+    "columns": [
+      "Feature",
+      "Explicit Programming",
+      "Machine Learning"
+    ],
     "rows": [
-      ["Who writes the rules?", "Human programmer writes every rule", "Computer learns rules from data"],
-      ["How does it work?", "INPUT → RULES → OUTPUT", "INPUT + OUTPUT (data) → RULES learned"],
-      ["Handles new situations?", "Only if a rule was written for it", "Can generalise to new, unseen inputs"],
-      ["Example", "Calculator, Traffic light, ATM", "Face recognition, Spam filter, Chatbot"],
-      ["Needs lots of data?", "No — just needs clear rules", "Yes — needs many examples to learn from"],
-      ["Easy to explain?", "Yes — rules are visible and logical", "Hard — the model is often a 'black box'"],
-      ["Best for", "Fixed, well-defined problems", "Complex problems with patterns in data"]
+      [
+        "Who writes the rules?",
+        "Human programmer writes every rule",
+        "Computer learns rules from data"
+      ],
+      [
+        "How does it work?",
+        "INPUT → RULES → OUTPUT",
+        "INPUT + OUTPUT (data) → RULES learned"
+      ],
+      [
+        "Handles new situations?",
+        "Only if a rule was written for it",
+        "Can generalise to new, unseen inputs"
+      ],
+      [
+        "Example",
+        "Calculator, Traffic light, ATM",
+        "Face recognition, Spam filter, Chatbot"
+      ],
+      [
+        "Needs lots of data?",
+        "No — just needs clear rules",
+        "Yes — needs many examples to learn from"
+      ],
+      [
+        "Easy to explain?",
+        "Yes — rules are visible and logical",
+        "Hard — the model is often a 'black box'"
+      ],
+      [
+        "Best for",
+        "Fixed, well-defined problems",
+        "Complex problems with patterns in data"
+      ]
     ]
   },
   "quiz": [

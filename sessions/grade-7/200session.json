@@ -23,8 +23,6 @@
   ],
   "overview": "Discover how Artificial Intelligence actually learns — not by magic, but by studying examples! Students explore training data, testing data, and how a simple model makes predictions. Build an intuition for machine learning by training a human 'AI' in class, then see it work in real Python code.",
   "grades": [
-    5,
-    6,
     7
   ],
   "slides": {
