@@ -1,0 +1,319 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-235/",
+    "slides_folder": "sessions/session-235/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-235/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-235",
+  "number": 235,
+  "title": "Database Concepts",
+  "subtitle": "Store, Organise, Retrieve — The Power of Data!",
+  "date": "Session 235",
+  "duration": "1 Hour",
+  "phase": "Foundation",
+  "color": "#FF6B35",
+  "icon": "🗄️",
+  "tags": [
+    "Database",
+    "SQL",
+    "Tables",
+    "Data Management",
+    "Computer Science"
+  ],
+  "overview": "Students explore the fundamentals of databases — what they are, why we need them, and how data is stored, organised and retrieved. This session introduces tables, rows, columns, primary keys, and basic SQL queries in a fun and relatable way.",
+  "grades": [
+    6,
+    7,
+    8
+  ],
+  "slides": {
+    "pdf": "sessions/session-235/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — whiteboard table drawings, student activity sheets, SQL query demos, database diagrams.",
+    "gallery": [
+      {
+        "file": "data/database-table.png",
+        "_placeholder": "ADD: Photo or diagram of a database table with rows and columns",
+        "caption": "A database table — like a super-organised Excel sheet!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/primary-key.jpg",
+        "_placeholder": "ADD: Diagram showing primary key concept",
+        "caption": "Primary Key — Every row's unique ID card!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/sql-query.png",
+        "_placeholder": "ADD: Screenshot of a basic SELECT SQL query",
+        "caption": "SQL SELECT — Ask the database a question!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/real-world-db.jpg",
+        "_placeholder": "ADD: Examples of databases in real life — Swiggy, Zomato, school records",
+        "caption": "Databases are everywhere — Swiggy, Railways, Schools!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/student-table-activity.jpg",
+        "_placeholder": "ADD: Photo of students drawing their own tables on paper",
+        "caption": "Students designing their own database tables!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/db-relationship.png",
+        "_placeholder": "ADD: Diagram showing two related tables",
+        "caption": "Tables can be linked — like puzzle pieces fitting together!",
+        "category": "Concept"
+      }
+    ]
+  },
+  "keyTopics": [
+    "What is a Database? — An organised collection of data (like a digital filing cabinet!)",
+    "Table — Rows and Columns (like a school attendance register)",
+    "Row / Record — One entry (one student's details)",
+    "Column / Field — One category of data (Name, Age, Class)",
+    "Primary Key — Unique ID for every row (like your Aadhaar number!)",
+    "SQL — Structured Query Language (how you talk to a database)",
+    "SELECT — Retrieve data from a table",
+    "WHERE — Filter results (like a search condition)",
+    "INSERT — Add new data into a table",
+    "Real-World Databases — Zomato orders, IRCTC tickets, School records"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "What is a Database? — Explained for Beginners",
+      "videoId": "wR0jg0eQsZA",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A simple and visual explanation of what databases are, why they matter, and how they store information in the real world."
+    },
+    {
+      "title": "SQL Tutorial for Beginners — Full Course",
+      "videoId": "HXV3zeQKqGY",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Learn the basics of SQL — SELECT, INSERT, WHERE and more — with easy examples."
+    },
+    {
+      "title": "What is a Primary Key?",
+      "videoId": "B5r8CcTUs4Y",
+      "desc": "Understanding primary keys and why every table needs a unique identifier."
+    },
+    {
+      "title": "Databases in Real Life — How Apps Store Your Data",
+      "videoId": "t8jgX1f8kc4",
+      "desc": "See how apps like Instagram, Swiggy and IRCTC use databases to manage millions of records."
+    }
+  ],
+  "resources": [
+    {
+      "title": "W3Schools SQL Tutorial",
+      "url": "https://www.w3schools.com/sql/",
+      "icon": "🔗"
+    },
+    {
+      "title": "SQLiteOnline — Practice SQL in Browser",
+      "url": "https://sqliteonline.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "DB Fiddle — Free Online SQL Playground",
+      "url": "https://www.db-fiddle.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Khan Academy — Intro to SQL",
+      "url": "https://www.khanacademy.org/computing/computer-programming/sql",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "Design Your Own School Database",
+    "parts": [
+      "Paper / Activity Sheet",
+      "Pencil",
+      "SQLiteOnline.com (browser-based)",
+      "Sample dataset provided by teacher"
+    ],
+    "steps": [
+      "Think: What information does your school need to store about students?",
+      "Draw a table on paper — add columns: StudentID, Name, Class, Age, City",
+      "Fill in 5 rows with made-up student data",
+      "Identify the Primary Key — which column is unique for every student?",
+      "Open SQLiteOnline.com and create your table using SQL",
+      "Write a SELECT query to retrieve all students",
+      "Use WHERE to find only students from a specific class",
+      "Challenge: Add a new student using INSERT INTO!"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What is a database?",
+      "options": [
+        "A type of computer virus",
+        "An organised collection of data stored and accessed electronically",
+        "A programming language like Python",
+        "A type of hardware device"
+      ],
+      "answer": 1,
+      "explanation": "A database is an organised collection of data! Think of it like a super-smart digital filing cabinet that stores, organises and lets you quickly find any information."
+    },
+    {
+      "q": "In a database table, what is a ROW also called?",
+      "options": [
+        "A Field",
+        "A Column",
+        "A Record",
+        "A Query"
+      ],
+      "answer": 2,
+      "explanation": "A Row = a Record! Each row in a table stores one complete entry — like one student's full details (name, age, class, city)."
+    },
+    {
+      "q": "In a database table, what is a COLUMN also called?",
+      "options": [
+        "A Record",
+        "A Field",
+        "A Key",
+        "An Index"
+      ],
+      "answer": 1,
+      "explanation": "A Column = a Field! Each column stores one type of information — like Name, Age, or City — for all records in the table."
+    },
+    {
+      "q": "What is a PRIMARY KEY?",
+      "options": [
+        "The first column in any table",
+        "A unique identifier for every row in a table",
+        "The most important piece of data",
+        "A password to access the database"
+      ],
+      "answer": 1,
+      "explanation": "Primary Key = unique ID for every row! Like your Aadhaar number or Roll Number — no two rows can have the same primary key value."
+    },
+    {
+      "q": "What does SQL stand for?",
+      "options": [
+        "Simple Query Logic",
+        "System Quality Language",
+        "Structured Query Language",
+        "Sequential Queue List"
+      ],
+      "answer": 2,
+      "explanation": "SQL = Structured Query Language! It's the language you use to talk to a database — to ask questions, add data, update or delete records."
+    },
+    {
+      "q": "Which SQL command is used to RETRIEVE data from a table?",
+      "options": [
+        "GET",
+        "FETCH",
+        "FIND",
+        "SELECT"
+      ],
+      "answer": 3,
+      "explanation": "SELECT is how you ask the database to show you data! Example: SELECT * FROM Students; — this fetches all records from the Students table."
+    },
+    {
+      "q": "What does the WHERE clause do in a SQL query?",
+      "options": [
+        "Sorts the results alphabetically",
+        "Filters results based on a condition",
+        "Deletes unwanted rows",
+        "Creates a new table"
+      ],
+      "answer": 1,
+      "explanation": "WHERE filters your results! Example: SELECT * FROM Students WHERE Class = '7'; — this only returns students in Class 7."
+    },
+    {
+      "q": "Which SQL command adds a new record into a table?",
+      "options": [
+        "ADD ROW",
+        "UPDATE",
+        "INSERT INTO",
+        "PUSH"
+      ],
+      "answer": 2,
+      "explanation": "INSERT INTO adds new data! Example: INSERT INTO Students (Name, Age) VALUES ('Riya', 12); — adds a new student named Riya."
+    },
+    {
+      "q": "A school attendance register is a real-life example of a:",
+      "options": [
+        "Program",
+        "Database table",
+        "SQL query",
+        "Primary key"
+      ],
+      "answer": 1,
+      "explanation": "An attendance register is just like a database table! Each row is one student (record), each column is one detail (field) like Name, Date, Present/Absent."
+    },
+    {
+      "q": "Which of these is a real-world example of a database being used?",
+      "options": [
+        "Turning on a fan",
+        "Writing in a notebook",
+        "Booking a train ticket on IRCTC",
+        "Drawing a picture"
+      ],
+      "answer": 2,
+      "explanation": "IRCTC uses a massive database! When you book a ticket, it stores your name, train number, seat, date — all as records in a database table."
+    },
+    {
+      "q": "What is the correct SQL syntax to select all columns from a table called 'Students'?",
+      "options": [
+        "GET ALL FROM Students;",
+        "SELECT * FROM Students;",
+        "SHOW Students ALL;",
+        "FETCH * Students;"
+      ],
+      "answer": 1,
+      "explanation": "SELECT * FROM Students; — the * means 'all columns'. This is one of the most used SQL queries you'll write!"
+    },
+    {
+      "q": "Can two rows in a table have the same PRIMARY KEY value?",
+      "options": [
+        "Yes, always",
+        "Only if the table is large",
+        "No, primary keys must be unique",
+        "Yes, if the names are different"
+      ],
+      "answer": 2,
+      "explanation": "No! Primary keys must always be unique. That's the whole point — it's like a roll number, no two students can share the same one."
+    },
+    {
+      "q": "Which of these best describes a DATABASE TABLE?",
+      "options": [
+        "A photo stored on a computer",
+        "A collection of data arranged in rows and columns",
+        "A type of computer program",
+        "A folder on your desktop"
+      ],
+      "answer": 1,
+      "explanation": "A table stores data in rows and columns — just like a spreadsheet! Each row is one record and each column is one field of information."
+    },
+    {
+      "q": "In a Students table, which column would make the BEST primary key?",
+      "options": [
+        "Name",
+        "City",
+        "Age",
+        "StudentID"
+      ],
+      "answer": 3,
+      "explanation": "StudentID is the best primary key! Names can repeat (two students named Riya), but a StudentID is always unique for every student."
+    },
+    {
+      "q": "Zomato stores your order history, address, and payment details. This is an example of:",
+      "options": [
+        "A Python program",
+        "A hardware circuit",
+        "A real-world database system",
+        "A GUI application only"
+      ],
+      "answer": 2,
+      "explanation": "Zomato uses databases to store millions of orders, user profiles, restaurant menus and delivery details — all organised in tables and retrieved using SQL!"
+    }
+  ]
+}

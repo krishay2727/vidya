@@ -1,0 +1,321 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-237/",
+    "slides_folder": "sessions/session-237/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-237/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-237",
+  "number": 237,
+  "title": "AI/ML Bias & Fairness",
+  "subtitle": "Who Teaches the Machine — And What Does It Learn?",
+  "date": "Session 237",
+  "duration": "1 Hour",
+  "phase": "AI & Ethics",
+  "color": "#E91E8C",
+  "icon": "⚖️",
+  "tags": [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Bias",
+    "Fairness",
+    "Ethics",
+    "Computer Science"
+  ],
+  "overview": "Students explore how AI and Machine Learning systems can unintentionally learn bias from data — and why fairness in AI matters for everyone. Through real-world examples and discussions, students learn to think critically about who builds AI, what data it learns from, and how biased AI can impact real people's lives.",
+  "grades": [
+    6,
+    7,
+    8
+  ],
+  "slides": {
+    "pdf": "sessions/session-237/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — whiteboard discussions, bias activity results, student debate moments, AI ethics diagrams.",
+    "gallery": [
+      {
+        "file": "data/ai-training-data.png",
+        "_placeholder": "ADD: Diagram showing how AI learns from data",
+        "caption": "AI learns from data — garbage in, garbage out!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/bias-example.jpg",
+        "_placeholder": "ADD: Visual example of biased AI output — face recognition or hiring",
+        "caption": "Biased data → Biased AI decisions",
+        "category": "Concept"
+      },
+      {
+        "file": "data/fairness-scale.png",
+        "_placeholder": "ADD: Image of a balance scale representing fairness",
+        "caption": "Fairness means equal treatment for everyone — AI included!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/real-world-ai-bias.jpg",
+        "_placeholder": "ADD: News headline or case study image about AI bias",
+        "caption": "Real-world AI bias — it affects jobs, loans, and more!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/student-debate.jpg",
+        "_placeholder": "ADD: Photo of students discussing or debating in class",
+        "caption": "Students debating — Is this AI decision fair?",
+        "category": "Lab"
+      },
+      {
+        "file": "data/diverse-data.png",
+        "_placeholder": "ADD: Diagram showing diverse and representative training data",
+        "caption": "More diverse data = fairer AI for everyone!",
+        "category": "Concept"
+      }
+    ]
+  },
+  "keyTopics": [
+    "What is AI Bias? — When AI makes unfair decisions because of skewed training data",
+    "Training Data — AI learns from examples; biased examples = biased AI",
+    "Garbage In, Garbage Out — Bad data produces bad AI results",
+    "Real-World Bias Examples — Face recognition, hiring algorithms, loan approvals",
+    "Types of Bias — Data bias, historical bias, representation bias",
+    "Who is Affected? — How AI bias impacts real people unfairly",
+    "Fairness in AI — What does it mean for an AI to be fair?",
+    "How to Reduce Bias — Diverse data, diverse teams, testing and auditing AI",
+    "Human Responsibility — Humans build AI; humans must make it fair",
+    "Critical Thinking — Questioning AI decisions and not blindly trusting them"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "How AI Can Be Racist — Coded Bias Documentary Clip",
+      "videoId": "jZl55PsfZJQ",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A powerful look at how facial recognition AI showed racial bias — and what it means for society."
+    },
+    {
+      "title": "What is AI Bias? — Simply Explained",
+      "videoId": "59bMh59JQDo",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A beginner-friendly explanation of what bias in AI means, where it comes from, and why it matters."
+    },
+    {
+      "title": "Machine Learning Bias Explained for Kids",
+      "videoId": "gV0_raKR2UQ",
+      "desc": "An age-appropriate breakdown of how machines learn bias from humans and data."
+    },
+    {
+      "title": "AI Ethics — Fairness, Accountability and Transparency",
+      "videoId": "e5and-5_B1w",
+      "desc": "An introduction to AI ethics — fairness, who is responsible, and how we build trustworthy AI."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Google — Teachable Machine (Train Your Own AI)",
+      "url": "https://teachablemachine.withgoogle.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "AI Fairness 360 — IBM Open Source Toolkit",
+      "url": "https://aif360.mybluemix.net",
+      "icon": "🔗"
+    },
+    {
+      "title": "Moral Machine — MIT Ethical AI Experiment",
+      "url": "https://www.moralmachine.net",
+      "icon": "🔗"
+    },
+    {
+      "title": "Day of AI — Free AI Ethics Curriculum",
+      "url": "https://dayofai.org",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "Spot the Bias — AI Fairness Challenge",
+    "parts": [
+      "Activity sheet with AI scenario cards",
+      "Pencil",
+      "Whiteboard for class discussion",
+      "Optional: Teachable Machine (teachablemachine.withgoogle.com)"
+    ],
+    "steps": [
+      "Read the scenario: An AI is trained to shortlist job applicants using old hiring data",
+      "Discuss: What patterns might the old data contain? Who might get unfairly rejected?",
+      "Read scenario 2: A face recognition AI was trained mostly on light-skinned faces",
+      "Discuss: Who will this AI work well for? Who might it fail?",
+      "Activity: In groups, design a 'fair' AI training dataset for a school admission system",
+      "List: What types of students must be represented in your data?",
+      "Present your dataset plan to the class — explain your fairness choices",
+      "Optional: Use Teachable Machine — train with unequal data, observe biased results",
+      "Class reflection: Who is responsible when AI makes an unfair decision?"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What is AI bias?",
+      "options": [
+        "When an AI runs too slowly",
+        "When an AI makes unfair or skewed decisions due to biased training data",
+        "When an AI cannot connect to the internet",
+        "When a programmer makes a typing mistake"
+      ],
+      "answer": 1,
+      "explanation": "AI bias happens when the data used to train an AI contains unfair patterns — and the AI learns and repeats those unfair patterns in its decisions."
+    },
+    {
+      "q": "Where does AI learn from?",
+      "options": [
+        "Its own imagination",
+        "Only from books",
+        "Training data — examples provided by humans",
+        "The internet only"
+      ],
+      "answer": 2,
+      "explanation": "AI learns from training data — examples humans feed it. If those examples are biased or unrepresentative, the AI will learn and repeat that bias."
+    },
+    {
+      "q": "What does 'Garbage In, Garbage Out' mean in AI?",
+      "options": [
+        "AI systems produce physical waste",
+        "Bad or biased input data leads to bad or biased AI outputs",
+        "AI should be stored in a bin when not in use",
+        "Old computers give wrong answers"
+      ],
+      "answer": 1,
+      "explanation": "Garbage In, Garbage Out means the quality of AI output depends entirely on the quality of input data. Feed it biased data → get biased results!"
+    },
+    {
+      "q": "A hiring AI was trained on 20 years of old company data where most employees were men. What bias might it learn?",
+      "options": [
+        "It will prefer younger candidates",
+        "It will prefer candidates from big cities",
+        "It may unfairly rank male applicants higher than female applicants",
+        "It will only hire people with glasses"
+      ],
+      "answer": 2,
+      "explanation": "Historical bias! If past data shows mostly men were hired, the AI learns that pattern and may unfairly favour male applicants — even if women are equally or more qualified."
+    },
+    {
+      "q": "What is 'representation bias' in AI training data?",
+      "options": [
+        "When the AI is trained too fast",
+        "When certain groups of people are missing or underrepresented in the training data",
+        "When the AI represents data using charts",
+        "When the programmer is biased against coding"
+      ],
+      "answer": 1,
+      "explanation": "Representation bias occurs when some groups are barely included in training data. If a face recognition AI is mostly trained on light-skinned faces, it will perform poorly on darker-skinned faces."
+    },
+    {
+      "q": "A face recognition AI works well for light-skinned people but often misidentifies dark-skinned people. This is an example of:",
+      "options": [
+        "A software crash",
+        "Normal AI behaviour",
+        "AI bias caused by unrepresentative training data",
+        "A hardware problem"
+      ],
+      "answer": 2,
+      "explanation": "This is AI bias! The training data likely had far fewer dark-skinned faces, so the AI never learned to recognise them accurately. This has real harmful consequences in policing and security."
+    },
+    {
+      "q": "Which of these is a real-world area where AI bias has caused harm?",
+      "options": [
+        "Weather forecasting",
+        "Loan approvals and hiring decisions",
+        "Calculating the speed of light",
+        "Sorting a list of numbers"
+      ],
+      "answer": 1,
+      "explanation": "AI bias has been found in loan approval systems, hiring algorithms, criminal risk scoring and facial recognition — affecting real people's access to jobs, money and justice."
+    },
+    {
+      "q": "What is one of the best ways to reduce bias in an AI system?",
+      "options": [
+        "Make the AI run faster",
+        "Use more diverse and representative training data",
+        "Train the AI on less data",
+        "Remove all human involvement"
+      ],
+      "answer": 1,
+      "explanation": "Diverse, representative data is key! If your training data includes people of all genders, ages, ethnicities and backgrounds, the AI learns fairer patterns."
+    },
+    {
+      "q": "Why does having diverse teams of AI developers help reduce bias?",
+      "options": [
+        "More people means faster coding",
+        "Diverse teams are more likely to notice when data or decisions are unfair to certain groups",
+        "It is a legal requirement in all countries",
+        "It has no effect on AI bias"
+      ],
+      "answer": 1,
+      "explanation": "Diverse teams bring different perspectives! If everyone building the AI has the same background, they may not notice when the system is unfair to groups different from themselves."
+    },
+    {
+      "q": "An AI loan approval system rejects more applications from people in certain neighbourhoods. This could be because:",
+      "options": [
+        "The AI prefers round numbers",
+        "The training data contained historical patterns of discrimination against those areas",
+        "The server is located far away",
+        "The applicants used the wrong browser"
+      ],
+      "answer": 1,
+      "explanation": "Historical bias! If past loan data reflects old discriminatory lending practices, the AI learns those patterns and repeats the same discrimination — now automated at massive scale."
+    },
+    {
+      "q": "What does it mean for an AI to be 'fair'?",
+      "options": [
+        "It runs without crashing",
+        "It treats all people equitably regardless of gender, race, age or background",
+        "It gives the same answer to every question",
+        "It is available for free"
+      ],
+      "answer": 1,
+      "explanation": "A fair AI treats all groups equitably — its accuracy and decisions should not vary significantly based on a person's gender, race, age, or socioeconomic background."
+    },
+    {
+      "q": "Who is ultimately responsible when an AI makes an unfair or harmful decision?",
+      "options": [
+        "The AI itself — it made the decision",
+        "Nobody — it was an accident",
+        "The humans who designed, built and deployed the AI",
+        "The user who clicked the button"
+      ],
+      "answer": 2,
+      "explanation": "Humans are responsible! AI doesn't think or feel — it does what it was trained to do. The designers, data collectors and companies deploying AI must be accountable for its impact."
+    },
+    {
+      "q": "What should you do if an AI makes a decision that seems unfair to you or someone else?",
+      "options": [
+        "Accept it — AI is always correct",
+        "Question it, ask for a human review, and report it",
+        "Ignore it and move on",
+        "Blame the internet connection"
+      ],
+      "answer": 1,
+      "explanation": "Always question AI decisions, especially high-stakes ones! You have the right to ask for a human review. Critical thinking about AI outputs is an essential skill for everyone."
+    },
+    {
+      "q": "What is 'historical bias' in AI?",
+      "options": [
+        "When AI is used to study history",
+        "When AI training data reflects past human prejudices and discrimination",
+        "When old computers are used to train AI",
+        "When AI makes mistakes about historical dates"
+      ],
+      "answer": 1,
+      "explanation": "Historical bias means the training data carries the prejudices of the past — like old hiring records, criminal justice data, or lending patterns — and the AI learns to repeat those injustices."
+    },
+    {
+      "q": "Why is AI bias considered an important social issue, not just a technical one?",
+      "options": [
+        "Because it slows down computers",
+        "Because biased AI affects real people's lives — jobs, loans, justice and opportunities",
+        "Because it uses too much electricity",
+        "Because programmers find it boring to fix"
+      ],
+      "answer": 1,
+      "explanation": "AI bias is a social justice issue! When biased AI is used in hiring, lending, healthcare or policing, it can deny real people real opportunities — often affecting already marginalised communities the most."
+    }
+  ]
+}

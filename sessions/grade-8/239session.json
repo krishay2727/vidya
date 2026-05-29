@@ -1,0 +1,323 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-239/",
+    "slides_folder": "sessions/session-239/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-239/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-239",
+  "number": 239,
+  "title": "Project Final Demo Prep",
+  "subtitle": "Polish, Practise, Present — Show the World What You Built!",
+  "date": "Session 239",
+  "duration": "1 Hour",
+  "phase": "Capstone",
+  "color": "#9C27B0",
+  "icon": "🎤",
+  "tags": [
+    "Capstone",
+    "Presentation",
+    "Demo",
+    "Python",
+    "GUI",
+    "Project"
+  ],
+  "overview": "Students prepare their capstone projects for the final demonstration. This session focuses on polishing the code, fixing last-minute bugs, writing a clear project description, and practising how to confidently present and explain their work to an audience. Students learn that how you present is just as important as what you build.",
+  "grades": [
+    6,
+    7,
+    8
+  ],
+  "slides": {
+    "pdf": "sessions/session-239/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — students rehearsing, polishing UI, peer feedback moments, demo run-throughs.",
+    "gallery": [
+      {
+        "file": "data/demo-day.jpg",
+        "_placeholder": "ADD: Photo of a student presenting their project to the class",
+        "caption": "Demo Day — your moment to shine!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/polishing-ui.png",
+        "_placeholder": "ADD: Screenshot of a student's improved and polished GUI",
+        "caption": "Polish your UI — colours, fonts, spacing matter!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/peer-feedback.jpg",
+        "_placeholder": "ADD: Photo of students giving each other feedback in pairs",
+        "caption": "Peer feedback — help each other improve!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/presentation-structure.png",
+        "_placeholder": "ADD: Diagram showing the structure of a good project presentation",
+        "caption": "Every great demo has: What, Why, How, Show, Learn!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/bug-fixing.gif",
+        "_placeholder": "ADD: GIF or photo of last-minute bug fixing in code",
+        "caption": "Last bug squashed — ship it!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/checklist.png",
+        "_placeholder": "ADD: Image of a demo-ready checklist on the whiteboard",
+        "caption": "Demo-ready checklist — tick every box before you present!",
+        "category": "Concept"
+      }
+    ]
+  },
+  "keyTopics": [
+    "Demo-Ready Checklist — Does your app run without crashing?",
+    "Polishing the UI — Clean layout, readable fonts, good colours",
+    "Code Clean-Up — Remove test prints, add comments, organise functions",
+    "Writing a Project Description — Title, Purpose, Features, Tech Used",
+    "Presentation Structure — What, Why, How, Show It, What I Learned",
+    "Handling Questions — How to respond confidently when you don't know",
+    "Peer Feedback — Giving and receiving constructive criticism",
+    "Stretch Features — Last-minute additions that add wow factor",
+    "Rehearsal — Practise your demo at least twice before presenting",
+    "Mindset — Celebrate what you built, not just what works perfectly"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "How to Present a Tech Project — Tips for Students",
+      "videoId": "MnIPpUiTcRc",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Practical tips on how to confidently present a coding or tech project to an audience — structure, tone, and handling questions."
+    },
+    {
+      "title": "How to Do a Great Code Demo",
+      "videoId": "V8GBZBqCqAo",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Best practices for live coding demos — how to walk through your project clearly and handle unexpected errors gracefully."
+    },
+    {
+      "title": "Public Speaking Tips for Students",
+      "videoId": "AykAHbCXzMo",
+      "desc": "Simple and effective public speaking tips to help students present with confidence and clarity."
+    },
+    {
+      "title": "How to Give and Receive Feedback — Growth Mindset",
+      "videoId": "r0EA5GXvMlc",
+      "desc": "How to give constructive feedback and receive it positively — essential skills for peer review and demo day."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Canva — Create a Project Presentation Slide",
+      "url": "https://www.canva.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Replit — Run and Share Your Python Project Online",
+      "url": "https://replit.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "GitHub — Share Your Code with the World",
+      "url": "https://github.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Excalidraw — Sketch Your App Flow for Presentation",
+      "url": "https://excalidraw.com",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "Demo Prep — Polish, Practise, Present",
+    "parts": [
+      "Completed capstone project (Python + Tkinter)",
+      "VS Code or IDLE",
+      "Paper for writing project description",
+      "Demo-ready checklist (provided by teacher)",
+      "Partner for peer feedback"
+    ],
+    "steps": [
+      "Run your project from scratch — does it open and work without errors?",
+      "Go through the demo-ready checklist — fix anything that fails",
+      "Polish your UI — check colours, font sizes, button labels and spacing",
+      "Clean up your code — remove unused print() statements, add comments",
+      "Write your project description: Title, Purpose, Features, Tech Used",
+      "Practise your 2-minute demo speech — What, Why, How, Show It, What I Learned",
+      "Swap with a partner — give each other one praise and one suggestion",
+      "Implement your partner's best feedback if time allows",
+      "Rehearse your full demo one more time — out loud, not just in your head!",
+      "Final check — save your file, test one last time, you are demo-ready!"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What is the FIRST thing you should do when preparing for a project demo?",
+      "options": [
+        "Design a new logo for your app",
+        "Run your project from scratch and make sure it works without errors",
+        "Write new features you haven't tested yet",
+        "Delete all your comments to make code shorter"
+      ],
+      "answer": 1,
+      "explanation": "Always run your full project first! Make sure it opens, works end-to-end and doesn't crash before you do anything else. A working demo is more impressive than a feature-heavy broken one."
+    },
+    {
+      "q": "Which of these is part of a good project presentation structure?",
+      "options": [
+        "Read out every line of code to the audience",
+        "Only show the final screen and say nothing",
+        "What it is, Why you built it, How it works, Live demo, What you learned",
+        "Apologise for everything that doesn't work"
+      ],
+      "answer": 2,
+      "explanation": "A great demo follows: What (project name and purpose) → Why (problem it solves) → How (tech used) → Show It (live demo) → What I Learned. This tells a complete story!"
+    },
+    {
+      "q": "Why should you remove extra print() statements before your demo?",
+      "options": [
+        "print() statements slow down Python",
+        "They clutter the terminal and look messy during a live presentation",
+        "print() doesn't work in Tkinter projects",
+        "The audience cannot see the terminal"
+      ],
+      "answer": 1,
+      "explanation": "Test print() statements left in your code make the terminal look messy during a demo. Clean code shows professionalism — keep only prints that are part of your app's actual output."
+    },
+    {
+      "q": "What does 'polishing your UI' mean?",
+      "options": [
+        "Cleaning your computer screen",
+        "Rewriting all your code from scratch",
+        "Improving the visual appearance — better colours, readable fonts, neat layout",
+        "Adding as many widgets as possible"
+      ],
+      "answer": 2,
+      "explanation": "Polishing the UI means making it look clean and professional — consistent colours, readable font sizes, proper spacing and clear button labels. First impressions matter in a demo!"
+    },
+    {
+      "q": "What is a 'demo-ready checklist' used for?",
+      "options": [
+        "A shopping list for computer parts",
+        "A list of all your code files",
+        "A step-by-step list to verify your project is fully prepared for presentation",
+        "A list of bugs you plan to fix later"
+      ],
+      "answer": 2,
+      "explanation": "A demo-ready checklist helps you systematically verify everything — does it run, does the UI look good, are errors handled, is your speech ready? It prevents last-minute surprises!"
+    },
+    {
+      "q": "A classmate says your button labels are confusing. This feedback is:",
+      "options": [
+        "Rude and should be ignored",
+        "Constructive — it helps you improve your project before the real demo",
+        "Irrelevant — UI doesn't matter",
+        "Wrong — buttons are always clear"
+      ],
+      "answer": 1,
+      "explanation": "Constructive feedback is a gift! If someone finds your UI confusing, your real audience will too. Use peer feedback to improve before the final demo — that's exactly what rehearsal is for."
+    },
+    {
+      "q": "How long should a typical student project demo be?",
+      "options": [
+        "30 seconds — just show the final screen",
+        "20 minutes — explain every line of code",
+        "1–3 minutes — clear, focused and to the point",
+        "As long as possible to show hard work"
+      ],
+      "answer": 2,
+      "explanation": "1–3 minutes is the sweet spot for a student demo! Long enough to cover what, why, how and a live run — short enough to keep the audience engaged. Practise to fit your time!"
+    },
+    {
+      "q": "What should you do if your app crashes during the live demo?",
+      "options": [
+        "Panic and sit down",
+        "Say nothing and pretend it didn't happen",
+        "Calmly acknowledge it, explain what likely caused it, and show what does work",
+        "Blame the computer"
+      ],
+      "answer": 2,
+      "explanation": "Stay calm! Acknowledge the issue confidently: 'That's a known bug I'm working on — let me show you the parts that work.' Handling problems gracefully shows maturity and real coding experience."
+    },
+    {
+      "q": "Why is it important to practise your demo OUT LOUD before presenting?",
+      "options": [
+        "It charges the laptop battery",
+        "It helps you memorise every line of code",
+        "It reveals timing issues, awkward pauses and parts where you get confused",
+        "It is not important — just wing it on the day"
+      ],
+      "answer": 2,
+      "explanation": "Practising out loud reveals things silent practice misses — you might stumble on explanations, run over time, or realise you can't explain a feature clearly. Rehearse at least twice!"
+    },
+    {
+      "q": "What should your project description include?",
+      "options": [
+        "Your favourite food and hobby",
+        "A list of every variable in your code",
+        "Project title, purpose, key features and technology used",
+        "The date you started coding and your teacher's name"
+      ],
+      "answer": 2,
+      "explanation": "A good project description covers: Title (what it's called), Purpose (what problem it solves), Features (what it can do), and Tech Used (Python, Tkinter, etc). Clear and concise!"
+    },
+    {
+      "q": "What is the best response when an audience member asks a question you don't know the answer to?",
+      "options": [
+        "Make up an answer confidently",
+        "Say 'I don't know' and walk away",
+        "Honestly say you're not sure but you'll find out — and explain what you do know",
+        "Tell them the question is not relevant"
+      ],
+      "answer": 2,
+      "explanation": "Honesty is always best! 'That's a great question — I'm not sure about that yet, but I'd like to find out' shows maturity and curiosity. No one expects you to know everything!"
+    },
+    {
+      "q": "What is the purpose of adding CODE COMMENTS before your demo?",
+      "options": [
+        "Comments make the code run faster",
+        "They help others (and future-you) understand what each part of the code does",
+        "Comments are required by Tkinter",
+        "They change how the GUI looks"
+      ],
+      "answer": 1,
+      "explanation": "Code comments explain your thinking! They show the audience you understand your code and help anyone reading it later. Good comments are a sign of a thoughtful developer."
+    },
+    {
+      "q": "Which of these is a STRETCH feature that could add wow factor to a Tkinter project?",
+      "options": [
+        "Removing all buttons",
+        "Using only black and white colours",
+        "Adding a colour theme, custom fonts, or saving data to a file",
+        "Making the window as small as possible"
+      ],
+      "answer": 2,
+      "explanation": "Stretch features like colour themes, custom fonts, data saving or keyboard shortcuts make your project stand out! They show you went beyond the basics and explored independently."
+    },
+    {
+      "q": "Why should you celebrate what you built even if it's not perfect?",
+      "options": [
+        "Because perfect code doesn't exist",
+        "Because the teacher will give marks for confidence only",
+        "Because building something from nothing is a real achievement — imperfect progress beats perfect inaction",
+        "Because nobody will notice the bugs"
+      ],
+      "answer": 2,
+      "explanation": "Every working project — however simple — represents real learning and effort. Professional developers ship imperfect products too! Celebrate your progress, document what you'd improve, and keep building."
+    },
+    {
+      "q": "What is the LAST thing you should do before your demo presentation?",
+      "options": [
+        "Add a brand new untested feature",
+        "Rewrite your entire project in a new language",
+        "Save your file and do one final full test run",
+        "Delete your backup copy to save space"
+      ],
+      "answer": 2,
+      "explanation": "Always save and do one final test run! This confirms everything still works after your last edits. Never add untested features right before a demo — it's a recipe for unexpected crashes!"
+    }
+  ]
+}

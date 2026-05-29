@@ -1,0 +1,324 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-230/",
+    "slides_folder": "sessions/session-230/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-230/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-230",
+  "number": 230,
+  "title": "Safe Passwords",
+  "subtitle": "Your First Line of Defence — Make It Unbreakable!",
+  "date": "Session 230",
+  "duration": "1 Hour",
+  "phase": "Foundation",
+  "color": "#6A1B9A",
+  "icon": "🔑",
+  "tags": [
+    "Cybersecurity",
+    "Passwords",
+    "Digital Safety",
+    "Online Security",
+    "Computer Science"
+  ],
+  "overview": "Passwords are the keys to your digital life — email, bank accounts, social media, school systems. Yet most people use weak, reused, or easily guessed passwords that can be cracked in seconds. In this session, students learn how attackers crack passwords, what makes a password truly strong, how to use passphrases, why password reuse is dangerous, and how password managers solve the problem of remembering dozens of unique strong passwords.",
+  "grades": [
+    5,
+    6,
+    7
+  ],
+  "slides": {
+    "pdf": "sessions/session-230/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — password strength meter screenshots, passphrase examples, password manager UI, brute force diagram.",
+    "gallery": [
+      {
+        "file": "data/password-strength-meter.png",
+        "_placeholder": "ADD: Screenshot of a password strength meter showing weak vs strong passwords",
+        "caption": "Password strength meter — length and randomness matter more than symbols alone",
+        "category": "Concept"
+      },
+      {
+        "file": "data/brute-force-diagram.png",
+        "_placeholder": "ADD: Diagram or table showing how long it takes to crack passwords of different lengths",
+        "caption": "Brute force cracking times — an 8-character password falls in hours, 16 characters takes centuries",
+        "category": "Concept"
+      },
+      {
+        "file": "data/passphrase-example.png",
+        "_placeholder": "ADD: Visual showing a passphrase like 'correct-horse-battery-staple' vs a short complex password",
+        "caption": "Passphrases are long, memorable, and incredibly strong — 4 random words beats Qw3rty!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/password-reuse-danger.png",
+        "_placeholder": "ADD: Diagram showing one breached password unlocking multiple accounts (domino effect)",
+        "caption": "Password reuse: one breach unlocks every account — the domino effect",
+        "category": "Concept"
+      },
+      {
+        "file": "data/password-manager-ui.png",
+        "_placeholder": "ADD: Screenshot of Bitwarden or similar password manager showing stored accounts",
+        "caption": "Password manager — generates and stores unique strong passwords for every account",
+        "category": "Concept"
+      },
+      {
+        "file": "data/2fa-second-lock.png",
+        "_placeholder": "ADD: Illustration of 2FA as a second lock on a door — password + phone code",
+        "caption": "2FA adds a second lock — even a stolen password can't get in without your phone",
+        "category": "Concept"
+      }
+    ]
+  },
+  "keyTopics": [
+    "Password — A secret string of characters used to authenticate a user's identity and grant access to an account or system",
+    "Brute Force Attack — Trying every possible password combination systematically until the correct one is found; short passwords fall in seconds",
+    "Dictionary Attack — Using a list of common words, names, and known passwords to guess credentials much faster than pure brute force",
+    "Credential Stuffing — Using username/password pairs leaked from one breach to try logging into other sites, exploiting password reuse",
+    "Password Strength — Determined by length (most important), character variety (uppercase, lowercase, numbers, symbols), and unpredictability",
+    "Passphrase — A memorable sequence of 4+ random words (e.g. correct-horse-battery-staple) that is both long and easy to remember",
+    "Password Reuse — Using the same password across multiple accounts; one breach compromises all of them simultaneously",
+    "Password Manager — Software that generates, stores, and auto-fills unique strong passwords for every account; only one master password needed",
+    "Two-Factor Authentication (2FA) — A second verification layer beyond the password: SMS code, authenticator app, or biometric",
+    "Salting and Hashing — How responsible websites store passwords: hash (one-way scramble) + salt (unique random data) prevents rainbow table attacks",
+    "Data Breach — When attackers steal a database of usernames and passwords from a compromised website; leaked credentials fuel future attacks",
+    "Master Password — The single strong password used to access a password manager; must be memorised and never stored anywhere"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "How Hackers Crack Passwords — Brute Force and Dictionary Attacks",
+      "videoId": "aEmXQqtAu5o",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "How attackers use brute force, dictionary attacks, and credential stuffing to crack passwords — and why length is far more important than complexity for password security."
+    },
+    {
+      "title": "How to Create a Strong Password — And Remember It",
+      "videoId": "0RCsHJfbEOU",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Practical guide to creating uncrackable passwords using passphrases, random word combinations, and password managers — with clear examples of weak vs strong passwords."
+    },
+    {
+      "title": "Password Managers Explained — Why You Need One",
+      "videoId": "aEXnW2FhTFk",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "What password managers are, how they work, why they are safe to use, and how they solve the impossible challenge of remembering dozens of unique strong passwords."
+    },
+    {
+      "title": "Two-Factor Authentication — Why Passwords Alone Aren't Enough",
+      "videoId": "0mvCeNsTa1g",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Why even strong passwords can be stolen through phishing and data breaches, and how 2FA adds a critical second layer that stops attackers even when they have your password."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Have I Been Pwned — Check If Your Password Was Leaked",
+      "url": "https://haveibeenpwned.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Bitwarden — Free Open-Source Password Manager",
+      "url": "https://bitwarden.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "How Secure Is My Password — Strength Checker",
+      "url": "https://www.security.org/how-secure-is-my-password/",
+      "icon": "🔗"
+    },
+    {
+      "title": "NCSC — Three Random Words Password Guidance",
+      "url": "https://www.ncsc.gov.uk/blog-post/three-random-words-or-thinkrandom-0",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "Password Strength Lab + Passphrase Creation Workshop",
+    "parts": [
+      "Computer or tablet with internet access",
+      "Password Strength Worksheet",
+      "Access to security.org/how-secure-is-my-password",
+      "Access to haveibeenpwned.com",
+      "Whiteboard for class discussion"
+    ],
+    "steps": [
+      "Part 1 — Crack the Password: Show students 5 common passwords on the board ('password', '123456', 'iloveyou', 'admin', 'qwerty'). Ask: how long would these take to crack? Then reveal the actual cracking times from a brute force table. Discuss: why are these passwords so common and so dangerous?",
+      "Part 2 — Strength Test Lab: Students test 6 sample passwords on security.org/how-secure-is-my-password: a short word, a word with numbers, a short complex password, a long lowercase passphrase, a random 12-character string, and their own invented password. Record and rank the results",
+      "Part 3 — Passphrase Workshop: Each student generates a passphrase using the 'three (or four) random words' method. Roll a dice or use a random word generator to pick truly random words. Test the passphrase strength. Discuss: why does length beat complexity?",
+      "Part 4 — Reuse Danger Demo: Scenario discussion — 'You use the same password for Gmail, Instagram, and your school account. A small gaming website you signed up to is breached and your password is leaked. What happens next?' Map out the domino effect together",
+      "Part 5 — Pwned Check: Students check a sample email (or their school email with teacher permission) on haveibeenpwned.com. Discuss what a breach means and what action to take if found",
+      "Part 6 — Password Manager Demo: Teacher demonstrates Bitwarden — creating a vault, generating a random 20-character password, and auto-filling it on a website. Students discuss: is it safe to trust a password manager? What if it gets hacked?",
+      "Part 7 — Personal Password Audit: Students rate their own password habits (honestly, anonymously) on a scale: 1 = reuse same weak password everywhere, 5 = unique strong password + 2FA on every account. Identify the top 3 accounts to secure first",
+      "Challenge: Students create a 'Password Policy' poster for a fictional company — specifying minimum length, character requirements, passphrase option, prohibition on reuse, mandatory 2FA for sensitive systems, and a password manager recommendation"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What makes a password STRONG?",
+      "options": [
+        "Using your pet's name followed by your birth year",
+        "Length (12+ characters), unpredictability, and a mix of character types — the longer and more random, the stronger",
+        "Changing it every week, even if it's short",
+        "Using the same complex password for all accounts so you remember it"
+      ],
+      "answer": 1,
+      "explanation": "Length + randomness = strength! A 16-character random password is exponentially harder to crack than an 8-character one with symbols. The most important factor is LENGTH — each additional character multiplies the possible combinations the attacker must try."
+    },
+    {
+      "q": "What is a Brute Force Attack on a password?",
+      "options": [
+        "Physically breaking into a server room to steal a password list",
+        "Trying every possible combination of characters systematically until the correct password is found",
+        "Tricking a user into revealing their password via a fake email",
+        "Guessing passwords from a list of common words"
+      ],
+      "answer": 1,
+      "explanation": "Brute force = try everything! Automated tools can attempt billions of combinations per second. An 8-character password has about 200 trillion combinations — crackable in hours with modern hardware. A 16-character password has so many combinations it would take longer than the age of the universe!"
+    },
+    {
+      "q": "What is a Dictionary Attack?",
+      "options": [
+        "An attack that targets dictionary websites specifically",
+        "Using a pre-built list of common words, names, phrases, and known leaked passwords to guess credentials much faster than pure brute force",
+        "Encrypting a password using dictionary words",
+        "An attack that only works on English-language passwords"
+      ],
+      "answer": 1,
+      "explanation": "Dictionary attacks are smarter than brute force! Instead of trying every combination, they try common words first — 'password', 'sunshine', 'football', 'letmein'. Since most people use real words, dictionary attacks crack millions of accounts very quickly. Use random words, not meaningful ones!"
+    },
+    {
+      "q": "Why is reusing the same password across multiple accounts so dangerous?",
+      "options": [
+        "It makes the password easier to guess",
+        "If one site is breached and the password is leaked, attackers use it to access all your other accounts — known as credential stuffing",
+        "Reusing passwords makes them expire faster",
+        "It violates most websites' terms of service"
+      ],
+      "answer": 1,
+      "explanation": "Password reuse = domino effect! Billions of username/password pairs are leaked every year. Attackers automatically try leaked credentials on Gmail, banks, and shopping sites. If you reuse passwords, one small breach compromises every account you own. Use a unique password for every single account."
+    },
+    {
+      "q": "What is a Passphrase and why is it considered a strong password strategy?",
+      "options": [
+        "A short phrase from a famous song or movie — easy to remember and secure",
+        "A sequence of 4 or more random unrelated words that is long enough to be extremely hard to crack yet memorable enough to remember",
+        "A technical term for a password with special characters",
+        "A passphrase is weaker than a complex short password"
+      ],
+      "answer": 1,
+      "explanation": "'correct-horse-battery-staple' is famously strong! Four random words give you 25+ characters — astronomically harder to crack than 'P@ssw0rd'. The key is RANDOM words — not a famous quote or phrase. Length is the secret weapon, and passphrases are both long and human-memorable."
+    },
+    {
+      "q": "What is Credential Stuffing?",
+      "options": [
+        "Adding extra characters to make a credential stronger",
+        "Using username and password pairs leaked from one data breach to automatically try logging into other websites, exploiting password reuse",
+        "Stuffing a password with as many special characters as possible",
+        "A method of backing up credentials securely"
+      ],
+      "answer": 1,
+      "explanation": "Credential stuffing is automated and massive! Attackers buy or download leaked credential databases (billions of entries exist) and use bots to try them on Netflix, Gmail, banks, and shopping sites. If you reuse passwords, the bot finds a match. Unique passwords make credential stuffing useless."
+    },
+    {
+      "q": "What is a Password Manager and why is it safe to use one?",
+      "options": [
+        "A notepad app where you type all your passwords — convenient but insecure",
+        "Software that generates and stores unique strong passwords for every account in an encrypted vault — you only need to remember one strong master password",
+        "A browser extension that emails your passwords to you for safekeeping",
+        "A person employed by a company to manage employee passwords"
+      ],
+      "answer": 1,
+      "explanation": "Password managers solve the impossible problem! You can't memorise 50 unique 20-character passwords — but a password manager can. The vault is encrypted with your master password. Even if the password manager company is breached, the encrypted data is useless without your master password."
+    },
+    {
+      "q": "Which of these passwords would take the LONGEST to crack by brute force?",
+      "options": [
+        "P@ssw0rd!",
+        "Sunshine2024",
+        "monkey-castle-river-purple-lamp",
+        "Xk#9mQ"
+      ],
+      "answer": 2,
+      "explanation": "Length wins! 'monkey-castle-river-purple-lamp' has 31 characters — even using only lowercase letters and hyphens, the number of possible combinations is astronomical. 'P@ssw0rd!' is only 9 characters and uses a well-known substitution pattern that cracking tools know. Always choose length."
+    },
+    {
+      "q": "What is a Data Breach?",
+      "options": [
+        "When a user accidentally deletes their account data",
+        "When attackers steal a database of usernames and passwords from a compromised website — leaked credentials are then used in future attacks",
+        "When a website temporarily goes offline due to high traffic",
+        "When someone forgets their password and gets locked out"
+      ],
+      "answer": 1,
+      "explanation": "Data breaches fuel future attacks! When a website's database is hacked, millions of username/password pairs are stolen. These are sold on dark web markets or published publicly. Sites like haveibeenpwned.com track these breaches so you can check if your email and password were exposed."
+    },
+    {
+      "q": "What does haveibeenpwned.com tell you?",
+      "options": [
+        "Whether your current password is strong enough",
+        "Whether your email address appears in known data breaches — meaning your credentials may have been leaked and could be used by attackers",
+        "Who is currently trying to log into your accounts",
+        "Whether your password manager has been hacked"
+      ],
+      "answer": 1,
+      "explanation": "Have I Been Pwned (HIBP) is a free public service! It checks your email against a database of billions of leaked credentials from known data breaches. If your email appears — change that password immediately, enable 2FA, and check whether you used that password anywhere else."
+    },
+    {
+      "q": "Why should you NEVER use personal information like your name, birthday, or pet's name in a password?",
+      "options": [
+        "Personal information makes passwords too long",
+        "Attackers can find personal details from social media and public records, making passwords based on them easy to guess in targeted attacks",
+        "Personal information is not allowed by most websites",
+        "Birthdays and names contain illegal characters for passwords"
+      ],
+      "answer": 1,
+      "explanation": "Attackers do their homework! Before a targeted attack, they research the victim on social media — name, birthday, pet's name, favourite team, hometown. All of these become their first guesses. Your password must be information NO ONE could find or guess, even someone who knows you well."
+    },
+    {
+      "q": "What is Salting in the context of how websites store passwords?",
+      "options": [
+        "Adding sea salt to make the encryption taste better",
+        "Adding a unique random string to each password before hashing it, preventing attackers from using pre-computed rainbow tables to crack multiple passwords at once",
+        "A method of compressing passwords to save database storage",
+        "Sending passwords over a salted (encrypted) network connection"
+      ],
+      "answer": 1,
+      "explanation": "Salting defeats rainbow tables! Without salt, if two users have the same password, their stored hashes are identical — crack one, crack both. Salt adds a unique random string to each password before hashing, making every stored hash unique even for identical passwords. Good websites always salt their hashes."
+    },
+    {
+      "q": "What should you do if you find your email on haveibeenpwned.com?",
+      "options": [
+        "Delete the email account immediately",
+        "Change the password on the breached site immediately, change it on any other site where you used the same password, and enable 2FA on important accounts",
+        "Contact the police straight away",
+        "Nothing — being in a breach database does not put you at risk"
+      ],
+      "answer": 1,
+      "explanation": "Act fast! Step 1: change the password on the breached site. Step 2: check if you used that same password elsewhere — change it on every site. Step 3: enable 2FA on email, banking, and social media. Step 4: monitor for suspicious account activity. Speed matters because attackers act quickly after a breach."
+    },
+    {
+      "q": "Why is it bad advice to change your password every 30 days if it means using weaker, predictable passwords?",
+      "options": [
+        "Frequent changes make it harder for password managers to keep up",
+        "Forced frequent changes cause users to create predictable patterns like 'Password1', 'Password2', 'Password3' — which are weaker than one strong stable password",
+        "Password changes invalidate 2FA settings",
+        "Websites charge fees for password changes"
+      ],
+      "answer": 1,
+      "explanation": "Quality over frequency! Security experts (including NCSC and NIST) now advise against mandatory regular changes unless there is a known breach. Forced changes cause users to make tiny predictable variations — 'Summer2024!' becomes 'Autumn2024!' — which are easy to guess. A strong unique password changed only when necessary is better."
+    },
+    {
+      "q": "What is the single MOST effective thing a person can do right now to dramatically improve their account security?",
+      "options": [
+        "Change all passwords to include at least one capital letter",
+        "Enable Two-Factor Authentication (2FA) on their most important accounts — email, banking, and social media — so a stolen password alone cannot grant access",
+        "Use their favourite song lyric as a password because it is easy to remember",
+        "Write all passwords in a notebook kept next to the computer"
+      ],
+      "answer": 1,
+      "explanation": "2FA is the single biggest security upgrade! Even if an attacker has your exact password — from a breach, phishing, or guessing — they still cannot log in without the second factor (your phone). Enable 2FA on email first (it's the master key to everything else) then banking, then social media."
+    }
+  ]
+}

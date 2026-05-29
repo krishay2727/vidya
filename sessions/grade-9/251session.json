@@ -1,0 +1,325 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-14/",
+        "slides_folder": "sessions/session-14/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-14/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-14",
+    "number": 14,
+    "title": "Robot Arm Project II",
+    "subtitle": "Smarter Arm, Sharper Code — Level Up!",
+    "date": "Session 14",
+    "duration": "1 Hour",
+    "phase": "Project",
+    "color": "#E53935",
+    "icon": "🤖",
+    "tags": [
+        "Robotics",
+        "Automation",
+        "Arduino",
+        "Advanced Control"
+    ],
+    "overview": "Building on the Robot Arm Project (Session 13), this session upgrades the arm with smarter control — adding sensor-driven automation, inverse kinematics concepts, serial command input, and obstacle detection. Students evolve their manual arm into a semi-autonomous robot that can react to its environment.",
+    "grades": [
+        10
+    ],
+    "slides": {
+        "pdf": "data/sessions/session251.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — serial monitor command input, ultrasonic sensor mounted on gripper, inverse kinematics diagram, PCA9685 servo driver board, smooth sweep code output.",
+        "gallery": [
+            {
+                "file": "data/Arm.png",
+                "_placeholder": "ADD: Screenshot of Serial Monitor with typed commands controlling the robot arm",
+                "caption": "Robot Arm",
+                "category": "Lab"
+            },
+            {
+                "file": "data/servo-sweeping.gif",
+                "_placeholder": "ADD: GIF showing a servo moving smoothly in small increments vs jerky large jumps",
+                "caption": "Servo Sweeping — Small steps make the arm move like a pro!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/UltrasonicDistance-Sensor_Arduino.png",
+                "_placeholder": "ADD: Photo of HC-SR04 ultrasonic sensor mounted on the robot arm gripper",
+                "caption": "Ultrasonic Distance Sensor",
+                "category": "Components"
+            },
+            {
+                "file": "data/inverse-kinematics.jpg",
+                "_placeholder": "ADD: Diagram showing target XY position mapped back to required joint angles",
+                "caption": "Inverse Kinematics — Tell the arm WHERE to go, not HOW to move!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/PCA9685.png",
+                "_placeholder": "ADD: Photo of PCA9685 16-channel servo driver board wired to Arduino via I2C",
+                "caption": "PCA9685 — Control 16 servos with just 2 Arduino pins via I2C!",
+                "category": "Components"
+            },
+            {
+                "file": "data/servo-motor.jpg",
+                "_placeholder": "ADD: Photo of robot arm pausing mid-movement when an object is detected in its path",
+                "caption": "Servo Motor it have presition control with feedback",
+                "category": "Lab"
+            },
+            {
+                "file": "data/eeprom.jpg",
+                "_placeholder": "ADD: Diagram showing servo angle arrays saved to EEPROM and reloaded on power-up",
+                "caption": "EEPROM Memory — The arm remembers its routine even after power off!",
+                "category": "Concept"
+            }
+        ]
+    },
+    "keyTopics": [
+        "Smooth Servo Movement — Incrementally stepping servo angles with small delays for fluid, professional motion",
+        "Serial Command Control — Sending text commands via Serial Monitor to control individual joints in real time",
+        "Sensor-Driven Automation — Mounting an ultrasonic sensor on the gripper for obstacle detection and auto-stop",
+        "Inverse Kinematics (Concept) — Given a target XY position, calculate the required joint angles to reach it",
+        "PCA9685 Servo Driver — I2C servo driver board that controls up to 16 servos using only 2 Arduino pins",
+        "EEPROM Storage — Saving recorded arm positions to non-volatile memory so sequences survive power-off",
+        "Gripper Feedback — Using a force/flex sensor or current sensing to detect when the gripper has gripped an object",
+        "Autonomous Pick and Place — Combining sensor input, logic, and sequencing for a fully automated arm routine"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "Smooth Servo Control with Arduino",
+            "videoId": "xNk7qGGR9Ws",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "How to make servo motors move smoothly using incremental steps and millis() instead of jerky single-jump commands."
+        },
+        {
+            "title": "Inverse Kinematics for Robot Arms Explained",
+            "videoId": "Q-UeYEpwXXU",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "A visual introduction to inverse kinematics — how to calculate joint angles from a desired end-effector position."
+        },
+        {
+            "title": "PCA9685 Servo Driver with Arduino",
+            "videoId": "y8X9X10Tn1k",
+            "desc": "How to connect and use the PCA9685 16-channel PWM servo driver with Arduino over I2C — control many servos easily."
+        },
+        {
+            "title": "Arduino EEPROM — Save Data Without Power",
+            "videoId": "ShqvATqXA7g",
+            "desc": "How to read and write data to Arduino's built-in EEPROM so your robot arm remembers its positions after power-off."
+        }
+    ],
+    "resources": [
+        {
+            "title": "Arduino EEPROM Reference",
+            "url": "https://www.arduino.cc/reference/en/libraries/eeprom/",
+            "icon": "🔗"
+        },
+        {
+            "title": "Adafruit PCA9685 Library & Guide",
+            "url": "https://learn.adafruit.com/16-channel-pwm-servo-driver",
+            "icon": "🔗"
+        },
+        {
+            "title": "Wokwi — Simulate Advanced Robot Arm Online",
+            "url": "https://wokwi.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Inverse Kinematics Interactive Demo",
+            "url": "https://www.cs.cmu.edu/~quake/robust.html",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Semi-Autonomous Robot Arm — Serial Control + Obstacle Detection + Sequence Memory",
+        "parts": [
+            "Robot Arm from Session 13 (assembled with 4 servos)",
+            "Arduino UNO",
+            "HC-SR04 Ultrasonic Sensor (mount on gripper)",
+            "Jumper wires",
+            "USB cable + laptop with Arduino IDE",
+            "Serial Monitor (built into Arduino IDE)",
+            "Small objects for pick and place testing"
+        ],
+        "steps": [
+            "Part 1 — Smooth Movement: Replace all servo.write(angle) calls with a smoothMove() function that steps the servo from current angle to target angle in increments of 2° with a 15ms delay between steps",
+            "Test: observe how the arm now moves fluidly instead of snapping to position",
+            "Part 2 — Serial Command Control: In loop(), read Serial input — parse commands like 'B90' (Base to 90°), 'S45' (Shoulder to 45°), 'G0' (Gripper open), 'G180' (Gripper close)",
+            "Upload and open Serial Monitor at 9600 baud — type commands and watch the corresponding joint respond",
+            "Part 3 — Obstacle Detection: Mount HC-SR04 on the gripper facing forward",
+            "Add distance checking before every movement — if distance < 5cm, stop all servos and print 'OBSTACLE DETECTED' to Serial Monitor",
+            "Test: move a hand in front of the sensor mid-movement — arm should pause automatically",
+            "Part 4 — Sequence Memory: Record 6 joint-angle snapshots into int positions[6][4] arrays during a manual run",
+            "Add a playback mode triggered by typing 'PLAY' in Serial Monitor — arm replays the full sequence automatically",
+            "Challenge: Save the sequence to EEPROM using EEPROM.write() so the arm remembers the routine after power-off and auto-plays on startup!"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "Why is SMOOTH servo movement better than single-jump commands for a robot arm?",
+            "options": [
+                "Smooth movement uses less power",
+                "Smooth movement looks more professional, reduces mechanical stress on joints, and gives more precise and controllable motion",
+                "Single-jump commands are not supported by the Servo library",
+                "Smooth movement is faster than single-jump commands"
+            ],
+            "answer": 1,
+            "explanation": "Smooth = professional and safe! Large single jumps stress the servo gears and make the arm unpredictable. Small incremental steps (2° at a time with short delays) produce fluid motion — just like real industrial robot arms move!"
+        },
+        {
+            "q": "How do you make a servo move SMOOTHLY from 30° to 90° in Arduino?",
+            "options": [
+                "servo.write(90) — the servo automatically moves smoothly",
+                "Use a for loop: for(int angle = 30; angle <= 90; angle++) { servo.write(angle); delay(15); }",
+                "Call servo.smooth(30, 90) from the Servo library",
+                "Use analogWrite() instead of servo.write() for smooth motion"
+            ],
+            "answer": 1,
+            "explanation": "Smooth sweep = for loop with small delay! Step from 30° to 90° one degree at a time, pausing 15ms between each step. The servo physically moves to each intermediate position — creating smooth, controlled fluid motion!"
+        },
+        {
+            "q": "What is SERIAL COMMAND CONTROL of a robot arm?",
+            "options": [
+                "Controlling the arm using only potentiometers",
+                "Sending text commands through the Serial Monitor (e.g. 'B90', 'G0') that the Arduino parses and translates into servo movements",
+                "Uploading a new program to change the arm's behaviour",
+                "Connecting the arm to a smartphone via Bluetooth"
+            ],
+            "answer": 1,
+            "explanation": "Serial control = text-based remote control! You type a command like 'S45' (Shoulder to 45°). Arduino reads the serial input, extracts the joint letter and angle number, and moves the correct servo. Powerful and flexible — no extra hardware needed!"
+        },
+        {
+            "q": "What does Serial.parseInt() do in Arduino?",
+            "options": [
+                "Converts a float to an integer",
+                "Reads incoming serial data and extracts the next integer value from the stream",
+                "Prints an integer to the Serial Monitor",
+                "Checks if an integer has been received on the serial port"
+            ],
+            "answer": 1,
+            "explanation": "Serial.parseInt() = number extractor! When the user types 'B90', Serial.read() gets 'B', then Serial.parseInt() extracts 90 as an integer. Perfect for parsing angle commands from the Serial Monitor without complex string parsing!"
+        },
+        {
+            "q": "What is INVERSE KINEMATICS (IK) in robotics?",
+            "options": [
+                "Moving all joints in the opposite direction simultaneously",
+                "Calculating the forward speed of the end-effector",
+                "Given a desired position (X, Y, Z) of the gripper in space, calculating the joint angles required to reach that position",
+                "The process of reversing a recorded movement sequence"
+            ],
+            "answer": 2,
+            "explanation": "IK = 'I want my hand HERE — what angles do my joints need?' The opposite of Forward Kinematics. IK is mathematically complex (trigonometry) but is how all modern robot arms work — you specify the target, the computer calculates the joint angles!"
+        },
+        {
+            "q": "What is the PCA9685 board used for?",
+            "options": [
+                "A motor driver for DC motors only",
+                "A 16-channel PWM servo driver that connects to Arduino via I2C — allowing control of up to 16 servos using only 2 Arduino pins",
+                "A sensor board for measuring distance and temperature",
+                "A Bluetooth module for wireless servo control"
+            ],
+            "answer": 1,
+            "explanation": "PCA9685 = servo expander! Arduino UNO only has 6 PWM pins — limiting you to 6 servos. PCA9685 adds 16 PWM channels via I2C (just pins SDA and SCL). Perfect for complex arms with many joints — one board, 16 servos, 2 wires!"
+        },
+        {
+            "q": "What is I2C communication?",
+            "options": [
+                "A wireless protocol for sending data between two Arduinos",
+                "A two-wire serial communication protocol (SDA + SCL) that allows multiple devices to communicate with a microcontroller on the same bus",
+                "A type of PWM signal used for precise servo control",
+                "A high-speed USB protocol for uploading code to Arduino"
+            ],
+            "answer": 1,
+            "explanation": "I2C = two-wire bus! SDA (data) + SCL (clock). Multiple devices can share the same two wires — each gets a unique address. PCA9685 uses I2C. So do many sensors (OLED displays, IMUs, temperature sensors). Very efficient use of Arduino pins!"
+        },
+        {
+            "q": "What is EEPROM in Arduino?",
+            "options": [
+                "A type of RAM that stores data only while the Arduino is powered on",
+                "Non-volatile memory built into the Arduino chip — data written here survives power-off and is still there when the Arduino restarts",
+                "External SD card storage for large datasets",
+                "A special type of servo controller memory"
+            ],
+            "answer": 1,
+            "explanation": "EEPROM = permanent memory! Unlike RAM (lost on power-off), EEPROM keeps data when unplugged. Arduino UNO has 1KB of EEPROM. Write servo positions with EEPROM.write(), read them back with EEPROM.read() — arm remembers its routine forever!"
+        },
+        {
+            "q": "How much EEPROM storage does an Arduino UNO have?",
+            "options": [
+                "4KB",
+                "512 bytes",
+                "1KB (1024 bytes)",
+                "32KB"
+            ],
+            "answer": 2,
+            "explanation": "Arduino UNO = 1024 bytes (1KB) of EEPROM! Each byte stores one value (0–255). To store a servo angle (0–180), one byte per joint is enough. 4 joints × 6 positions = 24 bytes — well within the 1KB limit for a sequence memory system!"
+        },
+        {
+            "q": "What is OBSTACLE DETECTION in the context of a robot arm?",
+            "options": [
+                "Detecting when the arm has dropped an object",
+                "Using a sensor (e.g. ultrasonic) mounted on the arm to detect objects in its path and automatically pause or stop movement to prevent collisions",
+                "A safety switch that cuts power if the arm exceeds its angle limits",
+                "Software that prevents the arm from moving beyond 180°"
+            ],
+            "answer": 1,
+            "explanation": "Obstacle detection = collision avoidance! Mount HC-SR04 on the gripper. Before each movement, check distance. If distance < safe threshold → halt all servos and alert. Prevents the arm from smashing into objects — essential in real industrial arms!"
+        },
+        {
+            "q": "What does millis() help achieve in servo control compared to delay()?",
+            "options": [
+                "millis() makes servos move faster than delay()",
+                "millis() allows non-blocking timing — the Arduino can check sensors and respond to commands WHILE servos are moving, unlike delay() which freezes everything",
+                "millis() provides more precise PWM signals to servos",
+                "millis() reduces the power consumption of servo motors"
+            ],
+            "answer": 1,
+            "explanation": "millis() = multitasking! delay() freezes Arduino — during a 500ms delay, NO sensors are read, NO serial commands are processed. millis() lets you track time without blocking. The arm can move AND listen for commands AND read sensors simultaneously!"
+        },
+        {
+            "q": "What is GRIPPER FEEDBACK and why is it useful?",
+            "options": [
+                "A camera that shows the operator what the gripper sees",
+                "Using a force sensor, flex sensor, or current monitoring to detect when the gripper has made contact with or successfully gripped an object",
+                "The sound the gripper servo makes when it reaches its limit",
+                "A signal sent back to the Serial Monitor showing current gripper angle"
+            ],
+            "answer": 1,
+            "explanation": "Gripper feedback = sense of touch! Without it, the arm blindly closes the gripper and hopes for the best. With a force sensor, it closes until resistance is detected — then stops. Prevents crushing delicate objects and confirms successful grip!"
+        },
+        {
+            "q": "What is a SEQUENCE ARRAY in a robot arm program?",
+            "options": [
+                "A list of all components used in the arm",
+                "A 2D array storing sets of joint angles for each step of a recorded movement — replayed in order to automate a task",
+                "An array of PWM frequencies for each servo motor",
+                "A list of Serial commands received during a session"
+            ],
+            "answer": 1,
+            "explanation": "Sequence array = robot's memory of movements! int positions[6][4] stores 6 snapshots, each with 4 joint angles. Loop through it with for(step) and smoothMove() each servo to its stored angle. The arm perfectly repeats a task automatically — every time!"
+        },
+        {
+            "q": "What real-world robot uses inverse kinematics and sensor feedback together?",
+            "options": [
+                "A simple doorbell",
+                "A weather vane",
+                "A surgical robot like the Da Vinci system — IK calculates tool positions while force sensors provide haptic feedback to the surgeon",
+                "A standard home thermostat"
+            ],
+            "answer": 2,
+            "explanation": "Da Vinci surgical robot = IK + sensor feedback at the highest level! Surgeons control it remotely — IK translates hand movements into precise instrument positions inside the patient. Force sensors provide feedback. Saves lives with millimetre precision!"
+        },
+        {
+            "q": "What is the main advantage of AUTONOMOUS pick and place over MANUAL potentiometer control?",
+            "options": [
+                "Autonomous control is simpler to program",
+                "Manual control is slower and less accurate — autonomous control executes the same precise movement repeatedly at consistent speed without human error",
+                "Autonomous control does not require any sensors",
+                "Manual control requires more servo motors than autonomous control"
+            ],
+            "answer": 1,
+            "explanation": "Automation = consistency and speed! A human turning potentiometers varies every time — different speed, slightly different angles. Autonomous sequence playback hits the exact same angles at the exact same speed every single cycle — that is why factories use robots!"
+        }
+    ]
+}

@@ -1,0 +1,320 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-238/",
+    "slides_folder": "sessions/session-238/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-238/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-238",
+  "number": 238,
+  "title": "Primary Keys & Unique Identifiers",
+  "subtitle": "Every Record Needs Its Own ID Card!",
+  "date": "Session 238",
+  "duration": "1 Hour",
+  "phase": "Foundation",
+  "color": "#FF9800",
+  "icon": "🔑",
+  "tags": [
+    "Database",
+    "Primary Key",
+    "SQL",
+    "Unique Identifiers",
+    "Computer Science"
+  ],
+  "overview": "Students dive deep into the concept of primary keys — what they are, why every database table needs one, and how they keep data organised and conflict-free. Through relatable real-world examples like Aadhaar numbers, roll numbers and UPI IDs, students understand why uniqueness matters in databases.",
+  "grades": [
+    6,
+    7,
+    8
+  ],
+  "slides": {
+    "pdf": "sessions/session-238/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — whiteboard table drawings, primary key diagrams, student activity sheets, SQL demos.",
+    "gallery": [
+      {
+        "file": "data/primary-key-diagram.png",
+        "_placeholder": "ADD: Diagram of a table highlighting the primary key column",
+        "caption": "Primary Key — the unique ID column in every table!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/aadhaar-card.jpg",
+        "_placeholder": "ADD: Sample Aadhaar card image (blurred/generic) as real-world example",
+        "caption": "Aadhaar number — a real-life primary key for every citizen!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/duplicate-error.png",
+        "_placeholder": "ADD: Screenshot of a SQL duplicate key error",
+        "caption": "Duplicate primary key? SQL says NO!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/foreign-key-link.png",
+        "_placeholder": "ADD: Diagram showing two tables linked by primary and foreign key",
+        "caption": "Primary Key links tables together — like a bridge!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/auto-increment.png",
+        "_placeholder": "ADD: Screenshot showing AUTO_INCREMENT in SQL",
+        "caption": "AUTO_INCREMENT — SQL assigns IDs automatically!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/student-id-activity.jpg",
+        "_placeholder": "ADD: Photo of students designing their own ID card tables on paper",
+        "caption": "Students designing tables with their own primary keys!",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "What is a Primary Key? — A column that uniquely identifies every row in a table",
+    "Rules of a Primary Key — Must be UNIQUE, must NOT be NULL, only ONE per table",
+    "Real-World Examples — Aadhaar number, Roll number, UPI ID, Employee ID, ISBN",
+    "Why Primary Keys Matter — Prevent duplicate records, enable fast lookups",
+    "AUTO_INCREMENT — Let SQL automatically assign unique ID numbers",
+    "NULL — What it means and why primary keys cannot be NULL",
+    "Composite Key — Using TWO columns together as a primary key",
+    "Foreign Key (Introduction) — How primary keys link two tables together",
+    "SQL Syntax — CREATE TABLE with PRIMARY KEY constraint",
+    "Common Mistakes — Using names or emails as primary keys (bad idea!)"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "Primary Key in SQL — Explained Simply",
+      "videoId": "B5r8CcTUs4Y",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A clear beginner-friendly explanation of primary keys in SQL — what they are, the rules, and how to use them."
+    },
+    {
+      "title": "SQL PRIMARY KEY and FOREIGN KEY — Full Guide",
+      "videoId": "ia7bU_-BFAo",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Covers primary keys, foreign keys and how they link database tables together with practical examples."
+    },
+    {
+      "title": "AUTO_INCREMENT in SQL — Automatically Assign IDs",
+      "videoId": "pCDDCOjBNck",
+      "desc": "Learn how AUTO_INCREMENT works to automatically generate unique primary key values for each new record."
+    },
+    {
+      "title": "Database Keys Explained — Primary, Foreign, Composite",
+      "videoId": "C3icLBcbDEA",
+      "desc": "A comprehensive visual guide to all types of database keys — primary, foreign and composite keys explained."
+    }
+  ],
+  "resources": [
+    {
+      "title": "W3Schools — SQL PRIMARY KEY",
+      "url": "https://www.w3schools.com/sql/sql_primarykey.asp",
+      "icon": "🔗"
+    },
+    {
+      "title": "SQLiteOnline — Practice SQL in Browser",
+      "url": "https://sqliteonline.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "DB Fiddle — Free Online SQL Playground",
+      "url": "https://www.db-fiddle.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Khan Academy — SQL and Databases",
+      "url": "https://www.khanacademy.org/computing/computer-programming/sql",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "Design a Student Database with Primary Keys",
+    "parts": [
+      "Paper / Activity Sheet",
+      "Pencil",
+      "SQLiteOnline.com (browser-based)",
+      "Sample dataset provided by teacher"
+    ],
+    "steps": [
+      "On paper, draw a Students table — columns: StudentID, Name, Class, Age, City",
+      "Fill in 5 rows with student data — two students can have the same name",
+      "Circle the PRIMARY KEY column — which one is always unique?",
+      "Try writing two rows with the same StudentID — what problem does this cause?",
+      "Open SQLiteOnline.com and create the table with PRIMARY KEY constraint",
+      "Use AUTO_INCREMENT so SQL assigns StudentID automatically",
+      "INSERT 5 student records — notice IDs are assigned automatically",
+      "Try inserting a duplicate StudentID manually — observe the error!",
+      "Challenge: Add a second table 'Classes' and link it using StudentID as a foreign key"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What is a PRIMARY KEY in a database table?",
+      "options": [
+        "The first column in any table",
+        "A column that uniquely identifies every row in the table",
+        "The most important piece of data in a row",
+        "A password to access the database"
+      ],
+      "answer": 1,
+      "explanation": "A Primary Key uniquely identifies every row! No two rows can share the same primary key value — it's like a unique ID card for every record in the table."
+    },
+    {
+      "q": "Which of these is the BEST real-world example of a primary key?",
+      "options": [
+        "A student's first name",
+        "A student's favourite colour",
+        "A student's Aadhaar number or Roll Number",
+        "A student's city"
+      ],
+      "answer": 2,
+      "explanation": "Aadhaar number and Roll Number are perfect primary key examples — they are unique for every person and never repeated. Names and cities can be shared by many people!"
+    },
+    {
+      "q": "What are the TWO most important rules of a primary key?",
+      "options": [
+        "Must be a number and must be long",
+        "Must be UNIQUE and must NOT be NULL",
+        "Must be the first column and must be text",
+        "Must be entered by the user and must be short"
+      ],
+      "answer": 1,
+      "explanation": "Primary keys must be UNIQUE (no two rows share the same value) and NOT NULL (every row must have a value). These two rules guarantee every record can be found!"
+    },
+    {
+      "q": "What does NULL mean in a database?",
+      "options": [
+        "The value is zero",
+        "The value is empty or unknown — no value at all",
+        "The value is the word 'NULL'",
+        "The value is negative"
+      ],
+      "answer": 1,
+      "explanation": "NULL means no value — not zero, not empty string, but completely absent. Primary keys cannot be NULL because every row must be identifiable."
+    },
+    {
+      "q": "Why can't you use a student's NAME as a primary key?",
+      "options": [
+        "Names are too long for databases",
+        "Databases don't support text columns",
+        "Two students can have the same name — names are not always unique",
+        "Names change every year"
+      ],
+      "answer": 2,
+      "explanation": "Names are not unique! A class could have two students both named 'Riya' or 'Arjun'. A primary key must be guaranteed unique — so always use an ID number instead."
+    },
+    {
+      "q": "What does AUTO_INCREMENT do in SQL?",
+      "options": [
+        "Automatically deletes old records",
+        "Automatically assigns the next unique number as the primary key for each new row",
+        "Automatically backs up the database",
+        "Automatically sorts the table alphabetically"
+      ],
+      "answer": 1,
+      "explanation": "AUTO_INCREMENT means SQL handles ID assignment for you! First record gets ID 1, second gets ID 2, and so on — you never have to manually enter or track IDs."
+    },
+    {
+      "q": "What happens if you try to INSERT a row with a PRIMARY KEY value that already exists?",
+      "options": [
+        "SQL replaces the old row silently",
+        "SQL adds both rows and assigns new IDs",
+        "SQL throws a Duplicate Key error and rejects the insert",
+        "SQL adds the row but marks it as a copy"
+      ],
+      "answer": 2,
+      "explanation": "SQL strictly enforces primary key uniqueness! If you try to insert a duplicate key value, you get a 'Duplicate entry' error and the row is rejected. This protects your data integrity."
+    },
+    {
+      "q": "How many PRIMARY KEYS can a single table have?",
+      "options": [
+        "As many as you want",
+        "Only one primary key (but it can span multiple columns)",
+        "Exactly two",
+        "One per column"
+      ],
+      "answer": 1,
+      "explanation": "Each table can only have ONE primary key. However, that key can be made up of multiple columns — called a Composite Key — when a single column isn't enough to guarantee uniqueness."
+    },
+    {
+      "q": "What is a COMPOSITE KEY?",
+      "options": [
+        "A key made of numbers and letters mixed together",
+        "A primary key that uses TWO or more columns together to uniquely identify a row",
+        "A key that is shared between two tables",
+        "An automatically generated key"
+      ],
+      "answer": 1,
+      "explanation": "A Composite Key combines two or more columns to form a unique identifier. Example: In an exam results table, StudentID + SubjectID together uniquely identify each result row."
+    },
+    {
+      "q": "Which SQL keyword is used to define a primary key when creating a table?",
+      "options": [
+        "UNIQUE KEY",
+        "MAIN KEY",
+        "PRIMARY KEY",
+        "INDEX KEY"
+      ],
+      "answer": 2,
+      "explanation": "PRIMARY KEY is the correct SQL keyword! Example: StudentID INT PRIMARY KEY — this tells SQL that StudentID is the unique identifier for every row in this table."
+    },
+    {
+      "q": "A FOREIGN KEY in one table refers to the _______ in another table.",
+      "options": [
+        "NULL value",
+        "Last column",
+        "Primary Key",
+        "Largest number"
+      ],
+      "answer": 2,
+      "explanation": "A Foreign Key is a column in one table that points to the Primary Key of another table — creating a link between the two tables. This is how relational databases connect related data!"
+    },
+    {
+      "q": "Why is using an email address as a primary key a bad idea?",
+      "options": [
+        "Emails are too short",
+        "Emails contain the @ symbol which SQL cannot store",
+        "People can change their email address, breaking the primary key",
+        "SQL does not support text primary keys"
+      ],
+      "answer": 2,
+      "explanation": "Primary keys should never change! Emails can be updated or transferred to someone else. If you use email as a primary key and it changes, all linked data breaks. Always prefer stable numeric IDs."
+    },
+    {
+      "q": "In a school database, which column would make the BEST primary key for a Students table?",
+      "options": [
+        "StudentName",
+        "Class",
+        "City",
+        "StudentID"
+      ],
+      "answer": 3,
+      "explanation": "StudentID is the best choice — it's a unique number assigned to each student that never changes or repeats. Name, Class and City can all be shared by multiple students."
+    },
+    {
+      "q": "What is the main benefit of having a primary key in every table?",
+      "options": [
+        "It makes the table look more professional",
+        "It guarantees every record can be uniquely found, updated or deleted without confusion",
+        "It speeds up the computer's processor",
+        "It allows the table to store more data"
+      ],
+      "answer": 1,
+      "explanation": "Primary keys ensure every record is uniquely identifiable! Without them, you might accidentally update or delete the wrong record when two rows look similar."
+    },
+    {
+      "q": "Which real-world system uses a unique ID similar to a database primary key for every transaction?",
+      "options": [
+        "A wall clock",
+        "A ceiling fan",
+        "UPI payment — every transaction gets a unique Transaction ID",
+        "A notebook"
+      ],
+      "answer": 2,
+      "explanation": "Every UPI transaction gets a unique Transaction ID — just like a primary key! This ID lets banks track, verify and reference any specific payment without confusion."
+    }
+  ]
+}

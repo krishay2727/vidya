@@ -1,0 +1,327 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-11/",
+        "slides_folder": "sessions/session-11/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-11/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-11",
+    "number": 11,
+    "title": "Prototype Sprint 1",
+    "subtitle": "Build Fast, Learn Faster!",
+    "date": "Session 11",
+    "duration": "1 Hour",
+    "phase": "Project",
+    "color": "#FF5722",
+    "icon": "🚀",
+    "tags": [
+        "Design Thinking",
+        "Prototyping",
+        "Problem Solving",
+        "Engineering"
+    ],
+    "overview": "This session launches the first hands-on Prototype Sprint — students apply everything learned across sessions to rapidly design, build, and test a working prototype. Using the Design Thinking framework, teams identify a real problem, brainstorm solutions, sketch a design, and build a first working version in a single sprint.",
+    "grades": [
+        7,
+        8,
+        9
+    ],
+    "slides": {
+        "pdf": "sessions/session-11/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — student sketches, prototype builds, team presentations, whiteboard ideation, components laid out on tables.",
+        "gallery": [
+            {
+                "file": "data/design-thinking.jpg",
+                "_placeholder": "ADD: Diagram showing the 5 stages of Design Thinking — Empathise, Define, Ideate, Prototype, Test",
+                "caption": "Design Thinking — The 5-step framework that powers innovation!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/sprint-timeline.jpg",
+                "_placeholder": "ADD: Timeline diagram showing the sprint phases within the 1-hour session",
+                "caption": "Sprint Timeline — Every minute counts — plan, build, test, repeat!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/ideation-whiteboard.jpg",
+                "_placeholder": "ADD: Photo of students brainstorming ideas on a whiteboard",
+                "caption": "Ideation — No bad ideas in brainstorming — quantity over quality first!",
+                "category": "Lab"
+            },
+            {
+                "file": "data/sketch-prototype.jpg",
+                "_placeholder": "ADD: Photo of hand-drawn prototype sketch on paper with labels",
+                "caption": "Paper Prototype — Sketch it before you build it — save time!",
+                "category": "Lab"
+            },
+            {
+                "file": "data/components-table.jpg",
+                "_placeholder": "ADD: Photo of Arduino, sensors, wires, and components laid out ready for building",
+                "caption": "Component Kit — Everything you need to bring your idea to life!",
+                "category": "Components"
+            },
+            {
+                "file": "data/team-build.jpg",
+                "_placeholder": "ADD: Photo of student teams actively building their prototype",
+                "caption": "Build Phase — Hands on the hardware — make it real!",
+                "category": "Lab"
+            },
+            {
+                "file": "data/test-feedback.jpg",
+                "_placeholder": "ADD: Photo of students testing their prototype and noting what works and what doesn't",
+                "caption": "Test & Iterate — Does it work? What broke? Fix and go again!",
+                "category": "Lab"
+            }
+        ]
+    },
+    "keyTopics": [
+        "Design Thinking — Empathise → Define → Ideate → Prototype → Test: the innovation framework",
+        "What is a Prototype? — A quick, simple, testable first version of an idea — NOT the final product",
+        "Sprint Methodology — Short, focused bursts of building and testing to learn fast and fail cheap",
+        "Problem Statement — Clearly defining WHO has WHAT problem and WHY it matters before building anything",
+        "Ideation Techniques — Brainstorming, mind mapping, and SCAMPER to generate creative solutions",
+        "Paper Prototyping — Sketching the design on paper first to spot flaws before touching any hardware",
+        "MVP (Minimum Viable Prototype) — The simplest version that still demonstrates the core idea",
+        "Feedback & Iteration — Testing with real users, collecting feedback, and improving in the next sprint"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "Design Thinking Explained",
+            "videoId": "a7sEoEvT8l8",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "A clear animated explainer of the 5 stages of Design Thinking — how innovators and engineers use it to solve real problems."
+        },
+        {
+            "title": "What is a Sprint? (Google Design Sprint)",
+            "videoId": "K2vSQPh6MCE",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "How Google's Design Sprint method compresses months of work into a focused week — the core ideas applied to student projects."
+        },
+        {
+            "title": "Paper Prototyping — Why It Works",
+            "videoId": "yafaGNFu8Eg",
+            "desc": "Why sketching on paper before building saves huge amounts of time — the power of low-fidelity prototyping."
+        },
+        {
+            "title": "What is MVP — Minimum Viable Product?",
+            "videoId": "0P7nCmln7PM",
+            "desc": "Understanding the MVP concept — build the simplest version that proves your idea works before investing more effort."
+        }
+    ],
+    "resources": [
+        {
+            "title": "IDEO Design Thinking — Official Resource",
+            "url": "https://designthinking.ideo.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Miro — Free Online Whiteboard for Ideation",
+            "url": "https://miro.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Wokwi — Simulate Circuit Prototype Online",
+            "url": "https://wokwi.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Tinkercad — 3D Design + Circuit Simulation",
+            "url": "https://www.tinkercad.com",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "60-Minute Prototype Sprint — Design, Build & Demo",
+        "parts": [
+            "Arduino UNO or NodeMCU",
+            "Breadboard and jumper wires",
+            "Assorted sensors (choose based on project — PIR, DHT11, ultrasonic, LDR)",
+            "LED, buzzer, servo motor",
+            "Paper and pens for sketching",
+            "Whiteboard for problem statement and ideation",
+            "Laptop with Arduino IDE or Wokwi simulator"
+        ],
+        "steps": [
+            "Phase 1 — Empathise & Define (10 min): Each team picks a real problem from a provided list (e.g. 'students forget to water plants', 'corridor lights stay on all day', 'no alert when bag is opened')",
+            "Write a Problem Statement on the whiteboard: 'How might we [solve problem] for [who] so that [benefit]?'",
+            "Phase 2 — Ideate (10 min): Brainstorm at least 5 different solutions on paper — no filtering yet, all ideas welcome!",
+            "Vote on the best idea as a team — circle it and commit to building it",
+            "Phase 3 — Paper Prototype (10 min): Sketch the circuit diagram and code logic on paper — label every component and wire",
+            "Identify which sensors and components are needed from the kit",
+            "Phase 4 — Build (20 min): Wire the hardware on the breadboard following the sketch",
+            "Write the minimum code needed to make the core function work — focus on the ONE key feature only",
+            "Phase 5 — Test & Demo (10 min): Power on and test — does it solve the problem? What broke? What would you fix in Sprint 2?",
+            "Each team gives a 60-second demo and shares ONE thing that worked and ONE thing to improve next sprint"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is a PROTOTYPE?",
+            "options": [
+                "The final, finished, fully polished product ready for sale",
+                "A quick, simple, testable early version of an idea used to learn and improve — not the final product",
+                "A detailed technical document describing a product",
+                "A backup copy of a completed project"
+            ],
+            "answer": 1,
+            "explanation": "Prototype = rough first version! Its job is to TEST an idea quickly and cheaply. Expect it to be imperfect — that is the point! Learn from it, improve it, and build a better version next sprint."
+        },
+        {
+            "q": "What are the 5 stages of DESIGN THINKING in the correct order?",
+            "options": [
+                "Plan → Design → Build → Test → Launch",
+                "Ideate → Empathise → Define → Prototype → Test",
+                "Empathise → Define → Ideate → Prototype → Test",
+                "Research → Sketch → Code → Build → Present"
+            ],
+            "answer": 2,
+            "explanation": "Design Thinking: Empathise (understand users) → Define (state the problem) → Ideate (brainstorm solutions) → Prototype (build a quick version) → Test (try it out and learn). It is a cycle — go back and repeat!"
+        },
+        {
+            "q": "What is the PURPOSE of the EMPATHISE stage in Design Thinking?",
+            "options": [
+                "To start building the prototype as quickly as possible",
+                "To deeply understand the people who have the problem — their needs, feelings, and frustrations",
+                "To write the code for the project",
+                "To present the final solution to the class"
+            ],
+            "answer": 1,
+            "explanation": "Empathise = walk in their shoes! Before solving any problem, you must truly understand the person who has it. Interview them, observe them, feel their frustration. Solutions built without empathy often miss the real problem!"
+        },
+        {
+            "q": "What is a PROBLEM STATEMENT in a design sprint?",
+            "options": [
+                "A list of all the components needed for the project",
+                "A clear, focused sentence describing WHO has WHAT problem and WHY solving it matters",
+                "The first line of code written for the project",
+                "A description of what the final product will look like"
+            ],
+            "answer": 1,
+            "explanation": "Problem Statement = your north star! Format: 'How might we [solve problem] for [who] so that [benefit]?' It keeps the whole team focused on the RIGHT problem. A bad problem statement leads to a brilliant solution to the wrong problem!"
+        },
+        {
+            "q": "What is IDEATION?",
+            "options": [
+                "The process of testing a prototype with real users",
+                "Writing detailed technical specifications for a product",
+                "A creative brainstorming process to generate as many possible solutions as possible without judging them",
+                "The final stage of the design sprint where the product is launched"
+            ],
+            "answer": 2,
+            "explanation": "Ideation = creative explosion! Generate QUANTITY first — aim for 10, 20, 30 ideas. No filtering, no judging yet. Wild ideas are welcome — they often spark the best real solutions. Only after ideation do you pick the best one!"
+        },
+        {
+            "q": "Why is PAPER PROTOTYPING valuable before building hardware?",
+            "options": [
+                "Paper prototypes can be submitted as the final project",
+                "Paper prototypes automatically generate Arduino code",
+                "Sketching on paper is fast and cheap — it lets you spot design flaws and test logic before wiring any components",
+                "Paper prototypes are more accurate than digital simulations"
+            ],
+            "answer": 2,
+            "explanation": "Paper first = save time and components! Sketching takes 10 minutes. Wiring takes 30. If your sketch reveals a flaw, fix it in 10 seconds on paper — not after 30 minutes of wiring. Low-fidelity early, high-fidelity later!"
+        },
+        {
+            "q": "What does MVP stand for in the context of prototyping?",
+            "options": [
+                "Most Valuable Player",
+                "Maximum Value Product",
+                "Minimum Viable Prototype — the simplest version that still demonstrates the core idea",
+                "Multi-Version Program"
+            ],
+            "answer": 2,
+            "explanation": "MVP = Minimum Viable Prototype! Build the LEAST amount possible that still proves your core idea works. Do not add extra features in Sprint 1 — get the ONE key function working first, then build on it in later sprints."
+        },
+        {
+            "q": "What is a DESIGN SPRINT?",
+            "options": [
+                "A competition where teams race to finish coding the fastest",
+                "A long multi-month project development process",
+                "A short focused period of intensive designing, building, and testing to answer a critical question quickly",
+                "A physical exercise session for design students"
+            ],
+            "answer": 2,
+            "explanation": "Sprint = compressed innovation! In a short focused burst (hours to days), teams go from problem to tested prototype. Fail fast and cheap in a sprint rather than slow and expensive in production. Learning speed is the goal!"
+        },
+        {
+            "q": "What should a team do FIRST before writing any code or wiring any components?",
+            "options": [
+                "Buy all the required components",
+                "Write the complete program from start to finish",
+                "Clearly define the problem, sketch the solution on paper, and agree on the minimum feature to build",
+                "Present their idea to the class for approval"
+            ],
+            "answer": 2,
+            "explanation": "Think before you build! Define the problem → sketch the solution → agree on MVP. Teams that rush to wire components without a plan waste time debugging avoidable mistakes. 10 minutes of planning saves 30 minutes of rework!"
+        },
+        {
+            "q": "What is ITERATION in the prototyping process?",
+            "options": [
+                "Building the prototype only once and submitting it",
+                "Restarting the entire project from scratch after a failure",
+                "Repeatedly testing, collecting feedback, and improving the prototype in cycles until it solves the problem well",
+                "Copying another team's working prototype"
+            ],
+            "answer": 2,
+            "explanation": "Iteration = improve in cycles! Test → find what breaks → fix it → test again. No prototype is perfect in Sprint 1. Each sprint produces a better version. Professional engineers iterate dozens of times before shipping a product!"
+        },
+        {
+            "q": "In a team sprint, what does the TEST phase involve?",
+            "options": [
+                "Writing the final version of the code",
+                "Presenting a slideshow about the project",
+                "Trying the prototype on the actual problem it was designed to solve and observing what works, what fails, and what to improve",
+                "Purchasing better components for the next version"
+            ],
+            "answer": 2,
+            "explanation": "Testing = reality check! Does the prototype actually solve the problem? Test it on real conditions, watch it fail (it will!), document what breaks, and write down improvements for Sprint 2. Failure in testing is PROGRESS!"
+        },
+        {
+            "q": "What is the SCAMPER technique used for in ideation?",
+            "options": [
+                "A method for wiring components safely on a breadboard",
+                "A debugging technique for finding errors in Arduino code",
+                "A creative thinking checklist — Substitute, Combine, Adapt, Modify, Put to other uses, Eliminate, Reverse — to generate new ideas",
+                "A way to organise files in an Arduino project folder"
+            ],
+            "answer": 2,
+            "explanation": "SCAMPER = idea generator! Take any existing idea and ask: Can I Substitute something? Combine it with something else? Adapt it? Modify it? Put it to other uses? Eliminate parts? Reverse it? Each question sparks new possibilities!"
+        },
+        {
+            "q": "Why is it important to focus on ONE core feature in Sprint 1?",
+            "options": [
+                "Because Arduino can only run one feature at a time",
+                "To keep the scope small so the team can actually finish, test, and learn something valuable within the time limit",
+                "Because the teacher only evaluates one feature per sprint",
+                "Because additional features are not allowed in hardware projects"
+            ],
+            "answer": 1,
+            "explanation": "Focus = speed of learning! Trying to build 5 features in one sprint means finishing none properly. Build ONE feature, make it work, test it, get feedback. Add the next feature in Sprint 2. Small scope = completed learning = faster progress!"
+        },
+        {
+            "q": "What makes a good 60-second DEMO at the end of a sprint?",
+            "options": [
+                "Reading out all the technical specifications of every component used",
+                "Showing a video of a similar project found online",
+                "Demonstrating the prototype doing its ONE core function live, then sharing what worked and what to improve next sprint",
+                "Explaining all the bugs encountered during the build phase"
+            ],
+            "answer": 2,
+            "explanation": "Great demo = show, do not just tell! Power it on, demonstrate the core function live, then say: 'This worked — the sensor detects motion. This did not — the buzzer delay is too long. In Sprint 2 we will fix the timing.' Simple, honest, focused!"
+        },
+        {
+            "q": "Which statement best describes the MINDSET needed for a prototype sprint?",
+            "options": [
+                "Perfection first — do not show anyone the prototype until it is fully working",
+                "Avoid failure at all costs — only present ideas you are 100% sure will work",
+                "Fail fast, learn faster — an imperfect working prototype that teaches you something is better than a perfect plan that was never built",
+                "Copy the best working prototype from the previous sprint and improve the presentation"
+            ],
+            "answer": 2,
+            "explanation": "Sprint mindset = embrace imperfection! 'Done is better than perfect' in Sprint 1. A broken prototype that ran and failed teaches you 10x more than a perfect design that was never built. The goal is learning speed, not polished output!"
+        }
+    ]
+}

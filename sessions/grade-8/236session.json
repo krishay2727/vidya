@@ -1,0 +1,323 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-236/",
+    "slides_folder": "sessions/session-236/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-236/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-236",
+  "number": 236,
+  "title": "Project Capstone — Build & Code",
+  "subtitle": "Stop Planning, Start Building — Let's Code It!",
+  "date": "Session 236",
+  "duration": "1 Hour",
+  "phase": "Capstone",
+  "color": "#00C853",
+  "icon": "⚙️",
+  "tags": [
+    "Python",
+    "GUI",
+    "Tkinter",
+    "Capstone",
+    "Coding",
+    "Project Build"
+  ],
+  "overview": "Students move from planning to action — writing actual Python code for their capstone GUI project. This session focuses on setting up the project structure, building the main window, adding widgets, and wiring up event handlers. Emphasis is on learning by doing and debugging confidently.",
+  "grades": [
+    6,
+    7,
+    8
+  ],
+  "slides": {
+    "pdf": "sessions/session-236/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — student screens with code, debugging moments, finished GUI windows, whiteboard code walkthroughs.",
+    "gallery": [
+      {
+        "file": "data/tkinter-setup.png",
+        "_placeholder": "ADD: Screenshot of basic Tkinter boilerplate code",
+        "caption": "Every GUI project starts with these 3 lines of Tkinter!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/widget-placement.png",
+        "_placeholder": "ADD: Screenshot showing widgets placed using grid()",
+        "caption": "grid() — placing widgets like tiles on a board!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/button-function.png",
+        "_placeholder": "ADD: Screenshot of a button linked to a function",
+        "caption": "command= connects your button to a function — magic!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/debugging.gif",
+        "_placeholder": "ADD: GIF or photo of a student debugging their code",
+        "caption": "Bugs are clues — read the error, fix the code!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/student-gui-screen.jpg",
+        "_placeholder": "ADD: Photo of student's laptop showing their running GUI app",
+        "caption": "It works! A student's capstone app running live!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/project-structure.png",
+        "_placeholder": "ADD: Diagram or screenshot showing a clean project folder structure",
+        "caption": "Good coders keep their project files organised!",
+        "category": "Concept"
+      }
+    ]
+  },
+  "keyTopics": [
+    "Tkinter Boilerplate — import tkinter, create window, mainloop()",
+    "Setting Window Title and Size — title() and geometry()",
+    "Adding Widgets — Label, Button, Entry, Frame",
+    "Layout with grid() — rows and columns for clean UI",
+    "Writing Functions — def on_click(): and connecting to command=",
+    "Reading User Input — Entry.get() to capture typed text",
+    "Updating Labels Dynamically — label.config(text=...)",
+    "Debugging — Reading error messages and fixing them confidently",
+    "Project Structure — Keeping code clean and organised",
+    "Stretch Goals — Adding colours, fonts, and extra features"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "Build a Python Tkinter App — Step by Step",
+      "videoId": "ibf8HkgNqfk",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A hands-on walkthrough of building a complete Tkinter GUI app from scratch — window, widgets, buttons and functions."
+    },
+    {
+      "title": "Python Tkinter Calculator Project",
+      "videoId": "Q6CCBJgPxe0",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Build a working calculator GUI in Python — great capstone reference for students!"
+    },
+    {
+      "title": "Python To-Do List App with Tkinter",
+      "videoId": "mMdk3K3uMKk",
+      "desc": "Step-by-step build of a To-Do List app using Tkinter — covers Entry, Listbox, Buttons and functions."
+    },
+    {
+      "title": "Python Debugging Tips for Beginners",
+      "videoId": "KSiRzuSx120",
+      "desc": "How to read Python error messages and fix bugs confidently — essential skill for any coder!"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Tkinter Widget Reference — W3Schools",
+      "url": "https://www.w3schools.com/python/python_tk_widgets.asp",
+      "icon": "🔗"
+    },
+    {
+      "title": "Replit — Code and Run Python Online",
+      "url": "https://replit.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "TkDocs — Tkinter Modern Guide",
+      "url": "https://tkdocs.com/tutorial/index.html",
+      "icon": "🔗"
+    },
+    {
+      "title": "Python Error Messages Explained — Simply",
+      "url": "https://realpython.com/python-traceback/",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "Build Your Capstone GUI App",
+    "parts": [
+      "Python 3 installed",
+      "VS Code or IDLE",
+      "Tkinter (built-in with Python)",
+      "Capstone plan/wireframe from Session 234",
+      "Notebook for tracking bugs and fixes"
+    ],
+    "steps": [
+      "Open VS Code and create a new file — app.py",
+      "Write the Tkinter boilerplate: import, create window, mainloop()",
+      "Set your window title and size using title() and geometry()",
+      "Add your first widget — a Label with your app's name",
+      "Add an Entry box for user input",
+      "Add a Button and write a function it will call on click",
+      "Use Entry.get() inside your function to read user input",
+      "Display the result using label.config(text=...)",
+      "Test, find bugs, read the error message, fix it — repeat!",
+      "Stretch: Add colours with bg= and fg=, change fonts with font="
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What are the 3 essential lines every Tkinter program must have?",
+      "options": [
+        "import, print(), run()",
+        "import tkinter, create window with Tk(), call mainloop()",
+        "start(), build(), launch()",
+        "import tkinter, SELECT, INSERT"
+      ],
+      "answer": 1,
+      "explanation": "Every Tkinter app needs: import tkinter → window = tkinter.Tk() → window.mainloop(). These 3 lines create and keep your window open!"
+    },
+    {
+      "q": "Which line sets the title shown in the window's title bar?",
+      "options": [
+        "window.name('My App')",
+        "window.header('My App')",
+        "window.title('My App')",
+        "window.label('My App')"
+      ],
+      "answer": 2,
+      "explanation": "window.title('My App') sets the title bar text! It's usually one of the first things you write after creating the window."
+    },
+    {
+      "q": "Which line sets the size of a Tkinter window to 800 wide and 600 tall?",
+      "options": [
+        "window.size(800, 600)",
+        "window.geometry('800x600')",
+        "window.width(800).height(600)",
+        "window.resize('800,600')"
+      ],
+      "answer": 1,
+      "explanation": "window.geometry('800x600') sets width x height in pixels. The format is always 'WIDTHxHEIGHT' as a string."
+    },
+    {
+      "q": "How do you create a Label widget that says 'Hello!' in Tkinter?",
+      "options": [
+        "Label(window, text='Hello!').pack()",
+        "print('Hello!')",
+        "window.show('Hello!')",
+        "Text(window, 'Hello!').display()"
+      ],
+      "answer": 0,
+      "explanation": "Label(window, text='Hello!').pack() creates a label and places it on the window. The parent is always the window, and you must call a layout method like pack() or grid()!"
+    },
+    {
+      "q": "Which layout method places widgets in rows and columns like a table?",
+      "options": [
+        "pack()",
+        "place()",
+        "sort()",
+        "grid()"
+      ],
+      "answer": 3,
+      "explanation": "grid() places widgets at specific row= and column= positions — perfect for forms, calculators, and structured layouts. Example: button.grid(row=0, column=1)"
+    },
+    {
+      "q": "How do you read the text a user typed into an Entry widget called 'entry'?",
+      "options": [
+        "entry.read()",
+        "entry.text()",
+        "entry.get()",
+        "get(entry)"
+      ],
+      "answer": 2,
+      "explanation": "entry.get() returns whatever the user typed as a string. You'll use this inside your button function to grab the input and do something with it!"
+    },
+    {
+      "q": "How do you update a Label's text after the app is running?",
+      "options": [
+        "label.text = 'New text'",
+        "label.update('New text')",
+        "label.config(text='New text')",
+        "label.set('New text')"
+      ],
+      "answer": 2,
+      "explanation": "label.config(text='New text') updates the label dynamically! You'll call this inside a function to show results after a button click."
+    },
+    {
+      "q": "What does the command= parameter in a Button do?",
+      "options": [
+        "Changes the button's colour",
+        "Sets the button's size",
+        "Links the button to a function that runs on click",
+        "Disables the button"
+      ],
+      "answer": 2,
+      "explanation": "command= connects your button to a function! Example: Button(window, text='Click Me', command=my_function) — when clicked, my_function() runs automatically."
+    },
+    {
+      "q": "You see this error: 'NameError: name my_function is not defined'. What went wrong?",
+      "options": [
+        "The window is too small",
+        "The function was called before it was defined in the code",
+        "The button has no text",
+        "Tkinter is not installed"
+      ],
+      "answer": 1,
+      "explanation": "NameError means Python can't find the function! Always define your def my_function(): BEFORE creating the button that uses it. Order matters in Python!"
+    },
+    {
+      "q": "What is the correct way to define a function called on_click in Python?",
+      "options": [
+        "function on_click() {}",
+        "def on_click():",
+        "create on_click():",
+        "func on_click() ="
+      ],
+      "answer": 1,
+      "explanation": "def on_click(): is correct Python syntax! Don't forget the colon at the end and indent the code inside the function."
+    },
+    {
+      "q": "Which parameter changes the background colour of a widget in Tkinter?",
+      "options": [
+        "color=",
+        "background=",
+        "bg=",
+        "fill="
+      ],
+      "answer": 2,
+      "explanation": "bg= sets the background colour! Example: Button(window, text='Go', bg='green', fg='white') — bg is background, fg is foreground (text colour)."
+    },
+    {
+      "q": "What should you do FIRST when you see a Python error message?",
+      "options": [
+        "Close the program and restart",
+        "Delete all your code and start again",
+        "Read the last line of the error — it tells you what went wrong",
+        "Ask someone else to fix it"
+      ],
+      "answer": 2,
+      "explanation": "Read the error! The last line tells you the error type and message. The line above tells you exactly which line caused it. Bugs are clues — not failures!"
+    },
+    {
+      "q": "What does pack() do to a widget?",
+      "options": [
+        "Deletes the widget",
+        "Saves the widget to a file",
+        "Places the widget on the window automatically",
+        "Changes the widget's colour"
+      ],
+      "answer": 2,
+      "explanation": "pack() places the widget on the window! Without calling pack(), grid(), or place(), your widget exists in memory but won't appear on screen."
+    },
+    {
+      "q": "Which of these is a good habit when building a capstone project?",
+      "options": [
+        "Write all 200 lines of code before testing",
+        "Build and test one small piece at a time",
+        "Never comment your code",
+        "Use only one widget for everything"
+      ],
+      "answer": 1,
+      "explanation": "Build small, test often! Add one widget or function, run the code, check it works, then move to the next. This makes bugs much easier to find and fix."
+    },
+    {
+      "q": "How do you change the font of a Label in Tkinter?",
+      "options": [
+        "label.font('Arial', 14)",
+        "Label(window, text='Hi', font=('Arial', 14))",
+        "label.setFont('Arial', 14)",
+        "font(label, 'Arial', 14)"
+      ],
+      "answer": 1,
+      "explanation": "Use the font= parameter with a tuple: font=('Arial', 14) sets font family and size. You can also add 'bold' or 'italic': font=('Arial', 14, 'bold')."
+    }
+  ]
+}

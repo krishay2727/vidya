@@ -1,0 +1,330 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-229/",
+    "slides_folder": "sessions/session-229/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-229/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-229",
+  "number": 229,
+  "title": "WiFi RC Car",
+  "subtitle": "Build a Car You Drive from Your Phone — Over WiFi!",
+  "date": "Session 229",
+  "duration": "1 Hour",
+  "phase": "Advanced",
+  "color": "#D84315",
+  "icon": "🚗",
+  "tags": [
+    "ESP8266",
+    "L298N",
+    "DC Motors",
+    "WiFi",
+    "IoT",
+    "Robotics",
+    "STEM"
+  ],
+  "overview": "In this session, students build a fully functional WiFi-controlled RC car using an ESP8266, an L298N motor driver, and two DC motors. A web page served by the ESP8266 displays direction buttons — Forward, Backward, Left, Right, Stop — that control the car from any browser on the same network. Students experience the complete integration of electronics, motor control, WiFi communication, and web development in one exciting project.",
+  "grades": [
+    7,
+    8,
+    9
+  ],
+  "slides": {
+    "pdf": "sessions/session-229/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — RC car chassis, L298N wiring, ESP8266 on car, browser control page, car in motion.",
+    "gallery": [
+      {
+        "file": "data/rc-car-chassis.jpg",
+        "_placeholder": "ADD: Photo of the 2WD robot car chassis with DC motors and wheels assembled",
+        "caption": "2WD robot car chassis — the mechanical base of the WiFi RC car",
+        "category": "Components"
+      },
+      {
+        "file": "data/l298n-module.jpg",
+        "_placeholder": "ADD: Photo of L298N dual H-bridge motor driver module with pin labels",
+        "caption": "L298N motor driver — controls speed and direction of two DC motors",
+        "category": "Components"
+      },
+      {
+        "file": "data/rc-car-circuit.jpg",
+        "_placeholder": "ADD: Full wiring photo — ESP8266 + L298N + motors + battery pack assembled on car",
+        "caption": "Complete WiFi RC car circuit — ESP8266 sends signals to L298N to drive motors",
+        "category": "Lab"
+      },
+      {
+        "file": "data/rc-car-web-page.png",
+        "_placeholder": "ADD: Screenshot of browser showing directional control buttons — Forward, Back, Left, Right, Stop",
+        "caption": "Browser control panel — tap buttons to drive the car from your phone!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/h-bridge-diagram.png",
+        "_placeholder": "ADD: Diagram explaining H-bridge motor direction control — current flow forward and reverse",
+        "caption": "H-Bridge: reversing current direction through the motor reverses rotation",
+        "category": "Concept"
+      },
+      {
+        "file": "data/rc-car-driving.gif",
+        "_placeholder": "ADD: GIF or photo of the WiFi RC car moving forward on the floor",
+        "caption": "Students driving their WiFi RC car from a phone browser — it works!",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "DC Motor — An electric motor that converts electrical energy into rotational motion; speed and direction controlled by voltage polarity",
+    "H-Bridge — A circuit arrangement that allows current to flow through a motor in either direction, enabling forward and reverse rotation",
+    "L298N Motor Driver — A dual H-bridge IC module that controls two DC motors independently, supporting direction and PWM speed control",
+    "IN1, IN2, IN3, IN4 — Direction control pins on the L298N; HIGH/LOW combinations determine each motor's rotation direction",
+    "ENA, ENB — Enable pins on the L298N; PWM signals here control motor speed (0–255); jumper = full speed always",
+    "PWM (Pulse Width Modulation) — Rapidly switching power on and off to simulate variable voltage; controls motor speed on the ESP8266",
+    "2WD Chassis — A two-wheeled drive robot car platform; left and right motors controlled independently for turning",
+    "Differential Steering — Turning is achieved by running one motor faster or slower than the other (or reversing one) — no steering servo needed",
+    "ESP8266 Web Server — Hosts the HTML control page; parses URL paths (/forward, /backward, /left, /right, /stop) to determine motor commands",
+    "URL Path Parsing — Reading the HTTP request to extract the command path: `if (request.indexOf('/forward') != -1)` triggers forward motion",
+    "Power Supply — Motors need more current than the ESP8266 can provide; a separate battery pack (4× AA or Li-ion) powers the L298N motor supply",
+    "Free Wheeling / Coasting vs Active Braking — Stopping motors by removing power (coast) vs actively braking by setting both IN pins HIGH"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "ESP8266 WiFi RC Car — Full Build Tutorial",
+      "videoId": "O_Q1WKCtWiA",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Complete step-by-step build of a WiFi-controlled RC car using ESP8266 NodeMCU, L298N motor driver, and a 2WD chassis — wiring, code, web server, and driving demo."
+    },
+    {
+      "title": "L298N Motor Driver — How It Works",
+      "videoId": "dyjo_s6OfHw",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Full tutorial on the L298N dual H-bridge motor driver — pin explanation, wiring to Arduino/ESP8266, controlling speed with PWM, and direction with IN1–IN4 pins."
+    },
+    {
+      "title": "H-Bridge Explained — Motor Direction Control",
+      "videoId": "fVgnUWIWzEs",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Visual explanation of how an H-bridge circuit works — how reversing current direction through a motor reverses its rotation, and why motor drivers use this design."
+    },
+    {
+      "title": "ESP8266 Web Server — Controlling GPIO from Browser",
+      "videoId": "m2fEXhl9OQM",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "How to build an ESP8266 web server that parses URL paths to trigger actions — the same technique used to control the RC car's direction from browser buttons."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Random Nerd Tutorials — ESP8266 WiFi Car",
+      "url": "https://randomnerdtutorials.com/esp8266-nodemcu-wi-fi-rc-car/",
+      "icon": "🔗"
+    },
+    {
+      "title": "L298N Motor Driver Datasheet",
+      "url": "https://www.st.com/resource/en/datasheet/l298.pdf",
+      "icon": "🔗"
+    },
+    {
+      "title": "Wokwi — Simulate ESP8266 + Motors Online",
+      "url": "https://wokwi.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "ESP8266 Arduino Core — Official Docs",
+      "url": "https://arduino-esp8266.readthedocs.io/en/latest/",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "Build and Drive a WiFi RC Car",
+    "parts": [
+      "ESP8266 NodeMCU board",
+      "L298N dual H-bridge motor driver module",
+      "2WD robot car chassis with 2 DC motors and wheels",
+      "4× AA battery holder (or 7.4V Li-ion pack) for motor power",
+      "Power bank or USB cable for ESP8266 power",
+      "Breadboard and jumper wires",
+      "Laptop with Arduino IDE and ESP8266WiFi library",
+      "Smartphone or laptop browser for control"
+    ],
+    "steps": [
+      "Step 1 — Chassis Assembly: Attach the two DC motors to the chassis, fit the wheels, and secure the caster wheel at the front. Mount the battery holder underneath",
+      "Step 2 — L298N Wiring: Connect motor A wires to L298N OUT1/OUT2. Connect motor B wires to OUT3/OUT4. Connect the battery pack positive to L298N 12V input and negative to GND. Connect L298N GND to ESP8266 GND (shared ground)",
+      "Step 3 — ESP8266 to L298N Control Pins: Connect IN1 → D1, IN2 → D2, IN3 → D3, IN4 → D4. Leave ENA and ENB jumpers on for full speed (or connect to D5/D6 for PWM speed control)",
+      "Step 4 — Motor Test: Write a simple sketch — no WiFi yet. Test each motor direction by setting IN1/IN2 and IN3/IN4 HIGH/LOW combinations. Confirm both motors spin correctly in both directions",
+      "Step 5 — WiFi Web Server: Add WiFi connection code. Create a web server on port 80. Build an HTML page with 5 styled buttons: Forward (▲), Backward (▼), Left (◄), Right (►), Stop (■). Each button links to a URL path: /forward, /backward, /left, /right, /stop",
+      "Step 6 — URL Path Parsing: In the server loop, read the HTTP request string. Use `indexOf('/forward')`, `indexOf('/left')` etc. to detect which button was pressed and call the corresponding motor function",
+      "Step 7 — Motor Control Functions: Write functions — `moveForward()`: both motors forward. `moveBackward()`: both motors reverse. `turnLeft()`: right motor forward, left motor stop/reverse. `turnRight()`: left motor forward, right motor stop/reverse. `stopCar()`: all IN pins LOW",
+      "Step 8 — Full Drive Test: Upload the sketch. Open Serial Monitor, copy the IP address. Open it in a phone browser. Drive the car around the classroom!",
+      "Challenge: Add PWM speed control — a Slow/Fast toggle button on the web page that uses analogWrite() on ENA/ENB to switch between 50% and 100% speed. Also add a horn button that beeps a buzzer mounted on the car"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What does a DC Motor do?",
+      "options": [
+        "Converts electrical energy into light",
+        "Converts electrical energy into rotational motion — it spins when current flows through it",
+        "Converts rotational motion into electrical energy",
+        "Controls the speed of other motors"
+      ],
+      "answer": 1,
+      "explanation": "DC Motor = electricity → spinning! When current flows through the motor coils, it creates a magnetic field that makes the axle rotate. Reverse the current direction and the motor spins the other way. This is how the RC car moves forward and backward."
+    },
+    {
+      "q": "What is an H-Bridge circuit and why is it needed for DC motor control?",
+      "options": [
+        "A bridge that connects the ESP8266 to the motor directly",
+        "A circuit arrangement that allows current to flow through a motor in either direction, enabling both forward and reverse rotation",
+        "A type of power regulator that steps down voltage for the motor",
+        "A wireless communication bridge between the phone and the car"
+      ],
+      "answer": 1,
+      "explanation": "H-Bridge is the direction switcher! A DC motor needs current reversed to spin the other way, but a microcontroller can only output HIGH or LOW — not reverse voltage. The H-Bridge uses four switches arranged in an H shape to control which direction current flows through the motor."
+    },
+    {
+      "q": "What is the role of the L298N module in the RC car project?",
+      "options": [
+        "It provides WiFi connectivity to the car",
+        "It is a dual H-bridge motor driver that controls the speed and direction of both DC motors based on signals from the ESP8266",
+        "It measures the car's speed using a sensor",
+        "It stores the web page HTML for the control interface"
+      ],
+      "answer": 1,
+      "explanation": "L298N is the muscle! The ESP8266 sends low-current control signals (IN1–IN4) to the L298N. The L298N uses its own power supply to drive the high-current motors. Without it, the motors would drain too much current and damage the ESP8266's GPIO pins."
+    },
+    {
+      "q": "On the L298N, what do the IN1 and IN2 pins control?",
+      "options": [
+        "The power supply voltage to the module",
+        "The direction of Motor A — different HIGH/LOW combinations on IN1 and IN2 make the motor spin forward, reverse, or stop",
+        "The PWM speed of both motors simultaneously",
+        "The WiFi connection strength"
+      ],
+      "answer": 1,
+      "explanation": "IN1 and IN2 control Motor A direction! IN1=HIGH, IN2=LOW → forward. IN1=LOW, IN2=HIGH → reverse. IN1=LOW, IN2=LOW → stop (coast). IN3 and IN4 do the same for Motor B. This is how the ESP8266 tells the L298N which way to spin each wheel."
+    },
+    {
+      "q": "What is Differential Steering in a 2WD robot car?",
+      "options": [
+        "Using a steering servo to turn the front wheels left or right",
+        "Turning by running one motor faster or slower than the other — or reversing one motor — without needing a separate steering mechanism",
+        "Measuring the speed difference between the two wheels with encoders",
+        "A gear differential that splits torque between left and right wheels"
+      ],
+      "answer": 1,
+      "explanation": "Differential steering = tank-style turning! To turn left: slow down or reverse the left motor while the right motor runs forward. The car pivots around its left wheel. This is simpler and more compact than a steering servo — no extra hardware needed, just motor speed difference."
+    },
+    {
+      "q": "Why does the L298N need a SEPARATE battery pack rather than using the ESP8266's power supply?",
+      "options": [
+        "The L298N only works with AC power",
+        "DC motors draw significantly more current than the ESP8266 can supply — a separate battery prevents voltage drop that would crash or damage the ESP8266",
+        "The ESP8266 and L298N use different communication protocols",
+        "Separate power is only needed when using PWM speed control"
+      ],
+      "answer": 1,
+      "explanation": "Motors are current hungry! DC motors can draw 200–600mA or more, especially under load. The ESP8266's 3.3V regulator can only supply ~300mA total for everything. Separate motor power prevents the motor's current draw from browning out the ESP8266 and causing random resets or WiFi drops."
+    },
+    {
+      "q": "What is PWM (Pulse Width Modulation) used for in motor control?",
+      "options": [
+        "Sending WiFi data packets to the browser",
+        "Rapidly switching power on and off to simulate variable voltage, controlling motor speed between 0% and 100%",
+        "Measuring the rotation speed of the motor shaft",
+        "Protecting the motor from overheating"
+      ],
+      "answer": 1,
+      "explanation": "PWM = simulated dimmer switch for motors! Instead of true variable voltage, PWM rapidly pulses power on and off. At 50% duty cycle (on half the time), the motor gets effectively half the voltage and spins at half speed. `analogWrite(ENA, 128)` sets 50% speed; `analogWrite(ENA, 255)` = full speed."
+    },
+    {
+      "q": "How does the ESP8266 web server know which direction button was pressed on the control page?",
+      "options": [
+        "Each button sends a Bluetooth signal to the ESP8266",
+        "Each button links to a different URL path (/forward, /left, etc.) — the ESP8266 reads the HTTP request and checks which path was requested using indexOf()",
+        "The browser sends a JSON command to the ESP8266's API",
+        "The buttons directly control GPIO pins via the browser's JavaScript"
+      ],
+      "answer": 1,
+      "explanation": "URL path parsing! Each HTML button is a link to a path: `<a href='/forward'>Forward</a>`. When clicked, the browser sends `GET /forward HTTP/1.1` to the ESP8266. The code checks `if (request.indexOf('/forward') != -1)` and triggers the forward motor function. Simple and effective!"
+    },
+    {
+      "q": "What must be shared between the ESP8266 and the L298N for the circuit to work correctly?",
+      "options": [
+        "The same WiFi network",
+        "A common GND (ground) connection — without shared ground, the control signals from ESP8266 to L298N have no reference and the motors behave unpredictably",
+        "The same power supply voltage",
+        "The same baud rate in Serial Monitor"
+      ],
+      "answer": 1,
+      "explanation": "Shared ground is essential! In any multi-power-supply circuit, all GND connections must be joined together. The ESP8266's GND and the L298N's GND must be connected. Without it, the IN1–IN4 signals from the ESP8266 have no return path and the L298N won't respond correctly."
+    },
+    {
+      "q": "To make the RC car turn LEFT using differential steering, what should the motors do?",
+      "options": [
+        "Both motors stop completely",
+        "Both motors run forward at full speed",
+        "The right motor runs forward while the left motor stops or reverses — causing the car to pivot left",
+        "The left motor runs forward while the right motor stops or reverses"
+      ],
+      "answer": 2,
+      "explanation": "Turn left = right motor drives, left motor brakes/reverses! The car pivots around the slower or reversed side. Right motor forward + left motor stopped = gentle left curve. Right motor forward + left motor reverse = sharp on-the-spot left spin. Same principle as a tank!"
+    },
+    {
+      "q": "What is the ENA pin on the L298N used for?",
+      "options": [
+        "Enabling the ESP8266's WiFi antenna",
+        "An enable pin for Motor A — connecting it to a PWM signal controls Motor A's speed; leaving the jumper on sets it to full speed",
+        "Connecting the external power supply",
+        "Enabling serial communication with the ESP8266"
+      ],
+      "answer": 1,
+      "explanation": "ENA = Motor A's throttle! With the jumper on, Motor A always runs at full power when IN1/IN2 are set. Remove the jumper and connect ENA to an ESP8266 PWM pin — then `analogWrite(ENA, speed)` controls how fast Motor A spins. ENB does the same for Motor B."
+    },
+    {
+      "q": "A student's RC car moves but can only go forward and cannot reverse. What is the most likely cause?",
+      "options": [
+        "The WiFi connection is too slow",
+        "The IN1 and IN2 wires for one or both motors are swapped or the reverse function sets both IN pins to LOW (coast) instead of reversing HIGH/LOW",
+        "The L298N needs a firmware update",
+        "The ESP8266 ran out of memory"
+      ],
+      "answer": 1,
+      "explanation": "Check the reverse function! Common mistakes: reverse() sets IN1=LOW, IN2=LOW (coast/stop) instead of IN1=LOW, IN2=HIGH (reverse). Or motor wires are swapped on the L298N outputs so 'reverse' command actually sends no signal. Test each motor independently with a simple test sketch."
+    },
+    {
+      "q": "Why is it important to test each motor direction separately BEFORE assembling the full web server code?",
+      "options": [
+        "To check that the WiFi SSID is correct",
+        "To verify the wiring and motor directions are correct early — catching wiring mistakes before adding complexity makes debugging far easier",
+        "The motor test is required by the L298N library",
+        "To calibrate the speed of both motors to exactly the same value"
+      ],
+      "answer": 1,
+      "explanation": "Always test components step by step! If you wire everything and upload the full code at once, a wiring mistake causes confusing behaviour. By testing motors first with a simple sketch — no WiFi, no web server — you isolate and fix hardware issues before adding software complexity."
+    },
+    {
+      "q": "What real-world robots and vehicles use the same WiFi web server control principle as this RC car?",
+      "options": [
+        "Commercial aircraft autopilot systems",
+        "WiFi-controlled warehouse robots, telepresence robots, drone ground control stations, and home surveillance robots that stream video and receive movement commands over a network",
+        "Traditional infrared TV remote controls",
+        "Bluetooth-controlled toys with a dedicated remote"
+      ],
+      "answer": 1,
+      "explanation": "This project mirrors real robotics! Warehouse robots (Amazon Kiva), telepresence robots (for remote meetings), and even some Mars rover concepts use network-based command and control. The principle — send a command over a network, robot executes it — scales from your RC car to robots on other planets!"
+    },
+    {
+      "q": "What upgrade would allow the RC car to be driven from ANYWHERE in the world, not just on the same WiFi network?",
+      "options": [
+        "Replacing the L298N with a more powerful motor driver",
+        "Integrating Blynk IoT — replacing the local web server with Blynk cloud so the control app works over the internet from any location",
+        "Adding a GPS module to the car",
+        "Increasing the PWM frequency for the motors"
+      ],
+      "answer": 1,
+      "explanation": "Blynk makes it global! The local web server only works when phone and ESP8266 are on the same WiFi. With Blynk, button presses in the app travel through the cloud to the ESP8266 anywhere with internet. Add a Joystick widget in Blynk for smooth directional control — a natural upgrade from this project!"
+    }
+  ]
+}

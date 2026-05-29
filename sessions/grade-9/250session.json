@@ -1,0 +1,325 @@
+{
+    "_instructions": {
+        "folder_structure": "sessions/session-12/",
+        "slides_folder": "sessions/session-12/slides/   ← Put PPT slide images here (JPG/PNG)",
+        "images_folder": "sessions/session-12/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+        "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+        "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+    },
+    "id": "session-12",
+    "number": 12,
+    "title": "Neural Networks",
+    "subtitle": "The Brain Inside the Machine!",
+    "date": "Session 12",
+    "duration": "1 Hour",
+    "phase": "Advanced",
+    "color": "#7C4DFF",
+    "icon": "🕸️",
+    "tags": [
+        "Neural Networks",
+        "Deep Learning",
+        "Artificial Intelligence",
+        "Python"
+    ],
+    "overview": "This session takes a deep dive into neural networks — the architecture powering modern AI. Students explore how neurons, weights, activation functions, and backpropagation work together to let machines learn. From a single perceptron to multi-layer deep networks, students build intuition through analogies, visuals, and a hands-on Keras model.",
+    "grades": [
+        8,
+        9,
+        10
+    ],
+    "slides": {
+        "pdf": "sessions/session-12/slides.pdf"
+    },
+    "images": {
+        "_note": "Add photos from the actual session — neuron diagrams, weight visualisations, activation function graphs, backpropagation flow, Keras model summary screenshot.",
+        "gallery": [
+            {
+                "file": "data/biological-vs-artificial-neuron.jpg",
+                "_placeholder": "ADD: Side-by-side diagram of a biological neuron vs an artificial neuron (perceptron)",
+                "caption": "Biological vs Artificial Neuron — Nature inspired the machine!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/perceptron.jpg",
+                "_placeholder": "ADD: Diagram of a single perceptron showing inputs, weights, summation, activation, and output",
+                "caption": "Perceptron — The simplest neural network: one neuron!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/multilayer-network.jpg",
+                "_placeholder": "ADD: Diagram showing input layer, two hidden layers, and output layer with all connections drawn",
+                "caption": "Multi-Layer Network — Stacking neurons creates intelligence!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/activation-functions.jpg",
+                "_placeholder": "ADD: Graph showing ReLU, Sigmoid, and Tanh activation function curves",
+                "caption": "Activation Functions — The on/off switch that adds non-linearity!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/backpropagation.jpg",
+                "_placeholder": "ADD: Diagram showing forward pass and backward pass with gradient arrows flowing back through layers",
+                "caption": "Backpropagation — The AI grading its own mistakes and fixing them!",
+                "category": "Concept"
+            },
+            {
+                "file": "data/keras-model-summary.png",
+                "_placeholder": "ADD: Screenshot of model.summary() output in Google Colab showing layer names, output shapes, and parameter counts",
+                "caption": "Keras Model Summary — Every layer, every parameter at a glance!",
+                "category": "Lab"
+            },
+            {
+                "file": "data/training-accuracy-curve.png",
+                "_placeholder": "ADD: Plot showing training accuracy and validation accuracy increasing over epochs",
+                "caption": "Training Curve — Watching the network get smarter epoch by epoch!",
+                "category": "Lab"
+            }
+        ]
+    },
+    "keyTopics": [
+        "Biological vs Artificial Neuron — Dendrites → inputs, Cell body → summation, Axon → output, Synapse → weight",
+        "Perceptron — The simplest neural network unit: inputs × weights + bias → activation → output",
+        "Weights & Biases — Numbers the network adjusts during training to improve predictions",
+        "Activation Functions — ReLU, Sigmoid, Tanh — adding non-linearity so networks learn complex patterns",
+        "Multi-Layer Network — Input layer, hidden layers, output layer — depth = ability to learn complex features",
+        "Forward Pass — Data flows from input to output through all layers to produce a prediction",
+        "Backpropagation — Error flows backward through the network, adjusting weights using gradients",
+        "Keras & TensorFlow — Python libraries to build, train, and evaluate neural networks in just a few lines"
+    ],
+    "youtubeVideos": [
+        {
+            "title": "But what is a Neural Network? — 3Blue1Brown",
+            "videoId": "aircAruvnKk",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "The most beautiful visual explanation of neural networks ever made — layers, weights, and how networks recognise handwritten digits."
+        },
+        {
+            "title": "Backpropagation Explained — 3Blue1Brown",
+            "videoId": "Ilg3gGewQ5U",
+            "_note": "Replace videoId with actual YouTube video ID from the URL",
+            "desc": "How backpropagation works — the algorithm that trains every modern neural network, explained visually without heavy maths."
+        },
+        {
+            "title": "Activation Functions Explained",
+            "videoId": "m0pIlLfpXWE",
+            "desc": "Why activation functions are essential — ReLU, Sigmoid, and Tanh explained with graphs and intuition."
+        },
+        {
+            "title": "Build a Neural Network with Keras in 10 Minutes",
+            "videoId": "wQ8BIBpya2k",
+            "desc": "Step-by-step tutorial — build, compile, train, and evaluate a neural network using Keras and TensorFlow in Google Colab."
+        }
+    ],
+    "resources": [
+        {
+            "title": "TensorFlow Playground — Visualise Neural Networks Live",
+            "url": "https://playground.tensorflow.org",
+            "icon": "🔗"
+        },
+        {
+            "title": "Google Colab — Free Python GPU Notebook",
+            "url": "https://colab.research.google.com",
+            "icon": "🔗"
+        },
+        {
+            "title": "Keras Official Documentation",
+            "url": "https://keras.io",
+            "icon": "🔗"
+        },
+        {
+            "title": "3Blue1Brown Neural Network Series",
+            "url": "https://www.3blue1brown.com/topics/neural-networks",
+            "icon": "🔗"
+        }
+    ],
+    "activity": {
+        "title": "Handwritten Digit Recogniser — Build a Neural Network with Keras on MNIST",
+        "parts": [
+            "Laptop or tablet with browser",
+            "Google Colab (colab.research.google.com) — free GPU included",
+            "TensorFlow and Keras (pre-installed in Colab)",
+            "MNIST dataset (built into Keras — no download needed)",
+            "Whiteboard to draw the network architecture before coding"
+        ],
+        "steps": [
+            "Open Google Colab and create a new notebook",
+            "Import libraries: import tensorflow as tf, from tensorflow import keras, import matplotlib.pyplot as plt",
+            "Load the MNIST dataset: (X_train, y_train), (X_test, y_test) = keras.datasets.mnist.load_data()",
+            "Visualise a sample: plt.imshow(X_train[0], cmap='gray') — see the handwritten digit the network will learn to read",
+            "Normalise the data: X_train = X_train / 255.0 and X_test = X_test / 255.0 — discuss: why divide by 255?",
+            "Build the model: keras.Sequential with Flatten layer, Dense(128, activation='relu'), Dense(10, activation='softmax')",
+            "Compile: model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])",
+            "Train: model.fit(X_train, y_train, epochs=5) — watch accuracy climb each epoch!",
+            "Evaluate: model.evaluate(X_test, y_test) — see final accuracy on unseen test digits",
+            "Challenge: Visualise 5 predictions — show the digit image, predicted label, and confidence percentage side by side!"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What part of a biological neuron does a WEIGHT represent in an artificial neural network?",
+            "options": [
+                "The cell body that processes signals",
+                "The axon that carries the output signal",
+                "The synapse — the connection strength between neurons that determines how much influence one neuron has on the next",
+                "The dendrite that receives input signals"
+            ],
+            "answer": 2,
+            "explanation": "Weight = synapse strength! In the brain, strong synapses pass signals easily; weak ones barely pass anything. In a neural network, a high weight means that input has strong influence on the output. Training adjusts these weights!"
+        },
+        {
+            "q": "What is a PERCEPTRON?",
+            "options": [
+                "A type of activation function used in deep networks",
+                "The simplest artificial neural network — a single neuron that takes weighted inputs, adds a bias, applies an activation, and produces an output",
+                "A layer in a deep neural network that processes images",
+                "A Python library for building neural networks"
+            ],
+            "answer": 1,
+            "explanation": "Perceptron = one neuron! It multiplies each input by its weight, adds them all up, adds a bias, then passes the sum through an activation function. The output is the prediction. Stack many perceptrons in layers = deep network!"
+        },
+        {
+            "q": "What is the role of a BIAS in a neural network neuron?",
+            "options": [
+                "It prevents the network from making any predictions",
+                "It stores the training data inside the neuron",
+                "It shifts the activation function left or right — allowing the neuron to fire even when all inputs are zero",
+                "It controls the learning rate of the network"
+            ],
+            "answer": 2,
+            "explanation": "Bias = the neuron's personal offset! Without bias, a neuron can only fire based on its inputs. Bias lets the neuron activate even when inputs are zero — giving the network more flexibility to fit any pattern."
+        },
+        {
+            "q": "What does the RELU activation function do?",
+            "options": [
+                "Outputs a value between 0 and 1 — useful for probabilities",
+                "Outputs a value between -1 and 1 — centred around zero",
+                "Outputs the input directly if it is positive, and outputs zero if it is negative",
+                "Randomly drops neurons during training to prevent overfitting"
+            ],
+            "answer": 2,
+            "explanation": "ReLU = Rectified Linear Unit! f(x) = max(0, x). Negative input → output 0. Positive input → output as-is. Simple, fast, and works brilliantly in hidden layers. Most common activation function in modern deep learning!"
+        },
+        {
+            "q": "What is the SIGMOID activation function best used for?",
+            "options": [
+                "Hidden layers in deep networks",
+                "The output layer of a binary classification model — it squashes output to a probability between 0 and 1",
+                "Normalising input data before training",
+                "Calculating the loss during backpropagation"
+            ],
+            "answer": 1,
+            "explanation": "Sigmoid = probability squasher! Output is always between 0 and 1 — perfect for binary classification output (is this email spam? 0.92 → yes, probably!). Rarely used in hidden layers today — ReLU is faster and avoids vanishing gradients."
+        },
+        {
+            "q": "What is the SOFTMAX activation function used for?",
+            "options": [
+                "Hidden layers to add non-linearity",
+                "Regression output layers to predict continuous values",
+                "The output layer of a multi-class classification model — converts raw scores into probabilities that sum to 1.0",
+                "Normalising weights during training"
+            ],
+            "answer": 2,
+            "explanation": "Softmax = multi-class probability distributor! If classifying digits 0–9, Softmax outputs 10 probabilities that sum to 1.0. The highest probability is the prediction — e.g. [0.02, 0.01, 0.91, ...] → predicted class is 2!"
+        },
+        {
+            "q": "What is a FORWARD PASS in a neural network?",
+            "options": [
+                "The process of updating weights using gradients",
+                "The process of loading training data into the network",
+                "Data flowing from the input layer through all hidden layers to the output layer to produce a prediction",
+                "Testing the model on the validation dataset"
+            ],
+            "answer": 2,
+            "explanation": "Forward pass = input to output journey! Data enters the input layer → passes through hidden layers (each applies weights + activation) → arrives at output layer as a prediction. Happens millions of times during training!"
+        },
+        {
+            "q": "What is BACKPROPAGATION?",
+            "options": [
+                "Running the model backwards to undo a bad prediction",
+                "Loading data in reverse order to improve training speed",
+                "The algorithm that calculates how much each weight contributed to the prediction error and adjusts them to reduce the loss",
+                "A method of visualising the network architecture"
+            ],
+            "answer": 2,
+            "explanation": "Backpropagation = the teacher correcting the network! After a forward pass, the error (loss) is calculated. Backprop flows this error backwards through the network, computing gradients for every weight. Optimiser then nudges each weight to reduce the error!"
+        },
+        {
+            "q": "What is GRADIENT DESCENT?",
+            "options": [
+                "A technique for visualising neural network layers",
+                "An optimisation algorithm that adjusts weights in the direction that reduces the loss — like rolling a ball downhill to find the lowest point",
+                "A method for splitting data into training and testing sets",
+                "A type of regularisation to prevent overfitting"
+            ],
+            "answer": 1,
+            "explanation": "Gradient Descent = rolling downhill to minimum loss! Imagine the loss as a hilly landscape. The gradient points uphill. Move in the OPPOSITE direction (downhill) and the loss decreases. Repeat millions of times → weights converge to good values!"
+        },
+        {
+            "q": "What is an EPOCH in neural network training?",
+            "options": [
+                "A single neuron in the output layer",
+                "One complete pass through the ENTIRE training dataset — all training examples seen once",
+                "The learning rate used by the optimiser",
+                "The number of layers in a deep neural network"
+            ],
+            "answer": 1,
+            "explanation": "Epoch = one full school day! In one epoch, the network sees every single training example once, makes predictions, calculates loss, and updates weights via backprop. Training for 10 epochs = seeing the full dataset 10 times!"
+        },
+        {
+            "q": "What does model.compile() do in Keras?",
+            "options": [
+                "Builds the layer structure of the neural network",
+                "Trains the model on the training dataset",
+                "Configures the model for training — specifying the optimiser, loss function, and evaluation metrics",
+                "Saves the trained model to a file"
+            ],
+            "answer": 2,
+            "explanation": "model.compile() = setup before training! You specify: OPTIMISER (how to update weights — e.g. Adam), LOSS FUNCTION (what to minimise — e.g. categorical_crossentropy), and METRICS (what to track — e.g. accuracy). Then model.fit() does the actual training!"
+        },
+        {
+            "q": "Why do we NORMALISE input data (divide pixel values by 255) before training?",
+            "options": [
+                "To reduce the file size of the images",
+                "To convert images from colour to greyscale",
+                "To scale all input values to a small range (0 to 1) so the network trains faster and more stably — large values cause unstable gradients",
+                "Because Keras only accepts values between 0 and 1"
+            ],
+            "answer": 2,
+            "explanation": "Normalisation = levelling the playing field! Raw pixel values are 0–255. Large numbers cause large gradients → unstable training. Dividing by 255 scales everything to 0–1 → smooth, stable, faster training. Always normalise before training!"
+        },
+        {
+            "q": "What is the MNIST dataset?",
+            "options": [
+                "A dataset of 70,000 labelled handwritten digit images (0–9) — the 'Hello World' of neural networks",
+                "A dataset of cat and dog photos used for image classification",
+                "A collection of text documents used for natural language processing",
+                "A financial dataset containing stock market prices"
+            ],
+            "answer": 0,
+            "explanation": "MNIST = the classic beginner dataset! 60,000 training images + 10,000 test images of handwritten digits 0–9, each 28×28 pixels. Every deep learning beginner builds a digit recogniser on MNIST — it is the 'Hello World' of neural networks!"
+        },
+        {
+            "q": "What does the FLATTEN layer do in a Keras model?",
+            "options": [
+                "Reduces the number of neurons in the next layer",
+                "Converts a 2D image (e.g. 28×28 pixels) into a 1D array of 784 values so it can be fed into a Dense layer",
+                "Applies a non-linear activation function to the inputs",
+                "Normalises the input data before training"
+            ],
+            "answer": 1,
+            "explanation": "Flatten = unroll the grid! A 28×28 image is a 2D grid of 784 pixels. Dense layers need 1D input. Flatten stretches the grid into a single row of 784 numbers — no information lost, just reshaped for the next layer!"
+        },
+        {
+            "q": "What is the VANISHING GRADIENT problem in deep neural networks?",
+            "options": [
+                "When the model's accuracy suddenly drops to zero during training",
+                "When gradients become extremely small as they flow backward through many layers — early layers learn very slowly or not at all",
+                "When the network uses too much GPU memory during training",
+                "When training data is too small for the network to learn anything"
+            ],
+            "answer": 1,
+            "explanation": "Vanishing gradients = early layers going deaf! In very deep networks using Sigmoid/Tanh, gradients shrink as they flow backwards — by the time they reach the first layers, they are nearly zero. Those layers stop learning! ReLU largely solves this problem."
+        }
+    ]
+}

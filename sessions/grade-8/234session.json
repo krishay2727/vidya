@@ -1,0 +1,318 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-234/",
+    "slides_folder": "sessions/session-234/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-234/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-234",
+  "number": 241,
+  "title": "Project Capstone Planning",
+  "subtitle": "Plan, Design, Build — Your GUI Masterpiece!",
+  "date": "Session 241",
+  "duration": "1 Hour",
+  "phase": "Capstone",
+  "color": "#6C63FF",
+  "icon": "🖥️",
+  "tags": [
+    "Python",
+    "GUI",
+    "Tkinter",
+    "Project Planning",
+    "Capstone"
+  ],
+  "overview": "Students plan and design their capstone GUI project using Python and Tkinter. This session focuses on understanding project requirements, wireframing the interface, and mapping out the logic before writing a single line of code.",
+  "grades": [
+    6,
+    7,
+    8
+  ],
+  "slides": {
+    "pdf": "sessions/session-234/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — whiteboard wireframes, student sketches, GUI mockups, planning sheets.",
+    "gallery": [
+      {
+        "file": "data/tkinter-window.png",
+        "_placeholder": "ADD: Screenshot or photo of a basic Tkinter window",
+        "caption": "A basic Tkinter window — your canvas to build on!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/wireframe-sketch.jpg",
+        "_placeholder": "ADD: Photo of student wireframe sketches on paper",
+        "caption": "Wireframing: Plan your layout before coding!",
+        "category": "Planning"
+      },
+      {
+        "file": "data/gui-widgets.png",
+        "_placeholder": "ADD: Image showing common Tkinter widgets",
+        "caption": "Tkinter widgets — Buttons, Labels, Entry, Listbox and more",
+        "category": "Concept"
+      },
+      {
+        "file": "data/event-loop.gif",
+        "_placeholder": "ADD: Diagram showing event loop flow",
+        "caption": "mainloop() — keeps your window alive and listening!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/capstone-project-ideas.jpg",
+        "_placeholder": "ADD: Photo of project ideas written on whiteboard",
+        "caption": "Capstone ideas brainstormed by students",
+        "category": "Lab"
+      },
+      {
+        "file": "data/student-planning.jpg",
+        "_placeholder": "ADD: Photo of students filling out their project plan sheet",
+        "caption": "Students mapping out their capstone project plan",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "What is a GUI? — Graphical User Interface vs Command Line",
+    "Tkinter — Python's built-in GUI library (no install needed!)",
+    "Core Widgets — Label, Button, Entry, Frame, Canvas, Listbox",
+    "Layout Managers — pack(), grid(), place()",
+    "Event Handling — bind(), command= and the mainloop()",
+    "Wireframing — Sketch the UI before coding",
+    "Capstone Project Planning — Title, Purpose, Widgets, Logic, Stretch Goals",
+    "MVC Thinking — Separating UI from Logic"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "Python Tkinter Full Course for Beginners",
+      "videoId": "YXPyB4XeYLA",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A complete beginner-friendly walkthrough of Python's Tkinter library — windows, widgets, events and more."
+    },
+    {
+      "title": "How to Plan a Python Project",
+      "videoId": "o64FV-ez1Gw",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Learn how to plan and structure a Python project before writing code — great for capstone prep!"
+    },
+    {
+      "title": "Tkinter GUI Layout — pack, grid, place",
+      "videoId": "5qOnzF7RznI",
+      "desc": "Understanding the three layout managers in Tkinter with live examples."
+    },
+    {
+      "title": "Python GUI Project Ideas for Beginners",
+      "videoId": "cwTyoOFqBGk",
+      "desc": "10 beginner-friendly Python GUI project ideas to inspire your capstone!"
+    }
+  ],
+  "resources": [
+    {
+      "title": "Tkinter Official Documentation",
+      "url": "https://docs.python.org/3/library/tkinter.html",
+      "icon": "🔗"
+    },
+    {
+      "title": "TkDocs — Modern Tkinter Guide",
+      "url": "https://tkdocs.com/tutorial/index.html",
+      "icon": "🔗"
+    },
+    {
+      "title": "Replit — Code Python Online (No Install)",
+      "url": "https://replit.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Wireframe Tool — Excalidraw",
+      "url": "https://excalidraw.com",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "Plan Your Capstone GUI Project",
+    "parts": [
+      "Paper / Planning Sheet",
+      "Pencil for wireframing",
+      "Python 3 installed",
+      "VS Code or IDLE",
+      "Tkinter (built-in with Python)"
+    ],
+    "steps": [
+      "Choose your project idea — Calculator, To-Do App, Quiz App, Weather App, etc.",
+      "Write down: Project Title, Purpose, Target User",
+      "Sketch a wireframe — draw the window layout on paper",
+      "List all widgets you'll need (buttons, labels, entry fields, etc.)",
+      "Write the logic flow — what happens when each button is clicked?",
+      "Create a basic Tkinter window with a title and size",
+      "Add one widget and connect it to a simple function",
+      "Share your plan with the class — peer feedback!"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What does GUI stand for?",
+      "options": [
+        "General Utility Interface",
+        "Graphical User Interface",
+        "Global Unix Input",
+        "Generated User Instructions"
+      ],
+      "answer": 1,
+      "explanation": "GUI = Graphical User Interface! It's the visual part of a program — windows, buttons, text boxes — that users interact with instead of typing commands."
+    },
+    {
+      "q": "Which Python library is used to create GUI applications without installing anything extra?",
+      "options": [
+        "PyGame",
+        "Flask",
+        "Tkinter",
+        "OpenCV"
+      ],
+      "answer": 2,
+      "explanation": "Tkinter comes built-in with Python! No pip install needed — just import tkinter and start building."
+    },
+    {
+      "q": "What does mainloop() do in a Tkinter program?",
+      "options": [
+        "Closes the window after 5 seconds",
+        "Keeps the window open and listens for user events",
+        "Loops through a list of widgets",
+        "Runs the program only once"
+      ],
+      "answer": 1,
+      "explanation": "mainloop() is the heartbeat of your GUI! It keeps the window alive and continuously listens for clicks, key presses, and other events."
+    },
+    {
+      "q": "Which widget is used to accept text input from the user in Tkinter?",
+      "options": [
+        "Label",
+        "Button",
+        "Frame",
+        "Entry"
+      ],
+      "answer": 3,
+      "explanation": "Entry is the text input box widget! Users can type into it, and your code can read the value using .get()."
+    },
+    {
+      "q": "What is wireframing?",
+      "options": [
+        "Writing Python code for the backend",
+        "Sketching the layout of your app before coding",
+        "Connecting wires in a circuit",
+        "Debugging your program"
+      ],
+      "answer": 1,
+      "explanation": "Wireframing means drawing a rough sketch of your app's layout — where buttons, labels and fields will go — before writing any code. Plan first, code second!"
+    },
+    {
+      "q": "Which layout manager arranges widgets in a table/grid format?",
+      "options": [
+        "pack()",
+        "place()",
+        "grid()",
+        "sort()"
+      ],
+      "answer": 2,
+      "explanation": "grid() lets you place widgets in rows and columns — like a table. Perfect for forms, calculators, and structured layouts!"
+    },
+    {
+      "q": "How do you set the title of a Tkinter window?",
+      "options": [
+        "window.name('My App')",
+        "window.title('My App')",
+        "window.label('My App')",
+        "window.set_title('My App')"
+      ],
+      "answer": 1,
+      "explanation": "window.title('My App') sets the text shown in the title bar of the window. Simple and useful!"
+    },
+    {
+      "q": "What does the command= parameter do in a Button widget?",
+      "options": [
+        "Changes the button color",
+        "Links the button to a function that runs when clicked",
+        "Sets the button size",
+        "Disables the button"
+      ],
+      "answer": 1,
+      "explanation": "command= is how you connect a button to a function! When the user clicks, Tkinter calls that function automatically."
+    },
+    {
+      "q": "Which of these is a good capstone project idea for a Python GUI app?",
+      "options": [
+        "A hardware circuit board",
+        "A To-Do List App with add and delete features",
+        "A machine learning model",
+        "An operating system"
+      ],
+      "answer": 1,
+      "explanation": "A To-Do List App is a perfect beginner capstone! It uses Labels, Entry, Buttons, and a Listbox — covering all major Tkinter concepts."
+    },
+    {
+      "q": "What is the first step before writing code for any GUI project?",
+      "options": [
+        "Install a new library",
+        "Write all the functions first",
+        "Plan and wireframe the project",
+        "Run the code to see what happens"
+      ],
+      "answer": 2,
+      "explanation": "Always plan before you code! Wireframe the layout, list your widgets, and think through the logic — it saves a lot of debugging time later."
+    },
+    {
+      "q": "Which Tkinter widget is used to display text or images (non-editable)?",
+      "options": [
+        "Entry",
+        "Label",
+        "Button",
+        "Scrollbar"
+      ],
+      "answer": 1,
+      "explanation": "Label displays text or images on screen. It's read-only — the user can see it but not edit it directly."
+    },
+    {
+      "q": "What does .get() do when used with an Entry widget?",
+      "options": [
+        "Clears the input field",
+        "Reads and returns the text typed by the user",
+        "Sets the default value",
+        "Disables the entry box"
+      ],
+      "answer": 1,
+      "explanation": ".get() retrieves whatever the user typed into the Entry box. You'll use this constantly — for search bars, forms, calculators!"
+    },
+    {
+      "q": "In MVC thinking, what does the 'V' (View) represent?",
+      "options": [
+        "The database",
+        "The logic and calculations",
+        "The visual interface the user sees",
+        "The variables in your code"
+      ],
+      "answer": 2,
+      "explanation": "View = what the user sees — your Tkinter widgets and layout. Keeping the View separate from the Logic (Model) makes your code cleaner and easier to fix."
+    },
+    {
+      "q": "Which method is used to set the window size in Tkinter?",
+      "options": [
+        "window.size(800, 600)",
+        "window.geometry('800x600')",
+        "window.resize(800, 600)",
+        "window.dimensions('800x600')"
+      ],
+      "answer": 1,
+      "explanation": "window.geometry('800x600') sets width x height in pixels. You can also set the starting position: '800x600+100+50'."
+    },
+    {
+      "q": "Why is planning your project before coding important?",
+      "options": [
+        "It makes Python run faster",
+        "It helps you avoid errors, save time, and build a clearer app",
+        "It is required by Tkinter to work",
+        "It is not important — just start coding!"
+      ],
+      "answer": 1,
+      "explanation": "Planning saves time! When you know what you're building, which widgets you need, and how the logic flows — you write better code with fewer bugs."
+    }
+  ]
+}

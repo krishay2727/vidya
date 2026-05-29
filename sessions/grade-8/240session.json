@@ -1,0 +1,323 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-240/",
+    "slides_folder": "sessions/session-240/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-240/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-240",
+  "number": 240,
+  "title": "Showcase — IoT Project",
+  "subtitle": "Connect, Sense, Control — Show the World Your IoT Build!",
+  "date": "Session 240",
+  "duration": "1 Hour",
+  "phase": "Showcase",
+  "color": "#00BCD4",
+  "icon": "🌐",
+  "tags": [
+    "IoT",
+    "Internet of Things",
+    "Arduino",
+    "Sensors",
+    "Showcase",
+    "Project"
+  ],
+  "overview": "Students showcase their IoT projects built using Arduino, sensors and actuators. This session celebrates the culmination of hands-on learning — students demonstrate how their devices sense the real world and respond to it. Emphasis is on confident presentation, explaining the problem solved, components used, and live demonstration of the working project.",
+  "grades": [
+    6,
+    7,
+    8
+  ],
+  "slides": {
+    "pdf": "sessions/session-240/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — student IoT projects on display, live demos, circuit setups, audience reactions.",
+    "gallery": [
+      {
+        "file": "data/iot-showcase.jpg",
+        "_placeholder": "ADD: Photo of students displaying their IoT projects",
+        "caption": "IoT Showcase — real projects built by real students!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/arduino-project.jpg",
+        "_placeholder": "ADD: Photo of a student's Arduino circuit with sensors",
+        "caption": "Arduino + Sensors — sensing and responding to the real world!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/iot-diagram.png",
+        "_placeholder": "ADD: Diagram showing IoT system — Sense, Process, Act, Connect",
+        "caption": "IoT = Sense → Process → Act → Connect!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/live-demo.jpg",
+        "_placeholder": "ADD: Photo of a student doing a live demo of their IoT project",
+        "caption": "Live demo — watch it work in real time!",
+        "category": "Lab"
+      },
+      {
+        "file": "data/iot-real-world.jpg",
+        "_placeholder": "ADD: Image showing real-world IoT applications — smart home, agriculture",
+        "caption": "IoT in the real world — smart homes, farms, hospitals and cities!",
+        "category": "Concept"
+      },
+      {
+        "file": "data/student-certificates.jpg",
+        "_placeholder": "ADD: Photo of students receiving showcase certificates or appreciation",
+        "caption": "Every builder deserves to be celebrated!",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "What is IoT? — Internet of Things — everyday objects connected and communicating",
+    "IoT Pipeline — Sense → Process → Act → Connect",
+    "Key Components — Arduino, sensors, actuators, Wi-Fi modules",
+    "Common Sensors — Temperature, humidity, ultrasonic, PIR motion, light (LDR)",
+    "Common Actuators — LED, buzzer, motor, servo, relay",
+    "Real-World IoT Applications — Smart home, smart farming, healthcare, traffic",
+    "Project Showcase Structure — Problem, Components, Circuit, Code, Demo, Learnings",
+    "Debugging IoT — What to do when sensors give wrong readings",
+    "Data from the Physical World — How sensors convert real signals to digital values",
+    "Future of IoT — Billions of connected devices and career opportunities"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "What is the Internet of Things? — Simply Explained",
+      "videoId": "LlhmzVL5bm8",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A clear and engaging introduction to IoT — what it is, how it works, and where it's used in the real world."
+    },
+    {
+      "title": "Arduino IoT Projects for Beginners",
+      "videoId": "nL34zDTPkcs",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A showcase of beginner-friendly Arduino IoT project ideas — great inspiration and reference for students."
+    },
+    {
+      "title": "How Sensors Work — Arduino Explained Simply",
+      "videoId": "IS8MyyHRSNg",
+      "desc": "Understand how common sensors like temperature, ultrasonic and PIR work with Arduino."
+    },
+    {
+      "title": "IoT in Real Life — Smart Homes, Farms and Cities",
+      "videoId": "QSIPNhOiMoE",
+      "desc": "See how IoT is transforming everyday life — from smart agriculture in India to connected hospitals worldwide."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Wokwi — Free Arduino and IoT Simulator",
+      "url": "https://wokwi.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Arduino Official Project Hub",
+      "url": "https://projecthub.arduino.cc",
+      "icon": "🔗"
+    },
+    {
+      "title": "Tinkercad Circuits — Build and Simulate Arduino Online",
+      "url": "https://www.tinkercad.com/circuits",
+      "icon": "🔗"
+    },
+    {
+      "title": "Instructables — IoT Project Ideas",
+      "url": "https://www.instructables.com/circuits/arduino/projects/",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "IoT Project Showcase — Present Your Build",
+    "parts": [
+      "Completed IoT project (Arduino + sensors + actuators)",
+      "Laptop with Arduino IDE",
+      "USB cable for Arduino",
+      "Project description sheet",
+      "Circuit diagram (hand-drawn or Tinkercad screenshot)"
+    ],
+    "steps": [
+      "Set up your IoT project on the desk — arrange components neatly",
+      "Power on and do a full test run before the audience arrives",
+      "Prepare your 2-minute presentation: Problem → Components → Circuit → Code → Demo",
+      "Explain what real-world problem your project solves",
+      "Name each component you used and explain its role",
+      "Walk the audience through your circuit diagram",
+      "Run your live demo — show sensors responding to real inputs",
+      "Explain one challenge you faced and how you solved it",
+      "Share one thing you would improve if you had more time",
+      "Answer audience questions confidently — celebrate what you built!"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What does IoT stand for?",
+      "options": [
+        "Input Output Technology",
+        "Internet of Things",
+        "Integrated Operations Terminal",
+        "Inline Object Transfer"
+      ],
+      "answer": 1,
+      "explanation": "IoT = Internet of Things! It refers to everyday physical objects — lights, fans, sensors, vehicles — connected to the internet and able to send and receive data."
+    },
+    {
+      "q": "What is the correct IoT pipeline order?",
+      "options": [
+        "Act → Sense → Connect → Process",
+        "Connect → Act → Sense → Process",
+        "Sense → Process → Act → Connect",
+        "Process → Sense → Connect → Act"
+      ],
+      "answer": 2,
+      "explanation": "IoT pipeline: Sense (collect data from environment) → Process (analyse with microcontroller) → Act (trigger output like LED or buzzer) → Connect (send data to cloud or app)."
+    },
+    {
+      "q": "Which component acts as the BRAIN of an IoT project?",
+      "options": [
+        "LED",
+        "Buzzer",
+        "Arduino / Microcontroller",
+        "Breadboard"
+      ],
+      "answer": 2,
+      "explanation": "Arduino is the brain! It reads data from sensors, runs your code to process it, and sends signals to actuators. Without the microcontroller, sensors and actuators cannot communicate."
+    },
+    {
+      "q": "What is a SENSOR in an IoT project?",
+      "options": [
+        "A component that produces output like light or sound",
+        "A component that detects and measures something from the environment",
+        "A type of battery",
+        "A wireless transmitter only"
+      ],
+      "answer": 1,
+      "explanation": "A sensor detects the physical world — temperature, light, distance, motion — and converts it into an electrical signal Arduino can read. Sensors are the eyes and ears of IoT!"
+    },
+    {
+      "q": "What is an ACTUATOR in an IoT project?",
+      "options": [
+        "A component that senses the environment",
+        "A component that stores data",
+        "A component that takes action — produces output like movement, light or sound",
+        "A component that connects to Wi-Fi"
+      ],
+      "answer": 2,
+      "explanation": "An actuator acts on the world! LEDs light up, buzzers beep, motors spin, servos rotate — all based on instructions from Arduino. Actuators are the hands and voice of IoT."
+    },
+    {
+      "q": "Which sensor would you use to measure room temperature in an IoT project?",
+      "options": [
+        "Ultrasonic sensor",
+        "PIR motion sensor",
+        "LDR light sensor",
+        "DHT11 temperature and humidity sensor"
+      ],
+      "answer": 3,
+      "explanation": "DHT11 is the go-to sensor for temperature and humidity! It's affordable, easy to use with Arduino, and perfect for smart home and weather monitoring IoT projects."
+    },
+    {
+      "q": "An ultrasonic sensor is used to measure:",
+      "options": [
+        "Temperature",
+        "Light intensity",
+        "Distance to an object",
+        "Air quality"
+      ],
+      "answer": 2,
+      "explanation": "Ultrasonic sensors measure distance by sending sound waves and timing how long the echo takes to return — just like a bat's echolocation! Used in parking sensors and obstacle-avoiding robots."
+    },
+    {
+      "q": "What does a PIR sensor detect?",
+      "options": [
+        "Pressure changes",
+        "Motion from living beings using infrared heat",
+        "Light levels",
+        "Sound waves"
+      ],
+      "answer": 1,
+      "explanation": "PIR = Passive Infrared! It detects movement by sensing changes in infrared heat from people and animals. Used in automatic lights, security alarms and smart doorbells."
+    },
+    {
+      "q": "Which of these is a real-world IoT application in agriculture?",
+      "options": [
+        "A smart TV remote",
+        "Soil moisture sensors that automatically trigger irrigation when soil is dry",
+        "A USB keyboard",
+        "A Bluetooth speaker"
+      ],
+      "answer": 1,
+      "explanation": "Smart irrigation is IoT in action! Soil moisture sensors detect dry conditions and automatically trigger water pumps — saving water and improving crop yield. Widely used in Indian farming!"
+    },
+    {
+      "q": "What should you do if your sensor gives incorrect or unstable readings during a demo?",
+      "options": [
+        "Ignore it and continue",
+        "Remove the sensor from the project",
+        "Calmly explain the issue, check connections, and show the expected behaviour",
+        "Blame the Arduino"
+      ],
+      "answer": 2,
+      "explanation": "Stay calm and troubleshoot! Check jumper wire connections, verify power supply, and re-upload code if needed. Explaining your debugging process shows real engineering skills — not weakness!"
+    },
+    {
+      "q": "How many IoT devices are estimated to be connected worldwide?",
+      "options": [
+        "Around 1,000",
+        "Around 1 million",
+        "Around 15 billion and growing rapidly",
+        "Around 500,000"
+      ],
+      "answer": 2,
+      "explanation": "There are over 15 billion IoT devices connected worldwide — and growing fast! From smartwatches to industrial machines to smart city sensors, IoT is transforming every industry."
+    },
+    {
+      "q": "What is the role of a Wi-Fi module like ESP8266 in an IoT project?",
+      "options": [
+        "It powers the Arduino",
+        "It connects the Arduino to the internet to send and receive data",
+        "It measures temperature",
+        "It controls the motor speed"
+      ],
+      "answer": 1,
+      "explanation": "Wi-Fi modules like ESP8266 give Arduino internet connectivity! This allows your project to send sensor data to the cloud, receive remote commands, or trigger alerts on your phone."
+    },
+    {
+      "q": "What is the best structure for presenting an IoT project?",
+      "options": [
+        "Read out every line of Arduino code",
+        "Only show the circuit and say nothing",
+        "Problem → Components → Circuit → Code → Live Demo → Learnings",
+        "Show a video instead of a live demo"
+      ],
+      "answer": 2,
+      "explanation": "A great IoT showcase covers: the problem it solves, components used, circuit overview, key code logic, a live working demo, and what you learned. This tells a complete and compelling story!"
+    },
+    {
+      "q": "Which of these is an example of IoT in healthcare?",
+      "options": [
+        "A printed textbook",
+        "A wearable device that monitors heart rate and sends alerts to doctors",
+        "A ceiling fan with a remote",
+        "A USB flash drive"
+      ],
+      "answer": 1,
+      "explanation": "Wearable health monitors are powerful IoT applications! They continuously track heart rate, blood oxygen and activity — sending real-time data to doctors or phones to enable faster medical response."
+    },
+    {
+      "q": "What is the most important thing to remember when showcasing your IoT project?",
+      "options": [
+        "Your project must be perfect with zero bugs",
+        "You must use the most expensive components",
+        "Celebrate what you built — explain your thinking, demo confidently, and share what you learned",
+        "Only experts can build IoT projects worth showing"
+      ],
+      "answer": 2,
+      "explanation": "Every project is worth showcasing! The thinking behind it, the problems you solved, and the lessons you learned are just as valuable as the final product. Be proud of what you built and share it confidently!"
+    }
+  ]
+}

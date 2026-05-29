@@ -1,0 +1,324 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-232/",
+    "slides_folder": "sessions/session-232/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-232/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-232",
+  "number": 232,
+  "title": "AI in Daily Life",
+  "subtitle": "AI Is Already Everywhere — Can You Spot It?",
+  "date": "Session 232",
+  "duration": "1 Hour",
+  "phase": "Foundation",
+  "color": "#00897B",
+  "icon": "🌍",
+  "tags": [
+    "AI",
+    "Machine Learning",
+    "Daily Life",
+    "Technology",
+    "Digital Literacy"
+  ],
+  "overview": "Artificial Intelligence is no longer science fiction — it is already woven into the fabric of everyday life. From the moment you wake up to when you go to sleep, AI is making decisions that affect you: recommending songs, filtering spam, unlocking your phone with your face, predicting traffic, and detecting diseases. In this session, students discover the AI hidden in everyday technology, understand how it works at a high level, explore its benefits and risks, and think critically about how AI shapes the world they live in.",
+  "grades": [
+    5,
+    6,
+    7
+  ],
+  "slides": {
+    "pdf": "sessions/session-232/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — AI application examples, recommendation algorithm diagrams, facial recognition demo, student activity worksheets.",
+    "gallery": [
+      {
+        "file": "data/ai-daily-life-collage.png",
+        "_placeholder": "ADD: Collage showing AI in everyday apps — Spotify, Google Maps, Netflix, Alexa, face unlock, spam filter",
+        "caption": "AI is already in your pocket — every app you use is powered by it",
+        "category": "Concept"
+      },
+      {
+        "file": "data/recommendation-algorithm.png",
+        "_placeholder": "ADD: Diagram showing how a recommendation algorithm works — input data → model → personalised output",
+        "caption": "Recommendation algorithm: your history + other users' behaviour → 'You might also like...'",
+        "category": "Concept"
+      },
+      {
+        "file": "data/face-recognition.png",
+        "_placeholder": "ADD: Diagram showing facial recognition steps — detect face → extract features → match to database",
+        "caption": "Facial recognition: detect → extract → match — used in phone unlock and security systems",
+        "category": "Concept"
+      },
+      {
+        "file": "data/spam-filter.png",
+        "_placeholder": "ADD: Diagram showing email going through spam classifier — features extracted → model decision → inbox or spam",
+        "caption": "Spam filter: AI reads every email and decides inbox or junk in milliseconds",
+        "category": "Concept"
+      },
+      {
+        "file": "data/ai-benefits-risks.png",
+        "_placeholder": "ADD: Two-column diagram showing AI benefits vs risks/concerns",
+        "caption": "AI benefits and risks — powerful technology requires thoughtful use",
+        "category": "Concept"
+      },
+      {
+        "file": "data/ai-spot-activity.jpg",
+        "_placeholder": "ADD: Photo of students doing the AI Spot It activity — annotating a daily routine with AI examples",
+        "caption": "Spot the AI! Students finding hidden AI in their everyday routine",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "Artificial Intelligence (AI) — Computer systems that perform tasks that normally require human intelligence: recognising speech, making decisions, translating languages",
+    "Machine Learning — A type of AI where systems learn patterns from data rather than being explicitly programmed with rules",
+    "Recommendation System — AI that analyses your past behaviour and others' to suggest content you are likely to enjoy (Netflix, Spotify, YouTube, Amazon)",
+    "Spam Filter — An AI classifier trained on millions of emails to distinguish legitimate messages from unwanted junk and phishing attempts",
+    "Facial Recognition — AI that detects a face in an image, extracts unique features, and matches them to a known identity; used in phone unlock and security",
+    "Voice Assistant — AI that converts speech to text, understands intent, and responds (Alexa, Siri, Google Assistant, Cortana)",
+    "Predictive Text — AI trained on vast amounts of text that suggests the next word as you type on a smartphone keyboard",
+    "Navigation AI — Google Maps and Waze use AI to predict traffic, suggest fastest routes, and update directions in real time based on live data",
+    "AI in Healthcare — AI analyses medical images (X-rays, MRIs) to detect diseases; predicts patient risk; assists diagnosis",
+    "AI Bias — When AI systems produce unfair or discriminatory outcomes because of biased training data reflecting real-world inequalities",
+    "Filter Bubble — The tendency of recommendation algorithms to show you content that reinforces your existing views, limiting exposure to different perspectives",
+    "Ethical AI — Designing and using AI responsibly: fairly, transparently, safely, and with accountability for its decisions"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "AI in Everyday Life — Where Is It Hiding?",
+      "videoId": "mJExsIp4yO8",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A fun and accessible exploration of all the places AI appears in daily life — from your phone's keyboard to Netflix recommendations to the spam folder — explained for beginners."
+    },
+    {
+      "title": "How Netflix Recommendation Algorithm Works",
+      "videoId": "f8OK1HBEgn0",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Inside Netflix's recommendation system — how it uses your viewing history, ratings, and patterns from millions of users to suggest shows you are likely to watch next."
+    },
+    {
+      "title": "How Does Facial Recognition Work?",
+      "videoId": "AJRidmEFWEo",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "Step-by-step explanation of facial recognition technology — face detection, landmark extraction, feature encoding, and matching — and where it is used in everyday life."
+    },
+    {
+      "title": "The Problem of AI Bias — Explained",
+      "videoId": "59bMh59JQDo",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "What AI bias is, where it comes from, real examples of biased AI causing harm, and why building fair and representative training datasets is a critical responsibility."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Elements of AI — Free Beginner AI Course",
+      "url": "https://www.elementsofai.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Google — How AI Works (Interactive)",
+      "url": "https://experiments.withgoogle.com/collection/ai",
+      "icon": "🔗"
+    },
+    {
+      "title": "AI for Oceans — Code.org Interactive Activity",
+      "url": "https://code.org/oceans",
+      "icon": "🔗"
+    },
+    {
+      "title": "Teachable Machine — Train Your Own AI",
+      "url": "https://teachablemachine.withgoogle.com",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "AI Spot It! + Ethics Discussion + Recommendation Audit",
+    "parts": [
+      "Computer or tablet with internet access",
+      "AI in Daily Life Worksheet",
+      "Sticky notes or whiteboard access",
+      "Access to YouTube or Spotify for recommendation audit",
+      "Printed scenario cards for ethics discussion"
+    ],
+    "steps": [
+      "Part 1 — AI Spot It!: Students map out their day from waking up to going to sleep and identify every moment AI was involved. Compare lists as a class — who found the most? Categories: transport, entertainment, communication, health, shopping, security",
+      "Part 2 — Recommendation Audit: Open YouTube or Spotify. Look at the recommended videos or songs. Ask: why is this being recommended? What does the algorithm know about you? How would the recommendations differ for someone with different tastes? Discuss the Filter Bubble effect",
+      "Part 3 — Spam Filter Experiment: Look at the spam/junk email folder. Examine 3–5 spam emails — what features do they have in common? How might an AI identify them as spam? List 5 clues (urgent language, suspicious links, unknown sender, grammar errors, requests for personal info)",
+      "Part 4 — Voice Assistant Test: Use Google Assistant, Siri, or Alexa (or a demo). Ask it 5 questions — factual, creative, local, personal, and ambiguous. Evaluate: how well did it understand intent? Where did it fail? What training data would it need?",
+      "Part 5 — AI Benefits vs Risks: Groups each take one AI application (facial recognition, recommendation algorithm, medical AI, self-driving car, AI in hiring). Create a T-chart of benefits and risks. Present to class",
+      "Part 6 — AI Bias Scenario: Read a real case of AI bias (e.g. Amazon's hiring AI discriminated against women; facial recognition misidentifies darker-skinned faces). Discuss: where did the bias come from? Who is responsible? How could it be fixed?",
+      "Part 7 — My AI Bill of Rights: Each student writes 3 rights they believe people should have regarding AI systems that affect them — e.g. right to know when AI is making a decision about you, right to appeal an AI decision, right to opt out",
+      "Challenge: Research one AI application that is changing India specifically — healthcare AI detecting tuberculosis from X-rays, AI for crop disease detection in farming, AI for traffic management in Mumbai. Present how it works and its social impact"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "Which of these everyday technologies uses Artificial Intelligence?",
+      "options": [
+        "A traditional wired telephone",
+        "Netflix suggesting your next show, Google Maps predicting traffic, and your phone's face unlock",
+        "A USB flash drive storing your files",
+        "A calculator performing arithmetic"
+      ],
+      "answer": 1,
+      "explanation": "AI is everywhere in modern tech! Netflix uses AI to recommend content, Google Maps uses AI to predict traffic and find optimal routes, and face unlock uses AI-powered facial recognition. Traditional phones, USB drives, and calculators use rules-based logic — not AI learning from data."
+    },
+    {
+      "q": "What is a Recommendation System?",
+      "options": [
+        "A system that recommends which programming language to learn",
+        "AI that analyses your past behaviour and patterns from similar users to suggest content, products, or services you are likely to enjoy",
+        "A teacher recommendation letter generated by AI",
+        "A system that recommends hardware upgrades for your computer"
+      ],
+      "answer": 1,
+      "explanation": "Recommendation systems power the internet economy! When Netflix shows 'Because you watched...', Spotify creates Discover Weekly, or Amazon shows 'Customers also bought...' — all are AI systems finding patterns in your behaviour and millions of other users' to predict what you want next."
+    },
+    {
+      "q": "How does a Spam Filter use AI?",
+      "options": [
+        "It blocks all emails from unknown senders automatically",
+        "It is trained on millions of labelled emails to learn the patterns of spam — suspicious keywords, unknown senders, urgent language — and classifies new emails as spam or legitimate",
+        "It checks each email against a government blocklist",
+        "It only filters emails containing links"
+      ],
+      "answer": 1,
+      "explanation": "Spam filters are classifiers! Trained on millions of examples of spam and legitimate email, the AI learns patterns — words like 'FREE!!!', urgent demands, suspicious links, mismatched sender addresses. When a new email arrives it predicts: spam or not spam? Getting it right 99.9% of the time, millions of times per day."
+    },
+    {
+      "q": "What is Facial Recognition AI and where is it used?",
+      "options": [
+        "Software that draws cartoon faces",
+        "AI that detects a face, extracts unique facial features, and matches them to a known identity — used in phone unlock, security cameras, and border control",
+        "An app that applies filters to selfies",
+        "AI that detects emotions from facial expressions only"
+      ],
+      "answer": 1,
+      "explanation": "Facial recognition has three steps: detect (find the face in the image), extract (map unique landmarks — eye distance, nose shape, jaw line), match (compare to database). Used for phone Face ID, airport security, attendance systems, and law enforcement — with significant privacy and accuracy concerns."
+    },
+    {
+      "q": "What is a Voice Assistant and how does it understand you?",
+      "options": [
+        "A human assistant who responds to voice commands remotely",
+        "AI that converts your speech to text, analyses the meaning and intent using natural language processing, and generates an appropriate response",
+        "A microphone that amplifies and records your voice",
+        "Software that searches the internet using keywords you say"
+      ],
+      "answer": 1,
+      "explanation": "Voice assistants combine multiple AI systems! Speech-to-text converts audio to words. Natural Language Processing understands what you meant (intent). A knowledge system or search generates the answer. Text-to-speech speaks the response. Siri, Alexa, Google Assistant, and Cortana all use this multi-stage AI pipeline."
+    },
+    {
+      "q": "What is the Filter Bubble effect caused by recommendation algorithms?",
+      "options": [
+        "Algorithms filtering out inappropriate content from social media",
+        "The tendency of recommendation AI to keep showing content similar to what you already like, narrowing your exposure to different opinions, news, and perspectives",
+        "A privacy filter that prevents apps from accessing your data",
+        "An algorithm that removes duplicate content from your feed"
+      ],
+      "answer": 1,
+      "explanation": "Filter bubbles can polarise society! If you watch political videos from one viewpoint, the algorithm recommends more of the same — you never see opposing perspectives. Over time, your worldview is shaped by a curated narrow slice of content. Being aware of this effect is the first step to breaking out of it."
+    },
+    {
+      "q": "What is AI Bias and how does it occur?",
+      "options": [
+        "AI systems that favour one brand of hardware over another",
+        "When AI produces unfair or discriminatory outcomes because it was trained on data that reflects existing human biases and inequalities",
+        "When an AI model is biased toward being too accurate",
+        "Bias that only affects AI systems in certain countries"
+      ],
+      "answer": 1,
+      "explanation": "Bias in data = bias in AI! Amazon's hiring AI was found to discriminate against women because it was trained on historical hiring data where most hires were male. Some facial recognition systems perform worse on darker skin tones because training datasets had fewer diverse faces. Garbage in, garbage out — biased data creates biased AI."
+    },
+    {
+      "q": "How does Google Maps use AI to suggest the fastest route?",
+      "options": [
+        "It uses GPS satellites to directly measure road speed",
+        "It analyses historical traffic patterns, real-time speed data from millions of phones, and machine learning models to predict journey times and identify the optimal route",
+        "It checks a pre-programmed timetable of road speeds",
+        "It counts the number of traffic lights on each route"
+      ],
+      "answer": 1,
+      "explanation": "Google Maps is a massive AI system! It collects anonymous speed data from millions of phones, learns traffic patterns by time of day and day of week, detects accidents and roadworks in real time, and uses ML models to predict which route will be fastest when you arrive at each junction. It improves with every trip taken by every user."
+    },
+    {
+      "q": "What is AI in Healthcare being used for today?",
+      "options": [
+        "AI performs surgical operations completely autonomously",
+        "AI analyses medical images (X-rays, MRIs, retinal scans) to detect diseases, predicts patient risk, assists diagnosis, and helps doctors make better decisions faster",
+        "AI replaces doctors for prescribing medicines",
+        "AI is only used in hospital administration, not medical diagnosis"
+      ],
+      "answer": 1,
+      "explanation": "AI is already saving lives! Google's DeepMind AI detects over 50 eye diseases from retinal scans as accurately as expert doctors. AI detects tuberculosis from chest X-rays. Cancer detection AI spots tumours that human radiologists sometimes miss. AI doesn't replace doctors — it gives them a powerful second opinion."
+    },
+    {
+      "q": "Predictive text on your smartphone keyboard is a form of AI. How does it work?",
+      "options": [
+        "It searches your previous messages and copies common phrases",
+        "A language model trained on vast amounts of text learns which words most commonly follow other words, predicting the most likely next word as you type",
+        "It connects to the internet to search for popular phrases in real time",
+        "It uses autocorrect rules programmed by the keyboard developer"
+      ],
+      "answer": 1,
+      "explanation": "Predictive text is a miniature language model! Trained on billions of words of text, it learns that 'I am going to' is often followed by 'the', 'school', or 'sleep'. Modern keyboards also learn YOUR personal writing style over time. It's a smaller version of the same technology behind ChatGPT!"
+    },
+    {
+      "q": "Why is it important to know when AI is making decisions that affect you?",
+      "options": [
+        "It is not important — AI decisions are always correct and fair",
+        "Transparency allows you to understand, question, and challenge AI decisions that may be wrong, unfair, or based on biased data — protecting your rights and wellbeing",
+        "Knowing about AI decisions helps you score higher on tests",
+        "It is only important for adults, not students"
+      ],
+      "answer": 1,
+      "explanation": "AI transparency is a rights issue! AI makes decisions about credit scores, job applications, bail decisions, and social media feeds. If you don't know AI is involved, you can't question a wrong decision or ask for a human review. The right to know when AI affects you is a fundamental principle of ethical AI."
+    },
+    {
+      "q": "What does it mean for AI to be used 'ethically'?",
+      "options": [
+        "Using AI only for tasks involving ethics and philosophy",
+        "Designing and deploying AI that is fair, transparent, safe, accountable, and respects human rights — avoiding discrimination, protecting privacy, and allowing human oversight",
+        "Making AI systems as efficient as possible to reduce costs",
+        "Ensuring AI is only used by qualified engineers"
+      ],
+      "answer": 1,
+      "explanation": "Ethical AI is everyone's responsibility! It means: fairness (no discrimination), transparency (explain decisions), safety (prevent harm), privacy (protect personal data), and accountability (humans responsible for AI outcomes). Governments, companies, and individuals all have a role in ensuring AI is used for good."
+    },
+    {
+      "q": "A student notices that their YouTube feed only shows videos supporting one political view. What AI phenomenon is this an example of?",
+      "options": [
+        "AI censorship — the algorithm is blocking other viewpoints",
+        "The Filter Bubble — the recommendation algorithm keeps showing similar content, narrowing the student's exposure to diverse perspectives",
+        "AI bias — the algorithm dislikes certain political views",
+        "Overfitting — the algorithm has memorised the student's preferences too precisely"
+      ],
+      "answer": 1,
+      "explanation": "Classic Filter Bubble! YouTube's algorithm optimises for watch time — it shows you more of what you already watch because you're likely to watch it again. Over time this creates an echo chamber. Solution: actively search for different viewpoints, clear your watch history, or use incognito mode to get unbiased recommendations."
+    },
+    {
+      "q": "What is the difference between traditional programming and Machine Learning?",
+      "options": [
+        "Traditional programming uses computers; machine learning uses robots",
+        "Traditional programming requires humans to write explicit rules; machine learning systems learn rules automatically from patterns in data",
+        "Machine learning only works for images; traditional programming handles all other tasks",
+        "Traditional programming is faster; machine learning is more accurate"
+      ],
+      "answer": 1,
+      "explanation": "This is the fundamental shift! Traditional: programmer writes rule 'if email contains FREE!!! → spam'. Machine Learning: show the system 1 million spam emails and 1 million legitimate emails, and it figures out the rules itself — often finding patterns no human programmer would think to code. Data replaces explicit rules."
+    },
+    {
+      "q": "A company's AI hiring tool rejects more female applicants than male ones for engineering roles. What is the most likely cause?",
+      "options": [
+        "The AI was deliberately programmed to discriminate against women",
+        "The AI was trained on historical hiring data where most successful engineering hires were male — it learned to associate maleness with job success, reflecting past human bias",
+        "Women's CVs use different fonts that the AI cannot read",
+        "The AI randomly selects candidates and the result is a coincidence"
+      ],
+      "answer": 1,
+      "explanation": "This actually happened at Amazon! Their AI hiring tool was trained on 10 years of hiring data — from a time when the tech industry hired far more men. The AI learned 'male = good candidate' from the data. Biased historical data created biased AI. The fix: audit training data for representation and regularly test AI systems for discriminatory outcomes."
+    }
+  ]
+}

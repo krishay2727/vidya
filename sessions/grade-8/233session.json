@@ -1,0 +1,324 @@
+{
+  "_instructions": {
+    "folder_structure": "sessions/session-233/",
+    "slides_folder": "sessions/session-233/slides/   ← Put PPT slide images here (JPG/PNG)",
+    "images_folder": "sessions/session-233/images/   ← Put activity photos, lab pics here (JPG/PNG)",
+    "slide_naming": "slide-01.jpg, slide-02.jpg ... (exported from PowerPoint → File → Export → JPEG/PNG)",
+    "pdf_support": "Place a PDF as 'slides.pdf' in the slides folder for embedded PDF viewer"
+  },
+  "id": "session-233",
+  "number": 233,
+  "title": "Intellectual Property",
+  "subtitle": "Your Ideas Have Value — Learn to Protect Them!",
+  "date": "Session 233",
+  "duration": "1 Hour",
+  "phase": "Foundation",
+  "color": "#37474F",
+  "icon": "💡",
+  "tags": [
+    "Intellectual Property",
+    "Copyright",
+    "Digital Citizenship",
+    "Ethics",
+    "Computer Science"
+  ],
+  "overview": "When you write a song, design an app, or take a photograph, you create something original — and that creation belongs to you. Intellectual Property (IP) laws protect creators' rights to their work and regulate how others can use it. In this session, students learn the four pillars of IP — copyright, trademark, patent, and trade secret — how IP applies in the digital world, what Creative Commons licences mean, and how to use and share content ethically online.",
+  "grades": [
+    6,
+    7,
+    8
+  ],
+  "slides": {
+    "pdf": "sessions/session-233/slides.pdf"
+  },
+  "images": {
+    "_note": "Add photos from the actual session — IP type diagrams, Creative Commons licence icons, copyright symbols, activity worksheets.",
+    "gallery": [
+      {
+        "file": "data/ip-four-types.png",
+        "_placeholder": "ADD: Diagram showing the four types of IP — copyright, trademark, patent, trade secret with examples",
+        "caption": "The four types of Intellectual Property — each protects a different kind of creation",
+        "category": "Concept"
+      },
+      {
+        "file": "data/copyright-symbol.png",
+        "_placeholder": "ADD: Copyright © symbol with explanation of what it protects — creative works",
+        "caption": "© Copyright — automatically protects original creative works from the moment of creation",
+        "category": "Concept"
+      },
+      {
+        "file": "data/creative-commons-licences.png",
+        "_placeholder": "ADD: Diagram showing the six Creative Commons licence types with their icons and permissions",
+        "caption": "Creative Commons — flexible licences that let creators share on their own terms",
+        "category": "Concept"
+      },
+      {
+        "file": "data/trademark-examples.png",
+        "_placeholder": "ADD: Examples of famous trademarks — Apple logo, Nike swoosh, Google wordmark",
+        "caption": "Trademarks protect brand identity — logos, names, and symbols that identify a business",
+        "category": "Concept"
+      },
+      {
+        "file": "data/patent-diagram.png",
+        "_placeholder": "ADD: Diagram of a patent document or invention patent process flow",
+        "caption": "Patents protect inventions — giving the creator exclusive rights for up to 20 years",
+        "category": "Concept"
+      },
+      {
+        "file": "data/ip-activity.jpg",
+        "_placeholder": "ADD: Photo of students doing the IP scenario card activity",
+        "caption": "Students analysing IP scenarios — who owns it, what are the rights, was it violated?",
+        "category": "Lab"
+      }
+    ]
+  },
+  "keyTopics": [
+    "Intellectual Property (IP) — Legal rights protecting creations of the mind: inventions, artistic works, designs, symbols, names, and images",
+    "Copyright — Automatically protects original creative works (books, music, code, art, films, photos) from the moment of creation; lasts 70 years after the creator's death",
+    "Trademark — Protects brand identifiers: logos, names, slogans, and symbols that distinguish one business's goods or services from another's",
+    "Patent — Protects inventions and innovations, giving the creator exclusive rights to make, use, and sell the invention for up to 20 years",
+    "Trade Secret — Confidential business information (formulas, processes, strategies) that gives a competitive advantage; protected by keeping it secret (e.g. Coca-Cola recipe)",
+    "Public Domain — Works whose copyright has expired or been waived — free for anyone to use without permission (e.g. Shakespeare's plays, classical music)",
+    "Fair Use / Fair Dealing — Limited exceptions allowing copyrighted work to be used without permission for education, commentary, criticism, news reporting, or parody",
+    "Creative Commons (CC) Licence — A flexible licensing system allowing creators to share works with specific permissions: Attribution, NonCommercial, ShareAlike, NoDerivatives",
+    "Piracy — Copying, distributing, or using copyrighted material without authorisation; a form of IP theft with legal consequences",
+    "Plagiarism — Presenting someone else's work or ideas as your own without credit; academic and professional misconduct beyond just copyright",
+    "Open Source Software — Software released under a licence allowing anyone to view, use, modify, and distribute the source code (e.g. Linux, Python, Firefox)",
+    "Digital Rights Management (DRM) — Technical measures used by copyright holders to control how digital content is accessed, copied, or distributed"
+  ],
+  "youtubeVideos": [
+    {
+      "title": "Intellectual Property Explained — Copyright, Trademark, Patent",
+      "videoId": "EQy5jNCNSh4",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A clear beginner-friendly explanation of the four types of intellectual property — copyright, trademark, patent, and trade secret — with real-world examples for each."
+    },
+    {
+      "title": "Creative Commons Licences Explained",
+      "videoId": "AeTlXtEOplA",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "How Creative Commons licences work — the six types, what permissions each grants, and how to find and use CC-licensed content ethically and legally online."
+    },
+    {
+      "title": "What is Copyright? — Digital Citizenship",
+      "videoId": "KSAHSMoRLI0",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "A student-friendly explanation of copyright in the digital age — what it protects, how long it lasts, what fair use means, and why it matters for content creators online."
+    },
+    {
+      "title": "Open Source vs Closed Source Software — Explained",
+      "videoId": "2q91vTvc7YE",
+      "_note": "Replace videoId with actual YouTube video ID from the URL",
+      "desc": "The difference between open source and proprietary software — what open source means, famous examples, and how licences like MIT, GPL, and Apache govern usage and modification."
+    }
+  ],
+  "resources": [
+    {
+      "title": "Creative Commons — Find CC-Licensed Content",
+      "url": "https://creativecommons.org",
+      "icon": "🔗"
+    },
+    {
+      "title": "Copyright Alliance — What Is Copyright?",
+      "url": "https://copyrightalliance.org/faqs/what-is-copyright/",
+      "icon": "🔗"
+    },
+    {
+      "title": "Google Images — Filter by Usage Rights",
+      "url": "https://images.google.com",
+      "icon": "🔗"
+    },
+    {
+      "title": "Unsplash — Free High-Quality CC0 Images",
+      "url": "https://unsplash.com",
+      "icon": "🔗"
+    }
+  ],
+  "activity": {
+    "title": "IP Scenario Cards + Creative Commons Licence Lab",
+    "parts": [
+      "Computer or tablet with internet access",
+      "IP Scenario Cards (printed or on screen)",
+      "Creative Commons Licence Reference Sheet",
+      "Access to creativecommons.org and unsplash.com",
+      "Whiteboard for class discussion"
+    ],
+    "steps": [
+      "Part 1 — IP Type Sort: Students receive 12 cards describing different creations (a song, a logo, a software invention, a secret recipe, an old painting, a school essay). They sort each into Copyright, Trademark, Patent, Trade Secret, or Public Domain",
+      "Part 2 — Real World IP Hunt: Students identify the IP type protecting: the Coca-Cola logo (TM), the formula for Coca-Cola (Trade Secret), the iPhone design (Patent + TM), a Harry Potter book (Copyright), the Google search algorithm (Trade Secret)",
+      "Part 3 — Copyright Duration: Discuss how long copyright lasts. Why are Shakespeare's plays free to use? Why can't you reprint a 2020 novel? Calculate when famous works will enter the public domain",
+      "Part 4 — Fair Use Debate: Present 5 scenarios — a student uses a song in a school video, a YouTube reviewer plays 30 seconds of a film, a meme uses a copyrighted photo, a teacher photocopies a chapter. Debate: Fair Use or Infringement?",
+      "Part 5 — Creative Commons Lab: Open creativecommons.org. Students learn the 6 licence icons (BY, NC, SA, ND). Given a CC licence, they determine: Can I use this commercially? Can I modify it? Must I credit the author? Must I share the same way?",
+      "Part 6 — Find Legally Free Images: Students need an image for a project poster. They find 3 images on Unsplash or CC Search that they can legally use. They record the image source and what the licence permits",
+      "Part 7 — Open Source vs Proprietary: Compare Python (open source) with Microsoft Word (proprietary). Discuss: what are the freedoms and limitations of each? Why do companies release open source software?",
+      "Challenge: Students create a 1-minute original video or presentation and decide which Creative Commons licence they would apply to it and why — explaining exactly what permissions they want to grant and what rights they want to keep"
+    ]
+  },
+  "quiz": [
+    {
+      "q": "What is Intellectual Property (IP)?",
+      "options": [
+        "Physical property owned by intelligent people",
+        "Legal rights that protect creations of the mind — inventions, artistic works, designs, symbols, and brand names",
+        "The hardware and software owned by a technology company",
+        "A person's intelligence measured by an IQ test"
+      ],
+      "answer": 1,
+      "explanation": "IP protects what your mind creates! Just as physical property law protects your house and belongings, intellectual property law protects your creative and inventive outputs — songs, inventions, logos, code, and business secrets. Without IP law, anyone could copy and profit from your original work."
+    },
+    {
+      "q": "What does Copyright protect, and when does it begin?",
+      "options": [
+        "It protects inventions and begins when you file an application",
+        "It protects original creative works — books, music, art, code, photos — and begins automatically at the moment of creation, with no registration needed",
+        "It protects brand logos and begins when you register with a government office",
+        "It protects business secrets and begins when you sign a confidentiality agreement"
+      ],
+      "answer": 1,
+      "explanation": "Copyright is automatic! The moment you write a song, take a photo, write a program, or draw an illustration — it's protected. No registration, no © symbol required (though © helps). In most countries copyright lasts for the creator's lifetime plus 70 years."
+    },
+    {
+      "q": "What does a Trademark protect?",
+      "options": [
+        "A new scientific invention or technical process",
+        "Brand identifiers — logos, names, slogans, and symbols that distinguish one business's goods or services from another's",
+        "Creative works like novels and paintings",
+        "Confidential business information and formulas"
+      ],
+      "answer": 1,
+      "explanation": "Trademarks protect brand identity! The Nike swoosh ✓, Apple logo , Google wordmark, and 'Just Do It' slogan are all trademarks. They tell consumers which company made a product. Using another company's trademark to sell your products would be trademark infringement — very serious legally."
+    },
+    {
+      "q": "What does a Patent protect and for how long?",
+      "options": [
+        "Creative works like music and films; lasts 70 years after the creator's death",
+        "Inventions and innovations, giving the creator exclusive rights to make, use, and sell the invention for up to 20 years",
+        "Brand logos and company names; lasts indefinitely if renewed",
+        "Trade secrets; lasts as long as the information stays secret"
+      ],
+      "answer": 1,
+      "explanation": "Patents protect inventions! To get a patent you must describe your invention publicly and prove it is new, useful, and non-obvious. In return you get 20 years of exclusive rights. After 20 years the invention enters the public domain — this is how generic medicines become available after pharmaceutical patents expire."
+    },
+    {
+      "q": "What is a Trade Secret?",
+      "options": [
+        "A government secret about international trade agreements",
+        "Confidential business information — like a formula, process, or strategy — that gives a competitive advantage and is protected by keeping it private",
+        "A patent that is kept secret during the application process",
+        "A type of trademark registered in secret"
+      ],
+      "answer": 1,
+      "explanation": "Trade secrets are protected by secrecy! The Coca-Cola recipe, Google's search algorithm, and KFC's 11 herbs and spices are famous trade secrets. Unlike patents they don't expire — but if the secret leaks, protection is lost. Companies use NDAs (Non-Disclosure Agreements) to protect trade secrets legally."
+    },
+    {
+      "q": "What does 'Public Domain' mean for a creative work?",
+      "options": [
+        "The work is publicly visible on the internet",
+        "The work's copyright has expired or been waived — it is free for anyone to use, adapt, and build upon without permission or payment",
+        "The work was created with public funding",
+        "The work is available in public libraries"
+      ],
+      "answer": 1,
+      "explanation": "Public domain = free for all! Shakespeare's plays, Beethoven's symphonies, and works by authors who died before 1954 are in the public domain. You can copy, perform, adapt, and sell them without permission. This is how classic stories get freely remixed into new films and books."
+    },
+    {
+      "q": "What is Fair Use (or Fair Dealing), and what kinds of uses does it permit?",
+      "options": [
+        "A payment scheme where creators receive a fair fee for each use of their work",
+        "A legal exception that allows limited use of copyrighted material without permission for purposes such as education, commentary, criticism, news reporting, and parody",
+        "A rule that any use is fair as long as less than 10% of the work is copied",
+        "An agreement between two countries about sharing copyrighted content"
+      ],
+      "answer": 1,
+      "explanation": "Fair use has boundaries! A teacher showing a clip in class, a reviewer quoting a passage, a comedian parodying a song — these may qualify as fair use. It is NOT a blanket permission to copy freely. Courts look at: how much was copied, the purpose (commercial vs educational), and whether it harms the original market."
+    },
+    {
+      "q": "What is a Creative Commons (CC) licence?",
+      "options": [
+        "A free tool that lets anyone copy any creative work",
+        "A flexible licensing system where creators specify which rights they reserve and which permissions they grant — such as allowing free use with attribution",
+        "A government scheme for registering creative works",
+        "A subscription service for professional creative software"
+      ],
+      "answer": 1,
+      "explanation": "Creative Commons bridges copyright and sharing! Instead of 'all rights reserved' (copyright) or 'no rights reserved' (public domain), CC gives a middle ground. A 'CC BY' licence says: use it freely but credit me. 'CC BY-NC' says: use it freely, credit me, but not for commercial purposes. Creators stay in control."
+    },
+    {
+      "q": "What do the Creative Commons icons BY, NC, SA, ND mean?",
+      "options": [
+        "Bytes, Networks, Servers, Nodes — technical specifications",
+        "BY = must credit author, NC = not for commercial use, SA = share under same licence, ND = no modifications allowed",
+        "BY = buy, NC = no copy, SA = sell allowed, ND = no download",
+        "These are codes for different countries' copyright laws"
+      ],
+      "answer": 1,
+      "explanation": "Four CC building blocks: BY (Attribution) — credit the creator. NC (NonCommercial) — no money-making. SA (ShareAlike) — derivatives must use the same licence. ND (NoDerivatives) — use as-is, no remixing. Combined: 'CC BY-NC-SA' means credit me, don't sell it, and share derivatives the same way."
+    },
+    {
+      "q": "What is Software Piracy?",
+      "options": [
+        "Hacking into a software company's servers",
+        "Copying, distributing, or using copyrighted software without authorisation — a form of IP theft that is illegal and can carry serious penalties",
+        "Using free trial software beyond the trial period",
+        "Writing code that is similar to another program"
+      ],
+      "answer": 1,
+      "explanation": "Software piracy is IP theft! Downloading cracked software, sharing paid apps, or using unlicensed software are all forms of piracy. Beyond the legal risk, pirated software often contains malware. Billions of dollars in revenue is lost annually — affecting developers' ability to create and maintain software."
+    },
+    {
+      "q": "What is the difference between Copyright Infringement and Plagiarism?",
+      "options": [
+        "They are exactly the same thing",
+        "Copyright infringement is a legal violation of IP rights; plagiarism is an ethical and academic misconduct issue — presenting someone else's work as your own without credit",
+        "Copyright infringement only applies to music; plagiarism only applies to writing",
+        "Plagiarism is more serious than copyright infringement"
+      ],
+      "answer": 1,
+      "explanation": "Related but distinct! Copyright infringement = using protected work without legal permission (legal issue). Plagiarism = taking credit for someone else's ideas or work (ethical/academic issue). You can plagiarise a public domain work (no legal issue but still dishonest) or infringe copyright without plagiarising (e.g. copying music without credit)."
+    },
+    {
+      "q": "What is Open Source Software?",
+      "options": [
+        "Software that is always free to download and use commercially without restriction",
+        "Software released under a licence that allows anyone to view, use, modify, and distribute the source code, often with certain conditions",
+        "Software with no bugs because the source code is publicly reviewed",
+        "Software that only runs on open-source operating systems"
+      ],
+      "answer": 1,
+      "explanation": "Open source transforms software development! Python, Linux, Firefox, and Android are open source — anyone can see the code, fix bugs, add features, and distribute versions. Licences like MIT, GPL, and Apache specify the exact conditions. Open source powers much of the internet and has created enormous collaborative innovation."
+    },
+    {
+      "q": "A student uses a photo found on Google Images for their school project without checking the licence. Is this safe?",
+      "options": [
+        "Yes — anything on Google Images is free to use",
+        "No — most images found via Google are copyrighted; you must check the licence before using them and use the usage rights filter or find CC-licensed images",
+        "Yes — using images for school projects is always fair use",
+        "Only if the image has no watermark"
+      ],
+      "answer": 1,
+      "explanation": "Google shows copyrighted images! Almost all professional photos are copyrighted. For safe image use: use Google's 'Usage Rights' filter to show Creative Commons licensed images, or use sites like Unsplash, Pexels, or Pixabay that provide clearly licensed free images. Always check before you use."
+    },
+    {
+      "q": "How long does copyright typically last in most countries?",
+      "options": [
+        "10 years from the date of creation",
+        "The creator's lifetime plus 70 years after their death",
+        "20 years — the same as a patent",
+        "Forever — copyright never expires"
+      ],
+      "answer": 1,
+      "explanation": "Copyright outlasts the creator! In most countries (including India, UK, EU, USA) copyright lasts for the creator's lifetime plus 70 years. So a song written in 2024 by someone who dies in 2070 would be protected until 2140. After that it enters the public domain. This is why old classic films and books can be freely reproduced."
+    },
+    {
+      "q": "Why do many technology companies release some of their software as Open Source?",
+      "options": [
+        "They are legally required to release all software as open source",
+        "Open source builds community, attracts developer talent, enables collaborative improvement, increases adoption, and creates industry standards — strategic benefits that outweigh giving away the code",
+        "Open source software cannot be used commercially so companies have nothing to lose",
+        "Companies release open source code by accident when they forget to add copyright"
+      ],
+      "answer": 1,
+      "explanation": "Open source is strategic! Google released Android as open source — now it runs billions of devices. Meta released React — millions of developers use it, improving it for free and creating an ecosystem around Meta's tools. Opening the code builds community, drives adoption, attracts talent, and establishes the technology as an industry standard."
+    }
+  ]
+}
