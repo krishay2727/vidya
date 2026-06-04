@@ -1,3 +1,12 @@
+// ==========================================
+// CONFIGURATION: Set the backend mode here
+// Options: 'firebase' or 'gas'
+// ==========================================
+const BACKEND_MODE = 'firebase'; 
+
+// ==========================================
+// FIREBASE CONFIGURATION
+// ==========================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getDatabase, ref, set, onValue, update, get } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
@@ -15,6 +24,45 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+// ==========================================
+// GOOGLE APPS SCRIPT CONFIGURATION
+// ==========================================
+// Paste your deployed Google Apps Script Web App URL here
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz_REPLACE_THIS_WITH_YOUR_URL/exec";
+
+async function gasPost(action, payload) {
+    try {
+        const response = await fetch(GAS_WEB_APP_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action, ...payload })
+        });
+        return await response.json();
+    } catch(e) {
+        console.error("GAS POST Error", e);
+        return { error: e };
+    }
+}
+
+let gasPollingInterval = null;
+let currentRoomDataCache = null;
+
+function startGASPolling() {
+    if(gasPollingInterval) clearInterval(gasPollingInterval);
+    gasPollingInterval = setInterval(async () => {
+        try {
+            const res = await fetch(GAS_WEB_APP_URL + '?action=getRoom&roomCode=' + lqRoomCode);
+            const data = await res.json();
+            if(!data.error) {
+                currentRoomDataCache = data;
+                handleRoomDataUpdate(data);
+            }
+        } catch(e) { console.error("Polling error", e); }
+    }, 3000); // Poll every 3 seconds
+}
+
+// ==========================================
+// STATE VARIABLES
+// ==========================================
 let lqRoomCode = "";
 let lqPlayerName = "";
 let allQuizData = null; // Contains all grades
@@ -95,35 +143,65 @@ async function lqCreateRoom(schoolSelect, gradeSelect, unitSelect) {
     lqRoomCode = Math.floor(100000 + Math.random() * 900000).toString(); // 6 digit code
     document.getElementById('lq-display-room-code').innerText = lqRoomCode;
 
-    const roomRef = ref(db, 'rooms/' + lqRoomCode);
-    await set(roomRef, {
-        status: 'waiting',
-        currentQuestion: -1,
-        hostId: lqPlayerName,
-        school: schoolSelect,
-        grade: gradeSelect,
-        unit: unitSelect,
-        quiz: lqQuizData,
-        startTime: 0,
-        players: {},
-        responses: {}
-    });
+    if (BACKEND_MODE === 'firebase') {
+        const roomRef = ref(db, 'rooms/' + lqRoomCode);
+        await set(roomRef, {
+            status: 'waiting',
+            currentQuestion: -1,
+            hostId: lqPlayerName,
+            school: schoolSelect,
+            grade: gradeSelect,
+            unit: unitSelect,
+            quiz: lqQuizData,
+            startTime: 0,
+            players: {},
+            responses: {}
+        });
+        lqListenToPlayersFirebase();
+        lqListenToGameFirebase();
+    } else {
+        await gasPost('createRoom', {
+            roomCode: lqRoomCode,
+            data: {
+                status: 'waiting',
+                currentQuestion: -1,
+                hostId: lqPlayerName,
+                school: schoolSelect,
+                grade: gradeSelect,
+                unit: unitSelect,
+                quiz: lqQuizData,
+                startTime: 0,
+                players: {},
+                responses: {}
+            }
+        });
+        startGASPolling();
+    }
 
     window.lqShowView('lq-host-setup-page');
     document.getElementById('lq-host-pre-start').style.display = 'block';
     const activeDash = document.getElementById('lq-host-active-dashboard');
     if(activeDash) activeDash.style.display = 'none';
-
-    lqListenToPlayers();
-    lqListenToGame();
 }
 
 window.lqStartGame = () => {
-    update(ref(db, `rooms/${lqRoomCode}`), {
-        status: 'active',
-        currentQuestion: 0,
-        startTime: Date.now() // Start the 10 min timer
-    });
+    if (BACKEND_MODE === 'firebase') {
+        update(ref(db, `rooms/${lqRoomCode}`), {
+            status: 'active',
+            currentQuestion: 0,
+            startTime: Date.now() // Start the 10 min timer
+        });
+    } else {
+        gasPost('updateRoom', {
+            roomCode: lqRoomCode,
+            data: {
+                status: 'active',
+                currentQuestion: 0,
+                startTime: Date.now()
+            }
+        });
+    }
+    
     const preStart = document.getElementById('lq-host-pre-start');
     if (preStart) preStart.style.display = 'none';
     const activeDash = document.getElementById('lq-host-active-dashboard');
@@ -131,18 +209,32 @@ window.lqStartGame = () => {
 };
 
 window.lqNextQuestion = async () => {
-    const snapshot = await get(ref(db, `rooms/${lqRoomCode}/currentQuestion`));
-    let nextIndex = snapshot.val() + 1;
+    if (BACKEND_MODE === 'firebase') {
+        const snapshot = await get(ref(db, `rooms/${lqRoomCode}/currentQuestion`));
+        let nextIndex = snapshot.val() + 1;
 
-    if (nextIndex >= lqQuizData.questions.length) {
-        window.lqEndQuiz();
+        if (nextIndex >= lqQuizData.questions.length) {
+            window.lqEndQuiz();
+        } else {
+            update(ref(db, `rooms/${lqRoomCode}`), { currentQuestion: nextIndex });
+        }
     } else {
-        update(ref(db, `rooms/${lqRoomCode}`), { currentQuestion: nextIndex });
+        let nextIndex = (currentRoomDataCache ? currentRoomDataCache.currentQuestion : 0) + 1;
+
+        if (nextIndex >= lqQuizData.questions.length) {
+            window.lqEndQuiz();
+        } else {
+            gasPost('updateRoom', { roomCode: lqRoomCode, data: { currentQuestion: nextIndex } });
+        }
     }
 };
 
 window.lqEndQuiz = () => {
-    update(ref(db, `rooms/${lqRoomCode}`), { status: 'ended' });
+    if (BACKEND_MODE === 'firebase') {
+        update(ref(db, `rooms/${lqRoomCode}`), { status: 'ended' });
+    } else {
+        gasPost('updateRoom', { roomCode: lqRoomCode, data: { status: 'ended' } });
+    }
 };
 
 
@@ -170,116 +262,206 @@ window.lqJoinGame = async () => {
         return;
     }
 
-    const roomSnapshot = await get(ref(db, `rooms/${lqRoomCode}`));
-    if (!roomSnapshot.exists()) {
-        alert("Room not found!");
-        return;
-    }
-
     isHost = false;
     
-    // Read the room's quiz data so the client knows the questions
-    const roomData = roomSnapshot.val();
-    lqQuizData = roomData.quiz;
-    lqCurrentGrade = roomData.grade || "";
-    lqCategoryScores = {};
-    lqMyScore = 0;
+    if (BACKEND_MODE === 'firebase') {
+        const roomSnapshot = await get(ref(db, `rooms/${lqRoomCode}`));
+        if (!roomSnapshot.exists()) {
+            alert("Room not found!");
+            return;
+        }
 
-    // Prevent duplicate player names inside the same classroom to keep it professional
-    if (roomData.players && roomData.players[lqPlayerName]) {
-        alert("This name is already taken in this classroom! Please use a different name.");
-        return;
+        const roomData = roomSnapshot.val();
+        lqQuizData = roomData.quiz;
+        lqCurrentGrade = roomData.grade || "";
+        lqCategoryScores = {};
+        lqMyScore = 0;
+
+        // Prevent duplicate player names
+        if (roomData.players && roomData.players[lqPlayerName]) {
+            alert("This name is already taken in this classroom! Please use a different name.");
+            return;
+        }
+
+        await set(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), { 
+            name: lqPlayerName,
+            score: 0,
+            school: roomData.school || "Unknown"
+        });
+
+        document.getElementById('lq-waiting-room-code').innerText = lqRoomCode;
+        window.lqShowView('lq-player-waiting-page');
+
+        lqListenToGameFirebase();
+        lqListenToPlayersFirebase();
+    } else {
+        const res = await fetch(GAS_WEB_APP_URL + '?action=getRoom&roomCode=' + lqRoomCode);
+        const roomData = await res.json();
+        
+        if (roomData.error || !roomData.status) {
+            alert("Room not found!");
+            return;
+        }
+
+        lqQuizData = roomData.quiz;
+        lqCurrentGrade = roomData.grade || "";
+        lqCategoryScores = {};
+        lqMyScore = 0;
+
+        if (roomData.players && roomData.players[lqPlayerName]) {
+            alert("This name is already taken in this classroom! Please use a different name.");
+            return;
+        }
+
+        await gasPost('joinPlayer', {
+            roomCode: lqRoomCode,
+            playerName: lqPlayerName,
+            playerData: {
+                name: lqPlayerName,
+                score: 0,
+                school: roomData.school || "Unknown"
+            }
+        });
+
+        document.getElementById('lq-waiting-room-code').innerText = lqRoomCode;
+        window.lqShowView('lq-player-waiting-page');
+
+        startGASPolling();
     }
-
-    await set(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), { 
-        name: lqPlayerName,
-        score: 0,
-        school: roomData.school || "Unknown"
-    });
-
-    document.getElementById('lq-waiting-room-code').innerText = lqRoomCode;
-    window.lqShowView('lq-player-waiting-page');
-
-    lqListenToGame();
-    lqListenToPlayers();
 };
 
-function lqListenToPlayers() {
+// ==========================================
+// FIREBASE LISTENERS
+// ==========================================
+function lqListenToPlayersFirebase() {
     onValue(ref(db, `rooms/${lqRoomCode}/players`), (snapshot) => {
         const players = snapshot.val() || {};
-        
-        // 1. Update waiting room count
-        const count = Object.keys(players).length;
-        const countEl = document.getElementById('lq-players-count');
-        if(countEl) countEl.innerText = count;
-
-        // 2. Update Host Dashboard list (if visible)
-        const hostList = document.getElementById('lq-host-player-list');
-        if(hostList) {
-            hostList.innerHTML = '';
-            const hostCountEl = document.getElementById('lq-host-player-count');
-            if(hostCountEl) hostCountEl.innerText = count;
-            for (let p in players) {
-                const li = document.createElement('li');
-                li.innerText = p; // Score hidden
-                hostList.appendChild(li);
-            }
-        }
-
-        // 3. Update Live Sidebar Leaderboard (during quiz)
-        const sidebarList = document.getElementById('lq-live-sidebar-list');
-        if(sidebarList) {
-            sidebarList.innerHTML = '';
-            const sorted = Object.entries(players).sort((a,b) => b[1].score - a[1].score);
-            sorted.forEach(([p, data], i) => {
-                const li = document.createElement('li');
-                li.style.padding = '10px 0';
-                li.style.borderBottom = '1px solid var(--border)';
-                li.style.fontSize = '0.95rem';
-                
-                let rankStr = `<strong>#${i+1}</strong>`;
-                if(i===0) rankStr = '🥇';
-                if(i===1) rankStr = '🥈';
-                if(i===2) rankStr = '🥉';
-
-                li.innerHTML = `<span>${rankStr} ${p}</span>`;
-                sidebarList.appendChild(li);
-            });
-        }
-
-        // 4. Update Host Big Leaderboard
-        const hostLiveList = document.getElementById('lq-host-live-leaderboard');
-        if (hostLiveList) {
-            const liveCountEl = document.getElementById('lq-host-live-count');
-            if (liveCountEl) liveCountEl.innerText = count;
-
-            hostLiveList.innerHTML = '';
-            const sorted = Object.entries(players).sort((a, b) => b[1].score - a[1].score);
-            
-            if (sorted.length === 0) {
-                hostLiveList.innerHTML = '<li style="text-align:center; padding: 30px; color: var(--text-muted); font-size: 1.2rem;">Waiting for students to join... 😴</li>';
-            } else {
-                sorted.forEach(([p, data], i) => {
-                    const li = document.createElement('li');
-                    li.style.padding = '15px 0';
-                    li.style.borderBottom = '1px solid var(--border)';
-                    li.style.display = 'flex';
-                    li.style.justifyContent = 'space-between';
-                    li.style.alignItems = 'center';
-                    
-                    let rankStr = `<strong>#${i + 1}</strong>`;
-                    if (i === 0) rankStr = '<span style="font-size:2rem;">🥇</span>';
-                    if (i === 1) rankStr = '<span style="font-size:1.8rem;">🥈</span>';
-                    if (i === 2) rankStr = '<span style="font-size:1.6rem;">🥉</span>';
-
-                    li.innerHTML = `<span>${rankStr} ${p}</span> <span style="color:var(--cyan); font-weight:bold; font-size: 1.3rem;">${data.score} pts</span>`;
-                    hostLiveList.appendChild(li);
-                });
-            }
-        }
+        updatePlayersUI(players);
     });
 }
 
+function lqListenToGameFirebase() {
+    onValue(ref(db, `rooms/${lqRoomCode}`), (snapshot) => {
+        const data = snapshot.val();
+        if (!data) return;
+        updateGameStateUI(data, data.players || {});
+    });
+}
+
+// ==========================================
+// GAS LISTENERS / POLLING
+// ==========================================
+function handleRoomDataUpdate(data) {
+    updatePlayersUI(data.players || {});
+    updateGameStateUI(data, data.players || {});
+}
+
+// ==========================================
+// SHARED UI UPDATE FUNCTIONS
+// ==========================================
+function updatePlayersUI(players) {
+    // 1. Update waiting room count
+    const count = Object.keys(players).length;
+    const countEl = document.getElementById('lq-players-count');
+    if(countEl) countEl.innerText = count;
+
+    // 2. Update Host Dashboard list (if visible)
+    const hostList = document.getElementById('lq-host-player-list');
+    if(hostList) {
+        hostList.innerHTML = '';
+        const hostCountEl = document.getElementById('lq-host-player-count');
+        if(hostCountEl) hostCountEl.innerText = count;
+        for (let p in players) {
+            const li = document.createElement('li');
+            li.innerText = p; 
+            hostList.appendChild(li);
+        }
+    }
+
+    // 3. Update Live Sidebar Leaderboard (during quiz)
+    const sidebarList = document.getElementById('lq-live-sidebar-list');
+    if(sidebarList) {
+        sidebarList.innerHTML = '';
+        const sorted = Object.entries(players).sort((a,b) => b[1].score - a[1].score);
+        sorted.forEach(([p, pdata], i) => {
+            const li = document.createElement('li');
+            li.style.padding = '10px 0';
+            li.style.borderBottom = '1px solid var(--border)';
+            li.style.fontSize = '0.95rem';
+            
+            let rankStr = `<strong>#${i+1}</strong>`;
+            if(i===0) rankStr = '🥇';
+            if(i===1) rankStr = '🥈';
+            if(i===2) rankStr = '🥉';
+
+            li.innerHTML = `<span>${rankStr} ${p}</span>`;
+            sidebarList.appendChild(li);
+        });
+    }
+
+    // 4. Update Host Big Leaderboard
+    const hostLiveList = document.getElementById('lq-host-live-leaderboard');
+    if (hostLiveList) {
+        const liveCountEl = document.getElementById('lq-host-live-count');
+        if (liveCountEl) liveCountEl.innerText = count;
+
+        hostLiveList.innerHTML = '';
+        const sorted = Object.entries(players).sort((a, b) => b[1].score - a[1].score);
+        
+        if (sorted.length === 0) {
+            hostLiveList.innerHTML = '<li style="text-align:center; padding: 30px; color: var(--text-muted); font-size: 1.2rem;">Waiting for students to join... 😴</li>';
+        } else {
+            sorted.forEach(([p, pdata], i) => {
+                const li = document.createElement('li');
+                li.style.padding = '15px 0';
+                li.style.borderBottom = '1px solid var(--border)';
+                li.style.display = 'flex';
+                li.style.justifyContent = 'space-between';
+                li.style.alignItems = 'center';
+                
+                let rankStr = `<strong>#${i + 1}</strong>`;
+                if (i === 0) rankStr = '<span style="font-size:2rem;">🥇</span>';
+                if (i === 1) rankStr = '<span style="font-size:1.8rem;">🥈</span>';
+                if (i === 2) rankStr = '<span style="font-size:1.6rem;">🥉</span>';
+
+                li.innerHTML = `<span>${rankStr} ${p}</span> <span style="color:var(--cyan); font-weight:bold; font-size: 1.3rem;">${pdata.score} pts</span>`;
+                hostLiveList.appendChild(li);
+            });
+        }
+    }
+}
+
+function updateGameStateUI(data, players) {
+    if (data.status === 'active') {
+        if (isHost) {
+            if(data.startTime && !timerInterval) {
+                startTimer(data.startTime);
+            }
+        } else {
+            if (lqCurrentQuestionIndex === -1 && data.currentQuestion >= 0) {
+                lqCurrentQuestionIndex = 0;
+                lqAnsweredCurrent = false;
+                
+                lqQuestionOrder = Array.from({length: lqQuizData.questions.length}, (_, i) => i);
+                lqQuestionOrder.sort(() => Math.random() - 0.5);
+                
+                if(data.startTime) {
+                    startTimer(data.startTime);
+                }
+
+                lqRenderQuestion();
+            }
+        }
+    } else if (data.status === 'ended') {
+        if(timerInterval) clearInterval(timerInterval);
+        if(gasPollingInterval) clearInterval(gasPollingInterval);
+        lqShowLeaderboard(players);
+    }
+}
+
+// ==========================================
+// TIMER & RENDERING
+// ==========================================
 function startTimer(startTimeMs) {
     if(timerInterval) clearInterval(timerInterval);
     const durationMinutes = (lqQuizData && lqQuizData.duration) ? lqQuizData.duration : 10;
@@ -316,41 +498,6 @@ function startTimer(startTimeMs) {
         const hostTimerEl = document.getElementById('lq-host-timer-display');
         if(hostTimerEl) hostTimerEl.innerText = timeStr;
     }, 1000);
-}
-
-function lqListenToGame() {
-    onValue(ref(db, `rooms/${lqRoomCode}`), (snapshot) => {
-        const data = snapshot.val();
-        if (!data) return;
-
-        if (data.status === 'active') {
-            if (isHost) {
-                // Host stays on the setup page but starts the timer
-                if(data.startTime && !timerInterval) {
-                    startTimer(data.startTime);
-                }
-            } else {
-                if (lqCurrentQuestionIndex === -1 && data.currentQuestion >= 0) {
-                    lqCurrentQuestionIndex = 0;
-                    lqAnsweredCurrent = false;
-                    
-                    // Shuffle questions for this student
-                    lqQuestionOrder = Array.from({length: lqQuizData.questions.length}, (_, i) => i);
-                    lqQuestionOrder.sort(() => Math.random() - 0.5);
-                    
-                    // If this is the first question, start the 10-minute timer using the DB start time
-                    if(data.startTime) {
-                        startTimer(data.startTime);
-                    }
-
-                    lqRenderQuestion();
-                }
-            }
-        } else if (data.status === 'ended') {
-            if(timerInterval) clearInterval(timerInterval);
-            lqShowLeaderboard(data.players);
-        }
-    });
 }
 
 function lqRenderQuestion() {
@@ -497,16 +644,38 @@ window.lqSubmitAnswer = (selected, correct, marks, btnElement, category = 'uncat
     if (isCorrect) {
         lqMyScore += marks;
         lqCategoryScores[category] = (lqCategoryScores[category] || 0) + marks;
-        update(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), {
-            score: lqMyScore,
-            categoryScores: lqCategoryScores
-        });
+        
+        if (BACKEND_MODE === 'firebase') {
+            update(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), {
+                score: lqMyScore,
+                categoryScores: lqCategoryScores
+            });
+        } else {
+            gasPost('updatePlayerScore', {
+                roomCode: lqRoomCode,
+                playerName: lqPlayerName,
+                data: {
+                    score: lqMyScore,
+                    categoryScores: lqCategoryScores
+                }
+            });
+        }
     }
 
     const answerData = { answer: selected.toString(), correct: isCorrect };
     let realIndex = lqQuestionOrder[lqCurrentQuestionIndex];
-    set(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}/answers/${realIndex}`), answerData);
-    set(ref(db, `rooms/${lqRoomCode}/responses/${realIndex}/${lqPlayerName}`), answerData);
+    
+    if (BACKEND_MODE === 'firebase') {
+        set(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}/answers/${realIndex}`), answerData);
+        set(ref(db, `rooms/${lqRoomCode}/responses/${realIndex}/${lqPlayerName}`), answerData);
+    } else {
+        gasPost('submitAnswer', {
+            roomCode: lqRoomCode,
+            playerName: lqPlayerName,
+            questionIndex: realIndex,
+            answerData: answerData
+        });
+    }
 
     if (btnElement) {
         btnElement.style.backgroundColor = isCorrect ? 'var(--green)' : 'var(--red)';
@@ -561,16 +730,39 @@ function lqShowLeaderboard(players) {
     }
 }
 
+
 window.lqDownloadCSV = async () => {
     try {
-        const roomSnapshot = await get(ref(db, `rooms/${lqRoomCode}`));
-        if (!roomSnapshot.exists()) throw new Error("Room data not found in database.");
-        const roomData = roomSnapshot.val();
-        const players = roomData.players || {};
+        let players = {};
+        let schoolVal = "School";
+        let gradeVal = "grade";
+        let unitVal = "baseline";
+        let quizQuestions = [];
 
-        const schoolVal = roomData.school || "School";
-        const gradeVal = roomData.grade || "grade";
-        const unitVal  = roomData.unit  || "baseline";
+        if (BACKEND_MODE === 'firebase') {
+            const roomSnapshot = await get(ref(db, `rooms/${lqRoomCode}`));
+            if (!roomSnapshot.exists()) throw new Error("Room data not found in database.");
+            const roomData = roomSnapshot.val();
+            players = roomData.players || {};
+            schoolVal = roomData.school || schoolVal;
+            gradeVal = roomData.grade || gradeVal;
+            unitVal = roomData.unit || unitVal;
+            quizQuestions = (roomData.quiz && roomData.quiz.questions) ? roomData.quiz.questions : [];
+        } else {
+            const res = await fetch(GAS_WEB_APP_URL + '?action=getRoom&roomCode=' + lqRoomCode);
+            const roomData = await res.json();
+            if (roomData.error || !roomData.status) throw new Error("Room data not found in GAS.");
+            players = roomData.players || {};
+            schoolVal = roomData.school || schoolVal;
+            gradeVal = roomData.grade || gradeVal;
+            unitVal = roomData.unit || unitVal;
+            quizQuestions = (roomData.quiz && roomData.quiz.questions) ? roomData.quiz.questions : [];
+        }
+
+        // Fallback to in-memory quiz data if room data didn't include questions
+        if (quizQuestions.length === 0 && lqQuizData && lqQuizData.questions) {
+            quizQuestions = lqQuizData.questions;
+        }
 
         // ── Filename numbers (e.g. HHmm-DMS-1-1.csv) ──
         const now = new Date();
@@ -599,29 +791,75 @@ window.lqDownloadCSV = async () => {
 
         const timestampStr = now.toLocaleString();
 
-        // ── CSV Header ──
-        let csvContent = "Timestamp,School Name,Grade,Student Name,Overall Marks,Critical Thinking,Problem Solving,Safety,Ethics\n";
+        // ── Category label map ──
+        const categoryLabels = {
+            critical_thinking: '🧠 Critical Thinking',
+            problem_solving:   '🔧 Problem Solving',
+            safety:            '🦺 Safety',
+            ethics:            '⚖️ Ethics'
+        };
 
-        // ── Sort by score descending ──
-        const sortedPlayers = Object.entries(players).sort((a,b) => b[1].score - a[1].score);
+        // Helper: wrap a value in CSV-safe quotes
+        function csvCell(val) {
+            const str = (val === null || val === undefined) ? '' : String(val);
+            return '"' + str.replace(/"/g, '""') + '"';
+        }
+
+        // ── Build dynamic question header columns ──
+        // Format: Q1 [🧠 Critical Thinking]: Question text...
+        const questionHeaders = quizQuestions.map((q, i) => {
+            const catLabel = categoryLabels[q.category] || (q.category ? q.category : 'General');
+            const qText = (q.text || q.question || '').substring(0, 80); // truncate for readability
+            return csvCell(`Q${i + 1} [${catLabel}]: ${qText}`);
+        });
+
+        // ── CSV Header row ──
+        const headerCols = [
+            csvCell('Timestamp'),
+            csvCell('School Name'),
+            csvCell('Grade'),
+            csvCell('Student Name'),
+            csvCell('Overall Marks'),
+            csvCell('🧠 Critical Thinking'),
+            csvCell('🔧 Problem Solving'),
+            csvCell('🦺 Safety'),
+            csvCell('⚖️ Ethics'),
+            ...questionHeaders
+        ];
+        let csvContent = headerCols.join(',') + "\n";
+
+        // ── Sort players by score descending ──
+        const sortedPlayers = Object.entries(players).sort((a, b) => b[1].score - a[1].score);
 
         for (const [pName, player] of sortedPlayers) {
             const cs = player.categoryScores || {};
+            const answers = player.answers || {};
+
+            // Per-question cells: ✅ Right or ❌ Wrong, plus their actual answer text
+            const questionCells = quizQuestions.map((q, i) => {
+                const ans = answers[i];
+                if (!ans) return csvCell('— Not Answered');
+                const status = ans.correct ? '✅ Right' : '❌ Wrong';
+                return csvCell(`${status} (Answer: ${ans.answer})`);
+            });
+
             const row = [
-                `"${timestampStr}"`,
-                `"${schoolVal}"`,
-                `"${gradeDisplay}"`,
-                `"${(player.name || pName).replace(/"/g, '""')}"`,
+                csvCell(timestampStr),
+                csvCell(schoolVal),
+                csvCell(gradeDisplay),
+                csvCell(player.name || pName),
                 player.score || 0,
                 cs.critical_thinking || 0,
                 cs.problem_solving   || 0,
                 cs.safety            || 0,
-                cs.ethics            || 0
+                cs.ethics            || 0,
+                ...questionCells
             ].join(',');
             csvContent += row + "\n";
         }
 
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        // Add BOM for Excel UTF-8 compatibility (renders emojis correctly)
+        const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
         const url  = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.setAttribute("href", url);
