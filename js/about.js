@@ -13,3 +13,5 @@ function renderAbout() {
     </div>`).join('');
   }
 }
+
+//about
