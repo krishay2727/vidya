@@ -7,3 +7,4 @@ let PROJECTS = [];        // from projects.json
 let currentSession = null;
 let currentSlide = 0;
 let inlineQuizState = {};
+let currentProject = null;

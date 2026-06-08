@@ -98,22 +98,33 @@
 .sessions-home-section .sessions-grid { max-width: 1200px; margin-left: auto; margin-right: auto; }
 .sessions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
 .session-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 28px; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden;
+  background: rgba(30,35,64,0.5); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.06); border-radius: 16px;
+  padding: 28px; cursor: pointer; transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative; overflow: hidden; z-index: 1;
 }
 .session-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--card-color, var(--orange));
+  content: ''; position: absolute; inset: 0; border-radius: 16px;
+  background: linear-gradient(135deg, transparent 40%, var(--card-color, rgba(255,107,53,0.06)) 100%);
+  opacity: 0; transition: opacity 0.35s;
+  pointer-events: none; z-index: -1;
 }
-.session-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--card-color, var(--orange)); }
+.session-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: var(--card-color, rgba(255,107,53,0.3));
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 40px var(--card-color, rgba(255,107,53,0.1));
+}
+.session-card:hover::before { opacity: 1; }
+
 .session-card-num { font-family: var(--font-head); font-size: 0.75rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
 .session-card-icon { font-size: 2rem; margin-bottom: 12px; }
 .session-card h3 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
 .session-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
 .session-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-.tag { padding: 4px 10px; border-radius: 50px; background: var(--bg3); color: var(--text-muted); font-size: 0.72rem; }
-.session-card-footer { display: flex; align-items: center; justify-content: space-between; }
-.session-card-meta { font-size: 0.8rem; color: var(--text-dim); }
+.tag { padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: var(--text-dim); font-size: 0.72rem; font-weight: 500; transition: all 0.2s; }
+.session-card:hover .tag { border-color: rgba(255,255,255,0.1); color: var(--text-muted); }
+.session-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.04); margin-top: 10px; }
+.session-card-meta { font-size: 0.8rem; color: var(--text-dim); font-weight: 500; }
 
 /* ====== ROADMAP ====== */
 .roadmap-section { padding: 100px 24px; max-width: 1200px; margin: 0 auto; }

@@ -25,6 +25,7 @@ async function showPage(name) {
     if (name === 'sessions') renderSessionsList();
     if (name === 'session-detail') renderSessionDetail();
     if (name === 'projects') renderProjects();
+    if (name === 'project-detail') renderProjectDetail();
     if (name === 'about') renderAbout();
     if (name === 'whiteboard' && window.initWhiteboard) window.initWhiteboard();
     if (name === 'live-quiz' && window.initLiveQuiz) window.initLiveQuiz();

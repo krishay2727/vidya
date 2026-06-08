@@ -1,9 +1,31 @@
 <div id="page-projects" class="page active">
   <div class="page-inner">
-    <div class="page-hero">
-      <h1>🚀 Projects Gallery</h1>
-      <p>These are YOUR projects. You will design, build and present them.</p>
+    <div class="page-hero projects-hero">
+      <div class="projects-hero-badge">🚀 MAKER LAB</div>
+      <h1>Projects Gallery</h1>
+      <p>These are YOUR projects. Design, build, present — and download the files to make your own.</p>
     </div>
+
+    <!-- FILTER BAR -->
+    <div class="projects-filter-bar" id="projectsFilterBar">
+      <div class="projects-search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="projectSearchInput" class="projects-search" placeholder="Search projects…" oninput="filterProjects()" />
+      </div>
+      <div class="projects-filter-pills">
+        <button class="filter-pill active" data-filter="all" onclick="setProjectFilter('all', this)">All</button>
+        <button class="filter-pill" data-filter="Beginner" onclick="setProjectFilter('Beginner', this)">🟢 Beginner</button>
+        <button class="filter-pill" data-filter="Intermediate" onclick="setProjectFilter('Intermediate', this)">🔵 Intermediate</button>
+        <button class="filter-pill" data-filter="Advanced" onclick="setProjectFilter('Advanced', this)">🟠 Advanced</button>
+      </div>
+      <div class="projects-status-pills">
+        <button class="status-pill active" data-status="all" onclick="setStatusFilter('all', this)">All Status</button>
+        <button class="status-pill" data-status="Available" onclick="setStatusFilter('Available', this)">✅ Available</button>
+        <button class="status-pill" data-status="Coming Soon" onclick="setStatusFilter('Coming Soon', this)">🔮 Coming Soon</button>
+      </div>
+    </div>
+
+    <div class="projects-count" id="projectsCount"></div>
     <div class="projects-grid" id="projectsGrid"></div>
   </div>
 </div>

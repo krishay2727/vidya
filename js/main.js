@@ -48,14 +48,28 @@ async function init() {
     }
   });
 
-  // Load projects JSON
+  // Load projects index and individual files
   const projectLoad = (async () => {
     try {
       const res = await fetch(SITE.projects_file + '?t=' + Date.now());
-      const data = await res.json();
-      PROJECTS = data.projects || [];
+      const indexData = await res.json();
+      const projectPaths = indexData.projects || [];
+      
+      const projectFetches = projectPaths.map(async (path) => {
+        try {
+          const pRes = await fetch(path + '?t=' + Date.now());
+          if (pRes.ok) {
+            const pData = await pRes.json();
+            PROJECTS.push(pData);
+          }
+        } catch (err) {
+          console.warn(`Could not load project file: ${path}`, err);
+        }
+      });
+      
+      await Promise.all(projectFetches);
     } catch (e) {
-      console.warn('Could not load projects.json', e);
+      console.warn('Could not load projects index', e);
     }
   })();
 
@@ -85,7 +99,7 @@ async function init() {
   const urlParams = new URLSearchParams(window.location.search);
   const redirectPage = urlParams.get('p');
   let targetPage = 'home';
-  const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail'];
+  const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail', 'project-detail'];
 
   if (redirectPage && validPages.includes(redirectPage)) {
     targetPage = redirectPage;
@@ -105,7 +119,7 @@ async function init() {
 // =============================================
 window.addEventListener('popstate', () => {
   const pathSegment = window.location.pathname.split('/').filter(Boolean).pop();
-  const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail'];
+  const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail', 'project-detail'];
 
   if (pathSegment && validPages.includes(pathSegment) && pathSegment !== 'VIDYA') {
     showPage(pathSegment);

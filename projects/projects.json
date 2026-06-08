@@ -1,102 +1,15 @@
 {
   "_instructions": {
     "file": "projects/projects.json",
-    "images_folder": "projects/images/   ← Add project photos/diagrams here",
-    "image_naming": "smart-light.jpg, weather-station.jpg, mini-robot.jpg etc.",
-    "how_to_add": "Copy a project block below and fill in the details for a new project",
-    "levels": ["Beginner", "Intermediate", "Advanced"]
+    "purpose": "Index of all project files",
+    "how_to_add": "Create a new project JSON file (e.g. 7project.json) and add its path to the list below."
   },
-
   "projects": [
-    {
-      "id": "smart-light",
-      "title": "hEXAPOD",
-      "icon": "💡",
-      "level": "Advanced",
-      "session": 30,
-      "desc": "A light that turns on automatically when it gets dark!",
-      "fullDesc": "Build a light-sensitive circuit using an LDR (Light Dependent Resistor). When the room gets dark, the Arduino detects the low light level and automatically turns on the LED or a small lamp. This is exactly how street lights and automatic night lamps work!",
-      "image": "projects/images/smart-light.jpg",
-      "_image_note": "ADD: Photo or diagram of the Smart Light project",
-      "components": ["Arduino UNO", "LDR (Light Dependent Resistor)", "LED", "220Ω Resistor", "10kΩ Resistor", "Breadboard", "Jumper wires"],
-      "skills": ["Analog input reading", "If-else logic in Arduino", "LDR sensor", "Digital output"],
-      "difficulty": 2,
-      "status": "Available"
-    },
-    {
-      "id": "weather-station",
-      "title": "Weather Station",
-      "icon": "🌡️",
-      "level": "Intermediate",
-      "session": 2,
-      "desc": "Read temperature & humidity — display it on screen!",
-      "fullDesc": "Build a real weather monitoring station using a DHT11 sensor. It reads temperature and humidity from the environment and displays it on a small LCD screen. You can even add it to your room and track how the weather changes throughout the day!",
-      "image": "projects/images/weather-station.jpg",
-      "_image_note": "ADD: Photo of Weather Station project with LCD display",
-      "components": ["Arduino UNO", "DHT11 Temperature & Humidity Sensor", "16x2 LCD Display", "10kΩ Potentiometer", "Breadboard", "Jumper wires"],
-      "skills": ["DHT11 sensor library", "LCD display wiring", "Serial monitor", "Library installation"],
-      "difficulty": 3,
-      "status": "Available"
-    },
-    {
-      "id": "mini-robot",
-      "title": "Mini Robot",
-      "icon": "🤖",
-      "level": "Intermediate",
-      "session": 3,
-      "desc": "A robot that moves, avoids walls, follows commands.",
-      "fullDesc": "Build a two-wheeled robot from scratch! It uses ultrasonic sensors to detect obstacles and automatically changes direction to avoid them. You can also control it manually using Bluetooth from your phone. This is the foundation of all autonomous vehicles!",
-      "image": "projects/images/mini-robot.jpg",
-      "_image_note": "ADD: Photo of completed Mini Robot project",
-      "components": ["Arduino UNO", "L298N Motor Driver", "2x DC Motors + Wheels", "HC-SR04 Ultrasonic Sensor", "HC-05 Bluetooth Module", "Robot Chassis", "9V Battery"],
-      "skills": ["Motor control", "Ultrasonic sensor", "Bluetooth communication", "Obstacle avoidance logic"],
-      "difficulty": 4,
-      "status": "Coming Soon"
-    },
-    {
-      "id": "iot-dashboard",
-      "title": "IoT Dashboard",
-      "icon": "🌐",
-      "level": "Advanced",
-      "session": 4,
-      "desc": "Control your device from your phone, anywhere in the world!",
-      "fullDesc": "Connect your Arduino to the internet using an ESP8266 WiFi module and control LEDs and sensors from a web dashboard on your phone. This project introduces you to the Internet of Things — the technology behind smart homes, smart cities, and Industry 4.0!",
-      "image": "projects/images/iot-dashboard.jpg",
-      "_image_note": "ADD: Photo of IoT Dashboard project with phone control",
-      "components": ["ESP8266 NodeMCU", "LED Array", "DHT11 Sensor", "Relay Module", "WiFi Router access", "Smartphone for control"],
-      "skills": ["ESP8266 WiFi", "Blynk / MQTT", "Cloud connectivity", "Remote control", "IoT protocols"],
-      "difficulty": 5,
-      "status": "Coming Soon"
-    },
-    {
-      "id": "3d-printed-part",
-      "title": "3D Printed Part",
-      "icon": "🖨️",
-      "level": "Intermediate",
-      "session": 3,
-      "desc": "Design a custom part & physically print it using 3D printer.",
-      "fullDesc": "Design your own custom enclosure, bracket, or gadget using Tinkercad's 3D design tools. Then physically print it on the lab's 3D printer. You'll learn the basics of 3D modelling, understand how 3D printers work layer-by-layer, and get a real physical object you designed yourself!",
-      "image": "projects/images/3d-printed-part.jpg",
-      "_image_note": "ADD: Photo of 3D printed part / student's design",
-      "components": ["Computer with Tinkercad access", "3D Printer (lab equipment)", "PLA Filament", "Tinkercad account (free)"],
-      "skills": ["3D modelling basics", "Tinkercad design", "3D printer operation", "G-code basics", "Iterative design"],
-      "difficulty": 3,
-      "status": "Available"
-    },
-    {
-      "id": "smart-alert",
-      "title": "Smart Alert System",
-      "icon": "🔔",
-      "level": "Advanced",
-      "session": 4,
-      "desc": "Motion sensor that sends a notification when triggered.",
-      "fullDesc": "Build a home security system using a PIR (Passive Infrared) motion sensor. When motion is detected, it triggers a buzzer alarm AND sends a notification to your phone via WiFi. This is the same technology used in real home security systems and automatic lights in offices!",
-      "image": "projects/images/smart-alert.jpg",
-      "_image_note": "ADD: Photo of Smart Alert System project",
-      "components": ["ESP8266 NodeMCU", "PIR Motion Sensor", "Buzzer", "LED Indicator", "WiFi access", "Telegram Bot / Blynk for notifications"],
-      "skills": ["PIR sensor", "ESP8266 WiFi", "Telegram Bot API", "Interrupt handling", "IoT notifications"],
-      "difficulty": 5,
-      "status": "Coming Soon"
-    }
+    "projects/1project.json",
+    "projects/2project.json",
+    "projects/3project.json",
+    "projects/4project.json",
+    "projects/5project.json",
+    "projects/6project.json"
   ]
 }

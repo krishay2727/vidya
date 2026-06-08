@@ -4,13 +4,92 @@
 
 /* ====== SESSIONS LIST ====== */
 .sessions-list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
-.sessions-filter select {
+
+/* ====== HERO ====== */
+.sessions-hero { position: relative; }
+.sessions-hero-badge {
+  display: inline-block; padding: 6px 18px; border-radius: 50px;
+  background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.25);
+  color: var(--cyan); font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+/* ====== FILTER BAR ====== */
+.sessions-filter-bar {
+  display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+  justify-content: center; margin: 20px auto 16px;
+  padding: 20px 24px; border-radius: 16px;
+  background: rgba(30,35,64,0.6); backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  max-width: 1000px;
+}
+.sessions-search-wrap {
+  position: relative; flex: 1; min-width: 220px; max-width: 360px;
+}
+.sessions-search-wrap .search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 0.9rem; pointer-events: none;
+}
+.sessions-search {
+  width: 100%; padding: 10px 16px 10px 40px; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); font-family: var(--font-body); font-size: 0.9rem;
   transition: all 0.3s;
 }
-.sessions-filter select:focus {
-  border-color: var(--cyan);
-  outline: none;
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+.sessions-search:focus {
+  outline: none; border-color: var(--cyan);
+  box-shadow: 0 0 16px rgba(0,212,255,0.15);
+}
+.sessions-search::placeholder { color: var(--text-dim); }
+
+.sessions-filter-pills, .sessions-status-pills {
+  display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+}
+.filter-pill {
+  padding: 7px 16px; border-radius: 50px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 0.8rem; font-weight: 500;
+  cursor: pointer; transition: all 0.25s; font-family: var(--font-body);
+  white-space: nowrap;
+}
+.filter-pill:hover {
+  color: var(--text); background: var(--surface2); border-color: rgba(255,255,255,0.15);
+}
+.filter-pill.active {
+  background: rgba(0,212,255,0.12); border-color: var(--cyan);
+  color: var(--cyan); font-weight: 600; box-shadow: 0 0 12px rgba(0,212,255,0.2);
+}
+.filter-pill {
+  padding: 8px 18px; border-radius: 50px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 0.85rem; font-weight: 500;
+  cursor: pointer; transition: all 0.25s; font-family: var(--font-body);
+  white-space: nowrap;
+}
+.filter-pill:hover {
+  color: var(--text); background: var(--surface2); border-color: rgba(255,255,255,0.15);
+}
+.filter-pill.active {
+  background: rgba(0,212,255,0.15); border-color: var(--cyan);
+  color: var(--cyan); font-weight: 700; box-shadow: 0 0 12px rgba(0,212,255,0.2);
+}
+
+.sessions-count {
+  text-align: center; font-size: 0.85rem; color: var(--text-dim);
+  margin-bottom: 32px; font-weight: 500;
+}
+
+/* ====== EMPTY STATE ====== */
+.sessions-empty {
+  grid-column: 1 / -1; text-align: center; padding: 80px 40px;
+  color: var(--text-dim); background: rgba(30,35,64,0.3);
+  border-radius: 16px; border: 1px dashed var(--border);
+}
+.sessions-empty-icon { font-size: 3rem; margin-bottom: 16px; }
+.sessions-empty h3 {
+  font-family: var(--font-head); font-size: 1.3rem; font-weight: 700;
+  color: var(--text-muted); margin-bottom: 8px;
 }
 
 /* ====== SESSION DETAIL ====== */

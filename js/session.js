@@ -1,44 +1,115 @@
 // =============================================
 //  SESSIONS LIST
 // =============================================
+let currentSessionGrade = 'all';
+let currentSessionPhase = 'all';
+
 function renderSessionsList() {
   const grid = document.getElementById('sessionsListGrid');
+  const countEl = document.getElementById('sessionsCount');
   if (!grid || !SITE) return;
 
-  const gradeFilterEl = document.getElementById('gradeFilter');
-  const gradeFilter = gradeFilterEl ? gradeFilterEl.value : 'all';
+  const searchInput = document.getElementById('sessionSearchInput');
+  const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
-  // ✅ Get all sessions, filter by _grade tag
   let ordered = Object.values(SESSIONS);
+  
+  // Extract unique phases for the filter pills
+  const uniquePhases = [...new Set(ordered.map(s => s.phase).filter(Boolean))].sort();
+  renderPhasePills(uniquePhases);
 
-  if (gradeFilter !== 'all') {
-    ordered = ordered.filter(s => s._grade === gradeFilter);
-  }
+  // Filter logic
+  let filtered = ordered.filter(s => {
+    const matchesGrade = currentSessionGrade === 'all' || s._grade === currentSessionGrade;
+    const matchesPhase = currentSessionPhase === 'all' || s.phase === currentSessionPhase;
+    const matchesSearch = searchTerm === '' || 
+      (s.title && s.title.toLowerCase().includes(searchTerm)) || 
+      (s.subtitle && s.subtitle.toLowerCase().includes(searchTerm)) ||
+      (s.overview && s.overview.toLowerCase().includes(searchTerm));
+      
+    return matchesGrade && matchesPhase && matchesSearch;
+  });
 
   // Sort by grade number then session number
-  ordered.sort((a, b) => {
+  filtered.sort((a, b) => {
     const gA = parseInt(a._grade.replace('grade-', '')) || 0;
     const gB = parseInt(b._grade.replace('grade-', '')) || 0;
     if (gA !== gB) return gA - gB;
     return a.number - b.number;
   });
 
-  grid.innerHTML = ordered.map(s => sessionCardHTML(s)).join('');
+  if (countEl) {
+    countEl.textContent = `Showing ${filtered.length} Session${filtered.length !== 1 ? 's' : ''}`;
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="sessions-empty">
+      <div class="sessions-empty-icon">🔍</div>
+      <h3>No Matches Found</h3>
+      <p>Try adjusting your search or filters.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(s => sessionCardHTML(s)).join('');
+}
+
+function renderPhasePills(phases) {
+  const group = document.getElementById('phaseFilterGroup');
+  const container = document.getElementById('phaseFilterPills');
+  if (!group || !container) return;
+  
+  if (phases.length === 0) {
+    group.style.display = 'none';
+    return;
+  }
+  
+  group.style.display = 'flex';
+  
+  // Check if current phase still exists, else reset to all
+  if (currentSessionPhase !== 'all' && !phases.includes(currentSessionPhase)) {
+    currentSessionPhase = 'all';
+  }
+  
+  let html = `<button class="filter-pill ${currentSessionPhase === 'all' ? 'active' : ''}" onclick="setSessionPhase('all', this)">All Phases</button>`;
+  phases.forEach(p => {
+    html += `<button class="filter-pill ${currentSessionPhase === p ? 'active' : ''}" onclick="setSessionPhase('${p}', this)">${p}</button>`;
+  });
+  
+  container.innerHTML = html;
+}
+
+function setSessionGrade(grade, btn) {
+  currentSessionGrade = grade;
+  document.querySelectorAll('#gradeFilterPills .filter-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderSessionsList();
+}
+
+function setSessionPhase(phase, btn) {
+  currentSessionPhase = phase;
+  document.querySelectorAll('#phaseFilterPills .filter-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderSessionsList();
+}
+
+function filterSessions() {
+  renderSessionsList();
 }
 
 function sessionCardHTML(s) {
   if (!s) return '';
-  const slideCount = s.slides?.images?.length || (s.slides?.pptx ? 'PPTX' : 0);
+  const slideCount = s.slides?.images?.length || (s.slides?.pptx ? 'PPTX' : (s.slides?.pdf ? 'PDF' : 0));
   const imgCount = s.images?.gallery?.length || 0;
   return `
     <div class="session-card" style="--card-color:${s.color}" onclick="openSession('${s.id}')">
-      <div class="session-card-num">Session ${String(s.number).padStart(2, '0')} · ${s.phase}</div>
+      <div class="session-card-num">Session ${String(s.number).padStart(2, '0')} · Grade ${parseInt(s._grade.replace('grade-','')) || '?'}</div>
       <div class="session-card-icon">${s.icon}</div>
       <h3>${s.title}</h3>
       <p>${s.overview.substring(0, 120)}…</p>
       <div class="session-card-tags">${(s.tags || []).slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('')}</div>
       <div class="session-card-footer">
-        <span class="session-card-meta">⏱ ${s.duration} · ${slideCount} Slides · ${imgCount} Photos</span>
+        <span class="session-card-meta">⏱ ${s.duration} · ${slideCount} Slides</span>
         <button class="btn-sm" style="background:${s.color}" onclick="event.stopPropagation();openSession('${s.id}')">Open ↗</button>
       </div>
     </div>`;
