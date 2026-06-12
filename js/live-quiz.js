@@ -85,6 +85,28 @@ window.lqShowView = (viewId) => {
 };
 
 window.initLiveQuiz = async () => {
+    // ----------------------------------------------------
+    // OFFLINE CHECK
+    // ----------------------------------------------------
+    if (!navigator.onLine) {
+        const appEl = document.getElementById('live-quiz-app');
+        if (appEl) {
+            appEl.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; text-align: center;">
+                    <div style="font-size: 5rem; margin-bottom: 20px;">📡</div>
+                    <h1 style="font-family: var(--font-head); font-size: 2rem; color: var(--text);">No Internet Connection</h1>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 500px; margin-top: 15px;">
+                        The Live Quiz requires an active internet connection to connect with the teacher and other students. 
+                        Please connect to WiFi and try again.
+                    </p>
+                    <button class="btn-primary" style="margin-top: 25px;" onclick="window.location.reload()">Refresh Page</button>
+                </div>
+            `;
+        }
+        return;
+    }
+    // ----------------------------------------------------
+
     try {
         const [questionsRes, teachersRes] = await Promise.all([
             fetch('live-quiz-data/questions.json'),

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VIDYA STEAM Education</title>
+  <title>VIDYA DIGI Education</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="css/home.css" />
   <link rel="stylesheet" href="css/sessions.css" />
@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="css/about.css" />
   <link rel="stylesheet" href="css/whiteboard.css" />
   <link rel="stylesheet" href="css/live-quiz.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#FF6B35" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
@@ -67,7 +70,7 @@
         <span class="logo-text">VIDYA <span class="logo-steam">STEAM</span></span>
       </div>
       <p class="footer-tagline">Build. Break. Learn. Repeat.</p>
-      <p class="footer-copy">© 2025 VIDYA STEAM Education · Tinkering Lab · Grades 1–9</p>
+      <p class="footer-copy">© 2025 VIDYA DIGI Education · Tinkering Lab · Grades 1–9</p>
     </div>
   </footer>
 
@@ -82,6 +85,17 @@
   <script src="js/whiteboard.js"></script>
   <script src="js/main.js"></script>
   <script type="module" src="js/live-quiz.js"></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('Service Worker registered!', reg.scope))
+          .catch(err => console.log('Service Worker registration failed:', err));
+      });
+    }
+  </script>
 </body>
 
 </html>
