@@ -1,18 +1,29 @@
 {
   "id": "mini-robot",
   "title": "Mini Robot",
-  "icon": "🤖",
   "level": "Intermediate",
   "color": "#9B6BFF",
   "session": 3,
   "desc": "A robot that moves, avoids walls, follows commands.",
   "fullDesc": "Build a two-wheeled robot from scratch! It uses ultrasonic sensors to detect obstacles and automatically changes direction to avoid them. You can also control it manually using Bluetooth from your phone. This is the foundation of all autonomous vehicles! Learn about motor drivers, distance sensors, and wireless communication.",
   "image": "projects/images/mini-robot.jpg",
-  "components": ["Arduino UNO", "L298N Motor Driver", "2x DC Motors + Wheels", "HC-SR04 Ultrasonic Sensor", "HC-05 Bluetooth Module", "Robot Chassis", "9V Battery"],
-  "skills": ["Motor control", "Ultrasonic sensor", "Bluetooth communication", "Obstacle avoidance logic"],
+  "components": [
+    "Arduino UNO",
+    "L298N Motor Driver",
+    "2x DC Motors + Wheels",
+    "HC-SR04 Ultrasonic Sensor",
+    "HC-05 Bluetooth Module",
+    "Robot Chassis",
+    "9V Battery"
+  ],
   "difficulty": 4,
   "status": "Coming Soon",
-  "tags": ["Robotics", "Bluetooth", "Sensors", "Motors"],
+  "tags": [
+    "Robotics",
+    "Bluetooth",
+    "Sensors",
+    "Motors"
+  ],
   "date": "2025-07-01",
   "author": "Tinkering Lab",
   "files3d": [],
@@ -20,5 +31,11 @@
   "youtubeVideos": [],
   "dataVideos": [],
   "gallery": [],
-  "resources": []
+  "resources": [],
+  "guide": [
+    "Learn and apply motor control",
+    "Learn and apply ultrasonic sensor",
+    "Learn and apply bluetooth communication",
+    "Learn and apply obstacle avoidance logic"
+  ]
 }

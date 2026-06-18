@@ -343,6 +343,17 @@
   background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.15);
   color: var(--cyan); font-size: 0.8rem; font-weight: 500;
 }
+.pd-guide-list ol {
+  padding-left: 24px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;
+}
+.pd-guide-list li {
+  margin-bottom: 12px;
+}
+.fallback-img {
+  object-fit: contain !important;
+  padding: 20px;
+  background: var(--surface2);
+}
 
 /* Difficulty Meter (detail) */
 .pd-difficulty-meter {

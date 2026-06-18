@@ -12,11 +12,9 @@
         <span class="search-icon">🔍</span>
         <input type="text" id="projectSearchInput" class="projects-search" placeholder="Search projects…" oninput="filterProjects()" />
       </div>
-      <div class="projects-filter-pills">
+      <div class="projects-filter-pills" id="projectsTagFilters">
+        <!-- Dynamically populated tags -->
         <button class="filter-pill active" data-filter="all" onclick="setProjectFilter('all', this)">All</button>
-        <button class="filter-pill" data-filter="Beginner" onclick="setProjectFilter('Beginner', this)">🟢 Beginner</button>
-        <button class="filter-pill" data-filter="Intermediate" onclick="setProjectFilter('Intermediate', this)">🔵 Intermediate</button>
-        <button class="filter-pill" data-filter="Advanced" onclick="setProjectFilter('Advanced', this)">🟠 Advanced</button>
       </div>
       <div class="projects-status-pills">
         <button class="status-pill active" data-status="all" onclick="setStatusFilter('all', this)">All Status</button>

@@ -71,6 +71,7 @@ body {
 }
 .logo-bolt { font-size: 1.4rem; }
 .logo-steam { color: var(--orange); }
+.logo-img { height: 40px; width: auto; object-fit: contain; }
 .nav-links { display: flex; gap: 8px; }
 .nav-link {
   padding: 8px 16px; border-radius: 8px;

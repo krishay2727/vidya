@@ -1,18 +1,29 @@
 {
   "id": "hexapod",
   "title": "Hexapod Robot",
-  "icon": "🦿",
   "level": "Advanced",
   "color": "#FF6B35",
   "session": 30,
   "desc": "A six-legged walking robot powered by servos and 3D-printed parts!",
   "fullDesc": "Build a fully articulated six-legged hexapod robot from scratch. Each leg uses 3 servo motors for realistic walking gaits. The body and legs are 3D-printed, and the brain is an Arduino Mega controlling 18 servos simultaneously. Program different walking patterns — forward, backward, turning, and even dancing! This project combines mechanical engineering, 3D printing, electronics, and programming into one epic build.",
   "image": "projects/images/smart-light.jpg",
-  "components": ["Arduino Mega", "18x SG90 Servo Motors", "PCA9685 Servo Driver", "3D Printed Body & Legs", "7.4V LiPo Battery", "Jumper Wires", "Servo Horns & Screws"],
-  "skills": ["Servo control", "Inverse kinematics", "3D printing", "Gait programming", "Power management"],
+  "components": [
+    "Arduino Mega",
+    "18x SG90 Servo Motors",
+    "PCA9685 Servo Driver",
+    "3D Printed Body & Legs",
+    "7.4V LiPo Battery",
+    "Jumper Wires",
+    "Servo Horns & Screws"
+  ],
   "difficulty": 5,
   "status": "Available",
-  "tags": ["Robotics", "3D Print", "Arduino", "Servos"],
+  "tags": [
+    "Robotics",
+    "3D Print",
+    "Arduino",
+    "Servos"
+  ],
   "date": "2025-06-01",
   "author": "Tinkering Lab",
   "files3d": [],
@@ -20,5 +31,13 @@
   "youtubeVideos": [],
   "dataVideos": [],
   "gallery": [],
-  "resources": []
+  "resources": [],
+  "guide": [
+    "Learn and apply servo control",
+    "Learn and apply inverse kinematics",
+    "Learn and apply 3d printing",
+    "Learn and apply gait programming",
+    "Learn and apply power management"
+  ],
+  "liveUrl": "projects/sketching-live-main/index.html"
 }
