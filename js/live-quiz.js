@@ -2,7 +2,7 @@
 // CONFIGURATION: Set the backend mode here
 // Options: 'firebase' or 'gas'
 // ==========================================
-const BACKEND_MODE = 'firebase'; 
+const BACKEND_MODE = 'firebase';
 
 // ==========================================
 // FIREBASE CONFIGURATION
@@ -28,7 +28,7 @@ const db = getDatabase(app);
 // GOOGLE APPS SCRIPT CONFIGURATION
 // ==========================================
 // Paste your deployed Google Apps Script Web App URL here
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz_REPLACE_THIS_WITH_YOUR_URL/exec";
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbygEfkS_WwcSJrxq32MOLAKq-ct-dF0fNqjFihUpeup0kwpvwel6-wjAJ5BTcUXiB77/exec";
 
 async function gasPost(action, payload) {
     try {
@@ -37,7 +37,7 @@ async function gasPost(action, payload) {
             body: JSON.stringify({ action, ...payload })
         });
         return await response.json();
-    } catch(e) {
+    } catch (e) {
         console.error("GAS POST Error", e);
         return { error: e };
     }
@@ -47,16 +47,16 @@ let gasPollingInterval = null;
 let currentRoomDataCache = null;
 
 function startGASPolling() {
-    if(gasPollingInterval) clearInterval(gasPollingInterval);
+    if (gasPollingInterval) clearInterval(gasPollingInterval);
     gasPollingInterval = setInterval(async () => {
         try {
             const res = await fetch(GAS_WEB_APP_URL + '?action=getRoom&roomCode=' + lqRoomCode);
             const data = await res.json();
-            if(!data.error) {
+            if (!data.error) {
                 currentRoomDataCache = data;
                 handleRoomDataUpdate(data);
             }
-        } catch(e) { console.error("Polling error", e); }
+        } catch (e) { console.error("Polling error", e); }
     }, 3000); // Poll every 3 seconds
 }
 
@@ -81,7 +81,7 @@ let timerInterval = null;
 window.lqShowView = (viewId) => {
     document.querySelectorAll('.lq-view').forEach(v => v.classList.remove('active'));
     const el = document.getElementById(viewId);
-    if(el) el.classList.add('active');
+    if (el) el.classList.add('active');
 };
 
 window.initLiveQuiz = async () => {
@@ -203,7 +203,7 @@ async function lqCreateRoom(schoolSelect, gradeSelect, unitSelect) {
     window.lqShowView('lq-host-setup-page');
     document.getElementById('lq-host-pre-start').style.display = 'block';
     const activeDash = document.getElementById('lq-host-active-dashboard');
-    if(activeDash) activeDash.style.display = 'none';
+    if (activeDash) activeDash.style.display = 'none';
 }
 
 window.lqStartGame = () => {
@@ -223,7 +223,7 @@ window.lqStartGame = () => {
             }
         });
     }
-    
+
     const preStart = document.getElementById('lq-host-pre-start');
     if (preStart) preStart.style.display = 'none';
     const activeDash = document.getElementById('lq-host-active-dashboard');
@@ -285,7 +285,7 @@ window.lqJoinGame = async () => {
     }
 
     isHost = false;
-    
+
     if (BACKEND_MODE === 'firebase') {
         const roomSnapshot = await get(ref(db, `rooms/${lqRoomCode}`));
         if (!roomSnapshot.exists()) {
@@ -305,7 +305,7 @@ window.lqJoinGame = async () => {
             return;
         }
 
-        await set(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), { 
+        await set(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), {
             name: lqPlayerName,
             score: 0,
             school: roomData.school || "Unknown"
@@ -319,7 +319,7 @@ window.lqJoinGame = async () => {
     } else {
         const res = await fetch(GAS_WEB_APP_URL + '?action=getRoom&roomCode=' + lqRoomCode);
         const roomData = await res.json();
-        
+
         if (roomData.error || !roomData.status) {
             alert("Room not found!");
             return;
@@ -385,36 +385,36 @@ function updatePlayersUI(players) {
     // 1. Update waiting room count
     const count = Object.keys(players).length;
     const countEl = document.getElementById('lq-players-count');
-    if(countEl) countEl.innerText = count;
+    if (countEl) countEl.innerText = count;
 
     // 2. Update Host Dashboard list (if visible)
     const hostList = document.getElementById('lq-host-player-list');
-    if(hostList) {
+    if (hostList) {
         hostList.innerHTML = '';
         const hostCountEl = document.getElementById('lq-host-player-count');
-        if(hostCountEl) hostCountEl.innerText = count;
+        if (hostCountEl) hostCountEl.innerText = count;
         for (let p in players) {
             const li = document.createElement('li');
-            li.innerText = p; 
+            li.innerText = p;
             hostList.appendChild(li);
         }
     }
 
     // 3. Update Live Sidebar Leaderboard (during quiz)
     const sidebarList = document.getElementById('lq-live-sidebar-list');
-    if(sidebarList) {
+    if (sidebarList) {
         sidebarList.innerHTML = '';
-        const sorted = Object.entries(players).sort((a,b) => b[1].score - a[1].score);
+        const sorted = Object.entries(players).sort((a, b) => b[1].score - a[1].score);
         sorted.forEach(([p, pdata], i) => {
             const li = document.createElement('li');
             li.style.padding = '10px 0';
             li.style.borderBottom = '1px solid var(--border)';
             li.style.fontSize = '0.95rem';
-            
-            let rankStr = `<strong>#${i+1}</strong>`;
-            if(i===0) rankStr = '🥇';
-            if(i===1) rankStr = '🥈';
-            if(i===2) rankStr = '🥉';
+
+            let rankStr = `<strong>#${i + 1}</strong>`;
+            if (i === 0) rankStr = '🥇';
+            if (i === 1) rankStr = '🥈';
+            if (i === 2) rankStr = '🥉';
 
             li.innerHTML = `<span>${rankStr} ${p}</span>`;
             sidebarList.appendChild(li);
@@ -429,7 +429,7 @@ function updatePlayersUI(players) {
 
         hostLiveList.innerHTML = '';
         const sorted = Object.entries(players).sort((a, b) => b[1].score - a[1].score);
-        
+
         if (sorted.length === 0) {
             hostLiveList.innerHTML = '<li style="text-align:center; padding: 30px; color: var(--text-muted); font-size: 1.2rem;">Waiting for students to join... 😴</li>';
         } else {
@@ -440,7 +440,7 @@ function updatePlayersUI(players) {
                 li.style.display = 'flex';
                 li.style.justifyContent = 'space-between';
                 li.style.alignItems = 'center';
-                
+
                 let rankStr = `<strong>#${i + 1}</strong>`;
                 if (i === 0) rankStr = '<span style="font-size:2rem;">🥇</span>';
                 if (i === 1) rankStr = '<span style="font-size:1.8rem;">🥈</span>';
@@ -456,18 +456,18 @@ function updatePlayersUI(players) {
 function updateGameStateUI(data, players) {
     if (data.status === 'active') {
         if (isHost) {
-            if(data.startTime && !timerInterval) {
+            if (data.startTime && !timerInterval) {
                 startTimer(data.startTime);
             }
         } else {
             if (lqCurrentQuestionIndex === -1 && data.currentQuestion >= 0) {
                 lqCurrentQuestionIndex = 0;
                 lqAnsweredCurrent = false;
-                
-                lqQuestionOrder = Array.from({length: lqQuizData.questions.length}, (_, i) => i);
+
+                lqQuestionOrder = Array.from({ length: lqQuizData.questions.length }, (_, i) => i);
                 lqQuestionOrder.sort(() => Math.random() - 0.5);
-                
-                if(data.startTime) {
+
+                if (data.startTime) {
                     startTimer(data.startTime);
                 }
 
@@ -475,8 +475,8 @@ function updateGameStateUI(data, players) {
             }
         }
     } else if (data.status === 'ended') {
-        if(timerInterval) clearInterval(timerInterval);
-        if(gasPollingInterval) clearInterval(gasPollingInterval);
+        if (timerInterval) clearInterval(timerInterval);
+        if (gasPollingInterval) clearInterval(gasPollingInterval);
         lqShowLeaderboard(players);
     }
 }
@@ -485,7 +485,7 @@ function updateGameStateUI(data, players) {
 // TIMER & RENDERING
 // ==========================================
 function startTimer(startTimeMs) {
-    if(timerInterval) clearInterval(timerInterval);
+    if (timerInterval) clearInterval(timerInterval);
     const durationMinutes = (lqQuizData && lqQuizData.duration) ? lqQuizData.duration : 10;
     const totalTimeSeconds = durationMinutes * 60;
 
@@ -496,13 +496,13 @@ function startTimer(startTimeMs) {
         if (remaining <= 0) {
             clearInterval(timerInterval);
             const timerEl = document.getElementById('lq-timer-display');
-            if(timerEl) timerEl.innerText = "⏱️ Time's Up!";
+            if (timerEl) timerEl.innerText = "⏱️ Time's Up!";
             const hostTimerEl = document.getElementById('lq-host-timer-display');
-            if(hostTimerEl) hostTimerEl.innerText = "⏱️ Time's Up!";
-            
+            if (hostTimerEl) hostTimerEl.innerText = "⏱️ Time's Up!";
+
             // Disable buttons locally
             const optsContainer = document.getElementById('lq-options-container');
-            if(optsContainer) optsContainer.innerHTML = '<h3 style="color:var(--red);">Time is up! Waiting for teacher...</h3>';
+            if (optsContainer) optsContainer.innerHTML = '<h3 style="color:var(--red);">Time is up! Waiting for teacher...</h3>';
 
             // Only host actually calls endQuiz to update DB
             if (isHost) {
@@ -514,11 +514,11 @@ function startTimer(startTimeMs) {
         const m = Math.floor(remaining / 60).toString().padStart(2, '0');
         const s = (remaining % 60).toString().padStart(2, '0');
         const timeStr = `⏱️ ${m}:${s}`;
-        
+
         const timerEl = document.getElementById('lq-timer-display');
-        if(timerEl) timerEl.innerText = timeStr;
+        if (timerEl) timerEl.innerText = timeStr;
         const hostTimerEl = document.getElementById('lq-host-timer-display');
-        if(hostTimerEl) hostTimerEl.innerText = timeStr;
+        if (hostTimerEl) hostTimerEl.innerText = timeStr;
     }, 1000);
 }
 
@@ -666,7 +666,7 @@ window.lqSubmitAnswer = (selected, correct, marks, btnElement, category = 'uncat
     if (isCorrect) {
         lqMyScore += marks;
         lqCategoryScores[category] = (lqCategoryScores[category] || 0) + marks;
-        
+
         if (BACKEND_MODE === 'firebase') {
             update(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}`), {
                 score: lqMyScore,
@@ -686,7 +686,7 @@ window.lqSubmitAnswer = (selected, correct, marks, btnElement, category = 'uncat
 
     const answerData = { answer: selected.toString(), correct: isCorrect };
     let realIndex = lqQuestionOrder[lqCurrentQuestionIndex];
-    
+
     if (BACKEND_MODE === 'firebase') {
         set(ref(db, `rooms/${lqRoomCode}/players/${lqPlayerName}/answers/${realIndex}`), answerData);
         set(ref(db, `rooms/${lqRoomCode}/responses/${realIndex}/${lqPlayerName}`), answerData);
@@ -748,7 +748,7 @@ function lqShowLeaderboard(players) {
 
     if (isHost) {
         const finalControls = document.getElementById('lq-final-host-controls');
-        if(finalControls) finalControls.style.display = 'block';
+        if (finalControls) finalControls.style.display = 'block';
     }
 }
 
@@ -788,11 +788,11 @@ window.lqDownloadCSV = async () => {
 
         // ── Filename numbers (e.g. HHmm-DMS-1-1.csv) ──
         const now = new Date();
-        const hhmm = now.getHours().toString().padStart(2,'0') + now.getMinutes().toString().padStart(2,'0');
+        const hhmm = now.getHours().toString().padStart(2, '0') + now.getMinutes().toString().padStart(2, '0');
 
         let gradeNum = gradeVal;
         if (gradeVal.startsWith("grade")) gradeNum = gradeVal.substring(5);
-        else if (gradeVal === "teachers_baseline")   gradeNum = "T1";
+        else if (gradeVal === "teachers_baseline") gradeNum = "T1";
         else if (gradeVal === "teachers_baseline_2") gradeNum = "T2";
 
         let unitNum = unitVal;
@@ -804,7 +804,7 @@ window.lqDownloadCSV = async () => {
         // ── Display values for CSV body ──
         let gradeDisplay = gradeVal;
         if (gradeVal.startsWith("grade")) gradeDisplay = "Grade " + gradeVal.substring(5);
-        else if (gradeVal === "teachers_baseline")   gradeDisplay = "Teachers Baseline 1";
+        else if (gradeVal === "teachers_baseline") gradeDisplay = "Teachers Baseline 1";
         else if (gradeVal === "teachers_baseline_2") gradeDisplay = "Teachers Baseline 2";
 
         let unitDisplay = unitVal;
@@ -816,9 +816,9 @@ window.lqDownloadCSV = async () => {
         // ── Category label map ──
         const categoryLabels = {
             critical_thinking: '🧠 Critical Thinking',
-            problem_solving:   '🔧 Problem Solving',
-            safety:            '🦺 Safety',
-            ethics:            '⚖️ Ethics'
+            problem_solving: '🔧 Problem Solving',
+            safety: '🦺 Safety',
+            ethics: '⚖️ Ethics'
         };
 
         // Helper: wrap a value in CSV-safe quotes
@@ -872,9 +872,9 @@ window.lqDownloadCSV = async () => {
                 csvCell(player.name || pName),
                 player.score || 0,
                 cs.critical_thinking || 0,
-                cs.problem_solving   || 0,
-                cs.safety            || 0,
-                cs.ethics            || 0,
+                cs.problem_solving || 0,
+                cs.safety || 0,
+                cs.ethics || 0,
                 ...questionCells
             ].join(',');
             csvContent += row + "\n";
@@ -882,7 +882,7 @@ window.lqDownloadCSV = async () => {
 
         // Add BOM for Excel UTF-8 compatibility (renders emojis correctly)
         const blob = new Blob(["\uFEFF" + csvContent], { type: 'text/csv;charset=utf-8;' });
-        const url  = URL.createObjectURL(blob);
+        const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.setAttribute("href", url);
         link.setAttribute("download", filename);
@@ -892,5 +892,91 @@ window.lqDownloadCSV = async () => {
     } catch (e) {
         console.error("Error downloading CSV:", e);
         alert("Failed to download results.");
+    }
+};
+
+window.lqSendFinalResultsToGAS = async () => {
+    if (!ENABLE_GAS || hasLoggedToGAS) return;
+
+    try {
+        hasLoggedToGAS = true;
+        await gasPost('logExamResult', {
+            roomCode: lqRoomCode,
+            playerName: lqPlayerName,
+            score: lqMyScore,
+            categoryScores: lqCategoryScores,
+            school: document.getElementById('lq-host-school')?.value || "Unknown",
+            grade: lqCurrentGrade,
+            unit: document.getElementById('lq-host-unit')?.value || 'baseline',
+            teacher: lqPlayerName
+        });
+    } catch (e) {
+        console.error("Failed to auto log to GAS", e);
+        hasLoggedToGAS = false;
+    }
+};
+
+window.lqSyncAllResultsToGAS = async () => {
+    const btn = document.getElementById('lq-btn-sync-gas');
+    if (btn) {
+        btn.innerText = "⏳ Syncing...";
+        btn.disabled = true;
+    }
+
+    try {
+        if (!ENABLE_GAS) {
+            alert("Google App Script integration is disabled in code!");
+            if (btn) { btn.innerText = "📤 Sync All Results to Google Sheet"; btn.disabled = false; }
+            return;
+        }
+
+        let roomData = null;
+
+        if (activeBackend === 'firebase') {
+            if (!db) {
+                alert("Firebase database connection failed!");
+                if (btn) { btn.innerText = "📤 Sync All Results to Google Sheet"; btn.disabled = false; }
+                return;
+            }
+            const snapshot = await get(ref(db, `rooms/${lqRoomCode}`));
+            if (!snapshot.exists()) {
+                alert("No data found for this room.");
+                if (btn) { btn.innerText = "📤 Sync All Results to Google Sheet"; btn.disabled = false; }
+                return;
+            }
+            roomData = snapshot.val();
+        } else {
+            // Already synced if GAS is the active backend, but we can do a manual push
+            const res = await fetch(GAS_WEB_APP_URL + '?action=getRoom&roomCode=' + lqRoomCode);
+            roomData = await res.json();
+        }
+
+        if (!roomData || roomData.error) {
+            alert("Could not retrieve room data.");
+            if (btn) { btn.innerText = "📤 Sync All Results to Google Sheet"; btn.disabled = false; }
+            return;
+        }
+
+        const result = await gasPost('logAllExamResults', {
+            roomCode: lqRoomCode,
+            school: roomData.school,
+            grade: roomData.grade,
+            unit: roomData.unit,
+            teacher: roomData.hostId,
+            players: roomData.players
+        });
+
+        if (result && !result.error) {
+            alert("Successfully synced all exam data to Google Sheet!");
+            if (btn) { btn.innerText = "✅ Synced to Sheet"; }
+        } else {
+            console.error("GAS Sync Error:", result);
+            alert("Failed to sync to Google Sheet.");
+            if (btn) { btn.innerText = "📤 Sync All Results to Google Sheet"; btn.disabled = false; }
+        }
+    } catch (e) {
+        console.error("Error syncing to GAS:", e);
+        alert("An error occurred during sync.");
+        if (btn) { btn.innerText = "📤 Sync All Results to Google Sheet"; btn.disabled = false; }
     }
 };
