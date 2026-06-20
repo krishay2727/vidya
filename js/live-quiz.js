@@ -77,6 +77,18 @@ let studentsData = null;
 let teachersData = null;
 let isHost = false;
 let timerInterval = null;
+let lqCurrentSchool = "";
+
+window.lqShowNotification = (msg, isError = true) => {
+    const el = document.createElement('div');
+    el.innerText = msg;
+    el.style.cssText = `position:fixed;top:20px;right:20px;background:${isError ? 'var(--red, #e74c3c)' : 'var(--green, #2ecc71)'};color:white;padding:15px 20px;border-radius:8px;z-index:9999;box-shadow:0 4px 6px rgba(0,0,0,0.3);font-weight:bold;transition:opacity 0.3s;`;
+    document.body.appendChild(el);
+    setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 300);
+    }, 4000);
+};
 
 window.lqShowView = (viewId) => {
     document.querySelectorAll('.lq-view').forEach(v => v.classList.remove('active'));
@@ -136,18 +148,18 @@ window.lqHostLogin = async () => {
 
     if (teachersData && teachersData.teachers) {
         const teachersArray = Array.isArray(teachersData.teachers) ? teachersData.teachers : Object.values(teachersData.teachers);
-        const validTeacher = teachersArray.find(t => t && t.name === hostName && t.password === hostPass);
+        const validTeacher = teachersArray.find(t => t && t.name.toLowerCase() === hostName.toLowerCase() && t.password === hostPass);
         if (!validTeacher) {
-            alert("Invalid Teacher Name or Password!");
+            lqShowNotification("Invalid Teacher Name or Password!");
             return;
         }
     } else {
-        alert("Teacher data not loaded!");
+        lqShowNotification("Teacher data not loaded!");
         return;
     }
 
     if (!allQuizData || !allQuizData[gradeSelect] || !allQuizData[gradeSelect][unitSelect]) {
-        alert("Exam data for selected class/grade and unit not found!");
+        lqShowNotification("Exam data for selected class/grade and unit not found!");
         return;
     }
 
@@ -159,6 +171,7 @@ window.lqHostLogin = async () => {
 
 async function lqCreateRoom(schoolSelect, gradeSelect, unitSelect) {
     isHost = true;
+    lqCurrentSchool = schoolSelect;
     lqCurrentGrade = gradeSelect;
     lqCategoryScores = {};
     lqMyScore = 0;
@@ -265,7 +278,7 @@ window.lqJoinGame = async () => {
     const rawName = document.getElementById('lq-join-name').value.trim();
 
     if (lqRoomCode.length !== 6) {
-        alert("Please enter a valid 6-digit Classroom Code!");
+        lqShowNotification("Please enter a valid 6-digit Classroom Code!");
         return;
     }
 
@@ -273,14 +286,14 @@ window.lqJoinGame = async () => {
     lqPlayerName = rawName.replace(/\s+/g, ' ');
 
     if (lqPlayerName.length <= 3) {
-        alert("Name must be more than 3 letters long!");
+        lqShowNotification("Name must be more than 3 letters long!");
         return;
     }
 
     // Enforce letters and single spaces only (no numbers, no symbols)
     const nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
     if (!nameRegex.test(lqPlayerName)) {
-        alert("Name must contain only letters (no numbers or symbols allowed)!");
+        lqShowNotification("Name must contain only letters (no numbers or symbols allowed)!");
         return;
     }
 
@@ -289,7 +302,7 @@ window.lqJoinGame = async () => {
     if (BACKEND_MODE === 'firebase') {
         const roomSnapshot = await get(ref(db, `rooms/${lqRoomCode}`));
         if (!roomSnapshot.exists()) {
-            alert("Room not found!");
+            lqShowNotification("Room not found!");
             return;
         }
 
@@ -301,7 +314,7 @@ window.lqJoinGame = async () => {
 
         // Prevent duplicate player names
         if (roomData.players && roomData.players[lqPlayerName]) {
-            alert("This name is already taken in this classroom! Please use a different name.");
+            lqShowNotification("This name is already taken in this classroom! Please use a different name.");
             return;
         }
 
@@ -321,7 +334,7 @@ window.lqJoinGame = async () => {
         const roomData = await res.json();
 
         if (roomData.error || !roomData.status) {
-            alert("Room not found!");
+            lqShowNotification("Room not found!");
             return;
         }
 
@@ -331,7 +344,7 @@ window.lqJoinGame = async () => {
         lqMyScore = 0;
 
         if (roomData.players && roomData.players[lqPlayerName]) {
-            alert("This name is already taken in this classroom! Please use a different name.");
+            lqShowNotification("This name is already taken in this classroom! Please use a different name.");
             return;
         }
 
@@ -642,7 +655,7 @@ function lqRenderQuestion() {
                 userAns[qData.left[i]] = sel.value;
                 if (sel.value === qData.answer[qData.left[i]]) correctCount++;
             });
-            if (!allSelected) { alert("Please match all items!"); return; }
+            if (!allSelected) { lqShowNotification("Please match all items!"); return; }
             const isCorrect = correctCount === qData.left.length;
             window.lqSubmitAnswer(
                 JSON.stringify(userAns), JSON.stringify(qData.answer),
@@ -749,6 +762,34 @@ function lqShowLeaderboard(players) {
     if (isHost) {
         const finalControls = document.getElementById('lq-final-host-controls');
         if (finalControls) finalControls.style.display = 'block';
+<<<<<<< HEAD
+=======
+
+        if (!window.hasSubmittedToSheets) {
+            window.hasSubmittedToSheets = true;
+            for (const [pName, player] of sortedPlayers) {
+                const studentMeta = {
+                    school: player.school || lqCurrentSchool || "Unknown",
+                    grade: lqCurrentGrade,
+                    name: player.name || pName
+                };
+                const cs = player.categoryScores || {};
+                const categoryScores = {
+                    total: player.score || 0,
+                    ct: cs.critical_thinking || 0,
+                    ps: cs.problem_solving || 0,
+                    safety: cs.safety || 0,
+                    ethics: cs.ethics || 0
+                };
+                const studentAnswers = {};
+                const ans = player.answers || {};
+                for (let i = 0; i < 20; i++) {
+                    studentAnswers['q' + (i + 1)] = ans[i] ? ans[i].answer : '';
+                }
+                submitQuizToGoogleSheets(studentMeta, categoryScores, studentAnswers);
+            }
+        }
+>>>>>>> 498149c8269bd5a07d527069b0094155eba88faf
     }
 }
 
@@ -891,10 +932,11 @@ window.lqDownloadCSV = async () => {
         document.body.removeChild(link);
     } catch (e) {
         console.error("Error downloading CSV:", e);
-        alert("Failed to download results.");
+        lqShowNotification("Failed to download results.");
     }
 };
 
+<<<<<<< HEAD
 window.lqSendFinalResultsToGAS = async () => {
     if (!ENABLE_GAS || hasLoggedToGAS) return;
 
@@ -980,3 +1022,57 @@ window.lqSyncAllResultsToGAS = async () => {
         if (btn) { btn.innerText = "📤 Sync All Results to Google Sheet"; btn.disabled = false; }
     }
 };
+=======
+function submitQuizToGoogleSheets(studentMeta, categoryScores, studentAnswers) {
+    const appsScriptUrl = "https://script.google.com/macros/s/AKfycbyU-IJyB6GxMNotnBgn4N69ZghREGtbDs7SRP_zfbLJHwW_5KTO_kGd2rU-OGGiA4p4LA/exec";
+
+    // Organize the parameters into keys matching the script's 'data' expectations
+    const quizPayload = {
+        // Student Information
+        schoolName: studentMeta.school,       // String
+        grade: studentMeta.grade,             // String/Number
+        studentName: studentMeta.name,         // String
+        overallMarks: categoryScores.total,   // Number
+
+        // Categorized Scores
+        criticalThinking: categoryScores.ct,  // Number
+        problemSolving: categoryScores.ps,    // Number
+        safety: categoryScores.safety,         // Number
+        ethics: categoryScores.ethics,         // Number
+
+        // Raw Question Answers (Map strings/choices here)
+        q1: studentAnswers.q1,
+        q2: studentAnswers.q2,
+        q3: studentAnswers.q3,
+        q4: studentAnswers.q4,
+        q5: studentAnswers.q5,
+        q6: studentAnswers.q6,
+        q7: studentAnswers.q7,
+        q8: studentAnswers.q8,
+        q9: studentAnswers.q9,
+        q10: studentAnswers.q10,
+        q11: studentAnswers.q11,
+        q12: studentAnswers.q12,
+        q13: studentAnswers.q13,
+        q14: studentAnswers.q14,
+        q15: studentAnswers.q15,
+        q16: studentAnswers.q16,
+        q17: studentAnswers.q17,
+        q18: studentAnswers.q18,
+        q19: studentAnswers.q19,
+        q20: studentAnswers.q20
+    };
+
+    // POST data to Google Sheets
+    fetch(appsScriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(quizPayload)
+    })
+        .then(() => console.log("All detailed marks logged successfully!"))
+        .catch(error => console.error("Error sending response:", error));
+}
+>>>>>>> 498149c8269bd5a07d527069b0094155eba88faf

@@ -4,8 +4,27 @@
 
 let currentProjectFilter = 'all';
 let currentProjectStatus = 'all';
+let tagsInitialized = false;
+
+function initProjectFilters() {
+  if (tagsInitialized || !PROJECTS) return;
+  const tagSet = new Set();
+  PROJECTS.forEach(p => {
+    if (p.tags) p.tags.forEach(t => tagSet.add(t));
+  });
+  const filtersContainer = document.getElementById('projectsTagFilters');
+  if (filtersContainer) {
+    let html = `<button class="filter-pill active" data-filter="all" onclick="setProjectFilter('all', this)">All</button>`;
+    Array.from(tagSet).sort().forEach(tag => {
+      html += `<button class="filter-pill" data-filter="${tag}" onclick="setProjectFilter('${tag}', this)">${tag}</button>`;
+    });
+    filtersContainer.innerHTML = html;
+  }
+  tagsInitialized = true;
+}
 
 function renderProjects() {
+  initProjectFilters();
   const grid = document.getElementById('projectsGrid');
   const countEl = document.getElementById('projectsCount');
   if (!grid) return;
@@ -29,13 +48,13 @@ function renderProjects() {
       p.title.toLowerCase().includes(searchTerm) ||
       (p.desc && p.desc.toLowerCase().includes(searchTerm));
 
-    // Level match
-    const matchesLevel = currentProjectFilter === 'all' || p.level === currentProjectFilter;
+    // Tag match
+    const matchesTag = currentProjectFilter === 'all' || (p.tags && p.tags.includes(currentProjectFilter));
 
     // Status match
     const matchesStatus = currentProjectStatus === 'all' || p.status === currentProjectStatus;
 
-    return matchesSearch && matchesLevel && matchesStatus;
+    return matchesSearch && matchesTag && matchesStatus;
   });
 
   if (countEl) {
@@ -55,12 +74,8 @@ function renderProjects() {
     <div class="project-card" onclick="openProject('${p.id}')">
       <div class="project-img-wrap">
         <img src="${p.image || ''}" alt="${p.title}"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-          onload="this.nextElementSibling.style.display='none'"
+          onerror="this.src='icons/vidya-logo.png'; this.classList.add('fallback-img')"
           class="project-img" />
-        <div class="project-img-placeholder" style="display:flex">
-          <span style="font-size:3.5rem">${p.icon || '🚀'}</span>
-        </div>
         <div class="project-img-overlay"></div>
         <div class="project-card-status status-${(p.status || 'Available').replace(' ', '-')}">${p.status || 'Available'}</div>
       </div>
@@ -143,9 +158,7 @@ function renderProjectDetail() {
       <div class="pd-hero-row">
         <div class="pd-hero-image-wrap">
           <img src="${p.image || ''}" alt="${p.title}" class="pd-hero-image"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-               onload="this.nextElementSibling.style.display='none'" />
-          <div class="pd-hero-placeholder" style="display:flex">${p.icon || '🚀'}</div>
+               onerror="this.src='icons/vidya-logo.png'; this.classList.add('fallback-img')" />
         </div>
         
         <div class="pd-hero-info">
@@ -155,10 +168,12 @@ function renderProjectDetail() {
           
           <div class="pd-meta-row">
             <span class="pd-meta-chip">📅 Session ${p.session || '?'}</span>
-            <span class="pd-meta-chip">👤 ${p.author || 'Tinkering Lab'}</span>
+            <span class="pd-meta-chip">👤 Contributor: ${p.author || 'Tinkering Lab'}</span>
             <span class="pd-meta-chip">🕒 Updated ${p.date || 'Unknown'}</span>
             <span class="project-card-status status-${(p.status || 'Available').replace(' ', '-')}">${p.status || 'Available'}</span>
           </div>
+          
+          ${p.liveUrl ? `<div style="margin-top: 15px;"><a href="${p.liveUrl}" target="_blank" class="btn-primary" style="display:inline-block; text-decoration:none; background-color:${p.color || 'var(--orange)'}">🚀 Launch Live Project</a></div>` : ''}
           
           <div class="pd-tags">
             ${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
@@ -171,11 +186,11 @@ function renderProjectDetail() {
     <div class="pd-tabs-container">
       <div class="pd-tabs">
         <button class="pd-tab active" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('overview', this)">📋 Overview</button>
-        <button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('3d', this)">🖨️ 3D Files (${files3dCount})</button>
-        <button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('code', this)">💻 Code (${codeCount})</button>
-        <button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('videos', this)">🎬 Videos (${videoCount})</button>
-        <button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('gallery', this)">🖼️ Gallery (${imgCount})</button>
-        <button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('resources', this)">🔗 Resources (${resCount})</button>
+        ${files3dCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('3d', this)">🖨️ 3D Files (${files3dCount})</button>` : ''}
+        ${codeCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('code', this)">💻 Code (${codeCount})</button>` : ''}
+        ${videoCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('videos', this)">🎬 Videos (${videoCount})</button>` : ''}
+        ${imgCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('gallery', this)">🖼️ Gallery (${imgCount})</button>` : ''}
+        ${resCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('resources', this)">🔗 Resources (${resCount})</button>` : ''}
       </div>
     </div>
 
@@ -200,11 +215,11 @@ function renderProjectDetail() {
         </div>
         
         <div class="pd-skills-panel">
-          <h3 class="pd-panel-title"><span style="color: var(--cyan)">⚡</span> Skills Learned</h3>
-          <div class="pd-skills-grid">
-            ${(p.skills || []).length > 0 ?
-      p.skills.map(s => `<span class="pd-skill-badge">${s}</span>`).join('') :
-      '<p class="text-muted">No specific skills listed yet.</p>'}
+          <h3 class="pd-panel-title"><span style="color: var(--cyan)">⚡</span> Step-by-Step Guide</h3>
+          <div class="pd-guide-list">
+            ${(p.guide || []).length > 0 ?
+              '<ol class="pd-guide-ol">' + p.guide.map(s => `<li>${s}</li>`).join('') + '</ol>' :
+              '<p class="text-muted">No step-by-step guide available.</p>'}
           </div>
         </div>
         

@@ -1,18 +1,28 @@
 {
   "id": "iot-dashboard",
   "title": "IoT Dashboard",
-  "icon": "🌐",
   "level": "Advanced",
   "color": "#00FF88",
   "session": 4,
   "desc": "Control your device from your phone, anywhere in the world!",
   "fullDesc": "Connect your Arduino to the internet using an ESP8266 WiFi module and control LEDs and sensors from a web dashboard on your phone. This project introduces you to the Internet of Things — the technology behind smart homes, smart cities, and Industry 4.0! Build your own cloud-connected dashboard and monitor data from anywhere.",
   "image": "projects/images/iot-dashboard.jpg",
-  "components": ["ESP8266 NodeMCU", "LED Array", "DHT11 Sensor", "Relay Module", "WiFi Router access", "Smartphone for control"],
-  "skills": ["ESP8266 WiFi", "Blynk / MQTT", "Cloud connectivity", "Remote control", "IoT protocols"],
+  "components": [
+    "ESP8266 NodeMCU",
+    "LED Array",
+    "DHT11 Sensor",
+    "Relay Module",
+    "WiFi Router access",
+    "Smartphone for control"
+  ],
   "difficulty": 5,
   "status": "Coming Soon",
-  "tags": ["IoT", "WiFi", "ESP8266", "Cloud"],
+  "tags": [
+    "IoT",
+    "WiFi",
+    "ESP8266",
+    "Cloud"
+  ],
   "date": "2025-08-01",
   "author": "Tinkering Lab",
   "files3d": [],
@@ -20,5 +30,12 @@
   "youtubeVideos": [],
   "dataVideos": [],
   "gallery": [],
-  "resources": []
+  "resources": [],
+  "guide": [
+    "Learn and apply esp8266 wifi",
+    "Learn and apply blynk / mqtt",
+    "Learn and apply cloud connectivity",
+    "Learn and apply remote control",
+    "Learn and apply iot protocols"
+  ]
 }

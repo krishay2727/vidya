@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VECTOR-1 // Flight Sim</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+        
+        :root {
+            --bg: #05070a; --panel: #0d1b2a; --panel2: #142536;
+            --line: #24405a; --cyan: #7fdbca; --cyan-dim: #3d6b63;
+            --amber: #ff6b4a; --white: #e8eef2; --dim: #5b7585;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { width: 100%; height: 100%; background: var(--bg); color: var(--white); font-family: 'Barlow Condensed', sans-serif; overflow: hidden; user-select: none; }
+        canvas { display: block; }
+        
+        /* UI Layer */
+        #ui-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        
+        /* Data Readouts */
+        #left-panel { position: absolute; left: 30px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 20px; pointer-events: none; z-index: 10; }
+        #right-panel { position: absolute; right: 30px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 20px; pointer-events: none; z-index: 10; align-items: flex-end; }
+        
+        .readout-block { background: rgba(13,27,42,0.8); border: 1px solid var(--line); padding: 10px 15px; border-radius: 6px; backdrop-filter: blur(4px); pointer-events: auto; position: relative; }
+        
+        /* Throttle Gauge */
+        #throttle-container { position: absolute; bottom: 30px; left: 30px; width: 40px; height: 200px; background: rgba(13,27,42,0.8); border: 1px solid var(--line); border-radius: 4px; pointer-events: auto; display: flex; align-items: flex-end; padding: 4px;}
+        #throttle-fill { width: 100%; background: linear-gradient(to top, var(--cyan-dim), var(--cyan)); border-radius: 2px; transition: height 0.1s; }
+        
+        /* Compass */
+        #compass-container { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 340px; height: 40px; background: rgba(13,27,42,0.8); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; pointer-events: auto; clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);}
+        #compass-strip { position: absolute; top: 10px; display: flex; transition: left 0.1s linear; }
+        .compass-tick { width: 34px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--dim); }
+        .compass-tick.major { color: var(--white); font-weight: bold; }
+        #compass-marker { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 10px; background: var(--cyan); }
+        
+        /* Pitch / Roll Horizon */
+        #horizon-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; border-radius: 50%; border: 2px solid rgba(127,219,202,0.3); pointer-events: none; overflow: hidden; }
+        #horizon-ball { position: absolute; top: 50%; left: 50%; width: 600px; height: 600px; margin-left: -300px; margin-top: -300px; }
+        #pitch-lines { position: absolute; top: 50%; left: 50%; width: 100px; height: 0; margin-left: -50px; }
+        .pitch-line { position: absolute; left: 0; width: 100%; height: 2px; background: var(--cyan); display: flex; justify-content: center; align-items: center; }
+        .pitch-line.minor { width: 60%; left: 20%; background: var(--cyan-dim); }
+        .pitch-line span { position: absolute; right: -25px; color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 12px; }
+        #bank-pointer { position: absolute; top: 20px; left: 50%; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 15px solid var(--amber); }
+        #hud-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 2px; background: var(--amber); }
+        #hud-center::before, #hud-center::after { content: ''; position: absolute; width: 10px; height: 10px; border-bottom: 2px solid var(--amber); top: 0; }
+        #hud-center::before { left: -10px; border-left: 2px solid var(--amber); }
+        #hud-center::after { right: -10px; border-right: 2px solid var(--amber); }
+        
+        /* Setup Menu */
+        #setup { position: fixed; inset: 0; background: rgba(5,7,10,0.85); backdrop-filter: blur(10px); z-index: 100; display: flex; justify-content: center; align-items: center; pointer-events: auto;}
+        #setup-card { background: var(--panel); border: 1px solid var(--line); padding: 40px; border-radius: 12px; max-width: 600px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        #setup-card h1 { font-size: 48px; color: var(--cyan); margin-bottom: 10px; letter-spacing: 2px; }
+        .sub { color: var(--dim); margin-bottom: 30px; font-size: 18px; }
+        button { background: transparent; border: 2px solid var(--cyan); color: var(--cyan); padding: 12px 24px; font-size: 18px; font-family: inherit; font-weight: 600; cursor: pointer; transition: 0.2s; border-radius: 6px; width: 100%; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        button:hover { background: var(--cyan); color: var(--bg); }
+        button.primary { background: var(--cyan); color: var(--bg); }
+        button.primary:hover { background: var(--white); border-color: var(--white); }
+        .note { color: var(--dim); font-size: 15px; text-align: left; margin-top: 20px; line-height: 1.5; background: var(--panel2); padding: 15px; border-radius: 6px; }
+        kbd { background: var(--line); padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono'; font-size: 13px; color: var(--white); }
+        
+        /* Top Status Bar */
+        #conn-status { position: absolute; top: 20px; left: 20px; display: flex; align-items: center; gap: 10px; pointer-events: auto; }
+        #conn-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--dim); }
+        #conn-dot.live { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+        #conn-text { font-family: 'JetBrains Mono'; font-size: 14px; font-weight: bold; }
+        #btn-connect { margin: 0; padding: 6px 12px; font-size: 12px; width: auto; border: 1px solid var(--line); color: var(--white); }
+        #btn-keyboard { margin: 0; padding: 6px 12px; font-size: 12px; width: auto; border: 1px solid var(--line); color: var(--white); }
+        
+        #stall-warn { position: absolute; top: 65%; left: 50%; transform: translateX(-50%); color: var(--amber); font-size: 32px; font-weight: bold; letter-spacing: 2px; animation: blink 0.5s infinite; display: none; text-shadow: 0 2px 10px rgba(255,107,74,0.5); }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        
+        #status-msg { position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); text-align: center; text-shadow: 0 4px 10px rgba(0,0,0,0.8); display: none;}
+        #status-title { font-size: 64px; color: var(--amber); margin-bottom: 10px; letter-spacing: 4px; }
+        #status-sub { font-size: 24px; color: var(--white); }
+    </style>
+</head>
+<body>
+
+    <div id="ui-layer">
+        <div id="conn-status">
+            <div id="conn-dot"></div>
+            <div id="conn-text">NO LINK</div>
+            <button id="btn-connect">Connect Arduino</button>
+            <button id="btn-keyboard">Keyboard Mode</button>
+        </div>
+        
+        <div id="compass-container">
+            <div id="compass-marker"></div>
+            <div id="compass-strip"></div>
+        </div>
+        
+        <div id="horizon-container">
+            <div id="horizon-ball"><div id="pitch-lines"></div></div>
+            <div id="bank-pointer"></div>
+            <div id="hud-center"></div>
+        </div>
+        
+        <div id="left-panel">
+            <div id="speed-tape" class="readout-block">
+                <div class="readout-label">Airspeed</div>
+                <div class="readout-value" id="speed-readout">000<span class="readout-unit">KTS</span></div>
+            </div>
+            <div id="g-meter" class="readout-block">
+                <div class="readout-label">G-Force</div>
+                <div class="readout-value" id="g-readout">1.0<span class="readout-unit">G</span></div>
+            </div>
+        </div>
+
+        <div id="right-panel">
+            <div id="pos-tape" class="readout-block">
+                <div class="readout-label">Coords</div>
+                <div class="readout-value" id="pos-readout">0, 0</div>
+            </div>
+            <div id="alt-tape" class="readout-block">
+                <div class="readout-label">Altitude</div>
+                <div class="readout-value" id="alt-readout">0000<span class="readout-unit">FT</span></div>
+            </div>
+            <div id="vsi-tape" class="readout-block">
+                <div class="readout-label">Vert Speed</div>
+                <div class="readout-value" id="vs-readout">+0000<span class="readout-unit">FPM</span></div>
+            </div>
+        </div>
+        <div id="throttle-container"><div id="throttle-fill"></div></div>
+        
+        <div id="stall-warn">STALL</div>
+        <div id="status-msg">
+            <h1 id="status-title">CRASHED</h1>
+            <p id="status-sub">Press R to reset</p>
+        </div>
+    </div>
+
+    <div id="setup">
+        <div id="setup-card">
+            <h1>VECTOR-1</h1>
+            <div class="sub">Web-based flight simulator · Hardware calibrated</div>
+            
+            <div id="step-1">
+                <button class="primary" id="btn-connect-2">Connect Arduino</button>
+                <button id="btn-keyboard-2">Skip — Fly with Keyboard</button>
+            </div>
+
+            <div id="step-2" style="display: none;">
+                <h2 style="color:var(--cyan); margin-bottom:10px;">Joystick Calibration</h2>
+                <p style="color:var(--dim); margin-bottom:15px;">Please leave the joysticks untouched in their center positions. Then press Calibrate to eliminate stick drift.</p>
+                <button class="primary" id="btn-calibrate">Calibrate & Start</button>
+                <button id="btn-skip-cal">Skip Calibration</button>
+            </div>
+
+            <div class="note">
+                <b>Arduino wiring:</b> Joystick 1 (Right): A0 (roll), A1 (pitch).<br>
+                Joystick 2 (Left): A2 (yaw), A3 (throttle).<br><br>
+                <b>Keyboard fallback:</b> <kbd>W/S</kbd> pitch · <kbd>A/D</kbd> roll · <kbd>Q/E</kbd> yaw · <kbd>Shift/Ctrl</kbd> throttle.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="physics.js"></script>
+    <script src="scene.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
