@@ -2,21 +2,21 @@
 // VECTOR-1 FLIGHT SIM — App / Input / Instruments
 // ============================================================
 
-// ---------------- Input state ----------------
 const Input = {
-  pitch: 0, roll: 0, yaw: 0, throttle: 0.45,
-  source: 'none' // 'arduino' | 'keyboard'
+  pitch: 0, roll: 0, yaw: 0, throttle: 0,
+  source: 'none' 
 };
 
 const Keys = {};
 let serialPort = null;
 let serialReader = null;
 let serialActive = false;
+let rawData = { roll: 519, pitch: 524, yaw: 320, throttle: 331 };
 
-// Calibration for joystick (raw ADC 0-1023, center ~512)
+// --- CUSTOM HARDWARE CALIBRATION ---
 const JS = {
-  rollCenter: 512, pitchCenter: 512, yawCenter: 512, throttleCenter: 512,
-  deadzone: 25
+  rollCenter: 519, pitchCenter: 524, yawCenter: 320, throttleCenter: 331,
+  deadzone: 20
 };
 
 // ---------------- Web Serial ----------------
@@ -31,7 +31,10 @@ async function connectArduino(){
     serialActive = true;
     Input.source = 'arduino';
     setConnUI(true);
-    hideSetup();
+    
+    document.getElementById('step-1').style.display = 'none';
+    document.getElementById('step-2').style.display = 'block';
+    
     readSerialLoop();
   }catch(err){
     console.error('Serial connection failed:', err);
@@ -65,16 +68,18 @@ async function readSerialLoop(){
 }
 
 function parseSerialLine(line){
-  // roll,pitch,yaw,throttle,btn1,btn2
   const parts = line.split(',').map(Number);
   if(parts.length < 4 || parts.some(isNaN)) return;
 
   const [rollRaw, pitchRaw, yawRaw, throttleRaw] = parts;
+  rawData = { roll: rollRaw, pitch: pitchRaw, yaw: yawRaw, throttle: throttleRaw };
 
-  Input.roll    = applyDeadzone(rollRaw    - JS.rollCenter,     512) ;
-  Input.pitch   = applyDeadzone(pitchRaw   - JS.pitchCenter,    512) * -1; // forward = nose down feel
-  Input.yaw     = applyDeadzone(yawRaw     - JS.yawCenter,      512) ;
-  Input.throttle = clamp(1 - (throttleRaw / 1023), 0, 1); // push up = more throttle (joystick fwd = lower ADC typically)
+  Input.roll    = applyDeadzone(rollRaw    - JS.rollCenter, 500);
+  Input.pitch   = applyDeadzone(pitchRaw   - JS.pitchCenter, 500) * -1; 
+  Input.yaw     = applyDeadzone(yawRaw     - JS.yawCenter, 500);
+  
+  let activeThrottle = Math.max(0, throttleRaw - JS.throttleCenter);
+  Input.throttle = clamp(activeThrottle / (1023 - JS.throttleCenter), 0, 1); 
 
   flashLiveDot();
 }
@@ -89,6 +94,7 @@ function applyDeadzone(val, range){
 let liveDotTimeout;
 function flashLiveDot(){
   const dot = document.getElementById('conn-dot');
+  if(!dot) return;
   dot.classList.add('live');
   clearTimeout(liveDotTimeout);
   liveDotTimeout = setTimeout(()=> dot.classList.remove('live'), 200);
@@ -97,15 +103,18 @@ function flashLiveDot(){
 function setConnUI(connected, label){
   const dot = document.getElementById('conn-dot');
   const text = document.getElementById('conn-text');
-  const btn = document.getElementById('btn-connect');
+  const btn1 = document.getElementById('btn-connect');
+  const btn2 = document.getElementById('btn-connect-2');
   if(connected){
-    text.textContent = 'ARDUINO LINKED';
-    dot.classList.add('live');
-    btn.textContent = 'Disconnect';
+    if(text) text.textContent = 'ARDUINO LINKED';
+    if(dot) dot.classList.add('live');
+    if(btn1) btn1.textContent = 'Disconnect';
+    if(btn2) btn2.textContent = 'Disconnect';
   }else{
-    text.textContent = label || 'NO LINK';
-    dot.classList.remove('live');
-    btn.textContent = 'Connect Arduino';
+    if(text) text.textContent = label || 'NO LINK';
+    if(dot) dot.classList.remove('live');
+    if(btn1) btn1.textContent = 'Connect Arduino';
+    if(btn2) btn2.textContent = 'Connect Arduino';
   }
 }
 
@@ -121,7 +130,6 @@ window.addEventListener('keyup', e=>{ Keys[e.code] = false; });
 
 function updateKeyboardInput(dt){
   if(Input.source !== 'keyboard') return;
-
   const rampSpeed = 2.2 * dt;
   let targetPitch = 0, targetRoll = 0, targetYaw = 0;
 
@@ -138,25 +146,73 @@ function updateKeyboardInput(dt){
 
   if(Keys['ShiftLeft'] || Keys['ShiftRight']) Input.throttle = clamp(Input.throttle + dt*0.6, 0, 1);
   if(Keys['ControlLeft'] || Keys['ControlRight']) Input.throttle = clamp(Input.throttle - dt*0.6, 0, 1);
-
   if(Keys['KeyR']) resetSim();
 }
 
-// ---------------- Setup overlay ----------------
-function hideSetup(){
-  document.getElementById('setup').style.display = 'none';
-}
+// ---------------- Setup overlay & UI ----------------
+// ---------------- Sound Effects ----------------
+const SFX = {
+  ctx: null, engineOsc: null, engineGain: null,
+  init(){
+    if(this.ctx) return;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if(!AudioContext) return;
+    this.ctx = new AudioContext();
 
-document.getElementById('btn-connect').addEventListener('click', ()=>{
-  if(serialActive){
+    this.engineOsc = this.ctx.createOscillator();
+    this.engineOsc.type = 'sawtooth';
+    
+    const filter = this.ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 400;
+
+    this.engineGain = this.ctx.createGain();
+    this.engineGain.gain.value = 0;
+
+    this.engineOsc.connect(filter);
+    filter.connect(this.engineGain);
+    this.engineGain.connect(this.ctx.destination);
+
+    this.engineOsc.start();
+  },
+  update(throttle, speed){
+    if(!this.ctx || this.ctx.state !== 'running') return;
+    const baseFreq = 40 + (throttle * 60) + (speed * 0.1);
+    this.engineOsc.frequency.setTargetAtTime(baseFreq, this.ctx.currentTime, 0.1);
+    const targetVol = 0.02 + (throttle * 0.15) + (speed * 0.0005);
+    this.engineGain.gain.setTargetAtTime(targetVol, this.ctx.currentTime, 0.2);
+  }
+};
+
+function hideSetup(){ document.getElementById('setup').style.display = 'none'; }
+
+document.getElementById('btn-connect').addEventListener('click', ()=>{ 
+  if(serialActive) {
     disconnectArduino();
   } else {
+    document.getElementById('setup').style.display = 'flex';
+    document.getElementById('step-1').style.display = 'none';
+    document.getElementById('step-2').style.display = 'block';
     connectArduino();
   }
 });
-document.getElementById('btn-keyboard').addEventListener('click', useKeyboard);
+document.getElementById('btn-keyboard').addEventListener('click', ()=>{ useKeyboard(); SFX.init(); });
 document.getElementById('btn-connect-2').addEventListener('click', connectArduino);
-document.getElementById('btn-keyboard-2').addEventListener('click', useKeyboard);
+document.getElementById('btn-keyboard-2').addEventListener('click', ()=>{ useKeyboard(); SFX.init(); });
+
+document.getElementById('btn-calibrate').addEventListener('click', ()=>{
+  JS.rollCenter = rawData.roll;
+  JS.pitchCenter = rawData.pitch;
+  JS.yawCenter = rawData.yaw;
+  JS.throttleCenter = rawData.throttle;
+  hideSetup();
+  SFX.init();
+});
+
+document.getElementById('btn-skip-cal').addEventListener('click', ()=>{
+  hideSetup();
+  SFX.init();
+});
 
 async function disconnectArduino(){
   serialActive = false;
@@ -168,40 +224,21 @@ async function disconnectArduino(){
   Input.source = 'none';
 }
 
-// ---------------- Instrument rendering ----------------
-function buildTapeMarks(){
-  // Speed tape: marks every 20kt over a window of 120kt
-  const speedMarks = document.getElementById('speed-marks');
-  const altMarks = document.getElementById('alt-marks');
-  // populated dynamically each frame instead (simpler, avoids stale DOM)
-}
-
-function updateSpeedTape(speed){
-  document.getElementById('speed-readout').textContent = String(Math.max(0,Math.round(speed))).padStart(3,'0');
-}
-
-function updateAltTape(alt){
-  const ft = Math.round(alt * 3.5); // scale world units to "feet" for instrument feel
-  document.getElementById('alt-readout').textContent = String(Math.max(0,ft)).padStart(4,'0');
-}
-
+function updateSpeedTape(speed){ document.getElementById('speed-readout').innerHTML = String(Math.max(0,Math.round(speed))).padStart(3,'0') + '<span class="readout-unit">KTS</span>'; }
+function updateAltTape(alt){ document.getElementById('alt-readout').innerHTML = String(Math.max(0,Math.round(alt * 3.5))).padStart(4,'0') + '<span class="readout-unit">FT</span>'; }
+function updateCoords(x, z){ document.getElementById('pos-readout').innerHTML = Math.round(x) + ', ' + Math.round(z); }
 function updateVSI(vsi){
   const el = document.getElementById('vs-readout');
   const val = Math.round(vsi);
-  const sign = val >= 0 ? '+' : '-';
-  el.innerHTML = sign + String(Math.abs(val)).padStart(4,'0') + '<span class="readout-unit">fpm</span>';
-  el.classList.toggle('warn', val < -800);
+  el.innerHTML = (val >= 0 ? '+' : '-') + String(Math.abs(val)).padStart(4,'0') + '<span class="readout-unit">FPM</span>';
+  el.parentElement.classList.toggle('warn', val < -800);
 }
-
 function updateGForce(g){
   const el = document.getElementById('g-readout');
-  el.innerHTML = g.toFixed(1) + '<span class="readout-unit">g</span>';
-  el.classList.toggle('warn', g > 3.2 || g < -0.5);
+  el.innerHTML = g.toFixed(1) + '<span class="readout-unit">G</span>';
+  el.parentElement.classList.toggle('warn', g > 3.2 || g < -0.5);
 }
-
-function updateThrottleGauge(t){
-  document.getElementById('throttle-fill').style.height = (t*100).toFixed(0) + '%';
-}
+function updateThrottleGauge(t){ document.getElementById('throttle-fill').style.height = (t*100).toFixed(0) + '%'; }
 
 let pitchLinesBuilt = false;
 function buildPitchLines(){
@@ -211,8 +248,7 @@ function buildPitchLines(){
     if(deg===0) continue;
     const line = document.createElement('div');
     line.className = 'pitch-line' + (deg%20!==0 ? ' minor' : '');
-    const yOffset = -deg * 3.0; // px per degree
-    line.style.top = yOffset + 'px';
+    line.style.top = (-deg * 3.0) + 'px';
     if(deg%20===0){
       const label = document.createElement('span');
       label.textContent = Math.abs(deg);
@@ -227,11 +263,8 @@ function updateHorizon(pitchRad, rollRad){
   if(!pitchLinesBuilt) buildPitchLines();
   const pitchDeg = pitchRad * 180/Math.PI;
   const rollDeg = rollRad * 180/Math.PI;
-
   const ball = document.getElementById('horizon-ball');
-  const translateY = pitchDeg * 3.0; // matches buildPitchLines scale
-  ball.style.transform = `rotate(${-rollDeg}deg) translateY(${translateY}px)`;
-
+  ball.style.transform = `rotate(${-rollDeg}deg) translateY(${pitchDeg * 3.0}px)`;
   const bankPointer = document.getElementById('bank-pointer');
   bankPointer.style.transform = `translateX(-50%) rotate(${-rollDeg}deg)`;
   bankPointer.style.transformOrigin = '50% 130px';
@@ -240,70 +273,53 @@ function updateHorizon(pitchRad, rollRad){
 function updateCompass(yawRad){
   let deg = (yawRad * 180/Math.PI) % 360;
   if(deg < 0) deg += 360;
-
   const strip = document.getElementById('compass-strip');
   if(!strip.dataset.built){
     let html = '';
     for(let d=-360; d<=720; d+=10){
       const norm = ((d%360)+360)%360;
       const dirs = {0:'N',90:'E',180:'S',270:'W'};
-      const label = dirs[norm] !== undefined ? dirs[norm] : norm;
-      html += `<span class="compass-tick ${dirs[norm]!==undefined?'major':''}">${label}</span>`;
+      html += `<span class="compass-tick ${dirs[norm]!==undefined?'major':''}">${dirs[norm] !== undefined ? dirs[norm] : norm}</span>`;
     }
     strip.innerHTML = html;
     strip.dataset.built = '1';
   }
-  const pxPerTick = 34;
-  const ticksFromZero = (deg) / 10;
-  const offset = -(ticksFromZero * pxPerTick) + 360 - pxPerTick/2 - (170 - 17);
-  strip.style.left = (170 - (deg/10)*pxPerTick - pxPerTick*36) + 'px';
+  strip.style.left = (170 - (deg/10)*34 - 34*36) + 'px';
 }
 
-function updateStallWarning(speed, stallSpeed){
-  document.getElementById('stall-warn').style.display = speed < stallSpeed ? 'block' : 'none';
-}
-
+function updateStallWarning(speed, stallSpeed){ document.getElementById('stall-warn').style.display = speed < stallSpeed ? 'block' : 'none'; }
 function showCrash(){
   document.getElementById('status-title').textContent = 'CRASHED';
   document.getElementById('status-sub').textContent = 'Press R to reset';
   document.getElementById('status-msg').style.display = 'block';
 }
-function hideStatus(){
-  document.getElementById('status-msg').style.display = 'none';
-}
-
-function resetSim(){
-  Physics.reset();
-  hideStatus();
-}
+function hideStatus(){ document.getElementById('status-msg').style.display = 'none'; }
+function resetSim(){ Physics.reset(); hideStatus(); }
 
 // ---------------- Camera follow ----------------
 function updateCamera(){
   const p = Physics;
-  const cp = Math.cos(p.rotation.pitch), sp = Math.sin(p.rotation.pitch);
-  const cy = Math.cos(p.rotation.yaw),   sy = Math.sin(p.rotation.yaw);
-
+  
+  // Set plane position and quaternion correctly to avoid gimbal lock and flip
   plane.position.set(p.position.x, p.position.y, p.position.z);
-  plane.rotation.order = 'YXZ';
-  plane.rotation.y = p.rotation.yaw;
-  plane.rotation.x = p.rotation.pitch;
-  plane.rotation.z = -p.rotation.roll;
+  const euler = new THREE.Euler(p.rotation.pitch, p.rotation.yaw, -p.rotation.roll, 'YXZ');
+  plane.quaternion.setFromEuler(euler);
 
-  // Chase camera, offset behind & above, smoothly following orientation
-  const backDist = 16, upDist = 4.5;
-  const forward = { x:-sy*cp, y:sp, z:-cy*cp };
+  plane.updateMatrixWorld();
+  const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(plane.quaternion);
+  const up = new THREE.Vector3(0, 1, 0).applyQuaternion(plane.quaternion);
 
-  const camTargetX = p.position.x - forward.x*backDist;
-  const camTargetY = p.position.y - forward.y*backDist + upDist;
-  const camTargetZ = p.position.z - forward.z*backDist;
+  const backDist = 14, upDist = 4;
+  const camTargetX = p.position.x - forward.x*backDist + up.x*upDist;
+  const camTargetY = p.position.y - forward.y*backDist + up.y*upDist;
+  const camTargetZ = p.position.z - forward.z*backDist + up.z*upDist;
 
-  camera.position.x += (camTargetX - camera.position.x) * 0.12;
-  camera.position.y += (camTargetY - camera.position.y) * 0.12;
-  camera.position.z += (camTargetZ - camera.position.z) * 0.12;
+  camera.position.x += (camTargetX - camera.position.x) * 0.15;
+  camera.position.y += (camTargetY - camera.position.y) * 0.15;
+  camera.position.z += (camTargetZ - camera.position.z) * 0.15;
 
-  const lookAtY = p.position.y + 1.2;
-  camera.lookAt(p.position.x, lookAtY, p.position.z);
-  camera.rotation.z = -p.rotation.roll * 0.25; // subtle roll tilt for feel
+  camera.up.lerp(up, 0.15); 
+  camera.lookAt(p.position.x + forward.x*20, p.position.y + forward.y*20, p.position.z + forward.z*20);
 }
 
 // ---------------- Main loop ----------------
@@ -324,16 +340,19 @@ function animate(){
     throttle: Input.throttle
   });
 
-  if(Physics.crashed){
-    showCrash();
-  }
+  if(Physics.crashed) showCrash();
 
   updateCamera();
   if(typeof updateTerrain === 'function') updateTerrain(Physics.position.x, Physics.position.z);
-  if(typeof recycleClouds === 'function') recycleClouds(Physics.position.x, Physics.position.z);
+  if(typeof recycleClouds === 'function') recycleClouds(Physics.position.x, Physics.position.y, Physics.position.z);
+  if(typeof updateEnvironment === 'function') updateEnvironment(Physics.position.x, Physics.position.y, Physics.position.z, dt);
+  if(typeof updatePlaneVisuals === 'function') updatePlaneVisuals(Physics.throttle, Physics.speed);
+
+  if(SFX.ctx) SFX.update(Physics.throttle, Physics.speed);
 
   updateSpeedTape(Physics.speed);
   updateAltTape(Physics.altitude);
+  updateCoords(Physics.position.x, Physics.position.z);
   updateVSI(Physics.vsi);
   updateGForce(Physics.gForce);
   updateThrottleGauge(Physics.throttle);
@@ -347,6 +366,9 @@ function animate(){
 // ---------------- Boot ----------------
 window.addEventListener('load', ()=>{
   initScene();
+  if(typeof globalStations !== 'undefined' && globalStations.length > 0) {
+    Physics.position.y = globalStations[0].y + 2;
+  }
   buildPitchLines();
   animate();
 });
