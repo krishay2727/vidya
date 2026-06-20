@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VECTOR-1 // Flight Sim</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  :root{
+    --bg:        #05070a;
+    --panel:     #0d1b2a;
+    --panel2:    #142536;
+    --line:      #24405a;
+    --cyan:      #7fdbca;
+    --cyan-dim:  #3d6b63;
+    --amber:     #ff6b4a;
+    --white:     #e8eef2;
+    --dim:       #5b7585;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html, body{
+    width:100%; height:100%;
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Barlow Condensed', sans-serif;
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  #scene{ position:fixed; inset:0; }
+  #scene canvas{ display:block; }
+
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* ---------- Top bar ---------- */
+  #topbar{
+    position:fixed; top:0; left:0; right:0;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 22px;
+    z-index:20;
+    pointer-events:none;
+  }
+  #logo{
+    font-weight:700; letter-spacing:0.12em; font-size:15px;
+    color:var(--cyan); text-shadow:0 0 12px rgba(127,219,202,0.45);
+  }
+  #logo span{ color:var(--dim); font-weight:400; margin-left:8px; letter-spacing:0.08em; }
+
+  #conn{
+    pointer-events:all;
+    display:flex; align-items:center; gap:10px;
+  }
+  .pill{
+    display:flex; align-items:center; gap:8px;
+    background:rgba(13,27,42,0.85);
+    border:1px solid var(--line);
+    padding:7px 14px;
+    border-radius:3px;
+    font-size:13px; letter-spacing:0.05em;
+    backdrop-filter:blur(6px);
+  }
+  .dot{ width:7px; height:7px; border-radius:50%; background:var(--dim); transition:all .3s; }
+  .dot.live{ background:var(--cyan); box-shadow:0 0 8px var(--cyan); }
+  .dot.warn{ background:var(--amber); box-shadow:0 0 8px var(--amber); }
+
+  button{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600; letter-spacing:0.05em;
+    background:var(--panel2);
+    border:1px solid var(--line);
+    color:var(--white);
+    padding:8px 16px;
+    border-radius:3px;
+    cursor:pointer;
+    font-size:13px;
+    transition:all .15s;
+  }
+  button:hover{ background:var(--cyan-dim); border-color:var(--cyan); color:var(--bg); }
+  button:active{ transform:scale(0.97); }
+  button:focus-visible{ outline:2px solid var(--cyan); outline-offset:2px; }
+  button.primary{ background:var(--cyan); color:var(--bg); border-color:var(--cyan); }
+  button.primary:hover{ background:#9ce8d9; }
+
+  /* ---------- HUD readouts (top corners) ---------- */
+  .readout-block{
+    pointer-events:none;
+    background:rgba(13,27,42,0.55);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:10px 16px;
+    backdrop-filter:blur(4px);
+  }
+  .readout-label{
+    font-size:10px; letter-spacing:0.15em; color:var(--dim); text-transform:uppercase;
+  }
+  .readout-value{
+    font-size:22px; font-weight:700; color:var(--cyan);
+    text-shadow:0 0 10px rgba(127,219,202,0.3);
+  }
+  .readout-value.warn{ color:var(--amber); text-shadow:0 0 10px rgba(255,107,74,0.4); }
+  .readout-unit{ font-size:11px; color:var(--dim); margin-left:3px; }
+
+  /* ---------- Instrument panel (bottom) ---------- */
+  #panel{
+    position:fixed; bottom:0; left:0; right:0;
+    display:flex; align-items:flex-end; justify-content:center;
+    gap:0;
+    z-index:20;
+    pointer-events:none;
+    padding-bottom:0;
+  }
+
+  .gauge-col{
+    display:flex; flex-direction:column; align-items:center;
+    pointer-events:none;
+  }
+
+  /* Tape gauges (airspeed / altitude) */
+  .tape{
+    width:96px; height:230px;
+    background:linear-gradient(180deg, rgba(13,27,42,0.92), rgba(13,27,42,0.78));
+    border:1px solid var(--line);
+    border-radius:4px;
+    margin:0 6px 18px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 0 24px rgba(0,0,0,0.5), inset 0 0 18px rgba(0,0,0,0.4);
+  }
+  .tape-title{
+    position:absolute; top:6px; left:0; right:0; text-align:center;
+    font-size:10px; letter-spacing:0.15em; color:var(--dim);
+  }
+  .tape-center-line{
+    position:absolute; left:0; right:0; top:50%;
+    height:1px; background:var(--cyan);
+    box-shadow:0 0 6px var(--cyan);
+  }
+  .tape-readout{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    font-size:25px; font-weight:700; color:var(--white);
+    background:rgba(5,7,10,0.85);
+    border:1px solid var(--cyan-dim);
+    padding:3px 10px;
+    border-radius:2px;
+    min-width:64px;
+    text-align:center;
+    z-index:5;
+  }
+  .tape-marks{ position:absolute; inset:0; }
+  .tape-mark{
+    position:absolute; left:8px; right:8px;
+    font-size:11px; color:var(--dim);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .tape-mark::before{
+    content:''; width:10px; height:1px; background:var(--dim);
+  }
+  .tape-mark::after{
+    content:''; width:10px; height:1px; background:var(--dim);
+  }
+
+  /* Artificial horizon - the signature element */
+  #horizon-wrap{
+    width:280px; height:280px;
+    margin:0 14px 14px;
+    position:relative;
+    border-radius:50%;
+    border:3px solid #1a2c3d;
+    box-shadow:
+      0 0 0 1px var(--line),
+      0 0 40px rgba(127,219,202,0.15),
+      inset 0 0 30px rgba(0,0,0,0.6);
+    overflow:hidden;
+    pointer-events:none;
+    background:#000;
+  }
+  #horizon-ball{
+    position:absolute;
+    width:560px; height:560px;
+    left:50%; top:50%;
+    margin-left:-280px; margin-top:-280px;
+    transition:none;
+  }
+  .sky{ position:absolute; top:0; left:0; width:100%; height:50%;
+    background:linear-gradient(180deg, #1a4a7a 0%, #4a8fc0 100%); }
+  .ground{ position:absolute; bottom:0; left:0; width:100%; height:50%;
+    background:linear-gradient(180deg, #5a3a1e 0%, #2a1a0e 100%); }
+  .horizon-line-mark{
+    position:absolute; top:50%; left:0; right:0; height:2px;
+    background:var(--white);
+  }
+  .pitch-lines{ position:absolute; left:50%; top:50%; width:1px; height:1px; }
+  .pitch-line{
+    position:absolute; left:50%; transform:translateX(-50%);
+    width:90px; height:2px; background:rgba(255,255,255,0.85);
+    text-align:center;
+  }
+  .pitch-line span{
+    position:absolute; left:-26px; top:-7px; font-size:11px; color:#fff;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .pitch-line.minor{ width:46px; background:rgba(255,255,255,0.5); }
+
+  #horizon-fixed{
+    position:absolute; inset:0; pointer-events:none;
+  }
+  #bank-pointer{
+    position:absolute; top:6px; left:50%; transform:translateX(-50%);
+    width:0; height:0;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-top:12px solid var(--amber);
+    filter:drop-shadow(0 0 4px rgba(255,107,74,0.6));
+  }
+  #bank-arc{ position:absolute; inset:8px; }
+  #plane-ref{
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:140px; height:30px;
+  }
+
+  .horizon-label{
+    position:absolute; top:8px; left:50%; transform:translateX(-50%);
+    font-size:10px; letter-spacing:0.15em; color:var(--cyan);
+    text-shadow:0 0 6px rgba(127,219,202,0.5);
+    z-index:10;
+  }
+
+  /* Compass strip */
+  #compass{
+    position:fixed; top:16px; left:50%; transform:translateX(-50%);
+    width:340px; height:38px;
+    background:rgba(13,27,42,0.7);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    z-index:20;
+    pointer-events:none;
+    backdrop-filter:blur(4px);
+  }
+  #compass-strip{
+    position:absolute; top:0; height:100%;
+    display:flex; align-items:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--dim);
+    white-space:nowrap;
+  }
+  .compass-tick{ display:inline-block; width:34px; text-align:center; }
+  .compass-tick.major{ color:var(--cyan); font-weight:700; }
+  #compass-pointer{
+    position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+    width:0; height:0;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+    border-bottom:9px solid var(--amber);
+  }
+
+  /* Throttle gauge (vertical bar, side) */
+  #throttle-gauge{
+    position:fixed; right:22px; top:50%; transform:translateY(-50%);
+    width:34px; height:220px;
+    background:rgba(13,27,42,0.75);
+    border:1px solid var(--line);
+    border-radius:4px;
+    z-index:20;
+    pointer-events:none;
+    overflow:hidden;
+    backdrop-filter:blur(4px);
+  }
+  #throttle-fill{
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(180deg, var(--cyan), var(--cyan-dim));
+    box-shadow:0 0 10px rgba(127,219,202,0.5);
+    transition:height 0.08s linear;
+  }
+  #throttle-label{
+    position:fixed; right:22px; top:calc(50% - 132px); transform:translateY(-100%);
+    font-size:10px; letter-spacing:0.15em; color:var(--dim);
+    text-align:center; width:34px;
+    z-index:20;
+  }
+
+  /* Status / messages */
+  #status-msg{
+    position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:30;
+    pointer-events:none;
+  }
+  #status-msg h1{
+    font-size:42px; font-weight:700; letter-spacing:0.05em;
+    color:var(--amber);
+    text-shadow:0 0 24px rgba(255,107,74,0.6);
+  }
+  #status-msg p{ color:var(--dim); margin-top:8px; font-size:16px; letter-spacing:0.05em; }
+
+  #stall-warn{
+    position:fixed; top:80px; left:50%; transform:translateX(-50%);
+    font-size:14px; font-weight:700; letter-spacing:0.2em;
+    color:var(--amber);
+    background:rgba(13,27,42,0.85);
+    border:1px solid var(--amber);
+    padding:8px 20px;
+    border-radius:3px;
+    display:none;
+    z-index:25;
+    animation:blink 0.7s infinite;
+    box-shadow:0 0 16px rgba(255,107,74,0.4);
+  }
+  @keyframes blink{ 50%{ opacity:0.35; } }
+
+  /* Setup overlay */
+  #setup{
+    position:fixed; inset:0;
+    background:radial-gradient(ellipse at center, #0d1b2a 0%, #05070a 75%);
+    display:flex; align-items:center; justify-content:center;
+    z-index:100;
+  }
+  #setup-card{
+    width:min(560px, 90vw);
+    background:rgba(13,27,42,0.6);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:40px;
+    text-align:center;
+  }
+  #setup-card h1{
+    font-size:38px; font-weight:700; letter-spacing:0.08em;
+    color:var(--cyan);
+    text-shadow:0 0 20px rgba(127,219,202,0.4);
+    margin-bottom:6px;
+  }
+  #setup-card .sub{ color:var(--dim); font-size:15px; letter-spacing:0.05em; margin-bottom:30px; }
+  #setup-card .row{ display:flex; gap:12px; justify-content:center; margin-bottom:14px; flex-wrap:wrap; }
+  #setup-card .note{
+    margin-top:22px; font-size:13px; color:var(--dim); line-height:1.6;
+    text-align:left; background:rgba(5,7,10,0.4); padding:14px 18px; border-radius:4px;
+    border:1px solid var(--line);
+  }
+  #setup-card .note b{ color:var(--cyan); }
+  #setup-card kbd{
+    font-family:'JetBrains Mono', monospace; background:var(--panel2);
+    border:1px solid var(--line); border-radius:3px; padding:1px 6px; font-size:12px;
+  }
+
+  .hint{ font-size:12px; color:var(--dim); margin-top:6px; letter-spacing:0.03em; }
+
+  @media (max-width: 760px){
+    #panel{ transform:scale(0.62); transform-origin:bottom center; bottom:-50px; }
+    #throttle-gauge, #throttle-label{ display:none; }
+    #compass{ width:240px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    * { animation-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div id="scene"></div>
+
+<div id="compass">
+  <div id="compass-strip"></div>
+  <div id="compass-pointer"></div>
+</div>
+
+<div id="stall-warn">⚠ STALL</div>
+
+<div id="topbar">
+  <div id="logo">VECTOR-1 <span>FLIGHT SYSTEM</span></div>
+  <div id="conn">
+    <div class="pill"><div class="dot" id="conn-dot"></div><span id="conn-text" class="mono">NO LINK</span></div>
+    <button id="btn-connect" class="primary">Connect Arduino</button>
+    <button id="btn-keyboard">Use Keyboard</button>
+  </div>
+</div>
+
+<div id="panel">
+  <div class="gauge-col">
+    <div class="tape" id="speed-tape">
+      <div class="tape-title">IAS · KT</div>
+      <div class="tape-marks" id="speed-marks"></div>
+      <div class="tape-center-line"></div>
+      <div class="tape-readout mono" id="speed-readout">000</div>
+    </div>
+  </div>
+
+  <div class="gauge-col">
+    <div id="horizon-wrap">
+      <div class="horizon-label">ATTITUDE</div>
+      <div id="horizon-ball">
+        <div class="sky"></div>
+        <div class="ground"></div>
+        <div class="horizon-line-mark"></div>
+        <div class="pitch-lines" id="pitch-lines"></div>
+      </div>
+      <div id="horizon-fixed">
+        <div id="bank-pointer"></div>
+        <svg id="plane-ref" viewBox="0 0 140 30">
+          <rect x="0" y="13" width="50" height="4" fill="#ffcc00"/>
+          <rect x="90" y="13" width="50" height="4" fill="#ffcc00"/>
+          <circle cx="70" cy="15" r="5" fill="none" stroke="#ffcc00" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="gauge-col">
+    <div class="tape" id="alt-tape">
+      <div class="tape-title">ALT · FT</div>
+      <div class="tape-marks" id="alt-marks"></div>
+      <div class="tape-center-line"></div>
+      <div class="tape-readout mono" id="alt-readout">0000</div>
+    </div>
+  </div>
+</div>
+
+<div id="throttle-label">THR</div>
+<div id="throttle-gauge"><div id="throttle-fill" style="height:0%"></div></div>
+
+<div class="readout-block" style="position:fixed; top:70px; left:22px;">
+  <div class="readout-label">Vertical Speed</div>
+  <div class="readout-value mono" id="vs-readout">+0000<span class="readout-unit">fpm</span></div>
+</div>
+
+<div class="readout-block" style="position:fixed; top:70px; right:22px;">
+  <div class="readout-label">G-Force</div>
+  <div class="readout-value mono" id="g-readout">1.0<span class="readout-unit">g</span></div>
+</div>
+
+<div id="status-msg" style="display:none;">
+  <h1 id="status-title">CRASHED</h1>
+  <p id="status-sub">Press R to reset</p>
+</div>
+
+<div id="setup">
+  <div id="setup-card">
+    <h1>VECTOR-1</h1>
+    <div class="sub">Web-based flight simulator · Arduino joystick control</div>
+    <div class="row">
+      <button class="primary" id="btn-connect-2">Connect Arduino (Web Serial)</button>
+    </div>
+    <div class="row">
+      <button id="btn-keyboard-2">Skip — Fly with Keyboard</button>
+    </div>
+    <div class="note">
+      <b>Arduino wiring:</b> Joystick 1 (pitch/roll) → A0 (roll), A1 (pitch).
+      Joystick 2 (throttle/yaw) → A2 (yaw), A3 (throttle). Flash the included
+      <b>flightsim_arduino.ino</b> sketch, plug in via USB, then click Connect
+      and select the Arduino's serial port.<br><br>
+      <b>Keyboard fallback:</b> <kbd>W/S</kbd> pitch · <kbd>A/D</kbd> roll ·
+      <kbd>Q/E</kbd> yaw · <kbd>Shift/Ctrl</kbd> throttle · <kbd>R</kbd> reset.
+      Requires Chrome or Edge for Arduino connection (Web Serial API).
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="physics.js"></script>
+<script src="scene.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
