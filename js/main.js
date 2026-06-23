@@ -99,6 +99,7 @@ async function init() {
   const urlParams = new URLSearchParams(window.location.search);
   const redirectPage = urlParams.get('p');
   let targetPage = 'home';
+  let targetParam = null;
   const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail', 'project-detail'];
 
   if (redirectPage && validPages.includes(redirectPage)) {
@@ -106,11 +107,28 @@ async function init() {
     // Clean up the URL in history (removes ?p=live-quiz)
     window.history.replaceState(null, null, redirectPage);
   } else {
-    const pathSegment = window.location.pathname.split('/').filter(Boolean).pop();
-    if (pathSegment && validPages.includes(pathSegment) && pathSegment !== 'VIDYA') {
-      targetPage = pathSegment;
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    if (pathSegments.length >= 2 && pathSegments[pathSegments.length - 2] === 'project') {
+      targetPage = 'project-detail';
+      targetParam = decodeURIComponent(pathSegments[pathSegments.length - 1]);
+    } else {
+      const pathSegment = pathSegments.pop();
+      if (pathSegment && validPages.includes(pathSegment) && pathSegment !== 'VIDYA') {
+        targetPage = pathSegment;
+      }
     }
   }
+
+  if (targetPage === 'project-detail' && targetParam) {
+    currentProject = PROJECTS.find(p => p.id === targetParam);
+    if (currentProject) {
+      showPage(targetPage, targetParam);
+      return;
+    } else {
+      targetPage = 'projects';
+    }
+  }
+
   showPage(targetPage);
 }
 
@@ -118,9 +136,19 @@ async function init() {
 //  HISTORY NAV (Back/Forward)
 // =============================================
 window.addEventListener('popstate', () => {
-  const pathSegment = window.location.pathname.split('/').filter(Boolean).pop();
+  const pathSegments = window.location.pathname.split('/').filter(Boolean);
   const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail', 'project-detail'];
 
+  if (pathSegments.length >= 2 && pathSegments[pathSegments.length - 2] === 'project') {
+    const targetParam = decodeURIComponent(pathSegments[pathSegments.length - 1]);
+    currentProject = PROJECTS.find(p => p.id === targetParam);
+    if (currentProject) {
+      showPage('project-detail', targetParam);
+      return;
+    }
+  }
+
+  const pathSegment = pathSegments.pop();
   if (pathSegment && validPages.includes(pathSegment) && pathSegment !== 'VIDYA') {
     showPage(pathSegment);
   } else {

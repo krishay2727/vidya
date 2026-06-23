@@ -1,0 +1,26 @@
+{
+  "id": "class-noise-meter",
+  "title": "class noise meter",
+  "level": "Beginner",
+  "color": "#00D4FF",
+  "session": 18,
+  "desc": "Learn to build a class noise meter.",
+  "fullDesc": "In this project, we will build a class noise meter. This project will introduce you to the necessary components, coding logic, and assembly required.",
+  "image": "icons/vidya-logo.png",
+  "components": [],
+  "difficulty": 2,
+  "status": "Coming Soon",
+  "tags": [
+    "Electronics",
+    "New"
+  ],
+  "date": "2026-06-24",
+  "author": "Tinkering Lab",
+  "files3d": [],
+  "codeFiles": [],
+  "youtubeVideos": [],
+  "dataVideos": [],
+  "gallery": [],
+  "resources": [],
+  "guide": []
+}

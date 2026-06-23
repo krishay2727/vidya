@@ -1,0 +1,26 @@
+{
+  "id": "unihiker-k10-ai-project",
+  "title": "unihiker k10 AI project",
+  "level": "Beginner",
+  "color": "#00D4FF",
+  "session": 17,
+  "desc": "Learn to build a unihiker k10 AI project.",
+  "fullDesc": "In this project, we will build a unihiker k10 AI project. This project will introduce you to the necessary components, coding logic, and assembly required.",
+  "image": "icons/vidya-logo.png",
+  "components": [],
+  "difficulty": 2,
+  "status": "Coming Soon",
+  "tags": [
+    "Electronics",
+    "New"
+  ],
+  "date": "2026-06-24",
+  "author": "Tinkering Lab",
+  "files3d": [],
+  "codeFiles": [],
+  "youtubeVideos": [],
+  "dataVideos": [],
+  "gallery": [],
+  "resources": [],
+  "guide": []
+}

@@ -136,7 +136,7 @@ function openProject(id) {
   currentProject = PROJECTS.find(p => p.id === id);
   if (!currentProject) return;
   renderProjectDetail();
-  showPage('project-detail');
+  showPage('project-detail', id);
 }
 
 function renderProjectDetail() {
@@ -149,6 +149,7 @@ function renderProjectDetail() {
   const videoCount = (p.youtubeVideos?.length || 0) + (p.dataVideos?.length || 0);
   const imgCount = p.gallery?.length || 0;
   const resCount = p.resources?.length || 0;
+  const hasPdf = !!p.pdf;
 
   container.innerHTML = `
     <!-- Header -->
@@ -186,6 +187,7 @@ function renderProjectDetail() {
     <div class="pd-tabs-container">
       <div class="pd-tabs">
         <button class="pd-tab active" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('overview', this)">📋 Overview</button>
+        ${hasPdf ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('pdf', this)">📄 PDF Guide</button>` : ''}
         ${files3dCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('3d', this)">🖨️ 3D Files (${files3dCount})</button>` : ''}
         ${codeCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('code', this)">💻 Code (${codeCount})</button>` : ''}
         ${videoCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('videos', this)">🎬 Videos (${videoCount})</button>` : ''}
@@ -231,6 +233,26 @@ function renderProjectDetail() {
           <span class="pd-difficulty-text">${p.difficulty || 1} / 5</span>
         </div>
       </div>
+    </div>
+
+    <!-- PDF Tab -->
+    <div id="ptab-pdf" class="pd-tab-content">
+      ${hasPdf ? `
+        <div class="slides-ppt" id="projectPdfWrap" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
+          <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+            <span class="pdf-label" style="font-weight: 700; color: var(--text);">📄 Project PDF — ${p.title}</span>
+            <div style="display: flex; gap: 10px;">
+              <button onclick="toggleFullScreen(document.getElementById('projectPdfWrap'))" style="background: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                ⛶ Full Screen
+              </button>
+              <a href="${p.pdf}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+            </div>
+          </div>
+          <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: white;">
+             <iframe src="${p.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none;" title="Project PDF"></iframe>
+          </div>
+        </div>
+      ` : renderProjectEmptyState('📄', 'No PDF Guide Yet', 'PDF documentation will appear here.')}
     </div>
 
     <!-- 3D Files Tab -->

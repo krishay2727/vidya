@@ -1,0 +1,26 @@
+{
+  "id": "automatic-school-bell-and-announcement-system",
+  "title": "Automatic School Bell and Announcement System",
+  "level": "Beginner",
+  "color": "#00D4FF",
+  "session": 9,
+  "desc": "Learn to build a Automatic School Bell and Announcement System.",
+  "fullDesc": "In this project, we will build a Automatic School Bell and Announcement System. This project will introduce you to the necessary components, coding logic, and assembly required.",
+  "image": "icons/vidya-logo.png",
+  "components": [],
+  "difficulty": 2,
+  "status": "Coming Soon",
+  "tags": [
+    "Electronics",
+    "New"
+  ],
+  "date": "2026-06-24",
+  "author": "Tinkering Lab",
+  "files3d": [],
+  "codeFiles": [],
+  "youtubeVideos": [],
+  "dataVideos": [],
+  "gallery": [],
+  "resources": [],
+  "guide": []
+}

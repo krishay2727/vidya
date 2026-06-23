@@ -1,16 +1,18 @@
 // =============================================
 //  PAGE ROUTING
 // =============================================
-async function showPage(name) {
+async function showPage(name, pathParam = null) {
   document.querySelectorAll('.nav-link').forEach(l =>
     l.classList.toggle('active', l.dataset.page === name)
   );
 
   // Update URL history
   if (name === 'home') {
-    window.history.pushState(null, null, '.');
+    window.history.pushState(null, null, '/');
+  } else if (name === 'project-detail' && pathParam) {
+    window.history.pushState(null, null, '/project/' + encodeURIComponent(pathParam));
   } else {
-    window.history.pushState(null, null, name);
+    window.history.pushState(null, null, '/' + name);
   }
 
   // Fetch HTML view and inject
