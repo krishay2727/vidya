@@ -528,6 +528,49 @@
 }
 .pd-placeholder p { color: var(--text-dim); font-size: 0.88rem; line-height: 1.6; }
 
+/* ====== DETAIL VIEW SPECIFIC BADGES & BUTTONS ====== */
+.pd-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.pd-status-badge.status-Available {
+  background: rgba(0, 255, 136, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(0, 255, 136, 0.25);
+}
+.pd-status-badge.status-Coming-Soon {
+  background: rgba(155, 107, 255, 0.12);
+  color: var(--purple);
+  border: 1px solid rgba(155, 107, 255, 0.25);
+}
+
+.pd-launch-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background-color: var(--btn-color, var(--orange));
+  color: #fff;
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), 0 0 15px var(--btn-color, var(--orange));
+}
+
+.pd-launch-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), 0 0 25px var(--btn-color, var(--orange));
+  filter: brightness(1.1);
+}
+
 /* ====== RESPONSIVE ====== */
 @media (max-width: 900px) {
   .pd-hero-row { flex-direction: column; }
