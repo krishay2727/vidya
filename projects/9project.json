@@ -1,26 +1,49 @@
 {
-  "id": "automatic-school-bell-and-announcement-system",
-  "title": "Automatic School Bell and Announcement System",
-  "level": "Beginner",
-  "color": "#00D4FF",
-  "session": 9,
-  "desc": "Learn to build a Automatic School Bell and Announcement System.",
-  "fullDesc": "In this project, we will build a Automatic School Bell and Announcement System. This project will introduce you to the necessary components, coding logic, and assembly required.",
-  "image": "icons/vidya-logo.png",
-  "components": [],
-  "difficulty": 2,
-  "status": "Coming Soon",
-  "tags": [
-    "Electronics",
-    "New"
+  "id": "flying-sim",
+  "title": "Vector-1 Flight Simulator",
+  "level": "Advanced",
+  "color": "#7fdbca",
+  "session": 7,
+  "desc": "Fly a simulated aircraft using a dual-joystick Arduino flight deck!",
+  "fullDesc": "Build a custom dual-joystick flight deck controller using an Arduino Uno and analog joysticks to fly the VECTOR-1 flight simulator! This web-based 3D flight simulator uses Three.js for rendering and the Web Serial API to communicate directly with your physical controller, providing real-time cockpit displays like an artificial horizon, altitude and speed tapes, vertical speed, and G-force readouts.",
+  "image": "projects/flying_sim/screenshot.png",
+  "components": [
+    "Arduino Uno",
+    "2x Analog Joystick Modules (KY-023 / PS2)",
+    "Breadboard & Jumper Wires",
+    "USB Cable",
+    "Web Browser with Web Serial API support (Chrome/Edge)"
   ],
-  "date": "2026-06-24",
-  "author": "Tinkering Lab",
+  "difficulty": 4,
+  "status": "Available",
+  "tags": [
+    "Arduino",
+    "Web Serial",
+    "Three.js",
+    "Joysticks",
+    "Simulation"
+  ],
+  "date": "2026-06-20",
+  "author": "Ved",
+  "liveUrl": "projects/flying_sim/index.html",
   "files3d": [],
-  "codeFiles": [],
+  "codeFiles": [
+    {
+      "name": "flightsim_arduino.ino",
+      "language": "cpp",
+      "desc": "Arduino Uno sketch to read joystick values and send them via Serial.",
+      "url": "projects/flying_sim/flightsim_arduino.ino"
+    }
+  ],
   "youtubeVideos": [],
   "dataVideos": [],
   "gallery": [],
   "resources": [],
-  "guide": []
+  "guide": [
+    "Wire Joystick 1 (Pitch/Roll) to pins A0 and A1",
+    "Wire Joystick 2 (Throttle/Yaw) to pins A2 and A3",
+    "Flash the flightsim_arduino.ino sketch onto your board",
+    "Open the VECTOR-1 simulator and click Connect Arduino",
+    "Fly the simulator using physical joystick movements!"
+  ]
 }

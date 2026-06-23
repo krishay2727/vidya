@@ -171,10 +171,10 @@ function renderProjectDetail() {
             <span class="pd-meta-chip">📅 Session ${p.session || '?'}</span>
             <span class="pd-meta-chip">👤 Contributor: ${p.author || 'Tinkering Lab'}</span>
             <span class="pd-meta-chip">🕒 Updated ${p.date || 'Unknown'}</span>
-            <span class="project-card-status status-${(p.status || 'Available').replace(' ', '-')}">${p.status || 'Available'}</span>
+            <span class="pd-status-badge status-${(p.status || 'Available').replace(' ', '-')}">${p.status || 'Available'}</span>
           </div>
           
-          ${p.liveUrl ? `<div style="margin-top: 15px;"><a href="${p.liveUrl}" target="_blank" class="btn-primary" style="display:inline-block; text-decoration:none; background-color:${p.color || 'var(--orange)'}">🚀 Launch Live Project</a></div>` : ''}
+          ${p.liveUrl ? `<div style="margin-top: 18px;"><a href="${p.liveUrl}" target="_blank" class="pd-launch-btn" style="--btn-color: ${p.color || 'var(--orange)'}">🚀 Launch Live Project</a></div>` : ''}
           
           <div class="pd-tags">
             ${(p.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
