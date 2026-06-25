@@ -3,7 +3,7 @@
 // =============================================
 async function init() {
   try {
-    const siteRes = await fetch('site.json?t=' + Date.now());
+    const siteRes = await fetch('site.json');
     SITE = await siteRes.json();
   } catch (e) {
     console.error('Could not load site.json', e);
@@ -24,7 +24,7 @@ async function init() {
 
   const sessionLoads = allSessionPaths.map(async ({ grade, path }) => {
     try {
-      const res = await fetch(path + '?t=' + Date.now());
+      const res = await fetch(path);
       if (!res.ok) return;                  // skip missing files silently
       const data = await res.json();
 
@@ -51,13 +51,13 @@ async function init() {
   // Load projects index and individual files
   const projectLoad = (async () => {
     try {
-      const res = await fetch(SITE.projects_file + '?t=' + Date.now());
+      const res = await fetch(SITE.projects_file);
       const indexData = await res.json();
       const projectPaths = indexData.projects || [];
       
       const projectFetches = projectPaths.map(async (path) => {
         try {
-          const pRes = await fetch(path + '?t=' + Date.now());
+          const pRes = await fetch(path);
           if (pRes.ok) {
             const pData = await pRes.json();
             PROJECTS.push(pData);

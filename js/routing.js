@@ -34,6 +34,7 @@ async function showPage(name, pathParam = null) {
     if (name === 'live-quiz' && window.initLiveQuiz) window.initLiveQuiz();
     renderLeaderboard();
   } catch (err) {
+    console.error("Error in showPage:", err);
     document.getElementById('app-root').innerHTML = '<div class="page active"><div class="page-inner"><h1>404 - Page Not Found</h1></div></div>';
   }
 

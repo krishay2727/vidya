@@ -139,7 +139,7 @@ function openProject(id) {
   showPage('project-detail', id);
 }
 
-async async function renderProjectDetail() {
+async function renderProjectDetail() {
   const p = currentProject;
   const container = document.getElementById('projectDetailContent');
   if (!container) return;
