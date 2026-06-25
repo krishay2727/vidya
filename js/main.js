@@ -4,7 +4,7 @@
 async function init() {
   try {
     const siteRes = await fetch('site.json');
-    globalThis.SITE = await siteRes.json();
+    SITE = await siteRes.json();
   } catch (e) {
     console.error('Could not load site.json', e);
     return;

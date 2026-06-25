@@ -7,7 +7,7 @@ async function showPage(name, pathParam = null) {
   );
 
   // Update URL history
-  const base = window.BASE_PATH || '/';
+  const base = globalThis.BASE_PATH || '/';
   if (name === 'home') {
     globalThis.history.pushState(null, null, base);
   } else if (name === 'project-detail' && pathParam) {
@@ -23,22 +23,25 @@ async function showPage(name, pathParam = null) {
     const html = await res.text();
     document.getElementById('app-root').innerHTML = html;
 
-    // Run specific logic for the loaded page
-    if (name === 'home') renderHome();
-    if (name === 'sessions') renderSessionsList();
-    if (name === 'session-detail') renderSessionDetail();
-    if (name === 'projects') renderProjects();
-    if (name === 'project-detail') renderProjectDetail();
-    if (name === 'about') renderAbout();
-    if (name === 'whiteboard' && window.initWhiteboard) window.initWhiteboard();
-    if (name === 'live-quiz' && window.initLiveQuiz) window.initLiveQuiz();
-    renderLeaderboard();
+    runPageLogic(name);
   } catch (err) {
     console.error("Error in showPage:", err);
     document.getElementById('app-root').innerHTML = '<div class="page active"><div class="page-inner"><h1>404 - Page Not Found</h1></div></div>';
   }
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  globalThis.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function runPageLogic(name) {
+  if (name === 'home') renderHome();
+  else if (name === 'sessions') renderSessionsList();
+  else if (name === 'session-detail') renderSessionDetail();
+  else if (name === 'projects') renderProjects();
+  else if (name === 'project-detail') renderProjectDetail();
+  else if (name === 'about') renderAbout();
+  else if (name === 'whiteboard' && globalThis.initWhiteboard) globalThis.initWhiteboard();
+  else if (name === 'live-quiz' && globalThis.initLiveQuiz) globalThis.initLiveQuiz();
+  renderLeaderboard();
 }
 
 function toggleMobileMenu() {
@@ -47,15 +50,7 @@ function toggleMobileMenu() {
 }
 
 function toggleFullScreen(element) {
-  if (!document.fullscreenElement) {
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.webkitRequestFullscreen) { /* Safari */
-      element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) { /* IE11 */
-      element.msRequestFullscreen();
-    }
-  } else {
+  if (document.fullscreenElement) {
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.webkitExitFullscreen) { /* Safari */
@@ -63,5 +58,11 @@ function toggleFullScreen(element) {
     } else if (document.msExitFullscreen) { /* IE11 */
       document.msExitFullscreen();
     }
+  } else if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.webkitRequestFullscreen) { /* Safari */
+    element.webkitRequestFullscreen();
+  } else if (element.msRequestFullscreen) { /* IE11 */
+    element.msRequestFullscreen();
   }
 }

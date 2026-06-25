@@ -30,28 +30,26 @@
   <!-- NAV -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a role="button" tabindex="0" class="nav-logo" onclick="showPage('home')">
+      <button class="nav-logo" onclick="showPage('home')">
         <img src="icons/vidya-logo.png" alt="VIDYA DigiSpark" class="logo-img" />
-      </a>
+      </button>
       <div class="nav-links">
-        <a role="button" tabindex="0" onclick="showPage('home')" class="nav-link" data-page="home">Home</a>
-        <a role="button" tabindex="0" onclick="showPage('sessions')" class="nav-link" data-page="sessions">Curriculum</a>
-        <a role="button" tabindex="0" onclick="showPage('live-quiz')" class="nav-link"
-          data-page="live-quiz">Assessment</a>
-        <a role="button" tabindex="0" onclick="showPage('projects')" class="nav-link" data-page="projects">Projects</a>
-        <a role="button" tabindex="0" onclick="showPage('whiteboard')" class="nav-link" data-page="whiteboard">📟 Circuit
-          Board</a>
-        <a role="button" tabindex="0" onclick="showPage('about')" class="nav-link" data-page="about">About</a>
+        <button onclick="showPage('home')" class="nav-link" data-page="home">Home</button>
+        <button onclick="showPage('sessions')" class="nav-link" data-page="sessions">Curriculum</button>
+        <button onclick="showPage('live-quiz')" class="nav-link" data-page="live-quiz">Assessment</button>
+        <button onclick="showPage('projects')" class="nav-link" data-page="projects">Projects</button>
+        <button onclick="showPage('whiteboard')" class="nav-link" data-page="whiteboard">📟 Circuit Board</button>
+        <button onclick="showPage('about')" class="nav-link" data-page="about">About</button>
       </div>
       <button class="nav-hamburger" onclick="toggleMobileMenu()">☰</button>
     </div>
     <div class="nav-mobile" id="navMobile">
-      <a role="button" tabindex="0" onclick="showPage('home');toggleMobileMenu()">Home</a>
-      <a role="button" tabindex="0" onclick="showPage('sessions');toggleMobileMenu()">Curriculum</a>
-      <a role="button" tabindex="0" onclick="showPage('projects');toggleMobileMenu()">Projects</a>
-      <a role="button" tabindex="0" onclick="showPage('whiteboard');toggleMobileMenu()">📟 Circuit Board</a>
-      <a role="button" tabindex="0" onclick="showPage('live-quiz');toggleMobileMenu()">Live Quiz</a>
-      <a role="button" tabindex="0" onclick="showPage('about');toggleMobileMenu()">About</a>
+      <button onclick="showPage('home');toggleMobileMenu()">Home</button>
+      <button onclick="showPage('sessions');toggleMobileMenu()">Curriculum</button>
+      <button onclick="showPage('projects');toggleMobileMenu()">Projects</button>
+      <button onclick="showPage('whiteboard');toggleMobileMenu()">📟 Circuit Board</button>
+      <button onclick="showPage('live-quiz');toggleMobileMenu()">Live Quiz</button>
+      <button onclick="showPage('about');toggleMobileMenu()">About</button>
     </div>
   </nav>
 
