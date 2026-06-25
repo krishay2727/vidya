@@ -4,7 +4,7 @@
   "subtitle": "Real-time environmental monitoring with DHT11 + LCD",
   "level": "Intermediate",
   "color": "#00D4FF",
-  "desc": "Read temperature & humidity — display it on screen!",
+  "desc": "Read temperature & humidity \u2014 display it on screen!",
   "fullDesc": "Build a real weather monitoring station using a DHT11 sensor...",
   "image": "projects/images/weather-station.jpg",
   "bannerImage": "projects/images/weather-station-banner.jpg",
@@ -36,19 +36,19 @@
     "powerConsumption": "~80mA @ 5V",
     "operatingVoltage": "5V DC",
     "communicationProtocol": "1-Wire (DHT11), I2C or 4-bit parallel (LCD)",
-    "dimensions": "Breadboard prototype — 170×130mm",
+    "dimensions": "Breadboard prototype \u2014 170\u00d7130mm",
     "sensors": [
-      "DHT11 (Temp: ±2°C, Humidity: ±5%RH)"
+      "DHT11 (Temp: \u00b12\u00b0C, Humidity: \u00b15%RH)"
     ],
     "displays": [
-      "16×2 LCD (HD44780 compatible)"
+      "16\u00d72 LCD (HD44780 compatible)"
     ]
   },
   "components": [
     "Arduino UNO",
     "DHT11 Temperature & Humidity Sensor",
     "16x2 LCD Display",
-    "10kΩ Potentiometer",
+    "10k\u03a9 Potentiometer",
     "Breadboard",
     "Jumper wires"
   ],
@@ -60,7 +60,7 @@
   ],
   "guide": [
     "Wire DHT11 data pin to Arduino D2, VCC to 5V, GND to GND",
-    "Wire LCD in 4-bit mode: RS→D7, EN→D8, D4-D7→D4-D7 on Arduino",
+    "Wire LCD in 4-bit mode: RS\u2192D7, EN\u2192D8, D4-D7\u2192D4-D7 on Arduino",
     "Connect potentiometer wiper to LCD V0 pin for contrast control",
     "Install DHT library via Arduino IDE Library Manager",
     "Upload the starter sketch and open Serial Monitor at 9600 baud",
@@ -94,25 +94,40 @@
     }
   ],
   "dataVideos": [],
-  "gallery": [],
+  "gallery": [
+    {
+      "file": "data/carousel1f.jpg",
+      "caption": "Project Setup",
+      "category": "Build"
+    },
+    {
+      "file": "data/carousel2.jpg",
+      "caption": "Wiring",
+      "category": "Hardware"
+    },
+    {
+      "file": "data/carousel3f.jpg",
+      "caption": "Testing",
+      "category": "Demo"
+    }
+  ],
   "liveUrl": "https://pnikv.github.io/sim-flight/",
   "resources": [
     {
-      "icon": "📄",
+      "icon": "\ud83d\udcc4",
       "title": "DHT11 Datasheet",
       "url": "data/components/dht11.json"
     },
     {
-      "icon": "📚",
+      "icon": "\ud83d\udcda",
       "title": "LiquidCrystal Library Docs",
       "url": "https://www.arduino.cc/reference/en/libraries/liquidcrystal/"
     }
   ],
-  "liveUrl": "",
   "githubUrl": "",
   "achievements": [
     "Displayed at School Science Fair 2026",
-    "Shortlisted — InfraTech Student Demo"
+    "Shortlisted \u2014 InfraTech Student Demo"
   ],
   "keywords": [
     "weather",

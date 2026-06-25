@@ -2,24 +2,36 @@
 //  PROJECTS GALLERY
 // =============================================
 
-let currentProjectFilter = 'all';
-let currentProjectStatus = 'all';
 let tagsInitialized = false;
 
 function initProjectFilters() {
   if (tagsInitialized || !PROJECTS) return;
-  const tagSet = new Set();
+  const mcSet = new Set();
+  const compSet = new Set();
+  
   PROJECTS.forEach(p => {
-    if (p.tags) p.tags.forEach(t => tagSet.add(t));
+    if (p.hardwareSpecs && p.hardwareSpecs.microcontroller) {
+      mcSet.add(p.hardwareSpecs.microcontroller);
+    }
+    if (p.componentRefs) {
+      p.componentRefs.forEach(c => compSet.add(c));
+    }
   });
-  const filtersContainer = document.getElementById('projectsTagFilters');
-  if (filtersContainer) {
-    let html = `<button class="filter-pill active" data-filter="all" onclick="setProjectFilter('all', this)">All</button>`;
-    Array.from(tagSet).sort().forEach(tag => {
-      html += `<button class="filter-pill" data-filter="${tag}" onclick="setProjectFilter('${tag}', this)">${tag}</button>`;
+
+  const mcSelect = document.getElementById('filterMicrocontroller');
+  if (mcSelect) {
+    Array.from(mcSet).sort().forEach(mc => {
+      mcSelect.innerHTML += `<option value="${mc}">${mc}</option>`;
     });
-    filtersContainer.innerHTML = html;
   }
+
+  const compSelect = document.getElementById('filterComponent');
+  if (compSelect) {
+    Array.from(compSet).sort().forEach(c => {
+      compSelect.innerHTML += `<option value="${c}">${c}</option>`;
+    });
+  }
+  
   tagsInitialized = true;
 }
 
@@ -30,31 +42,35 @@ function renderProjects() {
   if (!grid) return;
 
   if (!PROJECTS || !PROJECTS.length) {
-    grid.innerHTML = `<div class="projects-empty">
-      <div class="projects-empty-icon">📂</div>
-      <h3>No Projects Found</h3>
-      <p>Projects are still loading or none exist yet.</p>
-    </div>`;
+    grid.innerHTML = `<div class="projects-empty"><div class="projects-empty-icon">📂</div><h3>No Projects Found</h3></div>`;
     if (countEl) countEl.textContent = '0 Projects';
     return;
   }
 
   const searchInput = document.getElementById('projectSearchInput');
   const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+  
+  const diffSelect = document.getElementById('filterDifficulty');
+  const diffVal = diffSelect ? diffSelect.value : 'all';
+  
+  const mcSelect = document.getElementById('filterMicrocontroller');
+  const mcVal = mcSelect ? mcSelect.value : 'all';
+  
+  const compSelect = document.getElementById('filterComponent');
+  const compVal = compSelect ? compSelect.value : 'all';
 
   let filtered = PROJECTS.filter(p => {
     // Search match
-    const matchesSearch = searchTerm === '' ||
-      p.title.toLowerCase().includes(searchTerm) ||
-      (p.desc && p.desc.toLowerCase().includes(searchTerm));
+    const searchString = `${p.id} ${p.title} ${p.subtitle || ''} ${p.desc || ''} ${p.fullDesc || ''}`.toLowerCase();
+    const matchesSearch = searchTerm === '' || searchString.includes(searchTerm);
 
-    // Tag match
-    const matchesTag = currentProjectFilter === 'all' || (p.tags && p.tags.includes(currentProjectFilter));
+    const matchesDiff = diffVal === 'all' || p.difficulty == diffVal;
+    
+    const matchesMc = mcVal === 'all' || (p.hardwareSpecs && p.hardwareSpecs.microcontroller === mcVal);
+    
+    const matchesComp = compVal === 'all' || (p.componentRefs && p.componentRefs.includes(compVal));
 
-    // Status match
-    const matchesStatus = currentProjectStatus === 'all' || p.status === currentProjectStatus;
-
-    return matchesSearch && matchesTag && matchesStatus;
+    return matchesSearch && matchesDiff && matchesMc && matchesComp;
   });
 
   if (countEl) {
@@ -62,22 +78,15 @@ function renderProjects() {
   }
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<div class="projects-empty">
-      <div class="projects-empty-icon">🔍</div>
-      <h3>No Matches</h3>
-      <p>Try adjusting your filters or search term.</p>
-    </div>`;
+    grid.innerHTML = `<div class="projects-empty"><div class="projects-empty-icon">🔍</div><h3>No Matches</h3><p>Try adjusting your filters or search term.</p></div>`;
     return;
   }
 
   grid.innerHTML = filtered.map(p => `
     <div class="project-card" onclick="openProject('${p.id}')" style="--card-glow: ${p.color || 'var(--orange)'}33">
       <div class="project-img-wrap">
-        <img src="${p.image || ''}" alt="${p.title}"
-          onerror="this.src='icons/vidya-logo.png'; this.classList.add('fallback-img')"
-          class="project-img" />
+        <img src="${p.image || ''}" alt="${p.title}" onerror="this.src='icons/vidya-logo.png'; this.classList.add('fallback-img')" class="project-img" />
         <div class="project-img-overlay"></div>
-        <div class="project-card-status status-${(p.status || 'Available').replace(' ', '-')}">${p.status || 'Available'}</div>
       </div>
       
       <div class="project-body">
@@ -86,11 +95,6 @@ function renderProjects() {
         </div>
         <h3>${p.title}</h3>
         <p>${p.desc}</p>
-        
-        <div class="project-tags">
-          ${(p.tags || []).slice(0, 3).map(t => `<span class="tag">${t}</span>`).join('')}
-          ${p.tags?.length > 3 ? `<span class="tag">+${p.tags.length - 3}</span>` : ''}
-        </div>
         
         <div class="project-difficulty-wrap">
           <span class="project-difficulty-label">Diff</span>
@@ -102,26 +106,11 @@ function renderProjects() {
       
       <div class="project-card-footer">
         <div class="project-card-meta">
-          <span>📅 Session ${p.session || '?'}</span>
         </div>
         <button class="project-card-open" style="background-color: ${p.color || 'var(--orange)'};" onclick="event.stopPropagation();openProject('${p.id}')">Open ↗</button>
       </div>
     </div>
   `).join('');
-}
-
-function setProjectFilter(level, btn) {
-  currentProjectFilter = level;
-  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  renderProjects();
-}
-
-function setStatusFilter(status, btn) {
-  currentProjectStatus = status;
-  document.querySelectorAll('.status-pill').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  renderProjects();
 }
 
 function filterProjects() {
@@ -159,22 +148,35 @@ async function renderProjectDetail() {
   const hasComponents = (p.componentRefs && p.componentRefs.length > 0) || (p.components && p.components.length > 0);
   const hasAchievements = p.achievements && p.achievements.length > 0;
   const hasPresentationTab = hasPdf || hasPoster || hasPpt || hasResearch || hasCircuit || ytVideoCount > 0;
+  
+  // Custom slider for weather station or general
+  const isWeatherStation = p.id === 'weather-station';
+  const slideImages = isWeatherStation && p.gallery && p.gallery.length > 0 
+    ? p.gallery.map(g => g.file) 
+    : [p.bannerImage || p.image || ''];
+
+  const bannerContent = (isWeatherStation && slideImages.length > 1) ? `
+    <div class="ws-slider" style="position:absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; background:#000;">
+        ${slideImages.map((src, i) => `
+          <img src="${src}" style="width:100%; height:100%; object-fit:cover; opacity: 0; position:absolute; top:0; left:0; animation: sliderAnim ${slideImages.length * 4}s infinite ${i * 4}s;" />
+        `).join('')}
+    </div>
+  ` : `<div style="background-image: url('${slideImages[0]}'); width:100%; height:100%; position:absolute; top:0; left:0; background-size:cover; background-position:center; opacity:0.6;"></div>`;
 
   container.innerHTML = `
     <!-- Header -->
-    <div class="pd-header">
-      <button class="pd-back" onclick="showPage('projects')">← Back to Projects</button>
+    <div class="pd-header" style="position:relative; overflow:hidden;">
+      <button class="pd-back" onclick="showPage('projects')" style="position:relative; z-index:10;">← Back to Projects</button>
       
-      <div class="pd-banner" style="background-image: url('${p.bannerImage || p.image || ''}')">
-        <div class="pd-banner-overlay"></div>
-        <div class="pd-banner-content">
+      <div class="pd-banner" style="background: #000; position:relative;">
+        ${bannerContent}
+        <div class="pd-banner-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, #0d0f1a, transparent); z-index:1;"></div>
+        <div class="pd-banner-content" style="position:relative; z-index:2;">
           <h1 class="pd-banner-title" style="--project-color: ${p.color || 'var(--orange)'}">${p.title}</h1>
           
           <div class="pd-meta-row">
-            <span class="pd-meta-chip">📅 Session ${p.session || '?'}</span>
             <span class="pd-meta-chip">👤 ${p.author || 'Tinkering Lab'}</span>
             <span class="pd-meta-chip">🕒 ${p.date || 'Unknown'}</span>
-            <span class="pd-status-badge status-${(p.status || 'Available').replace(' ', '-')}">${p.status || 'Available'}</span>
             <div class="pd-difficulty-stars" style="color: ${p.color || 'var(--orange)'}; font-size: 1.2rem;">
               ${'★'.repeat(p.difficulty || 1)}${'☆'.repeat(5 - (p.difficulty || 1))}
             </div>
@@ -205,27 +207,20 @@ async function renderProjectDetail() {
       <div class="pd-tabs" style="overflow-x: auto; flex-wrap: nowrap; padding-bottom: 10px;">
         <button class="pd-tab active" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('overview', this)">📋 Overview</button>
         ${hasPresentationTab ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('presentation', this)">📑 Presentation</button>` : ''}
-        ${hasComponents ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('components', this)">🧩 Components</button>` : ''}
         ${hasAchievements ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('achievements', this)">🏆 Achievements</button>` : ''}
         ${files3dCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('3d', this)">🖨️ 3D (${files3dCount})</button>` : ''}
         ${codeCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('code', this)">💻 Code (${codeCount})</button>` : ''}
         ${dataVideoCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('videos', this)">🎬 Videos (${dataVideoCount})</button>` : ''}
         ${imgCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('gallery', this)">🖼️ Gallery (${imgCount})</button>` : ''}
-        ${resCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('resources', this)">🔗 Resources (${resCount})</button>` : ''}
+        <button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('resources', this)">🔗 Resources & Components</button>
       </div>
     </div>
 
     <!-- Overview Tab -->
     <div id="ptab-overview" class="pd-tab-content active">
       <div class="pd-overview-grid">
-        
         <div class="pd-overview-main">
-          ${p.innovation ? `
-            <div class="pd-innovation-quote" style="--project-color: ${p.color || 'var(--orange)'};">
-              "${p.innovation}"
-            </div>
-          ` : ''}
-          
+          ${p.innovation ? `<div class="pd-innovation-quote" style="--project-color: ${p.color || 'var(--orange)'};">"${p.innovation}"</div>` : ''}
           ${p.problemStatement || p.solutionApproach ? `
             <div class="pd-problem-solution" style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: stretch; margin-bottom: 32px;">
               <div class="pd-problem-card" style="background: rgba(255, 71, 87, 0.1); border: 1px solid rgba(255, 71, 87, 0.3); padding: 20px; border-radius: 12px;">
@@ -239,31 +234,8 @@ async function renderProjectDetail() {
               </div>
             </div>
           ` : ''}
-
           ${p.fullDesc ? `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.fullDesc.replace(/\n/g, '<br>')}</div>` : (p.desc ? `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.desc}</div>` : '')}
-
-          ${(p.guide || []).length > 0 ? `
-            <div class="pd-skills-panel" style="margin-bottom: 32px;">
-              <div style="display: flex; gap: 12px; margin-bottom: 24px;">
-                ${p.estimatedTime ? `<span style="background: var(--surface2); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem;">⏱️ ${p.estimatedTime}</span>` : ''}
-                ${(p.prerequisites || []).length > 0 ? `<span style="background: var(--surface2); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem;">📚 ${p.prerequisites.join(', ')}</span>` : ''}
-              </div>
-              <h3 class="pd-panel-title" style="margin-bottom: 24px;"><span style="color: var(--cyan)">⚡</span> Step-by-Step Guide</h3>
-              <div class="pd-stepper" style="display: flex; flex-direction: column; gap: 0;">
-                ${p.guide.map((step, i) => `
-                  <div style="display: flex; gap: 16px; position: relative; padding-bottom: ${i === p.guide.length - 1 ? '0' : '24px'};">
-                    ${i !== p.guide.length - 1 ? `<div style="position: absolute; left: 14px; top: 32px; bottom: 0; width: 2px; background: var(--surface2);"></div>` : ''}
-                    <div style="width: 30px; height: 30px; border-radius: 50%; background: ${p.color || 'var(--orange)'}; color: #000; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; z-index: 1;">${i+1}</div>
-                    <div style="background: var(--surface); padding: 16px; border-radius: 12px; flex: 1; border: 1px solid var(--border); ${i === p.guide.length - 1 ? 'border-color: rgba(0,255,136,0.3); box-shadow: 0 0 10px rgba(0,255,136,0.1);' : ''}">
-                      ${step} ${i === p.guide.length - 1 ? ' <div style="color: var(--green); font-weight: bold; margin-top: 8px;">✓ Done</div>' : ''}
-                    </div>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          ` : ''}
         </div>
-
         <div class="pd-overview-sidebar">
           ${p.hardwareSpecs ? `
             <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
@@ -278,20 +250,72 @@ async function renderProjectDetail() {
               </table>
             </div>
           ` : ''}
-          <div style="margin-bottom: 24px;">
-            <h4 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">🏷️ Tags</h4>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              ${(p.tags || []).map(t => `<span class="tag" style="background: var(--surface);">${t}</span>`).join('')}
-            </div>
-          </div>
         </div>
-
       </div>
     </div>
     
     <!-- Unified Presentation Tab -->
     <div id="ptab-presentation" class="pd-tab-content">
       <div style="display: flex; flex-direction: column; gap: 40px; max-width: 1000px; margin: 0 auto;">
+        
+        ${hasPoster ? `
+          <div>
+            <h3 class="pd-videos-section-title">📊 Poster</h3>
+            <div style="background: var(--surface); padding: 16px; border-radius: 12px; border: 1px solid var(--border); cursor: pointer;" onclick="openFullscreenMedia('${p.poster}', 'img')">
+              <img src="${p.poster}" alt="Poster" style="width: 100%; border-radius: 8px; display: block; max-height: 300px; object-fit: contain; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\'>Image not found</div>'" />
+              <div style="text-align:center; padding-top:10px; font-size: 0.85rem; color:var(--text-muted);">Click to view full screen</div>
+            </div>
+          </div>
+        ` : ''}
+        
+        ${hasCircuit ? `
+          <div>
+            <h3 class="pd-videos-section-title">🔌 Circuit Diagram</h3>
+            <div style="background: var(--surface); padding: 16px; border-radius: 12px; border: 1px solid var(--border); cursor: pointer;" onclick="openFullscreenMedia('${p.circuitDiagram}', 'img')">
+              <img src="${p.circuitDiagram}" alt="Circuit Diagram" style="width: 100%; border-radius: 8px; display: block; max-height: 300px; object-fit: contain; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\'>Image not found</div>'" />
+              <div style="text-align:center; padding-top:10px; font-size: 0.85rem; color:var(--text-muted);">Click to view full screen</div>
+            </div>
+          </div>
+        ` : ''}
+
+        ${hasPdf ? `
+          <div>
+            <h3 class="pd-videos-section-title">📄 PDF Guide</h3>
+            <div class="slides-ppt" id="projectPdfWrap" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 400px; background: #f8fafc; cursor:pointer;">
+              <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: white;" onclick="openFullscreenMedia('${p.pdf}', 'pdf')">
+                 <iframe src="${p.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="Project PDF"></iframe>
+              </div>
+              <div style="background: var(--surface); padding: 12px 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+                <span class="pdf-label" style="font-weight: 700; color: var(--text);">Click to view full screen</span>
+                <a href="${p.pdf}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+              </div>
+            </div>
+          </div>
+        ` : ''}
+
+        ${hasResearch ? `
+          <div>
+            <h3 class="pd-videos-section-title">🔬 Research Paper</h3>
+            <div class="slides-ppt" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 400px; background: #f8fafc; cursor:pointer;">
+              <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: white;" onclick="openFullscreenMedia('${p.researchPaper}', 'pdf')">
+                 <iframe src="${p.researchPaper}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="Research Paper"></iframe>
+              </div>
+              <div style="background: var(--surface); padding: 12px 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+                <span class="pdf-label" style="font-weight: 700; color: var(--text);">Click to view full screen</span>
+                <a href="${p.researchPaper}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+              </div>
+            </div>
+          </div>
+        ` : ''}
+        
+        ${hasPpt ? `
+          <div>
+            <h3 class="pd-videos-section-title">📑 Presentation File</h3>
+            <div style="background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 24px; text-align: center;">
+               <a href="${p.ppt}" target="_blank" class="btn-primary" style="display: inline-block;">Download Presentation (.pptx)</a>
+            </div>
+          </div>
+        ` : ''}
         
         ${ytVideoCount > 0 ? `
           <div>
@@ -311,73 +335,7 @@ async function renderProjectDetail() {
             </div>
           </div>
         ` : ''}
-
-        ${hasPoster ? `
-          <div>
-            <h3 class="pd-videos-section-title">📊 Poster</h3>
-            <div style="background: var(--surface); padding: 16px; border-radius: 12px; border: 1px solid var(--border);">
-              <img src="${p.poster}" alt="Poster" style="width: 100%; border-radius: 8px; display: block;" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\'>Image not found</div>'" />
-            </div>
-          </div>
-        ` : ''}
-        
-        ${hasCircuit ? `
-          <div>
-            <h3 class="pd-videos-section-title">🔌 Circuit Diagram</h3>
-            <div style="background: var(--surface); padding: 16px; border-radius: 12px; border: 1px solid var(--border);">
-              <img src="${p.circuitDiagram}" alt="Circuit Diagram" style="width: 100%; border-radius: 8px; display: block;" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\'>Image not found</div>'" />
-            </div>
-          </div>
-        ` : ''}
-
-        ${hasPdf ? `
-          <div>
-            <h3 class="pd-videos-section-title">📄 PDF Guide</h3>
-            <div class="slides-ppt" id="projectPdfWrap" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
-              <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10;">
-                <span class="pdf-label" style="font-weight: 700; color: var(--text);">📄 Project PDF</span>
-                <div style="display: flex; gap: 10px;">
-                  <button onclick="toggleFullScreen(document.getElementById('projectPdfWrap'))" style="background: var(--orange); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
-                    ⛶ Full Screen
-                  </button>
-                  <a href="${p.pdf}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
-                </div>
-              </div>
-              <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: white;">
-                 <iframe src="${p.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none;" title="Project PDF"></iframe>
-              </div>
-            </div>
-          </div>
-        ` : ''}
-
-        ${hasResearch ? `
-          <div>
-            <h3 class="pd-videos-section-title">🔬 Research Paper</h3>
-            <div class="slides-ppt" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
-              <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-                <span class="pdf-label" style="font-weight: 700; color: var(--text);">🔬 Research</span>
-                <a href="${p.researchPaper}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
-              </div>
-              <iframe src="${p.researchPaper}#toolbar=0&view=Fit" style="flex:1; border: none;" title="Research Paper"></iframe>
-            </div>
-          </div>
-        ` : ''}
-        
-        ${hasPpt ? `
-          <div>
-            <h3 class="pd-videos-section-title">📑 Presentation File</h3>
-            <div style="background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 24px; text-align: center;">
-               <a href="${p.ppt}" target="_blank" class="btn-primary" style="display: inline-block;">Download Presentation (.pptx)</a>
-            </div>
-          </div>
-        ` : ''}
       </div>
-    </div>
-
-    <!-- Components Tab -->
-    <div id="ptab-components" class="pd-tab-content">
-      <div id="components-loading" style="text-align:center; padding: 40px; color: var(--text-muted);">Loading component data...</div>
-      <div id="components-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; display: none;"></div>
     </div>
     
     <!-- Achievements Tab -->
@@ -416,17 +374,24 @@ async function renderProjectDetail() {
     <div id="ptab-code" class="pd-tab-content">
       ${codeCount === 0 ? renderProjectEmptyState('💻', 'No Code Files Yet', 'Arduino sketches and scripts will appear here.') : `
         <div class="pd-code-list">
-          ${p.codeFiles.map(c => `
-            <div class="pd-code-card">
-              <div class="pd-code-icon">📝</div>
-              <div class="pd-code-info">
-                <div class="pd-code-name">${c.name}</div>
-                <div>
-                  ${c.language ? `<span class="pd-code-lang">${c.language}</span>` : ''}
-                  <span class="pd-code-desc">${c.desc || ''}</span>
+          ${p.codeFiles.map((c, i) => `
+            <div class="pd-code-card" style="display:block; width:100%; background: var(--surface); padding:20px; border-radius:12px; border:1px solid var(--border); margin-bottom: 24px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <div class="pd-code-info">
+                  <div class="pd-code-name" style="font-size: 1.2rem;">📝 ${c.name}</div>
+                  <div>
+                    ${c.language ? `<span class="pd-code-lang">${c.language}</span>` : ''}
+                    <span class="pd-code-desc">${c.desc || ''}</span>
+                  </div>
                 </div>
+                <a href="${c.url}" target="_blank" class="btn-primary" title="Download Code">⬇️ Download</a>
               </div>
-              <a href="${c.url}" target="_blank" class="pd-code-download" title="Download Code">⬇️</a>
+              <div class="code-preview" id="code-preview-${i}" style="background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; max-height: 400px; overflow-y: auto;">
+                Loading code...
+              </div>
+              <div style="text-align:center; margin-top:16px;">
+                <a href="${c.url}" target="_blank" class="btn-outline" style="border-color: var(--border); color: var(--text);">⬇️ Download File</a>
+              </div>
             </div>
           `).join('')}
         </div>
@@ -474,9 +439,12 @@ async function renderProjectDetail() {
       `}
     </div>
 
-    <!-- Resources Tab -->
+    <!-- Resources Tab (includes Components) -->
     <div id="ptab-resources" class="pd-tab-content">
-      ${resCount === 0 ? renderProjectEmptyState('🔗', 'No Resources Yet', 'Datasheets and external links will appear here.') : `
+      ${(resCount === 0 && !hasComponents) ? renderProjectEmptyState('🔗', 'No Resources or Components Yet', 'Datasheets and external links will appear here.') : ''}
+      
+      ${resCount > 0 ? `
+        <h3 class="pd-panel-title" style="margin-bottom:24px;">🔗 External Links & Datasheets</h3>
         <div class="pd-resources-list">
           ${p.resources.map(r => `
             <a href="${r.url}" target="_blank" class="pd-resource-card">
@@ -486,14 +454,209 @@ async function renderProjectDetail() {
             </a>
           `).join('')}
         </div>
-      `}
+      ` : ''}
+      
+      ${hasComponents ? `
+        <h3 class="pd-panel-title" style="margin-top:40px; margin-bottom:24px;">🧩 Hardware Components</h3>
+        <div id="components-loading" style="text-align:center; padding: 40px; color: var(--text-muted);">Loading component data...</div>
+        <div id="components-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; display: none;"></div>
+      ` : ''}
     </div>
   `;
   
   if (hasComponents) {
     loadComponentCards(p);
   }
+  
+  // Fetch code contents
+  if (codeCount > 0) {
+    p.codeFiles.forEach((c, i) => {
+      fetch(c.url)
+        .then(res => res.text())
+        .then(text => {
+          const el = document.getElementById('code-preview-' + i);
+          if (el) el.textContent = text;
+        })
+        .catch(err => {
+          const el = document.getElementById('code-preview-' + i);
+          if (el) el.textContent = 'Error loading code preview.';
+        });
+    });
+  }
 }
+
+// Lightbox for media (Poster, Circuit, PDF)
+window.openFullscreenMedia = function(url, type) {
+  let modal = document.getElementById('mediaFullscreenModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'mediaFullscreenModal';
+    modal.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; display:flex; align-items:center; justify-content:center; flex-direction:column;';
+    modal.innerHTML = `
+      <div style="position:absolute; top:20px; right:20px; color:#fff; font-size:2rem; cursor:pointer; z-index:10001;" onclick="closeFullscreenMedia()">✕</div>
+      <div id="mediaFullscreenContent" style="width:90%; height:90%; display:flex; align-items:center; justify-content:center; position:relative;"></div>
+      <div style="color:var(--text-muted); font-size:0.9rem; margin-top:10px;">Press ESC to close</div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Keydown event
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('mediaFullscreenModal').style.display === 'flex') {
+        closeFullscreenMedia();
+      }
+    });
+  }
+  
+  const content = document.getElementById('mediaFullscreenContent');
+  if (type === 'img') {
+    content.innerHTML = `<img src="${url}" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />`;
+  } else if (type === 'pdf') {
+    content.innerHTML = `<iframe src="${url}#toolbar=0&navpanes=0&view=Fit" style="width:100%; height:100%; border:none; border-radius:8px; background:white;"></iframe>`;
+  }
+  
+  modal.style.display = 'flex';
+};
+
+window.closeFullscreenMedia = function() {
+  const modal = document.getElementById('mediaFullscreenModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.getElementById('mediaFullscreenContent').innerHTML = ''; // clear iframe
+  }
+};
+
+// =============================================
+//  LOAD COMPONENT CARDS (from data/components/)
+// =============================================
+async function loadComponentCards(project) {
+  const loadingEl = document.getElementById('components-loading');
+  const containerEl = document.getElementById('components-container');
+  if (!containerEl) return;
+
+  // Determine which component refs to load
+  const refs = project.componentRefs || [];
+  if (refs.length === 0 && project.components && project.components.length > 0) {
+    // Fallback: just show a simple list if no componentRefs
+    if (loadingEl) loadingEl.style.display = 'none';
+    containerEl.style.display = 'grid';
+    containerEl.innerHTML = project.components.map(c => `
+      <div style="background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--border); display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 1.5rem;">🔧</span>
+        <span style="font-weight: 600;">${c}</span>
+      </div>
+    `).join('');
+    return;
+  }
+
+  try {
+    const componentData = await Promise.all(
+      refs.map(async (refId) => {
+        try {
+          const res = await fetch(`data/components/${refId}.json`);
+          if (!res.ok) return null;
+          return await res.json();
+        } catch (e) {
+          console.warn('Could not load component:', refId, e);
+          return null;
+        }
+      })
+    );
+
+    const validComponents = componentData.filter(Boolean);
+
+    if (loadingEl) loadingEl.style.display = 'none';
+    containerEl.style.display = 'grid';
+
+    if (validComponents.length === 0) {
+      containerEl.innerHTML = `<div style="text-align:center; padding: 40px; color: var(--text-muted); grid-column: 1/-1;">No component data found.</div>`;
+      return;
+    }
+
+    containerEl.innerHTML = validComponents.map(comp => `
+      <div class="component-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.2)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+        
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, ${comp.color || '#FF6B35'}22, ${comp.color || '#FF6B35'}08); padding: 20px; border-bottom: 1px solid var(--border);">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            ${comp.image ? `<img src="${comp.image}" alt="${comp.name}" style="width: 64px; height: 64px; border-radius: 12px; object-fit: cover; border: 2px solid ${comp.color || 'var(--border)'};" onerror="this.style.display='none'" />` : ''}
+            <div>
+              <div style="font-size: 0.75rem; color: ${comp.color || 'var(--orange)'}; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">${comp.category || 'Component'}</div>
+              <h4 style="margin: 4px 0 0; font-size: 1.2rem;">${comp.fullName || comp.name}</h4>
+            </div>
+          </div>
+          ${comp.tagline ? `<p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">${comp.tagline}</p>` : ''}
+        </div>
+
+        <div style="padding: 20px;">
+          <!-- Description -->
+          ${comp.description ? `<p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">${comp.description}</p>` : ''}
+
+          <!-- Specs Table -->
+          ${comp.specs ? `
+            <div style="margin-bottom: 20px;">
+              <h5 style="font-size: 0.85rem; color: ${comp.color || 'var(--orange)'}; margin-bottom: 10px;">⚙️ Specifications</h5>
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                ${Object.entries(comp.specs).map(([key, val]) => `
+                  <tr>
+                    <td style="padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); text-transform: capitalize;">${key.replace(/([A-Z])/g, ' $1')}</td>
+                    <td style="padding: 8px 0; border-bottom: 1px solid var(--border); text-align: right; color: var(--text); font-weight: 500;">${val}</td>
+                  </tr>
+                `).join('')}
+              </table>
+            </div>
+          ` : ''}
+
+          <!-- Pinout -->
+          ${comp.pinout && comp.pinout.length > 0 ? `
+            <div style="margin-bottom: 20px;">
+              <h5 style="font-size: 0.85rem; color: ${comp.color || 'var(--orange)'}; margin-bottom: 10px;">📌 Pinout</h5>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                ${comp.pinout.map(pin => `
+                  <div style="display: flex; align-items: center; gap: 10px; background: var(--surface2); padding: 8px 12px; border-radius: 8px;">
+                    <div style="width: 10px; height: 10px; border-radius: 50%; background: ${pin.color || '#888'}; flex-shrink: 0;"></div>
+                    <span style="font-weight: 700; min-width: 50px; font-size: 0.85rem;">${pin.name}</span>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">${pin.desc}</span>
+                  </div>
+                `).join('')}
+              </div>
+              ${comp.wiringNote ? `<div style="margin-top: 10px; padding: 10px 14px; background: rgba(255, 200, 0, 0.1); border: 1px solid rgba(255, 200, 0, 0.3); border-radius: 8px; font-size: 0.85rem; color: #FFC800;">⚠️ ${comp.wiringNote}</div>` : ''}
+            </div>
+          ` : ''}
+
+          <!-- Code Snippet -->
+          ${comp.codeSnippet ? `
+            <div style="margin-bottom: 20px;">
+              <h5 style="font-size: 0.85rem; color: ${comp.color || 'var(--orange)'}; margin-bottom: 10px;">💻 Quick Start Code</h5>
+              ${comp.libraryName ? `<div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">📦 Library: ${comp.libraryName}</div>` : ''}
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; max-height: 250px; overflow-y: auto;">${comp.codeSnippet.replace(/\\n/g, '\n')}</pre>
+            </div>
+          ` : ''}
+
+          <!-- Common Mistakes -->
+          ${comp.commonMistakes && comp.commonMistakes.length > 0 ? `
+            <div style="margin-bottom: 20px;">
+              <h5 style="font-size: 0.85rem; color: #FF4757; margin-bottom: 10px;">🚫 Common Mistakes</h5>
+              <ul style="padding-left: 20px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.7;">
+                ${comp.commonMistakes.map(m => `<li>${m}</li>`).join('')}
+              </ul>
+            </div>
+          ` : ''}
+
+          <!-- Links -->
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            ${comp.datasheetUrl ? `<a href="${comp.datasheetUrl}" target="_blank" style="background: var(--surface2); color: var(--text); padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; text-decoration: none; border: 1px solid var(--border); transition: background 0.2s;" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background='var(--surface2)'">📄 Datasheet</a>` : ''}
+            ${comp.buyLink ? `<a href="${comp.buyLink}" target="_blank" style="background: ${comp.color || 'var(--orange)'}; color: #fff; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">🛒 Buy</a>` : ''}
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+  } catch (err) {
+    console.error('Error loading component cards:', err);
+    if (loadingEl) loadingEl.textContent = 'Failed to load component data.';
+  }
+}
+
 function renderProjectEmptyState(icon, title, desc) {
   return `
     <div class="pd-placeholder">

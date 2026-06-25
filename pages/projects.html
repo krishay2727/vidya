@@ -7,19 +7,29 @@
     </div>
 
     <!-- FILTER BAR -->
-    <div class="projects-filter-bar" id="projectsFilterBar">
-      <div class="projects-search-wrap">
+    <div class="projects-filter-bar" id="projectsFilterBar" style="flex-wrap: wrap;">
+      <div class="projects-search-wrap" style="flex: 1; min-width: 250px;">
         <span class="search-icon">🔍</span>
-        <input type="text" id="projectSearchInput" class="projects-search" placeholder="Search projects…" oninput="filterProjects()" />
+        <input type="text" id="projectSearchInput" class="projects-search" placeholder="Search by title, description, keywords..." oninput="filterProjects()" />
       </div>
-      <div class="projects-filter-pills" id="projectsTagFilters">
-        <!-- Dynamically populated tags -->
-        <button class="filter-pill active" data-filter="all" onclick="setProjectFilter('all', this)">All</button>
-      </div>
-      <div class="projects-status-pills">
-        <button class="status-pill active" data-status="all" onclick="setStatusFilter('all', this)">All Status</button>
-        <button class="status-pill" data-status="Available" onclick="setStatusFilter('Available', this)">✅ Available</button>
-        <button class="status-pill" data-status="Coming Soon" onclick="setStatusFilter('Coming Soon', this)">🔮 Coming Soon</button>
+      
+      <div class="projects-dropdowns" style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <select id="filterDifficulty" class="projects-select" onchange="filterProjects()" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;">
+          <option value="all">All Difficulties</option>
+          <option value="1">⭐ 1 Star</option>
+          <option value="2">⭐⭐ 2 Stars</option>
+          <option value="3">⭐⭐⭐ 3 Stars</option>
+          <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+          <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+        </select>
+
+        <select id="filterMicrocontroller" class="projects-select" onchange="filterProjects()" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;">
+          <option value="all">All Microcontrollers</option>
+        </select>
+
+        <select id="filterComponent" class="projects-select" onchange="filterProjects()" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;">
+          <option value="all">All Components</option>
+        </select>
       </div>
     </div>
 

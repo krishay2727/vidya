@@ -591,3 +591,12 @@
 }
 
 
+
+@keyframes sliderAnim {
+  0% { opacity: 0; transform: scale(1); }
+  5% { opacity: 0.6; transform: scale(1.02); }
+  25% { opacity: 0.6; transform: scale(1.05); }
+  30% { opacity: 0; transform: scale(1.06); }
+  100% { opacity: 0; }
+}
+
