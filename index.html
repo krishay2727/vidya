@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-  <base href="/">
+  <script>
+    document.write('<base href="' + (window.location.pathname.includes('/vidya') ? '/vidya/' : '/') + '">');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VIDYA DIGI Education</title>

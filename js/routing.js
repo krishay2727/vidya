@@ -7,12 +7,13 @@ async function showPage(name, pathParam = null) {
   );
 
   // Update URL history
+  const base = window.BASE_PATH || '/';
   if (name === 'home') {
-    window.history.pushState(null, null, '/');
+    window.history.pushState(null, null, base);
   } else if (name === 'project-detail' && pathParam) {
-    window.history.pushState(null, null, '/project/' + encodeURIComponent(pathParam));
+    window.history.pushState(null, null, base + 'project/' + encodeURIComponent(pathParam));
   } else {
-    window.history.pushState(null, null, '/' + name);
+    window.history.pushState(null, null, base + name);
   }
 
   // Fetch HTML view and inject

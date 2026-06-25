@@ -105,7 +105,8 @@ async function init() {
   if (redirectPage && validPages.includes(redirectPage)) {
     targetPage = redirectPage;
     // Clean up the URL in history (removes ?p=live-quiz)
-    window.history.replaceState(null, null, redirectPage);
+    const base = window.BASE_PATH || '/';
+    window.history.replaceState(null, null, base + redirectPage);
   } else {
     const pathSegments = window.location.pathname.split('/').filter(Boolean);
     if (pathSegments.length >= 2 && pathSegments[pathSegments.length - 2] === 'project') {
