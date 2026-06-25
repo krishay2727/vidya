@@ -102,18 +102,30 @@ async function init() {
   let targetParam = null;
   const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail', 'project-detail'];
 
-  if (redirectPage && validPages.includes(redirectPage)) {
-    targetPage = redirectPage;
-    // Clean up the URL in history (removes ?p=live-quiz)
+  if (redirectPage) {
     const base = window.BASE_PATH || '/';
-    window.history.replaceState(null, null, base + redirectPage);
+    // Check if the redirect is a project deep link like "project/weather-station"
+    const projectMatch = redirectPage.match(/^project\/(.+)$/);
+    if (projectMatch) {
+      targetPage = 'project-detail';
+      targetParam = decodeURIComponent(projectMatch[1]);
+      window.history.replaceState(null, null, base + 'project/' + encodeURIComponent(targetParam));
+    } else if (validPages.includes(redirectPage)) {
+      targetPage = redirectPage;
+      // Clean up the URL in history (removes ?p=live-quiz)
+      window.history.replaceState(null, null, base + redirectPage);
+    }
   } else {
     const pathSegments = window.location.pathname.split('/').filter(Boolean);
-    if (pathSegments.length >= 2 && pathSegments[pathSegments.length - 2] === 'project') {
+    // Filter out the repo name (e.g. "vidya") from the path segments
+    const repoIndex = pathSegments.indexOf('vidya');
+    const routeSegments = repoIndex >= 0 ? pathSegments.slice(repoIndex + 1) : pathSegments;
+
+    if (routeSegments.length >= 2 && routeSegments[routeSegments.length - 2] === 'project') {
       targetPage = 'project-detail';
-      targetParam = decodeURIComponent(pathSegments[pathSegments.length - 1]);
+      targetParam = decodeURIComponent(routeSegments[routeSegments.length - 1]);
     } else {
-      const pathSegment = pathSegments.pop();
+      const pathSegment = routeSegments.pop();
       if (pathSegment && validPages.includes(pathSegment) && pathSegment !== 'VIDYA') {
         targetPage = pathSegment;
       }
@@ -140,8 +152,12 @@ window.addEventListener('popstate', () => {
   const pathSegments = window.location.pathname.split('/').filter(Boolean);
   const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail', 'project-detail'];
 
-  if (pathSegments.length >= 2 && pathSegments[pathSegments.length - 2] === 'project') {
-    const targetParam = decodeURIComponent(pathSegments[pathSegments.length - 1]);
+  // Filter out the repo name (e.g. "vidya") from the path segments
+  const repoIndex = pathSegments.indexOf('vidya');
+  const routeSegments = repoIndex >= 0 ? pathSegments.slice(repoIndex + 1) : pathSegments;
+
+  if (routeSegments.length >= 2 && routeSegments[routeSegments.length - 2] === 'project') {
+    const targetParam = decodeURIComponent(routeSegments[routeSegments.length - 1]);
     currentProject = PROJECTS.find(p => p.id === targetParam);
     if (currentProject) {
       showPage('project-detail', targetParam);
@@ -149,7 +165,7 @@ window.addEventListener('popstate', () => {
     }
   }
 
-  const pathSegment = pathSegments.pop();
+  const pathSegment = routeSegments.pop();
   if (pathSegment && validPages.includes(pathSegment) && pathSegment !== 'VIDYA') {
     showPage(pathSegment);
   } else {
