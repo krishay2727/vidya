@@ -3,10 +3,9 @@
 // =============================================
 
 const heroCarouselImages = [
-    "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600",
-    "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600",
-    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=600",
-    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600"
+    "data/carousel1f.jpg",
+    "data/carousel2.jpg",
+    "data/carousel3f.jpg"
 ];
 
 let carouselCurrentIndex = 1; 
