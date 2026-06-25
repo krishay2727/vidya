@@ -4,38 +4,46 @@
   "subtitle": "Real-time environmental monitoring with DHT11 + LCD",
   "level": "Intermediate",
   "color": "#00D4FF",
-  "session": 2,
   "desc": "Read temperature & humidity — display it on screen!",
   "fullDesc": "Build a real weather monitoring station using a DHT11 sensor...",
-
   "image": "projects/images/weather-station.jpg",
   "bannerImage": "projects/images/weather-station-banner.jpg",
-
   "difficulty": 3,
   "status": "Available",
-  "tags": ["Sensors", "LCD", "Arduino", "IoT"],
-
+  "tags": [
+    "Sensors",
+    "LCD",
+    "Arduino",
+    "IoT"
+  ],
   "date": "2026-05-15",
   "author": "Nikhil",
   "team": [
-    { "name": "Nikhil", "role": "Firmware & Hardware Lead" },
-    { "name": "Rohan", "role": "Circuit Design" }
+    {
+      "name": "Nikhil",
+      "role": "Firmware & Hardware Lead"
+    },
+    {
+      "name": "Rohan",
+      "role": "Circuit Design"
+    }
   ],
-
   "innovation": "First iteration of a low-cost room-scale weather monitor deployable in rural schools without internet.",
   "problemStatement": "Schools in semi-urban areas have no way to track indoor air conditions affecting student health and comfort.",
   "solutionApproach": "Used DHT11 with an Arduino + 16x2 LCD to display live readings, powered off a USB wall adapter. No internet required.",
-
   "hardwareSpecs": {
     "microcontroller": "Arduino UNO (ATmega328P)",
     "powerConsumption": "~80mA @ 5V",
     "operatingVoltage": "5V DC",
     "communicationProtocol": "1-Wire (DHT11), I2C or 4-bit parallel (LCD)",
     "dimensions": "Breadboard prototype — 170×130mm",
-    "sensors": ["DHT11 (Temp: ±2°C, Humidity: ±5%RH)"],
-    "displays": ["16×2 LCD (HD44780 compatible)"]
+    "sensors": [
+      "DHT11 (Temp: ±2°C, Humidity: ±5%RH)"
+    ],
+    "displays": [
+      "16×2 LCD (HD44780 compatible)"
+    ]
   },
-
   "components": [
     "Arduino UNO",
     "DHT11 Temperature & Humidity Sensor",
@@ -44,14 +52,12 @@
     "Breadboard",
     "Jumper wires"
   ],
-
   "componentRefs": [
     "dht11",
     "arduino-uno",
     "lcd-16x2",
     "potentiometer-10k"
   ],
-
   "guide": [
     "Wire DHT11 data pin to Arduino D2, VCC to 5V, GND to GND",
     "Wire LCD in 4-bit mode: RS→D7, EN→D8, D4-D7→D4-D7 on Arduino",
@@ -61,16 +67,16 @@
     "Verify sensor readings in Serial Monitor before checking LCD",
     "Modify code to format and display Temp + Humidity on two LCD rows"
   ],
-
   "estimatedTime": "90 minutes",
-  "prerequisites": ["Basic Arduino wiring", "Library installation"],
-
-  "pdf": "projects/docs/weather-station-guide.pdf",
-  "poster": "projects/docs/weather-station-poster.pdf",
+  "prerequisites": [
+    "Basic Arduino wiring",
+    "Library installation"
+  ],
+  "pdf": "data/Nik_STEAM_S1.pdf",
+  "poster": "data/student coding.jpeg",
   "ppt": "projects/docs/weather-station-presentation.pptx",
-  "researchPaper": "projects/docs/weather-station-research.pdf",
-  "circuitDiagram": "projects/docs/weather-station-circuit.pdf",
-
+  "researchPaper": "data/Nik_STEAM_S1.pdf",
+  "circuitDiagram": "data/breadboard-circuit.jpg",
   "files3d": [],
   "codeFiles": [
     {
@@ -80,18 +86,41 @@
       "url": "projects/code/weather_station_basic.ino"
     }
   ],
-  "youtubeVideos": [],
+  "youtubeVideos": [
+    {
+      "title": "Weather Station Demo",
+      "videoId": "dQw4w9WgXcQ",
+      "desc": "Demonstrating the completed weather station"
+    }
+  ],
   "dataVideos": [],
   "gallery": [],
-
+  "liveUrl": "https://pnikv.github.io/sim-flight/",
   "resources": [
-    { "icon": "📄", "title": "DHT11 Datasheet", "url": "data/components/dht11.json" },
-    { "icon": "📚", "title": "LiquidCrystal Library Docs", "url": "https://www.arduino.cc/reference/en/libraries/liquidcrystal/" }
+    {
+      "icon": "📄",
+      "title": "DHT11 Datasheet",
+      "url": "data/components/dht11.json"
+    },
+    {
+      "icon": "📚",
+      "title": "LiquidCrystal Library Docs",
+      "url": "https://www.arduino.cc/reference/en/libraries/liquidcrystal/"
+    }
   ],
-
   "liveUrl": "",
   "githubUrl": "",
-
-  "achievements": ["Displayed at School Science Fair 2026", "Shortlisted — InfraTech Student Demo"],
-  "keywords": ["weather", "DHT11", "temperature", "humidity", "LCD", "Arduino", "environment"]
+  "achievements": [
+    "Displayed at School Science Fair 2026",
+    "Shortlisted — InfraTech Student Demo"
+  ],
+  "keywords": [
+    "weather",
+    "DHT11",
+    "temperature",
+    "humidity",
+    "LCD",
+    "Arduino",
+    "environment"
+  ]
 }

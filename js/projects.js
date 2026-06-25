@@ -139,14 +139,15 @@ function openProject(id) {
   showPage('project-detail', id);
 }
 
-async function renderProjectDetail() {
+async async function renderProjectDetail() {
   const p = currentProject;
   const container = document.getElementById('projectDetailContent');
   if (!container) return;
 
   const files3dCount = p.files3d?.length || 0;
   const codeCount = p.codeFiles?.length || 0;
-  const videoCount = (p.youtubeVideos?.length || 0) + (p.dataVideos?.length || 0);
+  const dataVideoCount = p.dataVideos?.length || 0;
+  const ytVideoCount = p.youtubeVideos?.length || 0;
   const imgCount = p.gallery?.length || 0;
   const resCount = p.resources?.length || 0;
   
@@ -157,6 +158,7 @@ async function renderProjectDetail() {
   const hasCircuit = !!p.circuitDiagram;
   const hasComponents = (p.componentRefs && p.componentRefs.length > 0) || (p.components && p.components.length > 0);
   const hasAchievements = p.achievements && p.achievements.length > 0;
+  const hasPresentationTab = hasPdf || hasPoster || hasPpt || hasResearch || hasCircuit || ytVideoCount > 0;
 
   container.innerHTML = `
     <!-- Header -->
@@ -202,16 +204,12 @@ async function renderProjectDetail() {
     <div class="pd-tabs-container">
       <div class="pd-tabs" style="overflow-x: auto; flex-wrap: nowrap; padding-bottom: 10px;">
         <button class="pd-tab active" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('overview', this)">📋 Overview</button>
-        ${hasPdf ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('pdf', this)">📄 PDF Guide</button>` : ''}
-        ${hasPoster ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('poster', this)">📊 Poster</button>` : ''}
-        ${hasPpt ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('ppt', this)">📑 Presentation</button>` : ''}
-        ${hasResearch ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('research', this)">🔬 Research</button>` : ''}
-        ${hasCircuit ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('circuit', this)">🔌 Circuit</button>` : ''}
+        ${hasPresentationTab ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('presentation', this)">📑 Presentation</button>` : ''}
         ${hasComponents ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('components', this)">🧩 Components</button>` : ''}
         ${hasAchievements ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('achievements', this)">🏆 Achievements</button>` : ''}
         ${files3dCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('3d', this)">🖨️ 3D (${files3dCount})</button>` : ''}
         ${codeCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('code', this)">💻 Code (${codeCount})</button>` : ''}
-        ${videoCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('videos', this)">🎬 Videos (${videoCount})</button>` : ''}
+        ${dataVideoCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('videos', this)">🎬 Videos (${dataVideoCount})</button>` : ''}
         ${imgCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('gallery', this)">🖼️ Gallery (${imgCount})</button>` : ''}
         ${resCount > 0 ? `<button class="pd-tab" style="--project-color: ${p.color || 'var(--orange)'}" onclick="switchProjectTab('resources', this)">🔗 Resources (${resCount})</button>` : ''}
       </div>
@@ -291,58 +289,89 @@ async function renderProjectDetail() {
       </div>
     </div>
     
-    <!-- Poster Tab -->
-    <div id="ptab-poster" class="pd-tab-content">
-      ${hasPoster ? `
-        <div class="slides-ppt" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
-          <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-            <span class="pdf-label" style="font-weight: 700; color: var(--text);">📊 Poster — ${p.title}</span>
-            <a href="${p.poster}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+    <!-- Unified Presentation Tab -->
+    <div id="ptab-presentation" class="pd-tab-content">
+      <div style="display: flex; flex-direction: column; gap: 40px; max-width: 1000px; margin: 0 auto;">
+        
+        ${ytVideoCount > 0 ? `
+          <div>
+            <h3 class="pd-videos-section-title">📺 YouTube Guides</h3>
+            <div class="pd-videos-grid" style="margin-bottom: 0;">
+              ${p.youtubeVideos.map(v => `
+                <div class="pd-video-card">
+                  <div class="pd-video-thumb">
+                    <iframe src="https://www.youtube.com/embed/${v.videoId}" allowfullscreen loading="lazy"></iframe>
+                  </div>
+                  <div class="pd-video-info">
+                    <div class="pd-video-title">${v.title || 'Video'}</div>
+                    <div class="pd-video-desc">${v.desc || ''}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
           </div>
-          <iframe src="${p.poster}#toolbar=0&view=Fit" style="flex:1; border: none;" title="Poster"></iframe>
-        </div>
-      ` : ''}
-    </div>
+        ` : ''}
 
-    <!-- Presentation Tab -->
-    <div id="ptab-ppt" class="pd-tab-content">
-      ${hasPpt ? `
-        <div class="slides-ppt" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
-          <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-            <span class="pdf-label" style="font-weight: 700; color: var(--text);">📑 Presentation — ${p.title}</span>
-            <a href="${p.ppt}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+        ${hasPoster ? `
+          <div>
+            <h3 class="pd-videos-section-title">📊 Poster</h3>
+            <div style="background: var(--surface); padding: 16px; border-radius: 12px; border: 1px solid var(--border);">
+              <img src="${p.poster}" alt="Poster" style="width: 100%; border-radius: 8px; display: block;" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\'>Image not found</div>'" />
+            </div>
           </div>
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; background: var(--surface);">
-             <a href="${p.ppt}" target="_blank" class="btn-primary">Download Presentation File</a>
+        ` : ''}
+        
+        ${hasCircuit ? `
+          <div>
+            <h3 class="pd-videos-section-title">🔌 Circuit Diagram</h3>
+            <div style="background: var(--surface); padding: 16px; border-radius: 12px; border: 1px solid var(--border);">
+              <img src="${p.circuitDiagram}" alt="Circuit Diagram" style="width: 100%; border-radius: 8px; display: block;" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\'>Image not found</div>'" />
+            </div>
           </div>
-        </div>
-      ` : ''}
-    </div>
+        ` : ''}
 
-    <!-- Research Tab -->
-    <div id="ptab-research" class="pd-tab-content">
-      ${hasResearch ? `
-        <div class="slides-ppt" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
-          <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-            <span class="pdf-label" style="font-weight: 700; color: var(--text);">🔬 Research — ${p.title}</span>
-            <a href="${p.researchPaper}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+        ${hasPdf ? `
+          <div>
+            <h3 class="pd-videos-section-title">📄 PDF Guide</h3>
+            <div class="slides-ppt" id="projectPdfWrap" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
+              <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+                <span class="pdf-label" style="font-weight: 700; color: var(--text);">📄 Project PDF</span>
+                <div style="display: flex; gap: 10px;">
+                  <button onclick="toggleFullScreen(document.getElementById('projectPdfWrap'))" style="background: var(--orange); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                    ⛶ Full Screen
+                  </button>
+                  <a href="${p.pdf}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+                </div>
+              </div>
+              <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: white;">
+                 <iframe src="${p.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none;" title="Project PDF"></iframe>
+              </div>
+            </div>
           </div>
-          <iframe src="${p.researchPaper}#toolbar=0&view=Fit" style="flex:1; border: none;" title="Research Paper"></iframe>
-        </div>
-      ` : ''}
-    </div>
+        ` : ''}
 
-    <!-- Circuit Tab -->
-    <div id="ptab-circuit" class="pd-tab-content">
-      ${hasCircuit ? `
-        <div class="slides-ppt" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
-          <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-            <span class="pdf-label" style="font-weight: 700; color: var(--text);">🔌 Circuit Diagram — ${p.title}</span>
-            <a href="${p.circuitDiagram}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+        ${hasResearch ? `
+          <div>
+            <h3 class="pd-videos-section-title">🔬 Research Paper</h3>
+            <div class="slides-ppt" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
+              <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+                <span class="pdf-label" style="font-weight: 700; color: var(--text);">🔬 Research</span>
+                <a href="${p.researchPaper}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+              </div>
+              <iframe src="${p.researchPaper}#toolbar=0&view=Fit" style="flex:1; border: none;" title="Research Paper"></iframe>
+            </div>
           </div>
-          <iframe src="${p.circuitDiagram}#toolbar=0&view=Fit" style="flex:1; border: none;" title="Circuit Diagram"></iframe>
-        </div>
-      ` : ''}
+        ` : ''}
+        
+        ${hasPpt ? `
+          <div>
+            <h3 class="pd-videos-section-title">📑 Presentation File</h3>
+            <div style="background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 24px; text-align: center;">
+               <a href="${p.ppt}" target="_blank" class="btn-primary" style="display: inline-block;">Download Presentation (.pptx)</a>
+            </div>
+          </div>
+        ` : ''}
+      </div>
     </div>
 
     <!-- Components Tab -->
@@ -363,26 +392,6 @@ async function renderProjectDetail() {
           `).join('')}
         </div>
       ` : ''}
-    </div>
-
-    <!-- PDF Tab -->
-    <div id="ptab-pdf" class="pd-tab-content">
-      ${hasPdf ? `
-        <div class="slides-ppt" id="projectPdfWrap" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 70vh; min-height: 500px; background: #f8fafc;">
-          <div class="pdf-toolbar" style="background: var(--surface); padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10;">
-            <span class="pdf-label" style="font-weight: 700; color: var(--text);">📄 Project PDF — ${p.title}</span>
-            <div style="display: flex; gap: 10px;">
-              <button onclick="toggleFullScreen(document.getElementById('projectPdfWrap'))" style="background: var(--orange); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer;">
-                ⛶ Full Screen
-              </button>
-              <a href="${p.pdf}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
-            </div>
-          </div>
-          <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: white;">
-             <iframe src="${p.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none;" title="Project PDF"></iframe>
-          </div>
-        </div>
-      ` : renderProjectEmptyState('📄', 'No PDF Guide Yet', 'PDF documentation will appear here.')}
     </div>
 
     <!-- 3D Files Tab -->
@@ -424,42 +433,23 @@ async function renderProjectDetail() {
       `}
     </div>
 
-    <!-- Videos Tab -->
+    <!-- Videos Tab (Local Only) -->
     <div id="ptab-videos" class="pd-tab-content">
-      ${videoCount === 0 ? renderProjectEmptyState('🎬', 'No Videos Yet', 'Tutorial and assembly videos will appear here.') : `
-        ${p.youtubeVideos?.length > 0 ? `
-          <h3 class="pd-videos-section-title">📺 YouTube Guides</h3>
-          <div class="pd-videos-grid">
-            ${p.youtubeVideos.map(v => `
-              <div class="pd-video-card">
-                <div class="pd-video-thumb">
-                  <iframe src="https://www.youtube.com/embed/${v.videoId}" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="pd-video-info">
-                  <div class="pd-video-title">${v.title || 'Video'}</div>
-                  <div class="pd-video-desc">${v.desc || ''}</div>
-                </div>
+      ${dataVideoCount === 0 ? renderProjectEmptyState('🎬', 'No Videos Yet', 'Local videos will appear here.') : `
+        <h3 class="pd-videos-section-title">📂 Local Videos</h3>
+        <div class="pd-videos-grid">
+          ${p.dataVideos.map(v => `
+            <div class="pd-video-card">
+              <div class="pd-video-thumb">
+                <video src="${v.url}" controls preload="metadata"></video>
               </div>
-            `).join('')}
-          </div>
-        ` : ''}
-        
-        ${p.dataVideos?.length > 0 ? `
-          <h3 class="pd-videos-section-title">📂 Local Videos</h3>
-          <div class="pd-videos-grid">
-            ${p.dataVideos.map(v => `
-              <div class="pd-video-card">
-                <div class="pd-video-thumb">
-                  <video src="${v.url}" controls preload="metadata"></video>
-                </div>
-                <div class="pd-video-info">
-                  <div class="pd-video-title">${v.name || 'Local Video'}</div>
-                  <div class="pd-video-desc">${v.desc || ''}</div>
-                </div>
+              <div class="pd-video-info">
+                <div class="pd-video-title">${v.name || 'Local Video'}</div>
+                <div class="pd-video-desc">${v.desc || ''}</div>
               </div>
-            `).join('')}
-          </div>
-        ` : ''}
+            </div>
+          `).join('')}
+        </div>
       `}
     </div>
 
@@ -504,59 +494,6 @@ async function renderProjectDetail() {
     loadComponentCards(p);
   }
 }
-
-async function loadComponentCards(p) {
-  const container = document.getElementById('components-container');
-  const loading = document.getElementById('components-loading');
-  if (!container) return;
-  
-  let html = '';
-  
-  // Render componentRefs first
-  if (p.componentRefs && p.componentRefs.length > 0) {
-    for (const ref of p.componentRefs) {
-      try {
-        const basePath = window.BASE_PATH || '';
-        const url = basePath + 'data/components/' + ref + '.json';
-        const res = await fetch(url);
-        if (res.ok) {
-          const comp = await res.json();
-          html += `
-            <div class="pd-comp-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
-              <div style="background: ${comp.color || 'var(--surface2)'}22; height: 160px; display: flex; align-items: center; justify-content: center; position: relative; padding: 20px;">
-                <img src="${comp.image || ''}" alt="${comp.name}" onerror="this.src='icons/vidya-logo.png'; this.classList.add('fallback-img')" style="max-height: 120px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));" />
-                <div style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.5); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; color: #fff;">${comp.category}</div>
-              </div>
-              <div style="padding: 20px; flex: 1; display: flex; flex-direction: column;">
-                <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 6px;">${comp.name}</h4>
-                <p style="font-size: 0.85rem; color: var(--cyan); margin-bottom: 12px;">${comp.fullName}</p>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; flex: 1;">${comp.tagline}</p>
-                <a href="${basePath}data/components/${ref}.json" target="_blank" style="align-self: flex-start; color: ${comp.color || 'var(--orange)'}; font-size: 0.9rem; font-weight: bold; text-decoration: none;">View JSON Data →</a>
-              </div>
-            </div>
-          `;
-        } else {
-          // fallback plain text
-          html += `<div style="background: var(--surface); padding: 16px; border: 1px solid var(--border); border-radius: 12px;">${ref} (Missing data)</div>`;
-        }
-      } catch (e) {
-        html += `<div style="background: var(--surface); padding: 16px; border: 1px solid var(--border); border-radius: 12px;">${ref} (Error loading)</div>`;
-      }
-    }
-  }
-  
-  // Render remaining plaintext components if no refs
-  if (!p.componentRefs || p.componentRefs.length === 0) {
-    if (p.components && p.components.length > 0) {
-      html += p.components.map(c => `<div style="background: var(--surface); padding: 16px; border: 1px solid var(--border); border-radius: 12px; display:flex; align-items:center; gap: 10px;"><span style="color:var(--orange)">⚙️</span> ${c}</div>`).join('');
-    }
-  }
-  
-  loading.style.display = 'none';
-  container.style.display = 'grid';
-  container.innerHTML = html;
-}
-
 function renderProjectEmptyState(icon, title, desc) {
   return `
     <div class="pd-placeholder">
