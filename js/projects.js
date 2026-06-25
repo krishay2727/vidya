@@ -5,12 +5,12 @@
 let tagsInitialized = false;
 
 function initProjectFilters() {
-  if (tagsInitialized || !PROJECTS) return;
+  if (tagsInitialized || typeof PROJECTS === 'undefined' || !PROJECTS) return;
   const mcSet = new Set();
   const compSet = new Set();
   
   PROJECTS.forEach(p => {
-    if (p.hardwareSpecs && p.hardwareSpecs.microcontroller) {
+    if (p.hardwareSpecs?.microcontroller) {
       mcSet.add(p.hardwareSpecs.microcontroller);
     }
     if (p.componentRefs) {
@@ -20,14 +20,14 @@ function initProjectFilters() {
 
   const mcSelect = document.getElementById('filterMicrocontroller');
   if (mcSelect) {
-    Array.from(mcSet).sort().forEach(mc => {
+    Array.from(mcSet).sort((a,b) => a.localeCompare(b)).forEach(mc => {
       mcSelect.innerHTML += `<option value="${mc}">${mc}</option>`;
     });
   }
 
   const compSelect = document.getElementById('filterComponent');
   if (compSelect) {
-    Array.from(compSet).sort().forEach(c => {
+    Array.from(compSet).sort((a,b) => a.localeCompare(b)).forEach(c => {
       compSelect.innerHTML += `<option value="${c}">${c}</option>`;
     });
   }
@@ -41,7 +41,7 @@ function renderProjects() {
   const countEl = document.getElementById('projectsCount');
   if (!grid) return;
 
-  if (!PROJECTS || !PROJECTS.length) {
+  if (typeof PROJECTS === 'undefined' || !PROJECTS?.length) {
     grid.innerHTML = `<div class="projects-empty"><div class="projects-empty-icon">📂</div><h3>No Projects Found</h3></div>`;
     if (countEl) countEl.textContent = '0 Projects';
     return;
@@ -68,13 +68,13 @@ function renderProjects() {
     
     const matchesMc = mcVal === 'all' || (p.hardwareSpecs && p.hardwareSpecs.microcontroller === mcVal);
     
-    const matchesComp = compVal === 'all' || (p.componentRefs && p.componentRefs.includes(compVal));
+    const matchesComp = compVal === 'all' || p.componentRefs?.includes(compVal);
 
     return matchesSearch && matchesDiff && matchesMc && matchesComp;
   });
 
   if (countEl) {
-    countEl.textContent = `Showing ${filtered.length} Project${filtered.length !== 1 ? 's' : ''}`;
+    countEl.textContent = `Showing ${filtered.length} Project${filtered.length === 1 ? '' : 's'}`;
   }
 
   if (filtered.length === 0) {
@@ -122,7 +122,7 @@ function filterProjects() {
 // =============================================
 
 function openProject(id) {
-  currentProject = PROJECTS.find(p => p.id === id);
+  globalThis.currentProject = PROJECTS.find(p => p.id === id);
   if (!currentProject) return;
   renderProjectDetail();
   showPage('project-detail', id);
@@ -140,11 +140,12 @@ async function renderProjectDetail() {
   const imgCount = p.gallery?.length || 0;
   const resCount = p.resources?.length || 0;
   
+  const hasPoster = !!p.poster;
   const hasResearch = !!p.researchPaper;
   const hasCircuit = !!p.circuitDiagram;
   const hasComponents = (p.componentRefs && p.componentRefs.length > 0) || (p.components && p.components.length > 0);
   const hasAchievements = p.achievements && p.achievements.length > 0;
-  const hasPresentationTab = hasPoster || hasResearch || hasCircuit || ytVideoCount > 0;
+  const hasPresentationTab = !!p.poster || hasResearch || hasCircuit || ytVideoCount > 0;
   
   // Custom slider for weather station or general
   const isWeatherStation = p.id === 'weather-station';
@@ -166,6 +167,13 @@ async function renderProjectDetail() {
       ${slideImages.map((_, i) => `<span onclick="event.stopPropagation(); wsSliderGoTo(${i})" style="width:10px; height:10px; border-radius:50%; background:${i === 0 ? '#fff' : 'rgba(255,255,255,0.4)'}; cursor:pointer; transition:background 0.3s;"></span>`).join('')}
     </div>
   ` : `<div style="background-image: url('${slideImages[0]}'); width:100%; height:100%; position:absolute; top:0; left:0; background-size:cover; background-position:center; opacity:0.6;"></div>`;
+
+  let descHtml = '';
+  if (p.fullDesc) {
+    descHtml = `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.fullDesc.replaceAll('\n', '<br>')}</div>`;
+  } else if (p.desc) {
+    descHtml = `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.desc}</div>`;
+  }
 
   container.innerHTML = `
     <!-- Header -->
@@ -237,7 +245,7 @@ async function renderProjectDetail() {
               </div>
             </div>
           ` : ''}
-          ${p.fullDesc ? `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.fullDesc.replaceAll('\n', '<br>')}</div>` : (p.desc ? `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.desc}</div>` : '')}
+          ${descHtml}
         </div>
         <div class="pd-overview-sidebar">
           ${p.hardwareSpecs ? `
@@ -266,7 +274,7 @@ async function renderProjectDetail() {
           ${hasPoster ? `
             <div class="presentation-box" onclick="openFullscreenMedia('${p.poster}', 'img')">
               <div class="presentation-box-img">
-                <img src="${p.poster}" alt="Poster" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\' style=\'height:100%;\'>Image not found</div>'" />
+                <img src="${p.poster}" alt="Poster" onerror="this.parentElement.innerHTML='<div class=&quot;pd-placeholder&quot; style=&quot;height:100%;&quot;>Image not found</div>'" />
               </div>
               <div class="presentation-box-label">
                 <span class="presentation-box-icon">📊</span>
@@ -278,7 +286,7 @@ async function renderProjectDetail() {
           ${hasCircuit ? `
             <div class="presentation-box" onclick="openFullscreenMedia('${p.circuitDiagram}', 'img')">
               <div class="presentation-box-img">
-                <img src="${p.circuitDiagram}" alt="Circuit Diagram" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\' style=\'height:100%;\'>Image not found</div>'" />
+                <img src="${p.circuitDiagram}" alt="Circuit Diagram" onerror="this.parentElement.innerHTML='<div class=&quot;pd-placeholder&quot; style=&quot;height:100%;&quot;>Image not found</div>'" />
               </div>
               <div class="presentation-box-label">
                 <span class="presentation-box-icon">🔌</span>
@@ -410,7 +418,7 @@ async function renderProjectDetail() {
             <div class="gallery-item" onclick="openProjectLightbox(${i})">
               <div class="gallery-img-wrap">
                 <img src="${img.file}" alt="${img.caption || ''}" class="gallery-img" loading="lazy" 
-                  onerror="this.parentElement.innerHTML='<div class=\'gallery-img-missing\'><span>🖼️</span><small>Missing Image</small></div>'" />
+                  onerror="this.parentElement.innerHTML='<div class=&quot;gallery-img-missing&quot;><span>🖼️</span><small>Missing Image</small></div>'" />
                 <div class="gallery-overlay"><span class="gallery-zoom">🔍</span></div>
               </div>
               <div class="gallery-caption">
@@ -492,8 +500,11 @@ globalThis.openFullscreenMedia = function(url, type) {
     
     // Keydown event
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && document.getElementById('mediaFullscreenModal').style.display === 'flex') {
-        closeFullscreenMedia();
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('mediaFullscreenModal');
+        if (modal && modal.style.display === 'flex') {
+          closeFullscreenMedia();
+        }
       }
     });
   }
@@ -512,7 +523,8 @@ globalThis.closeFullscreenMedia = function() {
   const modal = document.getElementById('mediaFullscreenModal');
   if (modal) {
     modal.style.display = 'none';
-    document.getElementById('mediaFullscreenContent').innerHTML = ''; // clear iframe
+    const content = document.getElementById('mediaFullscreenContent');
+    if (content) content.innerHTML = ''; // clear iframe
   }
 };
 
@@ -526,35 +538,35 @@ globalThis.wsSliderNav = function(dir) {
   const track = document.getElementById('wsSliderTrack');
   const dots = document.getElementById('wsSliderDots');
   if (!track) return;
-  const count = window._wsSliderCount;
+  const count = globalThis._wsSliderCount;
   if (count <= 1) return;
-  window._wsSliderIndex = (window._wsSliderIndex + dir + count) % count;
-  track.style.transform = `translateX(-${window._wsSliderIndex * (100 / count)}%)`;
+  globalThis._wsSliderIndex = (globalThis._wsSliderIndex + dir + count) % count;
+  track.style.transform = `translateX(-${globalThis._wsSliderIndex * (100 / count)}%)`;
   // Update dots
   if (dots) {
     Array.from(dots.children).forEach((dot, i) => {
-      dot.style.background = i === window._wsSliderIndex ? '#fff' : 'rgba(255,255,255,0.4)';
+      dot.style.background = i === globalThis._wsSliderIndex ? '#fff' : 'rgba(255,255,255,0.4)';
     });
   }
   // Reset auto-slide timer
-  if (window._wsSliderInterval) clearInterval(window._wsSliderInterval);
-  window._wsSliderInterval = setInterval(() => { wsSliderNav(1); }, 4000);
+  if (globalThis._wsSliderInterval) clearInterval(globalThis._wsSliderInterval);
+  globalThis._wsSliderInterval = setInterval(() => { globalThis.wsSliderNav(1); }, 4000);
 };
 
 globalThis.wsSliderGoTo = function(idx) {
   const track = document.getElementById('wsSliderTrack');
   const dots = document.getElementById('wsSliderDots');
   if (!track) return;
-  const count = window._wsSliderCount;
-  window._wsSliderIndex = idx;
+  const count = globalThis._wsSliderCount;
+  globalThis._wsSliderIndex = idx;
   track.style.transform = `translateX(-${idx * (100 / count)}%)`;
   if (dots) {
     Array.from(dots.children).forEach((dot, i) => {
       dot.style.background = i === idx ? '#fff' : 'rgba(255,255,255,0.4)';
     });
   }
-  if (window._wsSliderInterval) clearInterval(window._wsSliderInterval);
-  window._wsSliderInterval = setInterval(() => { wsSliderNav(1); }, 4000);
+  if (globalThis._wsSliderInterval) clearInterval(globalThis._wsSliderInterval);
+  globalThis._wsSliderInterval = setInterval(() => { globalThis.wsSliderNav(1); }, 4000);
 };
 
 // =============================================
@@ -651,7 +663,9 @@ async function loadComponentCards(project) {
                   </div>
                 `).join('')}
               </div>
-              ${comp.wiringNote ? `<div style="margin-top: 10px; padding: 10px 14px; background: rgba(255, 200, 0, 0.1); border: 1px solid rgba(255, 200, 0, 0.3); border-radius: 8px; font-size: 0.85rem; color: #FFC800;">⚠️ ${comp.wiringNote}</div>` : ''}
+              ${(() => {
+                return comp.wiringNote ? `<div style="margin-top: 10px; padding: 10px 14px; background: rgba(255, 200, 0, 0.1); border: 1px solid rgba(255, 200, 0, 0.3); border-radius: 8px; font-size: 0.85rem; color: #FFC800;">⚠️ ${comp.wiringNote}</div>` : '';
+              })()}
             </div>
           ` : ''}
 
@@ -659,8 +673,10 @@ async function loadComponentCards(project) {
           ${comp.codeSnippet ? `
             <div style="margin-bottom: 20px;">
               <h5 style="font-size: 0.85rem; color: ${comp.color || 'var(--orange)'}; margin-bottom: 10px;">💻 Quick Start Code</h5>
-              ${comp.libraryName ? `<div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">📦 Library: ${comp.libraryName}</div>` : ''}
-              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; max-height: 250px; overflow-y: auto;">${comp.codeSnippet.replace(/\\n/g, '\n')}</pre>
+              ${(() => {
+                return comp.libraryName ? `<div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">📦 Library: ${comp.libraryName}</div>` : '';
+              })()}
+              <pre style="background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; max-height: 250px; overflow-y: auto;">${comp.codeSnippet.replaceAll('\\n', '\n')}</pre>
             </div>
           ` : ''}
 
