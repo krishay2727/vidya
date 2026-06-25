@@ -47,7 +47,7 @@ body {
 /* ====== PAGES ====== */
 .page { display: none; min-height: 100vh; }
 .page.active { display: block; }
-.page-inner { max-width: 1200px; margin: 0 auto; padding: 120px 24px 80px; }
+.page-inner { max-width: 1200px; margin: 0 auto; padding: 90px 24px 40px; }
 .page-hero { text-align: center; margin-bottom: 60px; }
 .page-hero h1 { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 12px; }
 .page-hero p { color: var(--text-muted); font-size: 1.1rem; }
@@ -137,7 +137,7 @@ body {
 .modal-close:hover { background: var(--red); color: #fff; }
 
 /* ====== FOOTER ====== */
-.footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; margin-top: 60px; }
+.footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; margin-top: 40px; }
 .footer-brand { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-head); font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
 .footer-tagline { color: var(--text-muted); font-style: italic; margin-bottom: 8px; }
 .footer-copy { color: var(--text-dim); font-size: 0.8rem; }

@@ -254,9 +254,10 @@
 
 /* ====== STEAM GRID ====== */
 .steam-section {
-  padding: 100px 24px;
+  padding: 64px 24px;
   max-width: 1200px;
   margin: 0 auto;
+  border-top: 1px solid var(--border);
 }
 
 .steam-grid {
@@ -307,8 +308,9 @@
 
 /* ====== SESSIONS HOME ====== */
 .sessions-home-section {
-  padding: 100px 24px;
+  padding: 64px 24px;
   background: var(--bg2);
+  border-top: 1px solid var(--border);
 }
 
 .sessions-home-section .section-header,
@@ -428,9 +430,10 @@
 
 /* ====== ROADMAP ====== */
 .roadmap-section {
-  padding: 100px 24px;
+  padding: 64px 24px;
   max-width: 1200px;
   margin: 0 auto;
+  border-top: 1px solid var(--border);
 }
 
 .roadmap-track {
@@ -510,8 +513,9 @@
 
 /* ====== TOOLS ====== */
 .tools-section {
-  padding: 100px 24px;
+  padding: 64px 24px;
   background: var(--bg2);
+  border-top: 1px solid var(--border);
 }
 
 .tools-section .section-header,
@@ -635,9 +639,9 @@
    QUICK ACCESS 3D BUTTONS
    ============================================= */
 .quick-access-section {
-  padding: 80px 24px;
+  padding: 48px 24px;
   max-width: 1200px;
-  margin: -40px auto 40px auto;
+  margin: 0 auto;
   position: relative;
   z-index: 10;
 }

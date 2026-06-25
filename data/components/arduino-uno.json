@@ -1,0 +1,49 @@
+{
+  "id": "arduino-uno",
+  "name": "Arduino UNO",
+  "fullName": "Arduino UNO R3 Microcontroller Board",
+  "category": "Microcontroller",
+  "image": "data/components/images/arduino-uno.jpg",
+  "color": "#00979D",
+  "tagline": "The world's most popular open-source microcontroller board",
+  "description": "The Arduino UNO R3 is the go-to board for learning embedded systems. Based on the ATmega328P, it has 14 digital I/O pins, 6 analog inputs, a USB connection for programming, and runs at 16MHz. It's the foundation for most beginner and intermediate tinkering lab projects.",
+  "specs": {
+    "microcontroller": "ATmega328P",
+    "operatingVoltage": "5V",
+    "inputVoltage": "7–12V (recommended via barrel jack)",
+    "digitalPins": "14 (of which 6 support PWM)",
+    "analogPins": "6 (10-bit ADC, 0–5V)",
+    "flashMemory": "32KB (0.5KB used by bootloader)",
+    "sram": "2KB",
+    "eeprom": "1KB",
+    "clockSpeed": "16 MHz",
+    "maxCurrentPerPin": "40mA",
+    "communicationProtocols": ["UART (D0/D1)", "SPI (D10-D13)", "I2C (A4/A5)"]
+  },
+  "pinout": [
+    { "pin": "D0", "name": "RX", "desc": "UART receive", "color": "#FF6B35" },
+    { "pin": "D1", "name": "TX", "desc": "UART transmit", "color": "#FF6B35" },
+    { "pin": "D2–D13", "name": "GPIO", "desc": "General purpose digital I/O (D3,D5,D6,D9,D10,D11 = PWM)", "color": "#00D4FF" },
+    { "pin": "A0–A5", "name": "Analog In", "desc": "10-bit analog to digital input (also usable as digital)", "color": "#00FF88" },
+    { "pin": "A4", "name": "SDA", "desc": "I2C Data", "color": "#9B6BFF" },
+    { "pin": "A5", "name": "SCL", "desc": "I2C Clock", "color": "#9B6BFF" },
+    { "pin": "VIN", "name": "VIN", "desc": "External power input (7–12V)", "color": "#FF4444" },
+    { "pin": "5V", "name": "5V Out", "desc": "Regulated 5V output (max 500mA from USB)", "color": "#FF4444" },
+    { "pin": "3V3", "name": "3.3V Out", "desc": "50mA max", "color": "#FF8888" },
+    { "pin": "GND", "name": "GND", "desc": "Ground (multiple pins)", "color": "#222222" },
+    { "pin": "RESET", "name": "RESET", "desc": "Pull LOW to reset", "color": "#AAAAAA" }
+  ],
+  "wiringNote": "Never draw more than 200mA total from the 5V pin when powered via USB. Use external power via VIN for motor projects.",
+  "libraryName": "Built into Arduino IDE (no library needed)",
+  "libraryInstall": "Download Arduino IDE from arduino.cc and select board: Tools → Board → Arduino UNO",
+  "codeSnippet": "void setup() {\n  pinMode(13, OUTPUT);\n  Serial.begin(9600);\n}\nvoid loop() {\n  digitalWrite(13, HIGH);\n  delay(500);\n  digitalWrite(13, LOW);\n  delay(500);\n  Serial.println(\"Blink!\");\n}",
+  "commonMistakes": [
+    "Sourcing > 40mA from a single GPIO pin → burns the pin",
+    "Connecting 5V sensor to 3.3V board (Arduino UNO is 5V tolerant — this one is fine)",
+    "Forgetting to select correct COM port in IDE",
+    "Using delay() with multiple sensors → blocks all other code"
+  ],
+  "usedInProjects": ["weather-station", "smart-alert", "line-follower"],
+  "datasheetUrl": "https://docs.arduino.cc/hardware/uno-rev3",
+  "buyLink": "https://www.robu.in/product/arduino-uno-r3/"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "max30102",
+  "name": "MAX30102",
+  "fullName": "MAX30102 Pulse Oximeter & Heart Rate Sensor Module",
+  "category": "Biosensor",
+  "image": "data/components/images/max30102.jpg",
+  "color": "#FF4444",
+  "tagline": "Medical-grade optical sensor for SpO2 and heart rate — I2C, 1.8V core",
+  "description": "The MAX30102 is a high-sensitivity optical biosensor module integrating a red LED (660nm), IR LED (880nm), photodetector, and analog front-end in one package. Used in pulse oximeters and wearable health monitors. Outputs raw PPG (photoplethysmography) data over I2C which must be processed in firmware to extract BPM and SpO2.",
+  "specs": {
+    "powerSupply": "1.8V core (onboard LDO from 3.3V/5V on module)",
+    "ledWavelengths": "Red: 660nm, IR: 880nm",
+    "interface": "I2C (fixed address: 0x57)",
+    "adcResolution": "18-bit",
+    "sampleRate": "50Hz to 3200Hz configurable",
+    "ledCurrent": "0–51mA per LED (software configurable)",
+    "dimensions": "~14mm × 14mm (typical breakout board)"
+  },
+  "pinout": [
+    { "pin": 1, "name": "VIN", "desc": "3.3V or 5V (onboard LDO handles regulation)", "color": "#FF4444" },
+    { "pin": 2, "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": 3, "name": "SCL", "desc": "I2C Clock", "color": "#9B6BFF" },
+    { "pin": 4, "name": "SDA", "desc": "I2C Data", "color": "#00D4FF" },
+    { "pin": 5, "name": "INT", "desc": "Interrupt output (active LOW) — optional, for FIFO-driven reads", "color": "#FF6B35" }
+  ],
+  "wiringNote": "I2C address is fixed at 0x57 — cannot be changed. If using two MAX30102 sensors (dual-site PPG), they must be on separate I2C buses (use ESP32's Wire and Wire1). Do NOT use them on the same bus.",
+  "libraryName": "SparkFun MAX3010x Library",
+  "libraryInstall": "Library Manager → Search 'SparkFun MAX3010x' → Install",
+  "codeSnippet": "#include <Wire.h>\n#include \"MAX30105.h\"\nMAX30105 particleSensor;\nvoid setup() {\n  Serial.begin(115200);\n  if (!particleSensor.begin(Wire, I2C_SPEED_FAST)) {\n    Serial.println(\"MAX30102 not found!\");\n    while (1);\n  }\n  particleSensor.setup();\n}\nvoid loop() {\n  long ir = particleSensor.getIR();\n  Serial.println(ir);\n  delay(20);\n}",
+  "commonMistakes": [
+    "Using two sensors on the same I2C bus — address conflict, both fail",
+    "Not placing finger flat on sensor — reflective PPG needs firm contact",
+    "Reading raw IR and calling it SpO2 — you need both red AND IR + R-ratio calculation for SpO2",
+    "Using Wire.begin() without specifying SDA/SCL pins on ESP32"
+  ],
+  "usedInProjects": ["vascage", "ppg-monitor"],
+  "datasheetUrl": "https://datasheets.maximintegrated.com/en/ds/MAX30102.pdf",
+  "buyLink": "https://www.robu.in/product/max30102-pulse-oximeter-heart-rate-sensor-module/"
+}

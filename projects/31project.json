@@ -1,0 +1,137 @@
+{
+  "id": "antigravity",
+  "title": "Antigravity Levitation Module",
+  "subtitle": "Magnetic levitation using PID-controlled electromagnets and IR gap sensing",
+  "level": "Advanced",
+  "color": "#9B6BFF",
+  "session": 6,
+  "desc": "Levitate a magnet mid-air using real-time PID control and IR gap sensing",
+  "fullDesc": "The Antigravity project demonstrates closed-loop magnetic levitation — one of the most visually dramatic examples of a PID control system. An IR reflective sensor continuously measures the gap between the levitating magnet and the electromagnet. A PID algorithm running on Arduino/ESP32 adjusts electromagnet current in real-time to hold the magnet at a precise set-point distance. Any disturbance (finger push, vibration) is immediately corrected by the control loop. This is the same fundamental principle used in industrial Maglev trains, contact-less bearing systems, and precision positioning stages.",
+  "image": "projects/images/antigravity.jpg",
+  "bannerImage": "projects/images/antigravity-banner.jpg",
+
+  "difficulty": 5,
+  "status": "Available",
+  "tags": ["PID Control", "Electromagnet", "IR Sensor", "Advanced", "Control Systems"],
+
+  "date": "2026-05-20",
+  "author": "Nikhil",
+  "team": [
+    { "name": "Nikhil", "role": "Firmware & Control Loop Design" },
+    { "name": "Pranjal", "role": "Mechanical Structure & Electromagnet Winding" }
+  ],
+
+  "innovation": "Demonstrates real-time closed-loop PID control in hardware — the same principle behind Maglev trains — using under ₹500 of components accessible to any tinkering lab.",
+
+  "problemStatement": "Control systems like PID are taught theoretically in engineering but students rarely see or interact with them in hardware. The instability of magnetic levitation makes it an ideal physical demonstration of why feedback loops are essential.",
+  "solutionApproach": "An IR proximity sensor measures magnet position at ~1000Hz. Arduino runs a PID algorithm (tuned via serial) that drives an N-channel MOSFET controlling electromagnet current. The loop holds the magnet stable without any mechanical contact.",
+
+  "hardwareSpecs": {
+    "microcontroller": "Arduino UNO / ESP32 (both supported)",
+    "controlLoop": "PID (Kp, Ki, Kd tunable via Serial or potentiometers)",
+    "sensorType": "TCRT5000 IR Reflective Sensor (analog output)",
+    "actuator": "Custom wound 28AWG electromagnet coil (approx 200 turns, ~10Ω)",
+    "driver": "IRLZ44N N-channel MOSFET (or IRF540N)",
+    "powerSupply": "12V 2A external (for electromagnet), 5V via USB (for MCU)",
+    "levitationRange": "3mm – 15mm below electromagnet (depends on magnet mass)",
+    "setPoint": "Adjustable via potentiometer or Serial command"
+  },
+
+  "components": [
+    "Arduino UNO or ESP32 DevKit",
+    "TCRT5000 IR Reflective Sensor",
+    "IRLZ44N N-Channel MOSFET",
+    "28AWG Enamelled Copper Wire (for coil, ~20m)",
+    "Neodymium Disc Magnet (N35, 20mm dia × 5mm)",
+    "1N4007 Flyback Diode",
+    "10kΩ Resistor (MOSFET gate)",
+    "100Ω Resistor (MOSFET gate damper)",
+    "12V 2A DC Power Supply",
+    "Breadboard + Jumper wires",
+    "Custom frame (3D printed or acrylic sheet)"
+  ],
+
+  "componentRefs": [
+    "arduino-uno",
+    "esp32-devkit"
+  ],
+
+  "guide": [
+    "Wind the electromagnet coil: 200 turns of 28AWG wire on a 25mm diameter former. Sand the enamel off both wire ends.",
+    "Build the driver circuit: MOSFET gate → 100Ω → Arduino PWM pin. Gate pull-down: 10kΩ to GND. Flyback diode (1N4007) across coil, cathode to +12V.",
+    "Mount TCRT5000 sensor flush with the bottom face of the electromagnet, centered.",
+    "Connect TCRT5000 analog output to Arduino A0. Power it from 5V.",
+    "Test sensor: open Serial Monitor, hold a piece of white paper 5–15mm below. You should see analog values change 300–900.",
+    "Upload the basic PID sketch. Start with Kp=2.0, Ki=0.0, Kd=1.0.",
+    "Power the electromagnet from 12V external supply (NOT from Arduino 5V — it will burn the board).",
+    "Hold the magnet 10mm below the coil and let go. Tune Kp up until it oscillates, then increase Kd until stable.",
+    "Fine-tune Ki last (small values 0.01–0.1) to eliminate steady-state error.",
+    "Mount everything on the frame. Add potentiometers for live Kp/Kd tuning if desired."
+  ],
+
+  "estimatedTime": "4–6 hours (including coil winding)",
+  "prerequisites": ["PWM control", "Analog sensor reading", "Basic transistor switching", "Ohm's Law"],
+
+  "pdf": "projects/docs/antigravity-guide.pdf",
+  "poster": "projects/docs/antigravity-poster.pdf",
+  "ppt": "projects/docs/antigravity-presentation.pptx",
+  "researchPaper": "projects/docs/antigravity-research.pdf",
+  "circuitDiagram": "projects/docs/antigravity-circuit.pdf",
+
+  "files3d": [
+    {
+      "name": "antigravity-frame-top.stl",
+      "desc": "Upper frame bracket holding the electromagnet",
+      "size": "~220KB",
+      "url": "projects/3d/antigravity-frame-top.stl"
+    },
+    {
+      "name": "antigravity-sensor-mount.stl",
+      "desc": "TCRT5000 center-mount clip for coil face",
+      "size": "~85KB",
+      "url": "projects/3d/antigravity-sensor-mount.stl"
+    }
+  ],
+
+  "codeFiles": [
+    {
+      "name": "antigravity_pid_basic.ino",
+      "language": "Arduino C++",
+      "desc": "Basic PID levitation loop with Serial tuning",
+      "url": "projects/code/antigravity_pid_basic.ino"
+    },
+    {
+      "name": "antigravity_pid_esp32.ino",
+      "language": "Arduino C++ (ESP32)",
+      "desc": "ESP32 version with WiFi-based live PID parameter tuning dashboard",
+      "url": "projects/code/antigravity_pid_esp32.ino"
+    }
+  ],
+
+  "youtubeVideos": [],
+  "dataVideos": [
+    {
+      "name": "Levitation Demo — First Successful Hover",
+      "desc": "Raw footage of the magnet holding position after PID tuning",
+      "url": "projects/videos/antigravity-demo.mp4"
+    }
+  ],
+  "gallery": [],
+
+  "resources": [
+    { "icon": "📘", "title": "PID Control Theory — Wikipedia", "url": "https://en.wikipedia.org/wiki/PID_controller" },
+    { "icon": "🎬", "title": "Magnetic Levitation PID Explained — YouTube", "url": "https://www.youtube.com/watch?v=example" },
+    { "icon": "📄", "title": "TCRT5000 Datasheet", "url": "https://www.vishay.com/docs/83760/tcrt5000.pdf" },
+    { "icon": "📄", "title": "IRLZ44N Datasheet", "url": "https://www.infineon.com/dgdl/irlz44npbf.pdf" }
+  ],
+
+  "achievements": [
+    "Demonstrated at VIDYA DigiSpark Open House 2026",
+    "Used as capstone project for Advanced Tinkering curriculum"
+  ],
+
+  "liveUrl": "",
+  "githubUrl": "",
+
+  "keywords": ["PID", "magnetic levitation", "electromagnet", "control systems", "MOSFET", "IR sensor", "maglev", "feedback loop"]
+}

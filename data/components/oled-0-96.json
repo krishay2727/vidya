@@ -1,0 +1,39 @@
+{
+  "id": "oled-0-96",
+  "name": "OLED 0.96\"",
+  "fullName": "0.96 inch OLED Display Module (128×64, I2C)",
+  "category": "Display",
+  "image": "data/components/images/oled-0-96.jpg",
+  "color": "#9B6BFF",
+  "tagline": "Crisp 128×64 pixel OLED display over I2C — no backlight, ultra low power",
+  "description": "The 0.96\" OLED module uses an SSD1306 driver and communicates over I2C with just 2 wires (SDA + SCL). It draws only ~20mA at full brightness and has excellent contrast — each pixel is self-illuminating. Perfect for project dashboards, sensor readouts, menus, and animations. Works at both 3.3V and 5V.",
+  "specs": {
+    "driver": "SSD1306",
+    "resolution": "128 × 64 pixels",
+    "displaySize": "0.96 inch diagonal",
+    "colors": "Monochrome (white, blue, or yellow-blue depending on variant)",
+    "interface": "I2C (address 0x3C or 0x3D)",
+    "operatingVoltage": "3.3V – 5V",
+    "currentDraw": "~20mA at full brightness",
+    "viewAngle": "160°"
+  },
+  "pinout": [
+    { "pin": 1, "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": 2, "name": "VCC", "desc": "3.3V or 5V power supply", "color": "#FF4444" },
+    { "pin": 3, "name": "SCL", "desc": "I2C Clock → Arduino A5 (UNO) / D22 (Mega) / GPIO22 (ESP32)", "color": "#9B6BFF" },
+    { "pin": 4, "name": "SDA", "desc": "I2C Data → Arduino A4 (UNO) / D21 (Mega) / GPIO21 (ESP32)", "color": "#00D4FF" }
+  ],
+  "wiringNote": "Default I2C address is 0x3C. If two OLEDs on same bus, solder the SA0 jumper on one module to change its address to 0x3D.",
+  "libraryName": "Adafruit SSD1306 + Adafruit GFX Library",
+  "libraryInstall": "Library Manager → Install 'Adafruit SSD1306' (it will prompt to also install Adafruit GFX — click yes)",
+  "codeSnippet": "#include <Wire.h>\n#include <Adafruit_GFX.h>\n#include <Adafruit_SSD1306.h>\n#define SCREEN_WIDTH 128\n#define SCREEN_HEIGHT 64\nAdafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);\nvoid setup() {\n  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);\n  display.clearDisplay();\n  display.setTextSize(1);\n  display.setTextColor(WHITE);\n  display.setCursor(0, 0);\n  display.println(\"Hello VIDYA!\");\n  display.display();\n}\nvoid loop() {}",
+  "commonMistakes": [
+    "Wrong I2C address (try 0x3D if 0x3C doesn't work)",
+    "Not calling display.display() after drawing — nothing shows until you call this",
+    "Forgetting to install Adafruit GFX dependency",
+    "Running i2C scan if unsure of address: use i2c_scanner sketch"
+  ],
+  "usedInProjects": ["smart-alert", "vascage"],
+  "datasheetUrl": "https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf",
+  "buyLink": "https://www.robu.in/product/0-96-inch-i2c-iic-serial-128x64-oled-lcd-led-display-module/"
+}
