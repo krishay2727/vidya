@@ -3,7 +3,7 @@
 
 <head>
   <script>
-    document.write('<base href="' + (window.location.pathname.includes('/vidya') ? '/vidya/' : '/') + '">');
+    document.write('<base href="' + (globalThis.location.pathname.includes('/vidya') ? '/vidya/' : '/') + '">');
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,28 +30,28 @@
   <!-- NAV -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="javascript:void(0)" class="nav-logo" onclick="showPage('home')">
+      <a role="button" tabindex="0" class="nav-logo" onclick="showPage('home')">
         <img src="icons/vidya-logo.png" alt="VIDYA DigiSpark" class="logo-img" />
       </a>
       <div class="nav-links">
-        <a href="javascript:void(0)" onclick="showPage('home')" class="nav-link" data-page="home">Home</a>
-        <a href="javascript:void(0)" onclick="showPage('sessions')" class="nav-link" data-page="sessions">Curriculum</a>
-        <a href="javascript:void(0)" onclick="showPage('live-quiz')" class="nav-link"
+        <a role="button" tabindex="0" onclick="showPage('home')" class="nav-link" data-page="home">Home</a>
+        <a role="button" tabindex="0" onclick="showPage('sessions')" class="nav-link" data-page="sessions">Curriculum</a>
+        <a role="button" tabindex="0" onclick="showPage('live-quiz')" class="nav-link"
           data-page="live-quiz">Assessment</a>
-        <a href="javascript:void(0)" onclick="showPage('projects')" class="nav-link" data-page="projects">Projects</a>
-        <a href="javascript:void(0)" onclick="showPage('whiteboard')" class="nav-link" data-page="whiteboard">📟 Circuit
+        <a role="button" tabindex="0" onclick="showPage('projects')" class="nav-link" data-page="projects">Projects</a>
+        <a role="button" tabindex="0" onclick="showPage('whiteboard')" class="nav-link" data-page="whiteboard">📟 Circuit
           Board</a>
-        <a href="javascript:void(0)" onclick="showPage('about')" class="nav-link" data-page="about">About</a>
+        <a role="button" tabindex="0" onclick="showPage('about')" class="nav-link" data-page="about">About</a>
       </div>
       <button class="nav-hamburger" onclick="toggleMobileMenu()">☰</button>
     </div>
     <div class="nav-mobile" id="navMobile">
-      <a href="javascript:void(0)" onclick="showPage('home');toggleMobileMenu()">Home</a>
-      <a href="javascript:void(0)" onclick="showPage('sessions');toggleMobileMenu()">Curriculum</a>
-      <a href="javascript:void(0)" onclick="showPage('projects');toggleMobileMenu()">Projects</a>
-      <a href="javascript:void(0)" onclick="showPage('whiteboard');toggleMobileMenu()">📟 Circuit Board</a>
-      <a href="javascript:void(0)" onclick="showPage('live-quiz');toggleMobileMenu()">Live Quiz</a>
-      <a href="javascript:void(0)" onclick="showPage('about');toggleMobileMenu()">About</a>
+      <a role="button" tabindex="0" onclick="showPage('home');toggleMobileMenu()">Home</a>
+      <a role="button" tabindex="0" onclick="showPage('sessions');toggleMobileMenu()">Curriculum</a>
+      <a role="button" tabindex="0" onclick="showPage('projects');toggleMobileMenu()">Projects</a>
+      <a role="button" tabindex="0" onclick="showPage('whiteboard');toggleMobileMenu()">📟 Circuit Board</a>
+      <a role="button" tabindex="0" onclick="showPage('live-quiz');toggleMobileMenu()">Live Quiz</a>
+      <a role="button" tabindex="0" onclick="showPage('about');toggleMobileMenu()">About</a>
     </div>
   </nav>
 

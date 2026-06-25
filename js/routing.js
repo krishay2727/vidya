@@ -9,11 +9,11 @@ async function showPage(name, pathParam = null) {
   // Update URL history
   const base = window.BASE_PATH || '/';
   if (name === 'home') {
-    window.history.pushState(null, null, base);
+    globalThis.history.pushState(null, null, base);
   } else if (name === 'project-detail' && pathParam) {
-    window.history.pushState(null, null, base + 'project/' + encodeURIComponent(pathParam));
+    globalThis.history.pushState(null, null, base + 'project/' + encodeURIComponent(pathParam));
   } else {
-    window.history.pushState(null, null, base + name);
+    globalThis.history.pushState(null, null, base + name);
   }
 
   // Fetch HTML view and inject

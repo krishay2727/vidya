@@ -43,7 +43,7 @@ function startHeroCarouselAutoPlay() {
     }, carouselAutoPlaySpeed);
 }
 
-window.handleManualMove = function(direction) {
+globalThis.handleManualMove = function(direction) {
     moveHeroCarousel(direction);
     startHeroCarouselAutoPlay(); 
 };

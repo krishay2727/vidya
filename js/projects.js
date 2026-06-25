@@ -140,14 +140,11 @@ async function renderProjectDetail() {
   const imgCount = p.gallery?.length || 0;
   const resCount = p.resources?.length || 0;
   
-  const hasPdf = !!p.pdf;
-  const hasPoster = !!p.poster;
-  const hasPpt = !!p.ppt;
   const hasResearch = !!p.researchPaper;
   const hasCircuit = !!p.circuitDiagram;
   const hasComponents = (p.componentRefs && p.componentRefs.length > 0) || (p.components && p.components.length > 0);
   const hasAchievements = p.achievements && p.achievements.length > 0;
-  const hasPresentationTab = hasPdf || hasPoster || hasPpt || hasResearch || hasCircuit || ytVideoCount > 0;
+  const hasPresentationTab = hasPoster || hasResearch || hasCircuit || ytVideoCount > 0;
   
   // Custom slider for weather station or general
   const isWeatherStation = p.id === 'weather-station';
@@ -156,10 +153,17 @@ async function renderProjectDetail() {
     : [p.bannerImage || p.image || ''];
 
   const bannerContent = (isWeatherStation && slideImages.length > 1) ? `
-    <div class="ws-slider" style="position:absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; background:#000;">
+    <div class="ws-slider" id="wsSliderTrack" style="position:absolute; top:0; left:0; width:${slideImages.length * 100}%; height:100%; display:flex; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);">
         ${slideImages.map((src, i) => `
-          <img src="${src}" style="width:100%; height:100%; object-fit:cover; opacity: 0; position:absolute; top:0; left:0; animation: sliderAnim ${slideImages.length * 4}s infinite ${i * 4}s;" />
+          <div style="width:${100 / slideImages.length}%; height:100%; flex-shrink:0;">
+            <img src="${src}" style="width:100%; height:100%; object-fit:cover; display:block;" />
+          </div>
         `).join('')}
+    </div>
+    <button class="ws-slider-arrow ws-slider-prev" onclick="event.stopPropagation(); wsSliderNav(-1)" style="position:absolute; left:12px; top:50%; transform:translateY(-50%); z-index:5; background:rgba(0,0,0,0.5); color:#fff; border:none; border-radius:50%; width:36px; height:36px; font-size:1.2rem; cursor:pointer; backdrop-filter:blur(4px); transition:background 0.2s;">❮</button>
+    <button class="ws-slider-arrow ws-slider-next" onclick="event.stopPropagation(); wsSliderNav(1)" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); z-index:5; background:rgba(0,0,0,0.5); color:#fff; border:none; border-radius:50%; width:36px; height:36px; font-size:1.2rem; cursor:pointer; backdrop-filter:blur(4px); transition:background 0.2s;">❯</button>
+    <div class="ws-slider-dots" id="wsSliderDots" style="position:absolute; bottom:80px; left:50%; transform:translateX(-50%); z-index:5; display:flex; gap:8px;">
+      ${slideImages.map((_, i) => `<span onclick="event.stopPropagation(); wsSliderGoTo(${i})" style="width:10px; height:10px; border-radius:50%; background:${i === 0 ? '#fff' : 'rgba(255,255,255,0.4)'}; cursor:pointer; transition:background 0.3s;"></span>`).join('')}
     </div>
   ` : `<div style="background-image: url('${slideImages[0]}'); width:100%; height:100%; position:absolute; top:0; left:0; background-size:cover; background-position:center; opacity:0.6;"></div>`;
 
@@ -171,20 +175,19 @@ async function renderProjectDetail() {
       <div class="pd-banner" style="background: #000; position:relative;">
         ${bannerContent}
         <div class="pd-banner-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, #0d0f1a, transparent); z-index:1;"></div>
-        <div class="pd-banner-content" style="position:relative; z-index:2;">
+        <div class="pd-banner-content" style="z-index:2;">
           <h1 class="pd-banner-title" style="--project-color: ${p.color || 'var(--orange)'}">${p.title}</h1>
           
-          <div class="pd-meta-row">
-            <span class="pd-meta-chip">👤 ${p.author || 'Tinkering Lab'}</span>
-            <span class="pd-meta-chip">🕒 ${p.date || 'Unknown'}</span>
-            <div class="pd-difficulty-stars" style="color: ${p.color || 'var(--orange)'}; font-size: 1.2rem;">
-              ${'★'.repeat(p.difficulty || 1)}${'☆'.repeat(5 - (p.difficulty || 1))}
+          <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+            ${p.liveUrl ? `<a href="${p.liveUrl}" target="_blank" class="btn-primary" style="background: ${p.color || 'var(--orange)'}; border: none; box-shadow: 0 0 20px ${p.color || 'var(--orange)'}44; padding: 12px 24px; font-size: 0.95rem;">🚀 Launch Live Project</a>` : ''}
+            ${p.githubUrl ? `<a href="${p.githubUrl}" target="_blank" class="btn-outline" style="border-color: #fff; color: #fff; padding: 12px 24px; font-size: 0.95rem;">GitHub Repo ↗</a>` : ''}
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <span class="pd-meta-chip">👤 ${p.author || 'Tinkering Lab'}</span>
+              <span class="pd-meta-chip">🕒 ${p.date || 'Unknown'}</span>
+              <div class="pd-difficulty-stars" style="color: ${p.color || 'var(--orange)'}; font-size: 1.2rem; margin-left: 4px;">
+                ${'★'.repeat(p.difficulty || 1)}${'☆'.repeat(5 - (p.difficulty || 1))}
+              </div>
             </div>
-          </div>
-          
-          <div style="margin-top: 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-            ${p.liveUrl ? `<a href="${p.liveUrl}" target="_blank" class="btn-primary" style="background: ${p.color || 'var(--orange)'}; border: none; box-shadow: none;">🚀 Launch Live Project</a>` : ''}
-            ${p.githubUrl ? `<a href="${p.githubUrl}" target="_blank" class="btn-outline" style="border-color: #fff; color: #fff;">GitHub Repo ↗</a>` : ''}
           </div>
         </div>
       </div>
@@ -234,7 +237,7 @@ async function renderProjectDetail() {
               </div>
             </div>
           ` : ''}
-          ${p.fullDesc ? `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.fullDesc.replace(/\n/g, '<br>')}</div>` : (p.desc ? `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.desc}</div>` : '')}
+          ${p.fullDesc ? `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.fullDesc.replaceAll('\n', '<br>')}</div>` : (p.desc ? `<div style="margin-bottom: 32px; line-height: 1.7; color: var(--text-muted);">${p.desc}</div>` : '')}
         </div>
         <div class="pd-overview-sidebar">
           ${p.hardwareSpecs ? `
@@ -256,69 +259,50 @@ async function renderProjectDetail() {
     
     <!-- Unified Presentation Tab -->
     <div id="ptab-presentation" class="pd-tab-content">
-      <div style="display: flex; flex-direction: column; gap: 40px; max-width: 1000px; margin: 0 auto;">
+      <div style="max-width: 1000px; margin: 0 auto;">
         
-        ${hasPoster ? `
-          <div>
-            <h3 class="pd-videos-section-title">📊 Poster</h3>
-            <div style="background: var(--surface); padding: 16px; border-radius: 12px; border: 1px solid var(--border); cursor: pointer;" onclick="openFullscreenMedia('${p.poster}', 'img')">
-              <img src="${p.poster}" alt="Poster" style="width: 100%; border-radius: 8px; display: block; max-height: 300px; object-fit: contain; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\'>Image not found</div>'" />
-              <div style="text-align:center; padding-top:10px; font-size: 0.85rem; color:var(--text-muted);">Click to view full screen</div>
-            </div>
-          </div>
-        ` : ''}
-        
-        ${hasCircuit ? `
-          <div>
-            <h3 class="pd-videos-section-title">🔌 Circuit Diagram</h3>
-            <div style="background: var(--surface); padding: 16px; border-radius: 12px; border: 1px solid var(--border); cursor: pointer;" onclick="openFullscreenMedia('${p.circuitDiagram}', 'img')">
-              <img src="${p.circuitDiagram}" alt="Circuit Diagram" style="width: 100%; border-radius: 8px; display: block; max-height: 300px; object-fit: contain; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\'>Image not found</div>'" />
-              <div style="text-align:center; padding-top:10px; font-size: 0.85rem; color:var(--text-muted);">Click to view full screen</div>
-            </div>
-          </div>
-        ` : ''}
-
-        ${hasPdf ? `
-          <div>
-            <h3 class="pd-videos-section-title">📄 PDF Guide</h3>
-            <div class="slides-ppt" id="projectPdfWrap" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 400px; background: #f8fafc; cursor:pointer;">
-              <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: white;" onclick="openFullscreenMedia('${p.pdf}', 'pdf')">
-                 <iframe src="${p.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="Project PDF"></iframe>
+        <!-- Square grid for poster, circuit, research -->
+        <div class="presentation-grid">
+          ${hasPoster ? `
+            <div class="presentation-box" onclick="openFullscreenMedia('${p.poster}', 'img')">
+              <div class="presentation-box-img">
+                <img src="${p.poster}" alt="Poster" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\' style=\'height:100%;\'>Image not found</div>'" />
               </div>
-              <div style="background: var(--surface); padding: 12px 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10;">
-                <span class="pdf-label" style="font-weight: 700; color: var(--text);">Click to view full screen</span>
-                <a href="${p.pdf}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+              <div class="presentation-box-label">
+                <span class="presentation-box-icon">📊</span>
+                <span>Poster</span>
               </div>
             </div>
-          </div>
-        ` : ''}
-
-        ${hasResearch ? `
-          <div>
-            <h3 class="pd-videos-section-title">🔬 Research Paper</h3>
-            <div class="slides-ppt" style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); display: flex; flex-direction: column; height: 400px; background: #f8fafc; cursor:pointer;">
-              <div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center; background: white;" onclick="openFullscreenMedia('${p.researchPaper}', 'pdf')">
-                 <iframe src="${p.researchPaper}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="Research Paper"></iframe>
+          ` : ''}
+          
+          ${hasCircuit ? `
+            <div class="presentation-box" onclick="openFullscreenMedia('${p.circuitDiagram}', 'img')">
+              <div class="presentation-box-img">
+                <img src="${p.circuitDiagram}" alt="Circuit Diagram" onerror="this.parentElement.innerHTML='<div class=\'pd-placeholder\' style=\'height:100%;\'>Image not found</div>'" />
               </div>
-              <div style="background: var(--surface); padding: 12px 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; z-index: 10;">
-                <span class="pdf-label" style="font-weight: 700; color: var(--text);">Click to view full screen</span>
-                <a href="${p.researchPaper}" target="_blank" class="pdf-open-btn" style="text-decoration: none; background: var(--surface-alt); color: var(--text); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border);">Download ↗</a>
+              <div class="presentation-box-label">
+                <span class="presentation-box-icon">🔌</span>
+                <span>Circuit Diagram</span>
               </div>
             </div>
-          </div>
-        ` : ''}
-        
-        ${hasPpt ? `
-          <div>
-            <h3 class="pd-videos-section-title">📑 Presentation File</h3>
-            <div style="background: var(--surface); border-radius: 12px; border: 1px solid var(--border); padding: 24px; text-align: center;">
-               <a href="${p.ppt}" target="_blank" class="btn-primary" style="display: inline-block;">Download Presentation (.pptx)</a>
+          ` : ''}
+          
+          ${hasResearch ? `
+            <div class="presentation-box" onclick="openFullscreenMedia('${p.researchPaper}', 'pdf')">
+              <div class="presentation-box-img" style="background: #fff;">
+                <iframe src="${p.researchPaper}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="Research Paper"></iframe>
+              </div>
+              <div class="presentation-box-label">
+                <span class="presentation-box-icon">🔬</span>
+                <span>Research Paper</span>
+                <a href="${p.researchPaper}" target="_blank" onclick="event.stopPropagation()" class="presentation-box-dl">↗</a>
+              </div>
             </div>
-          </div>
-        ` : ''}
+          ` : ''}
+        </div>
         
         ${ytVideoCount > 0 ? `
-          <div>
+          <div style="margin-top: 32px;">
             <h3 class="pd-videos-section-title">📺 YouTube Guides</h3>
             <div class="pd-videos-grid" style="margin-bottom: 0;">
               ${p.youtubeVideos.map(v => `
@@ -483,10 +467,17 @@ async function renderProjectDetail() {
         });
     });
   }
+
+  // Initialize Weather Station slider auto-play
+  if (isWeatherStation && slideImages.length > 1) {
+    window._wsSliderIndex = 0;
+    window._wsSliderCount = slideImages.length;
+    window._wsSliderInterval = setInterval(() => { wsSliderNav(1); }, 4000);
+  }
 }
 
 // Lightbox for media (Poster, Circuit, PDF)
-window.openFullscreenMedia = function(url, type) {
+globalThis.openFullscreenMedia = function(url, type) {
   let modal = document.getElementById('mediaFullscreenModal');
   if (!modal) {
     modal = document.createElement('div');
@@ -517,12 +508,53 @@ window.openFullscreenMedia = function(url, type) {
   modal.style.display = 'flex';
 };
 
-window.closeFullscreenMedia = function() {
+globalThis.closeFullscreenMedia = function() {
   const modal = document.getElementById('mediaFullscreenModal');
   if (modal) {
     modal.style.display = 'none';
     document.getElementById('mediaFullscreenContent').innerHTML = ''; // clear iframe
   }
+};
+
+// =============================================
+//  WEATHER STATION SLIDER CONTROLS
+// =============================================
+globalThis._wsSliderIndex = 0;
+globalThis._wsSliderCount = 0;
+
+globalThis.wsSliderNav = function(dir) {
+  const track = document.getElementById('wsSliderTrack');
+  const dots = document.getElementById('wsSliderDots');
+  if (!track) return;
+  const count = window._wsSliderCount;
+  if (count <= 1) return;
+  window._wsSliderIndex = (window._wsSliderIndex + dir + count) % count;
+  track.style.transform = `translateX(-${window._wsSliderIndex * (100 / count)}%)`;
+  // Update dots
+  if (dots) {
+    Array.from(dots.children).forEach((dot, i) => {
+      dot.style.background = i === window._wsSliderIndex ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  // Reset auto-slide timer
+  if (window._wsSliderInterval) clearInterval(window._wsSliderInterval);
+  window._wsSliderInterval = setInterval(() => { wsSliderNav(1); }, 4000);
+};
+
+globalThis.wsSliderGoTo = function(idx) {
+  const track = document.getElementById('wsSliderTrack');
+  const dots = document.getElementById('wsSliderDots');
+  if (!track) return;
+  const count = window._wsSliderCount;
+  window._wsSliderIndex = idx;
+  track.style.transform = `translateX(-${idx * (100 / count)}%)`;
+  if (dots) {
+    Array.from(dots.children).forEach((dot, i) => {
+      dot.style.background = i === idx ? '#fff' : 'rgba(255,255,255,0.4)';
+    });
+  }
+  if (window._wsSliderInterval) clearInterval(window._wsSliderInterval);
+  window._wsSliderInterval = setInterval(() => { wsSliderNav(1); }, 4000);
 };
 
 // =============================================

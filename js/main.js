@@ -4,7 +4,7 @@
 async function init() {
   try {
     const siteRes = await fetch('site.json');
-    SITE = await siteRes.json();
+    globalThis.SITE = await siteRes.json();
   } catch (e) {
     console.error('Could not load site.json', e);
     return;
@@ -35,7 +35,7 @@ async function init() {
       let sessionNum = data.number;
       if (match) {
         sessionGrade = match[1];
-        sessionNum = parseInt(match[2]);
+        sessionNum = Number.parseInt(match[2]);
       }
 
       data.id = `${sessionGrade}-session-${sessionNum}`;
@@ -77,8 +77,8 @@ async function init() {
 
   // Sort successfully loaded sessions and reconstruct SITE.sessions array for backward compatibility
   const loadedSessions = Object.values(SESSIONS).sort((a, b) => {
-    const gA = parseInt(a._grade.replace('grade-', '')) || 0;
-    const gB = parseInt(b._grade.replace('grade-', '')) || 0;
+    const gA = Number.parseInt(a._grade.replace('grade-', '')) || 0;
+    const gB = Number.parseInt(b._grade.replace('grade-', '')) || 0;
     if (gA !== gB) return gA - gB;
     return a.number - b.number;
   });
@@ -96,37 +96,37 @@ async function init() {
   renderAbout();
 
   // Handle initial load based on path or redirect
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(globalThis.location.search);
   const redirectPage = urlParams.get('p');
   let targetPage = 'home';
   let targetParam = null;
-  const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail', 'project-detail'];
+  const validPages = new Set(['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail', 'project-detail']);
 
   if (redirectPage) {
-    const base = window.BASE_PATH || '/';
+    const base = globalThis.BASE_PATH || '/';
     // Check if the redirect is a project deep link like "project/weather-station"
-    const projectMatch = redirectPage.match(/^project\/(.+)$/);
+    const projectMatch = /^project\/(.+)$/.exec(redirectPage);
     if (projectMatch) {
       targetPage = 'project-detail';
       targetParam = decodeURIComponent(projectMatch[1]);
-      window.history.replaceState(null, null, base + 'project/' + encodeURIComponent(targetParam));
-    } else if (validPages.includes(redirectPage)) {
+      globalThis.history.replaceState(null, null, base + 'project/' + encodeURIComponent(targetParam));
+    } else if (validPages.has(redirectPage)) {
       targetPage = redirectPage;
       // Clean up the URL in history (removes ?p=live-quiz)
-      window.history.replaceState(null, null, base + redirectPage);
+      globalThis.history.replaceState(null, null, base + redirectPage);
     }
   } else {
-    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    const pathSegments = globalThis.location.pathname.split('/').filter(Boolean);
     // Filter out the repo name (e.g. "vidya") from the path segments
     const repoIndex = pathSegments.indexOf('vidya');
     const routeSegments = repoIndex >= 0 ? pathSegments.slice(repoIndex + 1) : pathSegments;
 
-    if (routeSegments.length >= 2 && routeSegments[routeSegments.length - 2] === 'project') {
+    if (routeSegments.length >= 2 && routeSegments.at(-2) === 'project') {
       targetPage = 'project-detail';
-      targetParam = decodeURIComponent(routeSegments[routeSegments.length - 1]);
+      targetParam = decodeURIComponent(routeSegments.at(-1));
     } else {
       const pathSegment = routeSegments.pop();
-      if (pathSegment && validPages.includes(pathSegment) && pathSegment !== 'VIDYA') {
+      if (pathSegment && validPages.has(pathSegment) && pathSegment !== 'VIDYA') {
         targetPage = pathSegment;
       }
     }
@@ -148,16 +148,16 @@ async function init() {
 // =============================================
 //  HISTORY NAV (Back/Forward)
 // =============================================
-window.addEventListener('popstate', () => {
-  const pathSegments = window.location.pathname.split('/').filter(Boolean);
+globalThis.addEventListener('popstate', () => {
+  const pathSegments = globalThis.location.pathname.split('/').filter(Boolean);
   const validPages = ['home', 'sessions', 'projects', 'whiteboard', 'live-quiz', 'about', 'session-detail', 'project-detail'];
 
   // Filter out the repo name (e.g. "vidya") from the path segments
   const repoIndex = pathSegments.indexOf('vidya');
   const routeSegments = repoIndex >= 0 ? pathSegments.slice(repoIndex + 1) : pathSegments;
 
-  if (routeSegments.length >= 2 && routeSegments[routeSegments.length - 2] === 'project') {
-    const targetParam = decodeURIComponent(routeSegments[routeSegments.length - 1]);
+  if (routeSegments.length >= 2 && routeSegments.at(-2) === 'project') {
+    const targetParam = decodeURIComponent(routeSegments.at(-1));
     currentProject = PROJECTS.find(p => p.id === targetParam);
     if (currentProject) {
       showPage('project-detail', targetParam);
