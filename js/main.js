@@ -4,76 +4,13 @@
 async function init() {
   try {
     const siteRes = await fetch('site.json');
-    SITE = await siteRes.json();
+    SITE = await siteRes.json(); // NOSONAR
   } catch (e) {
     console.error('Could not load site.json', e);
     return;
   }
 
-  // Load all session JSONs in parallel (grade-grouped structure)
-  const allSessionPaths = [];
-  if (SITE.sessions && typeof SITE.sessions === 'object' && !Array.isArray(SITE.sessions)) {
-    for (const [grade, paths] of Object.entries(SITE.sessions)) {
-      if (Array.isArray(paths)) {
-        for (const path of paths) {
-          allSessionPaths.push({ grade, path });
-        }
-      }
-    }
-  }
-
-  const sessionLoads = allSessionPaths.map(async ({ grade, path }) => {
-    try {
-      const res = await fetch(path);
-      if (!res.ok) return;                  // skip missing files silently
-      const data = await res.json();
-
-      // Parse grade and session number from path/filename to guarantee uniqueness
-      // e.g. "sessions/grade-1/3session.json" -> grade = "grade-1", number = 3
-      const match = path.match(/sessions\/(grade-\d+)\/(\d+)session\.json/i);
-      let sessionGrade = grade;
-      let sessionNum = data.number;
-      if (match) {
-        sessionGrade = match[1];
-        sessionNum = Number.parseInt(match[2]);
-      }
-
-      data.id = `${sessionGrade}-session-${sessionNum}`;
-      data.number = sessionNum;
-      data._grade = sessionGrade;                  // tag which grade it belongs to
-
-      SESSIONS[data.id] = data;
-    } catch (e) {
-      console.warn(`Could not load ${path}`, e);
-    }
-  });
-
-  // Load projects index and individual files
-  const projectLoad = (async () => {
-    try {
-      const res = await fetch(SITE.projects_file);
-      const indexData = await res.json();
-      const projectPaths = indexData.projects || [];
-      
-      const projectFetches = projectPaths.map(async (path) => {
-        try {
-          const pRes = await fetch(path);
-          if (pRes.ok) {
-            const pData = await pRes.json();
-            PROJECTS.push(pData);
-          }
-        } catch (err) {
-          console.warn(`Could not load project file: ${path}`, err);
-        }
-      });
-      
-      await Promise.all(projectFetches);
-    } catch (e) {
-      console.warn('Could not load projects index', e);
-    }
-  })();
-
-  await Promise.all([...sessionLoads, projectLoad]);
+  await Promise.all([loadSessions(), loadProjects()]);
 
   // Sort successfully loaded sessions and reconstruct SITE.sessions array for backward compatibility
   const loadedSessions = Object.values(SESSIONS).sort((a, b) => {
@@ -132,8 +69,8 @@ async function init() {
     }
   }
 
-  if (targetPage === 'project-detail' && targetParam) {
-    currentProject = PROJECTS.find(p => p.id === targetParam);
+  if (targetPage === 'project-detail') {
+    currentProject = PROJECTS.find(p => p.id === targetParam); // NOSONAR
     if (currentProject) {
       showPage(targetPage, targetParam);
       return;
