@@ -1,6 +1,56 @@
 // =============================================
 //  BOOTSTRAP — load all JSON files
 // =============================================
+async function loadSessions() {
+  const promises = [];
+  if (SITE && SITE.sessions) {
+    for (const [grade, files] of Object.entries(SITE.sessions)) {
+      if (Array.isArray(files)) {
+        for (const file of files) {
+          promises.push(
+            fetch(file)
+              .then(res => {
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                return res.json();
+              })
+              .then(data => {
+                data._grade = grade;
+                SESSIONS[data.id] = data;
+              })
+              .catch(e => console.warn(`Failed to load session ${file}:`, e))
+          );
+        }
+      }
+    }
+  }
+  await Promise.allSettled(promises);
+}
+
+async function loadProjects() {
+  if (!SITE || !SITE.projects_file) return;
+  try {
+    const res = await fetch(SITE.projects_file);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    const data = await res.json();
+    if (data && Array.isArray(data.projects)) {
+      const promises = data.projects.map(file => 
+        fetch(file)
+          .then(res => {
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            return res.json();
+          })
+          .then(projData => {
+            PROJECTS.push(projData);
+          })
+          .catch(e => console.warn(`Failed to load project ${file}:`, e))
+      );
+      await Promise.allSettled(promises);
+    }
+  } catch (e) {
+    console.error('Failed to load projects index:', e);
+  }
+}
+
 async function init() {
   try {
     const siteRes = await fetch('site.json');
