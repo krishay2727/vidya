@@ -1,0 +1,43 @@
+{
+  "id": "16x2lcd",
+  "name": "16x2 LCD Display",
+  "fullName": "16x2 Character LCD Display Module (HD44780)",
+  "category": "Display",
+  "image": "data/components/images/16x2lcd.jpg",
+  "color": "#00FF88",
+  "tagline": "Classic 16-character × 2-row alphanumeric LCD for displaying text and numbers",
+  "description": "The 16x2 LCD is a widely-used character display that shows 2 rows of 16 characters each. Based on the HD44780 controller, it can be used in 4-bit or 8-bit parallel mode, or with an I2C adapter module (PCF8574) for simple 2-wire control. It's ideal for displaying sensor readings, menus, status messages, and countdowns in Arduino projects.",
+  "specs": {
+    "displayType": "Character LCD (alphanumeric)",
+    "resolution": "16 columns × 2 rows",
+    "controller": "HD44780 (compatible)",
+    "operatingVoltage": "5V DC",
+    "interface": "4-bit / 8-bit parallel, or I2C via PCF8574 backpack",
+    "backlight": "LED backlight (blue/green variants)",
+    "characterSize": "5×8 dot matrix per character"
+  },
+  "pinout": [
+    { "pin": "1 – VSS", "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": "2 – VDD", "name": "VCC", "desc": "5V power supply", "color": "#FF4444" },
+    { "pin": "3 – VO", "name": "Contrast", "desc": "Contrast adjustment — connect to 10kΩ potentiometer wiper", "color": "#888888" },
+    { "pin": "4 – RS", "name": "Register Select", "desc": "LOW = command, HIGH = data", "color": "#FF6B35" },
+    { "pin": "5 – RW", "name": "Read/Write", "desc": "Connect to GND for write-only mode", "color": "#888888" },
+    { "pin": "6 – EN", "name": "Enable", "desc": "Pulse HIGH to latch data", "color": "#FF8888" },
+    { "pin": "11–14 – D4–D7", "name": "Data Bits", "desc": "4-bit data bus (D4–D7 only for 4-bit mode)", "color": "#00D4FF" },
+    { "pin": "15 – A", "name": "Backlight +", "desc": "Backlight LED anode — connect to 5V via 220Ω resistor", "color": "#FFFF00" },
+    { "pin": "16 – K", "name": "Backlight −", "desc": "Backlight LED cathode — connect to GND", "color": "#222222" }
+  ],
+  "wiringNote": "Use an I2C backpack module (PCF8574) to reduce wiring to just 4 wires: VCC, GND, SDA (A4), SCL (A5). Don't forget the 10kΩ pot on VO for contrast in direct parallel mode.",
+  "libraryName": "LiquidCrystal (built-in) or LiquidCrystal_I2C",
+  "libraryInstall": "For I2C: Arduino IDE → Library Manager → Search 'LiquidCrystal I2C' by Frank de Brabander → Install",
+  "codeSnippet": "#include <LiquidCrystal_I2C.h>\nLiquidCrystal_I2C lcd(0x27, 16, 2);\nvoid setup() {\n  lcd.init();\n  lcd.backlight();\n  lcd.setCursor(0, 0);\n  lcd.print(\"Hello, World!\");\n  lcd.setCursor(0, 1);\n  lcd.print(\"Vidya Lab :)\");\n}\nvoid loop() {}",
+  "commonMistakes": [
+    "Wrong I2C address (0x27 vs 0x3F) → display stays blank; scan with I2C scanner sketch",
+    "Forgetting to call lcd.init() and lcd.backlight() → nothing shows",
+    "Not adjusting contrast pot → display shows only blocks or nothing",
+    "Connecting VO pin directly to GND → maximum contrast, text barely visible on some displays"
+  ],
+  "usedInProjects": ["weather-station", "smart-alert"],
+  "datasheetUrl": "https://www.sparkfun.com/datasheets/LCD/HD44780.pdf",
+  "buyLink": "https://www.robu.in/product/16x2-lcd-display-module-blue-backlight/"
+}

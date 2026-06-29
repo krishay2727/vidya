@@ -1,0 +1,37 @@
+{
+  "id": "breadboard",
+  "name": "Breadboard",
+  "fullName": "Full-Size 830-Point Solderless Breadboard",
+  "category": "Prototyping",
+  "image": "data/components/images/breadboard.jpg",
+  "color": "#F5E642",
+  "tagline": "Solderless prototyping board for building and testing circuits without soldering",
+  "description": "A breadboard is a reusable prototyping tool that lets you build circuits without soldering. It has rows of holes connected internally — power rails run along the sides and tie strips run horizontally in the middle. The standard 830-point full-size breadboard is ideal for prototyping Arduino and electronics projects at any skill level.",
+  "specs": {
+    "totalPoints": "830 tie points",
+    "tieStripRows": "63 rows (a–j, split in the middle)",
+    "powerRails": "4 rails (2 per side: + and −)",
+    "spacing": "2.54mm (0.1 inch) standard",
+    "maxCurrentPerRow": "~1A",
+    "maxVoltage": "300V (AC peak)"
+  },
+  "pinout": [
+    { "pin": "Red Rail (+)", "name": "VCC", "desc": "Positive power rail — connect to 5V or 3.3V", "color": "#FF4444" },
+    { "pin": "Blue Rail (−)", "name": "GND", "desc": "Ground power rail — connect to GND", "color": "#222222" },
+    { "pin": "Rows a–e", "name": "Tie Strip (Left)", "desc": "Columns a–e are connected horizontally per row", "color": "#00D4FF" },
+    { "pin": "Rows f–j", "name": "Tie Strip (Right)", "desc": "Columns f–j are connected horizontally per row (split from a–e)", "color": "#00FF88" }
+  ],
+  "wiringNote": "The center divider separates the left (a–e) and right (f–j) halves. Power rails on opposite sides are NOT connected to each other unless bridged with a wire.",
+  "libraryName": "N/A — passive hardware component",
+  "libraryInstall": "No software required.",
+  "codeSnippet": "// Breadboard has no code — it is a physical prototyping tool.\n// Connect components in rows; use power rails for VCC and GND.\n// Example: insert LED anode in row 10, cathode in row 12,\n// connect a 220Ω resistor between row 12 and GND rail.",
+  "commonMistakes": [
+    "Bridging the center gap with a component leg — left and right halves are NOT connected",
+    "Using damaged/loose holes that lose contact → intermittent faults",
+    "Not connecting both power rails when using components on both sides",
+    "Inserting ICs incorrectly across the center divider (they should straddle it)"
+  ],
+  "usedInProjects": ["weather-station", "smart-alert", "line-follower", "rc-car"],
+  "datasheetUrl": "https://components101.com/misc/breadboard",
+  "buyLink": "https://www.robu.in/product/400-point-mini-breadboard/"
+}

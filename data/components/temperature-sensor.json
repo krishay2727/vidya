@@ -1,0 +1,37 @@
+{
+  "id": "temperature-sensor",
+  "name": "DS18B20 Temperature Sensor",
+  "fullName": "DS18B20 1-Wire Digital Temperature Sensor",
+  "category": "Sensor",
+  "image": "data/components/images/temperature-sensor.jpg",
+  "color": "#FF6B35",
+  "tagline": "Accurate waterproof digital temperature sensor using a single-wire 1-Wire protocol",
+  "description": "The DS18B20 is a digital temperature sensor that communicates over the Dallas 1-Wire protocol, requiring only a single data wire (plus GND and VCC). It measures temperature from −55°C to +125°C with ±0.5°C accuracy in the −10°C to +85°C range. The waterproof probe version is perfect for liquid and outdoor temperature monitoring. Multiple DS18B20 sensors can share a single Arduino pin using different 64-bit addresses.",
+  "specs": {
+    "operatingVoltage": "3.0V – 5.5V DC",
+    "temperatureRange": "−55°C to +125°C",
+    "accuracy": "±0.5°C (−10°C to +85°C)",
+    "resolution": "9–12 bit (configurable), 12-bit = 0.0625°C steps",
+    "protocol": "1-Wire (Dallas single-wire)",
+    "conversionTime": "94ms (9-bit) to 750ms (12-bit)",
+    "packageType": "TO-92 (bare), waterproof probe (stainless steel)"
+  },
+  "pinout": [
+    { "pin": "GND (Black wire — probe)", "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": "DQ (Yellow/White wire — probe)", "name": "Data", "desc": "1-Wire data line — connect to Arduino digital pin via 4.7kΩ pull-up to VCC", "color": "#FFFF00" },
+    { "pin": "VCC (Red wire — probe)", "name": "VCC", "desc": "Power supply 3.3V–5V (or parasitic power via data line)", "color": "#FF4444" }
+  ],
+  "wiringNote": "Always add a 4.7kΩ pull-up resistor between the DQ (data) line and VCC. Without it, the 1-Wire bus won't work and you'll get -127°C or NaN readings.",
+  "libraryName": "DallasTemperature + OneWire",
+  "libraryInstall": "Arduino IDE → Library Manager → Install 'DallasTemperature' by Miles Burton. OneWire is installed as a dependency automatically.",
+  "codeSnippet": "#include <OneWire.h>\n#include <DallasTemperature.h>\n#define ONE_WIRE_BUS 2\nOneWire oneWire(ONE_WIRE_BUS);\nDallasTemperature sensors(&oneWire);\nvoid setup() {\n  Serial.begin(9600);\n  sensors.begin();\n}\nvoid loop() {\n  sensors.requestTemperatures();\n  float tempC = sensors.getTempCByIndex(0);\n  Serial.print(\"Temperature: \");\n  Serial.print(tempC);\n  Serial.println(\" °C\");\n  delay(1000);\n}",
+  "commonMistakes": [
+    "Missing 4.7kΩ pull-up resistor on DQ → sensor reads -127°C or garbage",
+    "Not calling sensors.requestTemperatures() before getTempCByIndex() → returns stale data",
+    "Using wrong wire color mapping on probe version → check: black=GND, red=VCC, yellow=data",
+    "Exceeding 5.5V supply → sensor permanently damaged"
+  ],
+  "usedInProjects": ["weather-station", "aquarium-monitor", "smart-greenhouse"],
+  "datasheetUrl": "https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf",
+  "buyLink": "https://www.robu.in/product/ds18b20-temperature-sensor-waterproof-probe/"
+}

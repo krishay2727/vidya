@@ -1,0 +1,42 @@
+{
+  "id": "color-sensor",
+  "name": "TCS3200 Color Sensor",
+  "fullName": "TCS3200 RGB Color Detection Sensor Module",
+  "category": "Sensor",
+  "image": "data/components/images/color-sensor.jpg",
+  "color": "#FF6B35",
+  "tagline": "Detects and identifies colors by measuring red, green, and blue light intensities",
+  "description": "The TCS3200 is a programmable color light-to-frequency converter. It illuminates an object using four onboard white LEDs and uses an 8×8 array of photodiodes — filtered for red, green, blue, and clear light — to measure color. The output is a square wave whose frequency is proportional to the light intensity of the selected color channel. Used in color sorting robots, line followers with color detection, and industrial quality control.",
+  "specs": {
+    "operatingVoltage": "2.7V – 5.5V DC",
+    "outputType": "Frequency (square wave) — not analog voltage",
+    "photodiodeArray": "8×8 = 64 photodiodes (16 red-filtered, 16 green, 16 blue, 16 clear)",
+    "frequencyScaling": "1%, 2%, 20%, or 100% (set via S0, S1 pins)",
+    "outputFrequencyRange": "2Hz – 500kHz (at 100% scaling)",
+    "onboardLEDs": "4 white LEDs for consistent illumination",
+    "interface": "Digital frequency output — read with pulseIn() or interrupts"
+  },
+  "pinout": [
+    { "pin": "VCC", "name": "VCC", "desc": "Power supply 2.7V–5.5V", "color": "#FF4444" },
+    { "pin": "GND", "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": "S0", "name": "Freq Scale Bit 0", "desc": "Output frequency scaling — set HIGH/LOW with S1", "color": "#FF8800" },
+    { "pin": "S1", "name": "Freq Scale Bit 1", "desc": "Output frequency scaling — set HIGH/HIGH for 100%", "color": "#FF8800" },
+    { "pin": "S2", "name": "Filter Select Bit 0", "desc": "Color filter selection with S3: LOW/LOW = Red", "color": "#00D4FF" },
+    { "pin": "S3", "name": "Filter Select Bit 1", "desc": "LOW/HIGH = Blue, HIGH/HIGH = Green, HIGH/LOW = Clear", "color": "#00D4FF" },
+    { "pin": "OUT", "name": "Output Frequency", "desc": "Square wave output — frequency ∝ light intensity of selected color", "color": "#00FF88" },
+    { "pin": "OE", "name": "Output Enable", "desc": "Active LOW — connect to GND to always enable output", "color": "#888888" }
+  ],
+  "wiringNote": "Set S0=HIGH, S1=HIGH for 100% frequency scaling (most readable). Hold sensor 1–3cm from the object with LEDs illuminating it evenly. Calibrate in white and black light before use for consistent results.",
+  "libraryName": "MD_TCS230 or raw pulseIn()",
+  "libraryInstall": "Arduino IDE → Library Manager → Search 'MD_TCS230' → Install. Or use pulseIn() directly.",
+  "codeSnippet": "#define S0 4\n#define S1 5\n#define S2 6\n#define S3 7\n#define OUT 8\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(S0, OUTPUT); pinMode(S1, OUTPUT);\n  pinMode(S2, OUTPUT); pinMode(S3, OUTPUT);\n  pinMode(OUT, INPUT);\n  digitalWrite(S0, HIGH); digitalWrite(S1, HIGH); // 100% scale\n}\nint readColor(int s2, int s3) {\n  digitalWrite(S2, s2); digitalWrite(S3, s3);\n  return pulseIn(OUT, LOW);\n}\nvoid loop() {\n  int r = readColor(LOW, LOW);    // Red\n  int g = readColor(HIGH, HIGH);  // Green\n  int b = readColor(LOW, HIGH);   // Blue\n  Serial.print(\"R:\"); Serial.print(r);\n  Serial.print(\" G:\"); Serial.print(g);\n  Serial.print(\" B:\"); Serial.println(b);\n  delay(500);\n}",
+  "commonMistakes": [
+    "Not calibrating with white and black reference → raw frequency values are meaningless without calibration",
+    "Using pulseIn() timeout too short → 0 returned for low-light readings",
+    "Ambient light interference → shield the sensor from external light sources for accurate readings",
+    "Confusing frequency with analog voltage — OUT is a square wave, not an analog signal"
+  ],
+  "usedInProjects": ["color-sorting-robot", "color-line-follower", "quality-control"],
+  "datasheetUrl": "https://ams.com/documents/20143/36005/TCS3200_DS000273_3-00.pdf",
+  "buyLink": "https://www.robu.in/product/tcs3200-tcs230-color-sensor-module/"
+}

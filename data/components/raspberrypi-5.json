@@ -1,0 +1,46 @@
+{
+  "id": "raspberrypi-5",
+  "name": "Raspberry Pi 5",
+  "fullName": "Raspberry Pi 5 Single-Board Computer",
+  "category": "Single-Board Computer",
+  "image": "data/components/images/raspberrypi-5.jpg",
+  "color": "#C51A4A",
+  "tagline": "The most powerful Raspberry Pi yet — a full Linux computer on a single board with 4K output",
+  "description": "The Raspberry Pi 5 is a full-featured single-board computer running a 64-bit Linux OS (Raspberry Pi OS). Unlike Arduino, it is not a microcontroller — it runs a complete operating system and can run Python programs, host web servers, process camera feeds with AI, and interface with hardware via its 40-pin GPIO header. It features a quad-core Arm Cortex-A76 CPU, PCIe connectivity, and dual 4K display output.",
+  "specs": {
+    "cpu": "Broadcom BCM2712 — Quad-core Arm Cortex-A76 @ 2.4GHz",
+    "ram": "4GB or 8GB LPDDR4X-4267 SDRAM",
+    "gpu": "VideoCore VII (OpenGL ES 3.1, Vulkan 1.2)",
+    "storage": "MicroSD card slot (no built-in storage)",
+    "usbPorts": "2× USB 3.0 + 2× USB 2.0",
+    "displayOutput": "2× micro HDMI (4K@60fps each)",
+    "networkConnectivity": "Gigabit Ethernet, Wi-Fi 802.11ac (5GHz), Bluetooth 5.0 / BLE",
+    "gpio": "40-pin GPIO header (3.3V logic)",
+    "powerInput": "USB-C 5V / 5A (27W) — Pi 5 requires 5A supply",
+    "additionalFeatures": "PCIe 2.0 x1, UART, I2C, SPI, Camera/Display CSI/DSI"
+  },
+  "pinout": [
+    { "pin": "Pin 1", "name": "3.3V", "desc": "3.3V power output (max 500mA)", "color": "#FF8888" },
+    { "pin": "Pin 2", "name": "5V", "desc": "5V power input/output", "color": "#FF4444" },
+    { "pin": "Pin 6", "name": "GND", "desc": "Ground (multiple GND pins available)", "color": "#222222" },
+    { "pin": "Pin 3 (GPIO2)", "name": "SDA1", "desc": "I2C1 Data", "color": "#9B6BFF" },
+    { "pin": "Pin 5 (GPIO3)", "name": "SCL1", "desc": "I2C1 Clock", "color": "#9B6BFF" },
+    { "pin": "Pin 8 (GPIO14)", "name": "TXD0", "desc": "UART Transmit", "color": "#FF6B35" },
+    { "pin": "Pin 10 (GPIO15)", "name": "RXD0", "desc": "UART Receive", "color": "#FF6B35" },
+    { "pin": "GPIO 2–27", "name": "GPIO Pins", "desc": "General-purpose 3.3V I/O — can be digital in/out, PWM, I2C, SPI, UART", "color": "#00D4FF" }
+  ],
+  "wiringNote": "All GPIO pins are 3.3V logic — 5V will damage them. Use a 5A USB-C power supply; anything less causes throttling. GPIO does NOT have built-in analog input — use an ADC (e.g., MCP3008) for analog sensors.",
+  "libraryName": "RPi.GPIO / gpiozero (Python)",
+  "libraryInstall": "Pre-installed on Raspberry Pi OS. Run: sudo apt update && sudo apt install python3-gpiozero",
+  "codeSnippet": "# Python — Blink LED on GPIO17\nfrom gpiozero import LED\nfrom time import sleep\nled = LED(17)\nwhile True:\n    led.on()\n    sleep(1)\n    led.off()\n    sleep(1)\n\n# Read a button on GPIO27:\n# from gpiozero import Button\n# btn = Button(27)\n# btn.wait_for_press()\n# print(\"Button pressed!\")",
+  "commonMistakes": [
+    "Using a power supply below 5A → Pi 5 throttles CPU and warns about insufficient power",
+    "Connecting 5V signals to GPIO → instantly damages the GPIO bank (3.3V only)",
+    "Not using a heatsink/fan → Pi 5 throttles at high loads without active cooling",
+    "Pulling SD card without proper shutdown → corrupts the filesystem",
+    "Expecting real-time hardware control like Arduino — Pi OS is not real-time, use a co-processor or Pico"
+  ],
+  "usedInProjects": ["ai-camera", "home-server", "iot-dashboard"],
+  "datasheetUrl": "https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf",
+  "buyLink": "https://www.robu.in/product/raspberry-pi-5-8gb/"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "pressure-sensor",
+  "name": "BMP280 Pressure Sensor",
+  "fullName": "BMP280 Barometric Pressure & Temperature Sensor",
+  "category": "Sensor",
+  "image": "data/components/images/pressure-sensor.jpg",
+  "color": "#00D4FF",
+  "tagline": "Measures barometric pressure and temperature over I2C or SPI — ideal for altitude and weather sensing",
+  "description": "The BMP280 is a high-precision barometric pressure and temperature sensor from Bosch. It measures absolute pressure (300–1100 hPa) and can calculate altitude based on pressure differences. It communicates over I2C or SPI. Widely used in weather stations, drone altitude control, GPS enhancement, and indoor navigation applications.",
+  "specs": {
+    "operatingVoltage": "1.71V – 3.6V (use 3.3V; most modules have onboard regulator for 5V input)",
+    "pressureRange": "300 hPa – 1100 hPa",
+    "pressureAccuracy": "±1 hPa (relative), ±1m altitude resolution",
+    "temperatureRange": "−40°C to +85°C",
+    "temperatureAccuracy": "±1°C",
+    "interface": "I2C (up to 3.4MHz) or SPI (up to 10MHz)",
+    "i2cAddress": "0x76 (SDO LOW) or 0x77 (SDO HIGH)",
+    "currentConsumption": "2.7µA @ 1Hz measurement rate"
+  },
+  "pinout": [
+    { "pin": "VCC", "name": "VCC", "desc": "Power supply — 3.3V or 5V (if module has regulator)", "color": "#FF4444" },
+    { "pin": "GND", "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": "SDA", "name": "I2C Data", "desc": "I2C SDA — connect to Arduino A4", "color": "#9B6BFF" },
+    { "pin": "SCL", "name": "I2C Clock", "desc": "I2C SCL — connect to Arduino A5", "color": "#00D4FF" },
+    { "pin": "CSB", "name": "Chip Select", "desc": "Connect to VCC for I2C mode (pull HIGH)", "color": "#888888" },
+    { "pin": "SDO", "name": "I2C Address", "desc": "Pull LOW for 0x76, pull HIGH for 0x77", "color": "#FF8800" }
+  ],
+  "wiringNote": "In I2C mode, connect CSB to VCC and set SDO to LOW or HIGH to select the I2C address. Do not leave SDO floating — it causes unstable address behavior.",
+  "libraryName": "Adafruit BMP280 Library",
+  "libraryInstall": "Arduino IDE → Library Manager → Search 'Adafruit BMP280' → Install. Also install 'Adafruit Unified Sensor' when prompted.",
+  "codeSnippet": "#include <Wire.h>\n#include <Adafruit_BMP280.h>\nAdafruit_BMP280 bmp;\nvoid setup() {\n  Serial.begin(9600);\n  if (!bmp.begin(0x76)) {\n    Serial.println(\"BMP280 not found!\");\n    while (1);\n  }\n}\nvoid loop() {\n  float temp = bmp.readTemperature();\n  float pres = bmp.readPressure() / 100.0F; // hPa\n  float alt  = bmp.readAltitude(1013.25);    // Sea level hPa\n  Serial.print(\"Temp: \"); Serial.print(temp); Serial.print(\" C  \");\n  Serial.print(\"Pressure: \"); Serial.print(pres); Serial.print(\" hPa  \");\n  Serial.print(\"Altitude: \"); Serial.print(alt); Serial.println(\" m\");\n  delay(2000);\n}",
+  "commonMistakes": [
+    "Wrong I2C address (0x76 vs 0x77) → 'BMP280 not found' error; scan with I2C scanner",
+    "Not installing 'Adafruit Unified Sensor' dependency → library won't compile",
+    "Leaving CSB floating in I2C mode → switches randomly between I2C and SPI",
+    "Using incorrect sea-level pressure in readAltitude() → altitude readings are off"
+  ],
+  "usedInProjects": ["weather-station", "drone-altimeter", "smart-greenhouse"],
+  "datasheetUrl": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf",
+  "buyLink": "https://www.robu.in/product/bmp280-atmospheric-pressure-sensor-module/"
+}

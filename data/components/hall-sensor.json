@@ -1,0 +1,36 @@
+{
+  "id": "hall-sensor",
+  "name": "Hall Effect Sensor",
+  "fullName": "A3144 Hall Effect Magnetic Sensor Module",
+  "category": "Sensor",
+  "image": "data/components/images/hall-sensor.jpg",
+  "color": "#9B6BFF",
+  "tagline": "Detects magnetic fields and outputs a digital signal — used for RPM counting and magnetic proximity sensing",
+  "description": "A Hall Effect sensor detects the presence of a magnetic field and outputs a digital HIGH or LOW signal. The A3144 is a popular unipolar Hall sensor that outputs LOW when a south pole magnet is brought close, and HIGH when the magnet is removed. It's used for counting rotations (RPM), detecting motor position, detecting open/close states of doors, and triggering on magnetic targets.",
+  "specs": {
+    "operatingVoltage": "4.5V – 24V DC",
+    "outputType": "Open-collector digital output (active LOW with magnet)",
+    "outputCurrentSink": "25mA max",
+    "operatingTemperature": "−40°C to +150°C",
+    "switchingFrequency": "Up to 17kHz",
+    "packageType": "TO-92 (3-pin) or breakout module with pull-up resistor"
+  },
+  "pinout": [
+    { "pin": "Pin 1 / VCC", "name": "VCC", "desc": "Power supply 4.5V–24V (use 5V for Arduino)", "color": "#FF4444" },
+    { "pin": "Pin 2 / GND", "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": "Pin 3 / OUT", "name": "Output", "desc": "Digital output — LOW when magnet is detected, HIGH otherwise (needs pull-up resistor on bare sensor)", "color": "#00D4FF" }
+  ],
+  "wiringNote": "The bare A3144 TO-92 sensor requires a 10kΩ pull-up resistor between the output pin and VCC. Most breakout modules include this resistor. Use INPUT_PULLUP if using the bare sensor with Arduino internal pull-up.",
+  "libraryName": "No library needed (use digitalRead)",
+  "libraryInstall": "No installation required.",
+  "codeSnippet": "#define HALL_PIN 2\nint rpmCount = 0;\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(HALL_PIN, INPUT_PULLUP);\n  // Count each magnet pass for RPM:\n  attachInterrupt(digitalPinToInterrupt(HALL_PIN),\n    []() { rpmCount++; }, FALLING);\n}\nvoid loop() {\n  // Print RPM every second\n  Serial.print(\"Pulses/sec (RPM approx): \");\n  Serial.println(rpmCount * 60);\n  rpmCount = 0;\n  delay(1000);\n}",
+  "commonMistakes": [
+    "Forgetting pull-up resistor on bare sensor → output floats, false triggers",
+    "Using wrong magnet pole — A3144 responds to south pole only (north pole = no response on unipolar sensors)",
+    "Mounting magnet too far away → sensor won't trigger (typical range: <5mm)",
+    "Confusing Hall sensor with IR sensor — Hall responds to magnetic fields, not light"
+  ],
+  "usedInProjects": ["rpm-meter", "dc-motor-encoder", "smart-lock"],
+  "datasheetUrl": "https://www.allegromicro.com/en/products/sense/switches-and-latches/switches/a3141-2-3-4",
+  "buyLink": "https://www.robu.in/product/a3144-hall-effect-sensor-module/"
+}

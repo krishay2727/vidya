@@ -1,0 +1,35 @@
+{
+  "id": "buzzer",
+  "name": "Buzzer",
+  "fullName": "Active/Passive Piezoelectric Buzzer Module",
+  "category": "Output Device",
+  "image": "data/components/images/buzzer.jpg",
+  "color": "#FF6B35",
+  "tagline": "Generates audible beeps and tones — active buzzers buzz on their own, passive ones play melodies",
+  "description": "A buzzer is an electromechanical or piezoelectric audio output device. Active buzzers have a built-in oscillator and buzz continuously when power is applied. Passive buzzers require an external PWM signal (via tone()) and can play melodies and custom frequencies. Both types are commonly used for alerts, alarms, feedback, and music in Arduino projects.",
+  "specs": {
+    "operatingVoltage": "3.3V – 5V DC",
+    "currentConsumption": "~30mA (active) / ~15–25mA (passive)",
+    "soundPressureLevel": "85–100 dB at 10cm",
+    "activeType": "Self-oscillating — buzz on/off with digitalWrite",
+    "passiveType": "Frequency-driven — use tone(pin, frequency) to play sounds",
+    "packageType": "2-pin module or bare component"
+  },
+  "pinout": [
+    { "pin": "VCC / +", "name": "Positive", "desc": "Connect to 5V (active) or to Arduino digital pin (passive)", "color": "#FF4444" },
+    { "pin": "GND / −", "name": "Ground", "desc": "Connect to GND", "color": "#222222" }
+  ],
+  "wiringNote": "Active buzzer: connect + to a digital output pin and − to GND. Use digitalWrite(pin, HIGH) to sound it. Passive buzzer: connect same way but drive with tone(pin, frequency, duration) for melody playback. Add a 100Ω resistor in series to protect the Arduino pin.",
+  "libraryName": "No library needed (use built-in tone())",
+  "libraryInstall": "No installation required. tone() is built into the Arduino core.",
+  "codeSnippet": "// ACTIVE BUZZER\n#define BUZZER 8\nvoid setup() { pinMode(BUZZER, OUTPUT); }\nvoid loop() {\n  digitalWrite(BUZZER, HIGH); // Sound ON\n  delay(500);\n  digitalWrite(BUZZER, LOW);  // Sound OFF\n  delay(500);\n}\n\n// PASSIVE BUZZER — plays a note\n// tone(BUZZER, 1000, 500); // 1000Hz for 500ms\n// noTone(BUZZER);          // Stop sound",
+  "commonMistakes": [
+    "Using tone() on an active buzzer → produces erratic sounds, not expected tones",
+    "Driving buzzer directly without a resistor → can exceed pin current limit (40mA max)",
+    "Confusing active and passive buzzers — active has a small circle on top, passive has no marking",
+    "Calling tone() on pin 11 while using Servo library → conflict, use a different pin"
+  ],
+  "usedInProjects": ["smart-alert", "weather-station", "security-alarm"],
+  "datasheetUrl": "https://components101.com/misc/buzzer-pinout-working-datasheet",
+  "buyLink": "https://www.robu.in/product/5v-active-buzzer-module/"
+}

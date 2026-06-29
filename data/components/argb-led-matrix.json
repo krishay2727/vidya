@@ -1,0 +1,38 @@
+{
+  "id": "argb-led-matrix",
+  "name": "ARGB LED Matrix",
+  "fullName": "WS2812B Addressable RGB LED Matrix Panel",
+  "category": "Output Device",
+  "image": "data/components/images/argb-led-matrix.jpg",
+  "color": "#FF00FF",
+  "tagline": "Individually addressable full-color RGB LED matrix — each LED is independently programmable",
+  "description": "An ARGB (Addressable RGB) LED matrix is a grid of WS2812B LEDs where each LED contains its own driver chip and can be set to any color independently using a single data wire. Common sizes are 8×8 (64 LEDs) and 16×16 (256 LEDs). They're used for scrolling text displays, pixel art animations, game visualizations, and ambient lighting. The FastLED and Adafruit NeoPixel libraries make control straightforward.",
+  "specs": {
+    "operatingVoltage": "5V DC",
+    "currentPerLED": "~60mA per LED (full white = R+G+B all at 255)",
+    "currentFor8x8FullWhite": "~3.84A (64 LEDs × 60mA)",
+    "ledType": "WS2812B (integrated IC + RGB LED in single package)",
+    "colorDepth": "24-bit color (8 bits per channel, 16.7 million colors)",
+    "protocol": "Single-wire NZR protocol (800kHz)",
+    "commonSizes": "8×8 (64 LEDs), 16×16 (256 LEDs), flexible strips"
+  },
+  "pinout": [
+    { "pin": "5V / VCC", "name": "Power", "desc": "5V DC — use an external 5V power supply with sufficient amperage (not Arduino 5V pin)", "color": "#FF4444" },
+    { "pin": "GND", "name": "Ground", "desc": "Shared ground with Arduino and power supply", "color": "#222222" },
+    { "pin": "DIN / DATA", "name": "Data In", "desc": "Single data wire — connect to an Arduino digital pin (e.g., D6) via a 330–500Ω resistor", "color": "#FF00FF" }
+  ],
+  "wiringNote": "ALWAYS use an external 5V power supply — never power more than a few LEDs from the Arduino's 5V pin. Add a 1000µF capacitor across the 5V and GND lines to prevent power surge on startup. Use a 330Ω–500Ω resistor in series on the DATA line to protect WS2812B from ringing.",
+  "libraryName": "FastLED or Adafruit NeoPixel",
+  "libraryInstall": "Arduino IDE → Library Manager → Search 'FastLED' by Daniel Garcia → Install. OR search 'Adafruit NeoPixel' → Install.",
+  "codeSnippet": "#include <FastLED.h>\n#define NUM_LEDS 64   // 8x8 matrix\n#define DATA_PIN 6\nCRGB leds[NUM_LEDS];\nvoid setup() {\n  FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);\n  FastLED.setBrightness(50); // 0-255 (start low!)\n}\nvoid loop() {\n  // Rainbow animation\n  for (int hue = 0; hue < 256; hue++) {\n    fill_rainbow(leds, NUM_LEDS, hue, 4);\n    FastLED.show();\n    delay(10);\n  }\n}",
+  "commonMistakes": [
+    "Powering from Arduino 5V pin → Arduino resets or burns when too many LEDs are on",
+    "Not adding a 330Ω resistor on DATA line → signal integrity issues, random color flickering",
+    "Setting brightness to 255 with all LEDs white → draws massive current, causes power supply brownout",
+    "Not sharing GND between external supply and Arduino → data signal doesn't reference correctly",
+    "Forgetting 1000µF capacitor → voltage spike on power-on can destroy the first LED in the chain"
+  ],
+  "usedInProjects": ["led-display", "ambient-lighting", "scoreboard"],
+  "datasheetUrl": "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf",
+  "buyLink": "https://www.robu.in/product/8x8-ws2812b-rgb-led-matrix-panel/"
+}

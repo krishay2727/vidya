@@ -1,0 +1,37 @@
+{
+  "id": "led",
+  "name": "LED",
+  "fullName": "Light Emitting Diode (5mm Standard LED)",
+  "category": "Output Device",
+  "image": "data/components/images/led.jpg",
+  "color": "#FFFF00",
+  "tagline": "The simplest output component — lights up when current flows through it",
+  "description": "An LED (Light Emitting Diode) is a semiconductor device that emits light when current flows through it in the forward direction. It is the first component almost every maker uses with Arduino. LEDs are polarized — the longer leg (anode) connects to positive voltage, the shorter leg (cathode) connects to ground. Always use a current-limiting resistor (220Ω typical) in series to prevent burning it out.",
+  "specs": {
+    "operatingVoltage": "1.8V – 3.3V (forward voltage, color-dependent)",
+    "forwardCurrent": "10–30mA (typical 20mA)",
+    "forwardVoltageRed": "~1.8V – 2.2V",
+    "forwardVoltageGreen": "~2.0V – 3.0V",
+    "forwardVoltageBlue": "~2.8V – 3.6V",
+    "forwardVoltageWhite": "~3.0V – 3.6V",
+    "currentLimitingResistor": "220Ω (for 5V supply) or 100Ω (for 3.3V supply)",
+    "packageType": "5mm through-hole (common) or 3mm, SMD"
+  },
+  "pinout": [
+    { "pin": "Anode (+)", "name": "Positive / Long Leg", "desc": "Connect to digital output pin via 220Ω resistor — HIGH turns LED on", "color": "#FF4444" },
+    { "pin": "Cathode (−)", "name": "Negative / Short Leg / Flat side", "desc": "Connect to GND", "color": "#222222" }
+  ],
+  "wiringNote": "Resistor value formula: R = (Vsupply − Vf) / If. For a red LED on 5V: R = (5 − 2) / 0.02 = 150Ω. Use 220Ω as a safe standard value for most colors at 5V.",
+  "libraryName": "No library needed (use built-in digitalWrite / analogWrite)",
+  "libraryInstall": "No installation required.",
+  "codeSnippet": "// Blink LED on pin 13\n#define LED_PIN 13\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(LED_PIN, HIGH); // ON\n  delay(500);\n  digitalWrite(LED_PIN, LOW);  // OFF\n  delay(500);\n}\n\n// Fade using PWM on pin 9:\n// for (int i = 0; i <= 255; i++) {\n//   analogWrite(9, i);\n//   delay(10);\n// }",
+  "commonMistakes": [
+    "Connecting LED without a resistor → LED burns out immediately",
+    "Reversing polarity (cathode to +) → LED doesn't light and may be damaged",
+    "Using a non-PWM pin with analogWrite() for fading → doesn't work",
+    "Assuming all LEDs have the same forward voltage — blue/white LEDs need more voltage than red"
+  ],
+  "usedInProjects": ["smart-alert", "weather-station", "line-follower"],
+  "datasheetUrl": "https://components101.com/diodes/5mm-round-led",
+  "buyLink": "https://www.robu.in/product/5mm-led-pack-of-25/"
+}

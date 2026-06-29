@@ -1,0 +1,37 @@
+{
+  "id": "servo-motor",
+  "name": "Servo Motor",
+  "fullName": "SG90 / MG995 Servo Motor",
+  "category": "Actuator",
+  "image": "data/components/images/servo-motor.jpg",
+  "color": "#FF8800",
+  "tagline": "Precision angular positioning motor controllable from 0° to 180° via PWM signal",
+  "description": "A servo motor is a rotary actuator that uses PWM signals to precisely control the shaft angle from 0° to 180°. The SG90 is a micro plastic-gear servo ideal for lightweight projects, while the MG995 is a metal-gear servo capable of higher torque. Servos are used for steering mechanisms, robotic arms, camera tilts, and any application requiring precise angular control.",
+  "specs": {
+    "operatingVoltage": "4.8V – 6V DC",
+    "stallTorqueSG90": "1.8 kg·cm (SG90 at 4.8V)",
+    "stallTorqueMG995": "13 kg·cm (MG995 at 6V)",
+    "rotationRange": "0° – 180°",
+    "controlSignal": "PWM — 50Hz, pulse width 1ms (0°) to 2ms (180°)",
+    "noLoadSpeed": "0.1 sec/60° (SG90)",
+    "gearType": "Plastic (SG90) / Metal (MG995)"
+  },
+  "pinout": [
+    { "pin": "Brown / Black", "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": "Red", "name": "VCC", "desc": "Power 4.8V–6V (use external supply for large servos)", "color": "#FF4444" },
+    { "pin": "Orange / Yellow / White", "name": "Signal", "desc": "PWM control signal — connect to a PWM-capable Arduino pin", "color": "#FF8800" }
+  ],
+  "wiringNote": "For multiple servos or MG995, use an external 5V power supply — not the Arduino 5V pin (max 500mA from USB). Share GND between the external supply and Arduino. The SG90 can be powered from Arduino's 5V for light loads.",
+  "libraryName": "Servo (built into Arduino IDE)",
+  "libraryInstall": "Built-in. No installation needed. Just #include <Servo.h>.",
+  "codeSnippet": "#include <Servo.h>\nServo myServo;\nvoid setup() {\n  myServo.attach(9); // Connect signal wire to pin 9\n}\nvoid loop() {\n  myServo.write(0);   // Rotate to 0°\n  delay(1000);\n  myServo.write(90);  // Rotate to 90°\n  delay(1000);\n  myServo.write(180); // Rotate to 180°\n  delay(1000);\n}",
+  "commonMistakes": [
+    "Powering MG995 from Arduino 5V pin → voltage drops, Arduino resets or behaves erratically",
+    "Using a non-PWM pin for the signal wire → servo doesn't move or jitters",
+    "Not sharing GND between external supply and Arduino → servo moves erratically",
+    "Calling myServo.attach() before the power is stable → servo twitches"
+  ],
+  "usedInProjects": ["robotic-arm", "rc-car", "smart-lock", "air-mouse"],
+  "datasheetUrl": "http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf",
+  "buyLink": "https://www.robu.in/product/sg90-servo-motor/"
+}

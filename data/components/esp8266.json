@@ -1,0 +1,49 @@
+{
+  "id": "esp8266",
+  "name": "ESP8266 NodeMCU",
+  "fullName": "ESP8266 NodeMCU v1.0 Wi-Fi Microcontroller Board",
+  "category": "Microcontroller",
+  "image": "data/components/images/esp8266.jpg",
+  "color": "#00D4FF",
+  "tagline": "Wi-Fi enabled microcontroller board for IoT projects — programs just like Arduino",
+  "description": "The ESP8266 NodeMCU is a low-cost Wi-Fi microcontroller board built around the ESP8266 chip by Espressif. It can be programmed using the Arduino IDE, supports station and access point Wi-Fi modes, and is widely used for IoT projects like home automation, weather stations, data logging to the cloud, and web-controlled devices. It's smaller and more powerful than Arduino UNO with built-in Wi-Fi.",
+  "specs": {
+    "chip": "Espressif ESP8266EX",
+    "operatingVoltage": "3.3V (5V tolerant via onboard regulator on NodeMCU)",
+    "cpuSpeed": "80 MHz (up to 160 MHz)",
+    "flashMemory": "4MB",
+    "wifiStandard": "802.11 b/g/n (2.4GHz)",
+    "wifiModes": "Station (STA), Access Point (AP), or both (STA+AP)",
+    "gpioCount": "11 usable GPIO pins (some with PWM, I2C, SPI, UART)",
+    "analogPin": "1 (A0, 10-bit, max 3.3V input)",
+    "usbChip": "CH340G or CP2102 USB-to-Serial"
+  },
+  "pinout": [
+    { "pin": "D0 (GPIO16)", "name": "D0", "desc": "GPIO, no PWM, no I2C, can wake from deep sleep", "color": "#00D4FF" },
+    { "pin": "D1 (GPIO5)", "name": "SCL", "desc": "I2C Clock / GPIO", "color": "#9B6BFF" },
+    { "pin": "D2 (GPIO4)", "name": "SDA", "desc": "I2C Data / GPIO", "color": "#9B6BFF" },
+    { "pin": "D3 (GPIO0)", "name": "D3", "desc": "GPIO, pulled HIGH — LOW at boot enters flash mode", "color": "#FF8888" },
+    { "pin": "D4 (GPIO2)", "name": "D4", "desc": "GPIO, built-in LED — pulled HIGH at boot", "color": "#FFFF00" },
+    { "pin": "D5 (GPIO14)", "name": "SCK", "desc": "SPI Clock / GPIO / PWM", "color": "#00FF88" },
+    { "pin": "D6 (GPIO12)", "name": "MISO", "desc": "SPI MISO / GPIO / PWM", "color": "#00FF88" },
+    { "pin": "D7 (GPIO13)", "name": "MOSI", "desc": "SPI MOSI / GPIO / PWM", "color": "#00FF88" },
+    { "pin": "D8 (GPIO15)", "name": "D8", "desc": "GPIO, pulled LOW — HIGH at boot causes boot failure", "color": "#FF8888" },
+    { "pin": "A0", "name": "Analog In", "desc": "10-bit ADC, max 3.3V input (1V on bare ESP8266 chip)", "color": "#FF6B35" },
+    { "pin": "3V3", "name": "3.3V Out", "desc": "Regulated 3.3V output (max ~300mA)", "color": "#FF8888" },
+    { "pin": "GND", "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": "VIN", "name": "VIN", "desc": "5V input via USB or external supply", "color": "#FF4444" }
+  ],
+  "wiringNote": "All GPIOs are 3.3V logic — do NOT connect 5V signals directly. Use a voltage divider or level shifter. D3, D4, D8 have boot-mode restrictions — avoid connecting things that drive them LOW/HIGH at power-on.",
+  "libraryName": "ESP8266 Arduino Core + ESP8266WiFi",
+  "libraryInstall": "Arduino IDE → File → Preferences → Additional Boards URL: http://arduino.esp8266.com/stable/package_esp8266com_index.json → Board Manager → Install 'esp8266'",
+  "codeSnippet": "#include <ESP8266WiFi.h>\nconst char* ssid = \"YOUR_SSID\";\nconst char* password = \"YOUR_PASSWORD\";\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin(ssid, password);\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500); Serial.print(\".\");\n  }\n  Serial.println(\"\\nConnected!\");\n  Serial.println(WiFi.localIP());\n}\nvoid loop() {}",
+  "commonMistakes": [
+    "Connecting 5V logic signals directly → damages 3.3V GPIO pins",
+    "Drawing too much current from 3V3 pin → NodeMCU regulator overheats (max ~300mA)",
+    "Not installing CH340G/CP2102 driver → board not recognized by PC",
+    "Using D3, D4, D8 as outputs during boot → causes boot failure or enter flash mode"
+  ],
+  "usedInProjects": ["weather-station", "smart-alert", "iot-dashboard"],
+  "datasheetUrl": "https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf",
+  "buyLink": "https://www.robu.in/product/esp8266-nodemcu-wifi-module/"
+}

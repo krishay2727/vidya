@@ -1,0 +1,38 @@
+{
+  "id": "mq135",
+  "name": "MQ135 Gas Sensor",
+  "fullName": "MQ135 Air Quality & Gas Detection Sensor",
+  "category": "Sensor",
+  "image": "data/components/images/mq135.jpg",
+  "color": "#FF8800",
+  "tagline": "Detects CO₂, ammonia, benzene, smoke and harmful gases for air quality monitoring",
+  "description": "The MQ135 is a semiconductor gas sensor that detects a wide range of harmful gases including CO₂, ammonia (NH₃), benzene, alcohol vapors, and smoke. It outputs both an analog voltage proportional to gas concentration and a digital HIGH/LOW signal when gas exceeds a threshold set by the onboard potentiometer. Widely used in air quality monitors and ventilation control systems.",
+  "specs": {
+    "operatingVoltage": "5V DC",
+    "heaterVoltage": "5V (built-in heater)",
+    "outputType": "Analog (0–5V) + Digital (threshold TTL)",
+    "detectableGases": "CO₂, NH₃, NOₓ, alcohol, benzene, smoke",
+    "preheatTime": "24–48 hours for accurate baseline readings",
+    "loadResistance": "10kΩ (adjustable via onboard pot)",
+    "packageType": "Breakout module with DO and AO pins"
+  },
+  "pinout": [
+    { "pin": "VCC", "name": "VCC", "desc": "5V power supply", "color": "#FF4444" },
+    { "pin": "GND", "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": "AO", "name": "Analog Out", "desc": "Analog voltage proportional to gas concentration (connect to A0)", "color": "#00D4FF" },
+    { "pin": "DO", "name": "Digital Out", "desc": "HIGH when gas is below threshold, LOW when above (threshold set by pot)", "color": "#00FF88" }
+  ],
+  "wiringNote": "The sensor requires a warm-up time of ~30 seconds per session (and ideally 24 hours of continuous use for accurate calibration). Never use it as a precise CO₂ ppm meter without calibration in clean air.",
+  "libraryName": "MQUnifiedsensor (optional) or raw analogRead",
+  "libraryInstall": "Arduino IDE → Library Manager → Search 'MQUnifiedsensor' → Install (optional for ppm calculations)",
+  "codeSnippet": "#define MQ135_PIN A0\n#define MQ135_DO  7\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(MQ135_DO, INPUT);\n}\nvoid loop() {\n  int raw = analogRead(MQ135_PIN);\n  int alert = digitalRead(MQ135_DO);\n  Serial.print(\"Air Quality (raw): \");\n  Serial.print(raw);\n  Serial.print(\"  Alert: \");\n  Serial.println(alert == LOW ? \"GAS DETECTED!\" : \"Clean\");\n  delay(1000);\n}",
+  "commonMistakes": [
+    "Using readings immediately on power-up → inaccurate; sensor needs 30-second warm-up minimum",
+    "Expecting accurate ppm readings without calibration in clean air",
+    "Powering with 3.3V → heater doesn't reach operating temperature, false readings",
+    "Confusing AO and DO pins → AO gives analog data, DO gives threshold alert"
+  ],
+  "usedInProjects": ["air-quality-monitor", "smart-ventilation"],
+  "datasheetUrl": "https://www.olimex.com/Products/Components/Sensors/Gas/SNS-MQ135/resources/SNS-MQ135.pdf",
+  "buyLink": "https://www.robu.in/product/mq-135-air-quality-sensor/"
+}

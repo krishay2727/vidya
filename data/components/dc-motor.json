@@ -1,0 +1,40 @@
+{
+  "id": "dc-motor",
+  "name": "DC Motor",
+  "fullName": "DC Gear Motor with L298N / L293D Motor Driver",
+  "category": "Actuator",
+  "image": "data/components/images/dc-motor.jpg",
+  "color": "#888888",
+  "tagline": "Continuous rotation motor controlled via a motor driver for speed and direction control",
+  "description": "A DC motor converts electrical energy into rotational motion. Unlike servo motors, DC motors spin continuously and require a motor driver IC (L298N or L293D) to control direction and speed from an Arduino — Arduino pins cannot source enough current to drive a motor directly. Speed is controlled via PWM, and direction by setting the driver's IN pins HIGH or LOW. Used in robots, fans, conveyor belts, and RC vehicles.",
+  "specs": {
+    "operatingVoltage": "3V – 12V DC (motor-dependent)",
+    "noLoadCurrent": "~70mA (typical TT gear motor)",
+    "stallCurrent": "~200mA",
+    "noLoadSpeed": "~200 RPM (TT gear motor at 5V)",
+    "controlMethod": "Motor driver required (L298N or L293D)",
+    "controlSignals": "PWM for speed + 2 digital pins for direction per motor"
+  },
+  "pinout": [
+    { "pin": "Motor A+ / A−", "name": "Motor Terminals", "desc": "Connect DC motor leads to OUT1 and OUT2 on motor driver", "color": "#888888" },
+    { "pin": "ENA", "name": "Enable A (PWM)", "desc": "PWM pin to control motor A speed (connect to Arduino PWM pin)", "color": "#00D4FF" },
+    { "pin": "IN1", "name": "Direction 1", "desc": "HIGH = forward when IN2 is LOW", "color": "#00FF88" },
+    { "pin": "IN2", "name": "Direction 2", "desc": "HIGH = reverse when IN1 is LOW", "color": "#FF6B35" },
+    { "pin": "12V IN", "name": "Motor Power", "desc": "External motor power supply (up to 12V for L298N)", "color": "#FF4444" },
+    { "pin": "GND", "name": "GND", "desc": "Shared ground — connect to Arduino GND and power supply GND", "color": "#222222" },
+    { "pin": "5V OUT", "name": "5V (L298N)", "desc": "5V output from L298N to power Arduino (when using ≥7V motor supply)", "color": "#FF8888" }
+  ],
+  "wiringNote": "Always use a motor driver — never connect a motor directly to an Arduino pin. Diodes or a driver with built-in flyback protection prevent voltage spikes from damaging the microcontroller.",
+  "libraryName": "No library needed (raw analogWrite + digitalWrite)",
+  "libraryInstall": "No installation required.",
+  "codeSnippet": "#define ENA 9   // PWM speed control\n#define IN1 8   // Direction pin 1\n#define IN2 7   // Direction pin 2\nvoid setup() {\n  pinMode(ENA, OUTPUT);\n  pinMode(IN1, OUTPUT);\n  pinMode(IN2, OUTPUT);\n}\nvoid loop() {\n  // Forward at 75% speed\n  digitalWrite(IN1, HIGH);\n  digitalWrite(IN2, LOW);\n  analogWrite(ENA, 191); // 0-255\n  delay(2000);\n  // Reverse\n  digitalWrite(IN1, LOW);\n  digitalWrite(IN2, HIGH);\n  analogWrite(ENA, 191);\n  delay(2000);\n  // Stop\n  analogWrite(ENA, 0);\n  delay(1000);\n}",
+  "commonMistakes": [
+    "Connecting motor directly to Arduino pin → draws too much current, burns the pin or MCU",
+    "Not sharing GND between Arduino and motor driver → motor doesn't respond",
+    "Forgetting to enable ENA/ENB pin → motor stays off regardless of IN pins",
+    "Running motor supply through Arduino → voltage spike on brake/stop damages Arduino"
+  ],
+  "usedInProjects": ["line-follower", "rc-car", "robot-controller"],
+  "datasheetUrl": "https://components101.com/modules/l298n-motor-driver-module",
+  "buyLink": "https://www.robu.in/product/tt-gear-motor-with-wheel/"
+}

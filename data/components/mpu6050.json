@@ -1,0 +1,43 @@
+{
+  "id": "mpu6050",
+  "name": "MPU6050",
+  "fullName": "MPU6050 6-Axis IMU Accelerometer & Gyroscope Module",
+  "category": "Sensor",
+  "image": "data/components/images/mpu6050.jpg",
+  "color": "#9B6BFF",
+  "tagline": "6-axis inertial measurement unit combining a 3-axis gyroscope and 3-axis accelerometer over I2C",
+  "description": "The MPU6050 is a 6-DOF (Degrees of Freedom) IMU that integrates a 3-axis MEMS gyroscope and a 3-axis MEMS accelerometer in a single chip. It communicates via I2C and includes a built-in Digital Motion Processor (DMP) for onboard sensor fusion. Widely used in drones, gesture controllers, self-balancing robots, and air mouse projects.",
+  "specs": {
+    "operatingVoltage": "3.3V – 5V (module has onboard regulator)",
+    "interface": "I2C (up to 400kHz)",
+    "i2cAddress": "0x68 (AD0 LOW) or 0x69 (AD0 HIGH)",
+    "gyroscopeRange": "±250, ±500, ±1000, ±2000 °/s (configurable)",
+    "accelerometerRange": "±2g, ±4g, ±8g, ±16g (configurable)",
+    "adcResolution": "16-bit",
+    "onboardDMP": "Yes — Digital Motion Processor for quaternion output",
+    "additionalFeatures": "Temperature sensor onboard"
+  },
+  "pinout": [
+    { "pin": "VCC", "name": "VCC", "desc": "Power supply 3.3V–5V", "color": "#FF4444" },
+    { "pin": "GND", "name": "GND", "desc": "Ground", "color": "#222222" },
+    { "pin": "SDA", "name": "I2C Data", "desc": "Connect to Arduino A4 (SDA)", "color": "#9B6BFF" },
+    { "pin": "SCL", "name": "I2C Clock", "desc": "Connect to Arduino A5 (SCL)", "color": "#00D4FF" },
+    { "pin": "XDA", "name": "Aux SDA", "desc": "Auxiliary I2C for external magnetometer", "color": "#888888" },
+    { "pin": "XCL", "name": "Aux SCL", "desc": "Auxiliary I2C clock for external sensor", "color": "#888888" },
+    { "pin": "AD0", "name": "Address Bit", "desc": "Pull LOW for 0x68, HIGH for 0x69", "color": "#FF8888" },
+    { "pin": "INT", "name": "Interrupt", "desc": "Active-HIGH interrupt output for data ready events", "color": "#00FF88" }
+  ],
+  "wiringNote": "Pull SDA and SCL lines to 3.3V or 5V with 4.7kΩ resistors if not already present on the module. Most breakout boards include these. Use the INT pin when using the DMP for interrupt-driven data collection.",
+  "libraryName": "MPU6050 by Electronic Cats or I2Cdevlib",
+  "libraryInstall": "Arduino IDE → Library Manager → Search 'MPU6050' by Electronic Cats → Install. Also install 'I2Cdevlib-Core'.",
+  "codeSnippet": "#include <Wire.h>\n#include <MPU6050.h>\nMPU6050 mpu;\nvoid setup() {\n  Serial.begin(9600);\n  Wire.begin();\n  mpu.initialize();\n  Serial.println(mpu.testConnection() ? \"MPU6050 OK\" : \"MPU6050 FAIL\");\n}\nvoid loop() {\n  int16_t ax, ay, az, gx, gy, gz;\n  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);\n  Serial.print(\"aX:\"); Serial.print(ax);\n  Serial.print(\" aY:\"); Serial.print(ay);\n  Serial.print(\" aZ:\"); Serial.println(az);\n  delay(100);\n}",
+  "commonMistakes": [
+    "Forgetting Wire.begin() before mpu.initialize() → I2C hangs",
+    "Not running I2C scanner first to confirm address (0x68 vs 0x69)",
+    "Reading raw values and expecting degrees — must convert using scale factor or use DMP",
+    "Mounting the sensor with axes misaligned — must account for orientation in firmware"
+  ],
+  "usedInProjects": ["air-mouse", "self-balancing-robot", "drone-controller"],
+  "datasheetUrl": "https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf",
+  "buyLink": "https://www.robu.in/product/mpu-6050-module/"
+}

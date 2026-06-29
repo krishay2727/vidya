@@ -1,0 +1,36 @@
+{
+  "id": "jumper-wires",
+  "name": "Jumper Wires",
+  "fullName": "Dupont Jumper Wires Set (M-M, M-F, F-F)",
+  "category": "Wiring",
+  "image": "data/components/images/jumper-wires.jpg",
+  "color": "#AAAAAA",
+  "tagline": "Flexible color-coded wires for connecting components on a breadboard or to Arduino pins",
+  "description": "Jumper wires (Dupont wires) are pre-made flexible cables used to make electrical connections between components on a breadboard and Arduino/microcontroller pins. They come in three types: Male-to-Male (M-M) for breadboard connections, Male-to-Female (M-F) for connecting to Arduino headers, and Female-to-Female (F-F) for sensor modules. Color coding helps keep wiring organized.",
+  "specs": {
+    "lengths": "10cm, 20cm, 30cm (commonly available)",
+    "types": "Male-to-Male (M-M), Male-to-Female (M-F), Female-to-Female (F-F)",
+    "wireGauge": "28 AWG copper core",
+    "connectorType": "2.54mm Dupont connector",
+    "maxCurrent": "~1A per wire",
+    "maxVoltage": "250V"
+  },
+  "pinout": [
+    { "pin": "M-M", "name": "Male–Male", "desc": "Both ends have pins — for breadboard-to-breadboard connections", "color": "#FF6B35" },
+    { "pin": "M-F", "name": "Male–Female", "desc": "One pin, one socket — for breadboard-to-Arduino header", "color": "#00D4FF" },
+    { "pin": "F-F", "name": "Female–Female", "desc": "Both ends have sockets — for module pin-to-pin connections", "color": "#00FF88" }
+  ],
+  "wiringNote": "Use red wires for VCC/power, black or brown for GND, and other colors for signal. This color convention prevents wiring mistakes.",
+  "libraryName": "N/A — passive hardware component",
+  "libraryInstall": "No software required.",
+  "codeSnippet": "// Jumper wires are passive — no code needed.\n// Wiring convention:\n//   RED   → VCC / Positive\n//   BLACK → GND / Ground\n//   YELLOW/ORANGE → Signal/Data\n//   GREEN → TX/RX\n//   BLUE  → SCL (I2C)\n//   WHITE → SDA (I2C)",
+  "commonMistakes": [
+    "Using damaged or loose connectors → intermittent connections that are hard to debug",
+    "Not following color conventions → wrong connections cause shorts or sensor damage",
+    "Overcrowding a breadboard with too many wires → spaghetti wiring, hard to trace",
+    "Forcing a wire into a damaged breadboard hole → connector breaks"
+  ],
+  "usedInProjects": ["weather-station", "smart-alert", "line-follower", "rc-car"],
+  "datasheetUrl": "https://components101.com/misc/jumper-wires",
+  "buyLink": "https://www.robu.in/product/40-pcs-dupont-wire-jumper-cable-female-female/"
+}

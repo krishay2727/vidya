@@ -1,0 +1,66 @@
+{
+  "id": "joystick",
+  "name": "Joystick Module",
+  "fullName": "Dual-Axis Joystick Module with Push Button",
+  "category": "Input Device",
+  "image": "data/components/images/joystick.jpg",
+  "color": "#FF6B35",
+  "tagline": "Two-axis analog joystick with built-in push button for directional control",
+  "description": "The joystick module is a dual-axis analog input device that works like the thumbstick on a game controller. It uses two potentiometers to output X and Y axis values (0–1023) and includes a push button activated by pressing down. Perfect for robots, RC cars, camera gimbals, and game controllers in Arduino projects.",
+  "specs": {
+    "operatingVoltage": "3.3V – 5V DC",
+    "outputType": "Analog (X, Y axes) + Digital (button)",
+    "xAxisRange": "0 – 1023 (center ≈ 512)",
+    "yAxisRange": "0 – 1023 (center ≈ 512)",
+    "buttonOutput": "Active LOW (pulled HIGH internally)",
+    "packageType": "5-pin breakout module"
+  },
+  "pinout": [
+    {
+      "pin": "GND",
+      "name": "GND",
+      "desc": "Ground",
+      "color": "#222222"
+    },
+    {
+      "pin": "VCC",
+      "name": "VCC",
+      "desc": "Power supply 3.3V–5V",
+      "color": "#FF4444"
+    },
+    {
+      "pin": "VRx",
+      "name": "X-Axis",
+      "desc": "Analog output for X-axis (connect to A0)",
+      "color": "#00D4FF"
+    },
+    {
+      "pin": "VRy",
+      "name": "Y-Axis",
+      "desc": "Analog output for Y-axis (connect to A1)",
+      "color": "#00FF88"
+    },
+    {
+      "pin": "SW",
+      "name": "Switch",
+      "desc": "Push button output (LOW when pressed)",
+      "color": "#FF8888"
+    }
+  ],
+  "wiringNote": "Connect VRx and VRy to analog pins. Use INPUT_PULLUP for the SW pin so the button reads HIGH at rest and LOW when pressed.",
+  "libraryName": "No library needed (raw analogRead)",
+  "libraryInstall": "No installation required. Use analogRead() for axes and digitalRead() for the button.",
+  "codeSnippet": "#define VRx A0\n#define VRy A1\n#define SW  2\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(SW, INPUT_PULLUP);\n}\nvoid loop() {\n  int x = analogRead(VRx);\n  int y = analogRead(VRy);\n  int btn = digitalRead(SW);\n  Serial.print(\"X: \"); Serial.print(x);\n  Serial.print(\"  Y: \"); Serial.print(y);\n  Serial.print(\"  BTN: \"); Serial.println(btn);\n  delay(200);\n}",
+  "commonMistakes": [
+    "Forgetting INPUT_PULLUP on SW pin → floating/noisy button reads",
+    "Not centering the joystick deadzone in code → robot drifts at rest",
+    "Connecting SW to an analog pin instead of a digital pin"
+  ],
+  "usedInProjects": [
+    "robot-controller",
+    "rc-car",
+    "camera-gimbal"
+  ],
+  "datasheetUrl": "https://components101.com/modules/joystick-module",
+  "buyLink": "https://www.robu.in/product/joystick-module/"
+}

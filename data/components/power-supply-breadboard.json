@@ -1,0 +1,39 @@
+{
+  "id": "power-supply-breadboard",
+  "name": "Breadboard Power Supply",
+  "fullName": "MB102 Breadboard Power Supply Module 3.3V/5V",
+  "category": "Power",
+  "image": "data/components/images/power-supply-breadboard.jpg",
+  "color": "#FF4444",
+  "tagline": "Dual-output 3.3V and 5V regulated power supply that plugs directly into a breadboard",
+  "description": "The MB102 breadboard power supply module plugs directly onto the power rails of a standard breadboard and provides selectable 3.3V or 5V regulated output on each rail independently. It accepts input via a DC barrel jack (6.5V–12V) or USB. Ideal for powering Arduino shields, sensor modules, and ICs directly from the breadboard without needing extra wiring.",
+  "specs": {
+    "inputVoltage": "6.5V–12V DC (barrel jack) or 5V (USB)",
+    "outputVoltageRail1": "Selectable 3.3V or 5V (via jumper)",
+    "outputVoltageRail2": "Selectable 3.3V or 5V (via jumper)",
+    "maxOutputCurrent": "700mA per channel",
+    "onboardLED": "Power indicator LED",
+    "powerSwitch": "Yes — onboard toggle switch"
+  },
+  "pinout": [
+    { "pin": "DC IN", "name": "Barrel Jack", "desc": "Input 6.5V–12V DC power", "color": "#FF8800" },
+    { "pin": "USB IN", "name": "USB", "desc": "Alternate 5V input via USB connector", "color": "#00D4FF" },
+    { "pin": "Rail + (Left)", "name": "VCC Rail 1", "desc": "3.3V or 5V output (set by jumper)", "color": "#FF4444" },
+    { "pin": "Rail − (Left)", "name": "GND Rail 1", "desc": "Ground", "color": "#222222" },
+    { "pin": "Rail + (Right)", "name": "VCC Rail 2", "desc": "3.3V or 5V output (set by jumper)", "color": "#FF4444" },
+    { "pin": "Rail − (Right)", "name": "GND Rail 2", "desc": "Ground", "color": "#222222" }
+  ],
+  "wiringNote": "Set the voltage jumpers BEFORE powering on. Left and right rails are independently configurable. Always connect GND of this module to Arduino GND when sharing power.",
+  "libraryName": "N/A — passive hardware module",
+  "libraryInstall": "No software required.",
+  "codeSnippet": "// No code needed for this module.\n// 1. Set voltage jumpers to 3.3V or 5V as needed.\n// 2. Plug module onto breadboard power rails.\n// 3. Connect DC adapter or USB.\n// 4. Toggle the power switch ON.\n// 5. Power LED will illuminate when active.",
+  "commonMistakes": [
+    "Not checking jumper settings before powering on → wrong voltage damages 3.3V components",
+    "Exceeding 700mA per channel → module overheats",
+    "Forgetting to connect module GND to Arduino GND → floating ground causes erratic behavior",
+    "Using input voltage below 6.5V from barrel jack → regulator doesn't work correctly"
+  ],
+  "usedInProjects": ["weather-station", "smart-alert", "rc-car"],
+  "datasheetUrl": "https://components101.com/modules/mb102-breadboard-power-supply-module",
+  "buyLink": "https://www.robu.in/product/mb-102-breadboard-power-supply-module-3-3v-5v/"
+}
