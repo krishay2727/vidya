@@ -74,14 +74,14 @@ Each project has a dedicated JSON file. Here is the structure and what each fiel
 
 ## 3. How to Add a New Project
 
-1. **Create a JSON File**: Copy an existing project (e.g., `1project.json`) and name it sequentially (e.g., `8project.json`).
+1. **Create a JSON File**: Copy an existing project (e.g., `hexapod.json`) and name it sequentially (e.g., `air-mouse.json`).
 2. **Update the JSON**: Fill in your project's details following the schema above.
 3. **Register the Project**: Open `projects/projects.json` and add your new file to the array.
    ```json
    "projects": [
-     "projects/1project.json",
+     "projects/hexapod.json",
      "...",
-     "projects/8project.json"
+     "projects/air-mouse.json"
    ]
    ```
 4. **Add Images**: Place your project's main image in a reachable path (like `projects/images/`) and set the `"image"` field.

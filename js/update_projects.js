@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const projectsDir = path.join(__dirname, 'projects');
-const files = fs.readdirSync(projectsDir).filter(f => f.match(/^[0-9]+project\.json$/));
+const files = fs.readdirSync(projectsDir).filter(f => f.endsWith('.json') && f !== 'projects.json');
 
 for (const file of files) {
   const filePath = path.join(projectsDir, file);
@@ -25,7 +25,7 @@ for (const file of files) {
   }
 
   // Add liveUrl to project 1 (Hexapod or similar) - actually let's use sketching-live-main for sketching
-  if (data.id === 'hexapod' || file === '1project.json') {
+  if (data.id === 'hexapod' || file === 'hexapod.json') {
     data.liveUrl = 'projects/sketching-live-main/index.html';
   }
 
