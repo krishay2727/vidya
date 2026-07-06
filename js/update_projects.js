@@ -1,5 +1,6 @@
-const fs = require('fs');
-const path = require('path');
+
+const fs = require('node:fs');
+const path = require('node:path');
 
 const projectsDir = path.join(__dirname, 'projects');
 const files = fs.readdirSync(projectsDir).filter(f => f.endsWith('.json') && f !== 'projects.json');

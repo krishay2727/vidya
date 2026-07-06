@@ -458,20 +458,20 @@ globalThis.initWhiteboard = () => {
                         soundError(); alertToast();
                     }
                 } else if (term) {
-                        // Finish wire
-                        wbCurrentWire.points[wbCurrentWire.points.length - 1] = { x: term.x, y: term.y };
-                        wbCurrentWire.endTerm = { compId: term.el.id, name: term.name };
-                        wbElements.push(wbCurrentWire);
-                        wbCurrentWire = null;
-                        wbSetMode('move');
-                        soundSuccess();
-                        wbSaveState();
-                    } else {
-                        // Add bend waypoint
-                        wbCurrentWire.points[wbCurrentWire.points.length - 1] = { x: pos.x, y: pos.y };
-                        wbCurrentWire.points.push({ x: pos.x, y: pos.y });
-                        soundClick();
-                    }
+                    // Finish wire
+                    wbCurrentWire.points[wbCurrentWire.points.length - 1] = { x: term.x, y: term.y };
+                    wbCurrentWire.endTerm = { compId: term.el.id, name: term.name };
+                    wbElements.push(wbCurrentWire);
+                    wbCurrentWire = null;
+                    wbSetMode('move');
+                    soundSuccess();
+                    wbSaveState();
+                } else {
+                    // Add bend waypoint
+                    wbCurrentWire.points[wbCurrentWire.points.length - 1] = { x: pos.x, y: pos.y };
+                    wbCurrentWire.points.push({ x: pos.x, y: pos.y });
+                    soundClick();
+                }
             } else if (wbMode === 'component') {
                 const el = {
                     id: Date.now() + Math.random(),
@@ -2012,4 +2012,3 @@ function playEraserScrapeSound() {
     eraserSoundTimer = Date.now();
     playTone(220, 'triangle', 0.06, 0.06);
 }
-
