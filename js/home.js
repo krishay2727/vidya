@@ -3,12 +3,12 @@
 // =============================================
 
 const heroCarouselImages = [
-    "data/carousel1f.jpg",
-    "data/carousel2.jpg",
-    "data/carousel3f.jpg"
+    "data/images/carousel1f.jpg",
+    "data/images/carousel2.jpg",
+    "data/images/carousel3f.jpg"
 ];
 
-let carouselCurrentIndex = 1; 
+let carouselCurrentIndex = 1;
 let carouselAutoPlayTimer;
 const carouselAutoPlaySpeed = 3000;
 
@@ -39,53 +39,53 @@ function moveHeroCarousel(direction) {
 function startHeroCarouselAutoPlay() {
     clearInterval(carouselAutoPlayTimer);
     carouselAutoPlayTimer = setInterval(() => {
-        moveHeroCarousel(1); 
+        moveHeroCarousel(1);
     }, carouselAutoPlaySpeed);
 }
 
-globalThis.handleManualMove = function(direction) {
+globalThis.handleManualMove = function (direction) {
     moveHeroCarousel(direction);
-    startHeroCarouselAutoPlay(); 
+    startHeroCarouselAutoPlay();
 };
 
 function renderHome() {
-  if (!SITE) return;
+    if (!SITE) return;
 
-  // Hero Carousel
-  const track = document.getElementById('heroCarouselTrack');
-  if (track) {
-      track.innerHTML = heroCarouselImages.map(src => `
+    // Hero Carousel
+    const track = document.getElementById('heroCarouselTrack');
+    if (track) {
+        track.innerHTML = heroCarouselImages.map(src => `
           <div class="carousel-item">
               <img src="${src}" alt="VIDYA DigiSpark Works">
           </div>
       `).join('');
-      carouselCurrentIndex = 1;
-      updateHeroCarousel();
-      startHeroCarouselAutoPlay();
-  }
+        carouselCurrentIndex = 1;
+        updateHeroCarousel();
+        startHeroCarouselAutoPlay();
+    }
 
-  // STEAM grid
-  const steamGrid = document.getElementById('steamGrid');
-  if (steamGrid) {
-    steamGrid.innerHTML = SITE.steam.map(s => `
+    // STEAM grid
+    const steamGrid = document.getElementById('steamGrid');
+    if (steamGrid) {
+        steamGrid.innerHTML = SITE.steam.map(s => `
       <div class="steam-card">
         <div class="steam-card-top" style="background:${s.color}">${s.letter}</div>
         <div class="steam-card-body"><h4>${s.name}</h4><p>${s.desc}</p></div>
       </div>`).join('');
-  }  // Stat counter
-  const statEl = document.getElementById('statSessions');
-  if (statEl) statEl.textContent = SITE.sessions ? SITE.sessions.length : 0;
+    }  // Stat counter
+    const statEl = document.getElementById('statSessions');
+    if (statEl) statEl.textContent = SITE.sessions ? SITE.sessions.length : 0;
 
 
-  // Tools grid
-  const toolsGrid = document.getElementById('toolsGrid');
-  if (toolsGrid) {
-    toolsGrid.innerHTML = SITE.lab_tools.map(t => `
+    // Tools grid
+    const toolsGrid = document.getElementById('toolsGrid');
+    if (toolsGrid) {
+        toolsGrid.innerHTML = SITE.lab_tools.map(t => `
       <div class="tool-card">
         <div class="tool-icon">${t.icon}</div>
         <div class="tool-name">${t.name}</div>
         <div class="tool-role">${t.role}</div>
         <div class="tool-desc">${t.desc}</div>
       </div>`).join('');
-  }
+    }
 }

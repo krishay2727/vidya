@@ -42,7 +42,7 @@ let wbHistoryIndex = -1;
 // =============================================
 let audioCtx = null;
 function getAudioContext() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (!audioCtx) audioCtx = new (globalThis.AudioContext || globalThis.webkitAudioContext)();
     if (audioCtx.state === 'suspended') audioCtx.resume();
     return audioCtx;
 }
@@ -60,7 +60,7 @@ function playTone(freq, type, duration, volume = 0.1) {
         gain.connect(ctx.destination);
         osc.start();
         osc.stop(ctx.currentTime + duration);
-    } catch (e) { }
+    } catch (e) { console.warn('playTone error:', e); }
 }
 
 const soundClick = () => playTone(600, 'sine', 0.08, 0.15);
@@ -86,7 +86,7 @@ const soundBurn = () => {
         gain.connect(ctx.destination);
         osc.start();
         osc.stop(ctx.currentTime + 0.45);
-    } catch (e) { }
+    } catch (e) { console.warn('soundBurn error:', e); }
 };
 const soundError = () => playTone(180, 'triangle', 0.2, 0.2);
 
@@ -114,7 +114,7 @@ function startMotorHum() {
 
         tremolo.start();
         motorOsc.start();
-    } catch (e) { }
+    } catch (e) { console.warn('startMotorHum error:', e); }
 }
 
 function stopMotorHum() {
@@ -124,7 +124,7 @@ function stopMotorHum() {
             motorGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.08);
             const localOsc = motorOsc;
             setTimeout(() => { localOsc.stop(); }, 120);
-        } catch (e) { }
+        } catch (e) { console.warn('stopMotorHum error:', e); }
         motorOsc = null;
         motorGain = null;
     }
@@ -133,13 +133,11 @@ function stopMotorHum() {
 // =============================================
 //  UNDO / REDO
 // =============================================
-window.wbSaveState = () => {
+globalThis.wbSaveState = () => {
     wbHistory = wbHistory.slice(0, wbHistoryIndex + 1);
     const snapshot = wbElements.map(el => {
         const copy = { ...el };
-        if (el.type === 'freehand') {
-            copy.points = el.points.map(pt => ({ ...pt }));
-        } else if (el.type === 'wire') {
+        if (el.type === 'freehand' || el.type === 'wire') {
             copy.points = el.points.map(pt => ({ ...pt }));
         }
         return copy;
@@ -148,25 +146,25 @@ window.wbSaveState = () => {
     wbHistoryIndex = wbHistory.length - 1;
 };
 
-window.wbUndo = () => {
+globalThis.wbUndo = () => {
     if (wbHistoryIndex > 0) {
         wbHistoryIndex--;
         restoreFromHistoryState(wbHistory[wbHistoryIndex]);
         wbSelectedElement = null;
-        if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
-        if (!wbIsRunning) wbRedraw();
-        else simulateCircuit();
+        globalThis.wbUpdatePropertiesPanel?.();
+        if (wbIsRunning) simulateCircuit();
+        else wbRedraw();
     }
 };
 
-window.wbRedo = () => {
+globalThis.wbRedo = () => {
     if (wbHistoryIndex < wbHistory.length - 1) {
         wbHistoryIndex++;
         restoreFromHistoryState(wbHistory[wbHistoryIndex]);
         wbSelectedElement = null;
-        if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
-        if (!wbIsRunning) wbRedraw();
-        else simulateCircuit();
+        globalThis.wbUpdatePropertiesPanel?.();
+        if (wbIsRunning) simulateCircuit();
+        else wbRedraw();
     }
 };
 
@@ -178,7 +176,7 @@ function restoreFromHistoryState(state) {
         } else if (el.type === 'wire') {
             copy.points = el.points.map(pt => ({ ...pt }));
         } else if (el.type === 'component' && el.compType === 'resistor') {
-            window.wbRegenerateResistorImage(copy);
+            globalThis.wbRegenerateResistorImage(copy);
         }
         return copy;
     });
@@ -195,8 +193,8 @@ function getRotatedTerminal(el, rx, ry) {
     return { x: el.x + rx, y: el.y + ry };
 }
 
-window.wbRotateSelected = () => {
-    if (wbSelectedElement && wbSelectedElement.type === 'component') {
+globalThis.wbRotateSelected = () => {
+    if (wbSelectedElement?.type === 'component') {
         wbSelectedElement.rotation = ((wbSelectedElement.rotation || 0) + 90) % 360;
         wbSaveState();
         if (wbIsRunning) simulateCircuit();
@@ -303,13 +301,13 @@ function alertToast() {
     }
 }
 
-window.addEventListener('keydown', (e) => {
+globalThis.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
         e.preventDefault();
-        window.wbUndo();
+        globalThis.wbUndo();
     } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y') {
         e.preventDefault();
-        window.wbRedo();
+        globalThis.wbRedo();
     } else if (e.key === 'Escape') {
         if (wbCurrentWire) {
             wbCurrentWire = null;
@@ -322,7 +320,7 @@ window.addEventListener('keydown', (e) => {
 // =============================================
 //  CANVAS Initialization & Handlers
 // =============================================
-window.initWhiteboard = () => {
+globalThis.initWhiteboard = () => {
     wbCanvas = document.getElementById('whiteboardCanvas');
     if (!wbCanvas) return;
     wbCtx = wbCanvas.getContext('2d');
@@ -352,16 +350,16 @@ window.initWhiteboard = () => {
     loadActivePlayerCanvasState();
 
     const resizeCanvas = () => {
-        if (!wbCanvas || !wbCanvas.parentElement) return;
+        if (!wbCanvas?.parentElement) return;
         const rect = wbCanvas.parentElement.getBoundingClientRect();
         wbCanvas.width = rect.width;
         wbCanvas.height = rect.height;
         wbRedraw();
     };
 
-    if (!window.wbResizeAttached) {
-        window.addEventListener('resize', resizeCanvas);
-        window.wbResizeAttached = true;
+    if (!globalThis.wbResizeAttached) {
+        globalThis.addEventListener('resize', resizeCanvas);
+        globalThis.wbResizeAttached = true;
     }
     setTimeout(resizeCanvas, 50);
 
@@ -404,7 +402,7 @@ window.initWhiteboard = () => {
             let hitSomething = false;
             const el = getElementAt(pos);
 
-            if (el && el.type === 'component') {
+            if (el?.type === 'component') {
                 wbSelectedElement = el;
                 wbDraggingElement = el;
                 wbDraggingElement._dragStartPos = { x: el.x, y: el.y };
@@ -434,11 +432,11 @@ window.initWhiteboard = () => {
             }
 
             if (!hitSomething) wbSelectedElement = null;
-            if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
+            globalThis.wbUpdatePropertiesPanel?.();
 
         } else {
             wbSelectedElement = null;
-            if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
+            globalThis.wbUpdatePropertiesPanel?.();
 
             if (wbMode === 'pen') {
                 wbIsDrawing = true;
@@ -459,8 +457,7 @@ window.initWhiteboard = () => {
                     } else {
                         soundError(); alertToast();
                     }
-                } else {
-                    if (term) {
+                } else if (term) {
                         // Finish wire
                         wbCurrentWire.points[wbCurrentWire.points.length - 1] = { x: term.x, y: term.y };
                         wbCurrentWire.endTerm = { compId: term.el.id, name: term.name };
@@ -475,7 +472,6 @@ window.initWhiteboard = () => {
                         wbCurrentWire.points.push({ x: pos.x, y: pos.y });
                         soundClick();
                     }
-                }
             } else if (wbMode === 'component') {
                 const el = {
                     id: Date.now() + Math.random(),
@@ -484,7 +480,7 @@ window.initWhiteboard = () => {
                 };
                 if (wbCurrentComp === 'resistor') {
                     el.resistance = 220;
-                    if (window.wbRegenerateResistorImage) window.wbRegenerateResistorImage(el);
+                    globalThis.wbRegenerateResistorImage?.(el);
                 } else if (wbCurrentComp === 'ir_sensor') {
                     el.triggerDistance = 100;
                     el.objDistance = -80;
@@ -493,15 +489,15 @@ window.initWhiteboard = () => {
                 } else if (wbCurrentComp === 'potentiometer') {
                     el.knobValue = 50;
                 } else if (wbCurrentComp === 'bulb') {
-                    el.ratedVoltage = 6.0;
-                    el.measuredVoltage = 0.0;
+                    el.ratedVoltage = 6;
+                    el.measuredVoltage = 0;
                 }
                 wbElements.push(el);
                 wbSelectedElement = el;
                 wbSaveState();
                 soundClick();
                 wbSetMode('move');
-                if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
+                globalThis.wbUpdatePropertiesPanel?.();
                 if (!wbIsRunning) wbRedraw();
             } else if (wbMode === 'erase') {
                 eraseElementAt(pos);
@@ -514,7 +510,7 @@ window.initWhiteboard = () => {
         const pos = getPos(e);
         wbHoverPos = pos;
 
-        if (wbDraggingElement && wbDraggingElement.type === 'ir_obj') {
+        if (wbDraggingElement?.type === 'ir_obj') {
             const sensor = wbDraggingElement.sensor;
             const dist = Math.hypot(pos.x - sensor.x, pos.y - sensor.y);
             sensor.objDistance = -Math.max(20, Math.min(220, dist));
@@ -556,20 +552,20 @@ window.initWhiteboard = () => {
     const handleUp = (e) => {
         wbIsDrawing = false;
 
-        if (wbDraggingElement && wbDraggingElement.type === 'ir_obj') {
+        if (wbDraggingElement?.type === 'ir_obj') {
             wbDraggingElement = null;
             return;
         }
 
         if (wbMode === 'move' && wbDraggingElement) {
-            if (wbDraggingElement.type !== 'wire_point') {
+            if (wbDraggingElement.type === 'wire_point') {
+                wbSaveState();
+            } else {
                 const start = wbDraggingElement._dragStartPos;
                 if (start && (wbDraggingElement.x !== start.x || wbDraggingElement.y !== start.y)) {
                     wbSaveState();
                 }
                 delete wbDraggingElement._dragStartPos;
-            } else {
-                wbSaveState();
             }
             wbDraggingElement = null;
         } else if (wbMode === 'pen' && wbCurrentPath) {
@@ -592,24 +588,24 @@ window.initWhiteboard = () => {
     wbRedraw();
 };
 
-window.wbSetMode = (mode, val) => {
+globalThis.wbSetMode = (mode, val) => {
     if (wbCurrentWire) wbCurrentWire = null;
     wbMode = mode;
     if (mode === 'pen' || mode === 'wire') wbCurrentColor = val;
     if (mode === 'component') wbCurrentComp = val;
     if (mode !== 'move') {
         wbSelectedElement = null;
-        if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
+        globalThis.wbUpdatePropertiesPanel?.();
     }
 };
 
-window.wbClear = () => {
+globalThis.wbClear = () => {
     wbElements = wbElements.filter(el => el.compType === 'power_supply'); // preserve power supply
     wbSelectedElement = null;
     stopMotorHum();
     stopBuzzerHum();
     wbSaveState();
-    if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
+    globalThis.wbUpdatePropertiesPanel?.();
     if (!wbIsRunning) wbRedraw();
 };
 
@@ -693,15 +689,15 @@ function simulateCircuit() {
             } else if (el.compType === 'ldr') {
                 const t1 = getRotatedTerminal(el, -25, 50);
                 const t2 = getRotatedTerminal(el, 25, 50);
-                const l = (el.lightLevel !== undefined) ? el.lightLevel : 50;
+                const l = el.lightLevel ?? 50;
                 const r = 10000 - (l * 99);
                 addEdge(`${t1.x},${t1.y}`, `${t2.x},${t2.y}`, 'resistor', { ...el, resistance: r }, false);
             } else if (el.compType === 'potentiometer') {
                 const p1 = getRotatedTerminal(el, -25, 50);
                 const pW = getRotatedTerminal(el, 0, 50);
                 const p2 = getRotatedTerminal(el, 25, 50);
-                const k = (el.knobValue !== undefined) ? el.knobValue : 50;
-                const r = k / 100.0;
+                const k = el.knobValue ?? 50;
+                const r = k / 100;
                 addEdge(`${p1.x},${p1.y}`, `${pW.x},${pW.y}`, 'resistor', { ...el, resistance: Math.max(1, 10000 * (1 - r)) }, false);
                 addEdge(`${pW.x},${pW.y}`, `${p2.x},${p2.y}`, 'resistor', { ...el, resistance: Math.max(1, 10000 * r) }, false);
             } else if (el.compType === 'ir_sensor') {
@@ -773,9 +769,9 @@ function simulateCircuit() {
                     else if (edge.type === 'led') { totalR += 2; loopLED = edge.ref; }
                 }
 
-                const vSupply = (bat.ref.voltage !== undefined) ? bat.ref.voltage : 9.0;
-                const iLimit = (bat.ref.currentLimit !== undefined) ? bat.ref.currentLimit : 2.0;
-                const vNet = Math.max(0, vSupply - (loopLED ? 2.0 : 0.0));
+                const vSupply = bat.ref.voltage ?? 9;
+                const iLimit = bat.ref.currentLimit ?? 2;
+                const vNet = Math.max(0, vSupply - (loopLED ? 2 : 0));
 
                 let theoreticalCurrent = 0;
                 if (vNet > 0 && totalR > 0) theoreticalCurrent = vNet / totalR;
@@ -784,7 +780,7 @@ function simulateCircuit() {
                 if (theoreticalCurrent > iLimit) {
                     current = iLimit;
                     bat.ref.ccMode = true;
-                    bat.ref.actualVoltage = (current * totalR) + (loopLED ? 2.0 : 0.0);
+                    bat.ref.actualVoltage = (current * totalR) + (loopLED ? 2 : 0);
                 } else {
                     bat.ref.ccMode = false;
                     bat.ref.actualVoltage = vSupply;
@@ -809,7 +805,7 @@ function simulateCircuit() {
                 if (loopBulb) {
                     const bulbV = current * 15;
                     loopBulb.measuredVoltage = bulbV;
-                    const rating = loopBulb.ratedVoltage || 6.0;
+                    const rating = loopBulb.ratedVoltage || 6;
                     if (bulbV > (rating * 1.5)) {
                         loopBulb.burned = true;
                         loopBulb.active = false;
@@ -869,7 +865,7 @@ function simulateCircuit() {
     else stopBuzzerHum();
 }
 
-window.wbToggleRun = () => {
+globalThis.wbToggleRun = () => {
     wbIsRunning = !wbIsRunning;
     const btn = document.getElementById('wbRunBtn');
     if (wbIsRunning) {
@@ -897,7 +893,7 @@ window.wbToggleRun = () => {
         }
         wbRedraw();
     }
-    if (window.wbUpdatePropertiesPanel) window.wbUpdatePropertiesPanel();
+    globalThis.wbUpdatePropertiesPanel?.();
 };
 
 function wbAnimationLoop() {
@@ -919,7 +915,7 @@ function wbAnimationLoop() {
 
             const numDots = Math.max(1, Math.floor(totalLen / 30));
             for (let i = 0; i < numDots; i++) {
-                let t = ((time * speed) + (i / numDots)) % 1.0;
+                let t = ((time * speed) + (i / numDots)) % 1;
                 if (el.flowDir === -1) t = 1 - t;
 
                 let targetDist = t * totalLen;
@@ -995,7 +991,7 @@ function wbRedraw() {
     if (wbMode === 'component' && wbCurrentComp && wbHoverPos && !wbIsDrawing) {
         wbCtx.globalAlpha = 0.5;
         drawComponent({ compType: wbCurrentComp, rotation: 0 }, wbHoverPos.x, wbHoverPos.y);
-        wbCtx.globalAlpha = 1.0;
+        wbCtx.globalAlpha = 1;
     }
     if (wbMode === 'wire' && wbHoverPos && !wbCurrentWire) {
         const term = findNearestTerminal(wbHoverPos, 25);
@@ -1005,7 +1001,7 @@ function wbRedraw() {
             wbCtx.fillStyle = wbCurrentColor;
             wbCtx.globalAlpha = 0.6;
             wbCtx.fill();
-            wbCtx.globalAlpha = 1.0;
+            wbCtx.globalAlpha = 1;
         }
     }
 }
@@ -1060,7 +1056,7 @@ function drawComponent(el, x, y) {
         wbCtx.fillStyle = '#00ff00';
         wbCtx.font = 'bold 24px monospace';
         wbCtx.textAlign = 'center';
-        wbCtx.fillText(`${(el.voltage !== undefined ? el.voltage : 9.0).toFixed(1)}V`, 0, -5);
+        wbCtx.fillText(`${(el.voltage ?? 9).toFixed(1)}V`, 0, -5);
     } else if (type === 'led') {
         if (el.burned) {
             wbCtx.drawImage(componentImages.led, -60, -60, 120, 120);
@@ -1081,7 +1077,7 @@ function drawComponent(el, x, y) {
         }
     } else if (type === 'resistor') {
         const img = el.customImage || componentImages.resistor;
-        if (img && img.complete) wbCtx.drawImage(img, -60, -30, 120, 60);
+        if (img?.complete) wbCtx.drawImage(img, -60, -30, 120, 60);
     } else if (type === 'motor' && componentImages.motor?.complete) {
         wbCtx.drawImage(componentImages.motor, -60, -60, 120, 120);
         wbCtx.save();
@@ -1104,7 +1100,7 @@ function drawComponent(el, x, y) {
         wbCtx.drawImage(componentImages.potentiometer, -60, -60, 120, 120);
         wbCtx.save();
         wbCtx.translate(0, -5);
-        const knob = (el.knobValue !== undefined) ? el.knobValue : 50;
+        const knob = el.knobValue ?? 50;
         wbCtx.rotate(((knob / 100) - 0.5) * Math.PI * 1.5);
         wbCtx.fillStyle = '#222'; wbCtx.beginPath(); wbCtx.arc(0, 0, 25, 0, Math.PI * 2); wbCtx.fill();
         wbCtx.strokeStyle = '#fff'; wbCtx.lineWidth = 4; wbCtx.lineCap = 'round';
@@ -1151,8 +1147,8 @@ function drawComponent(el, x, y) {
             wbCtx.fillStyle = '#ff3b30'; wbCtx.font = 'bold 12px Courier New';
             wbCtx.fillText("BURNT!", -22, -10);
         } else if (el.active && wbIsRunning) {
-            const v = el.measuredVoltage || 0.0;
-            const rating = el.ratedVoltage || 6.0;
+            const v = el.measuredVoltage || 0;
+            const rating = el.ratedVoltage || 6;
             const ratio = Math.min(1.5, v / rating);
             wbCtx.save();
             wbCtx.shadowColor = '#FFD600';
@@ -1167,13 +1163,14 @@ function drawComponent(el, x, y) {
 
     if (wbSelectedElement === el && wbMode === 'move') {
         wbCtx.strokeStyle = 'var(--cyan)'; wbCtx.lineWidth = 2.5; wbCtx.setLineDash([5, 5]);
-        let bW = 126, bH = 126;
+        let bW, bH;
         if (type === 'resistor') { bW = 126; bH = 74; }
         else if (type === 'ir_sensor') { bW = 106; bH = 136; }
         else if (type === 'power_supply') { bW = 146; bH = 106; }
         else if (type === 'ldr') { bW = 106; bH = 106; }
         else if (type === 'buzzer') { bW = 106; bH = 106; }
         else if (type === 'bulb') { bW = 106; bH = 106; }
+        else { bW = 126; bH = 126; }
         wbCtx.strokeRect(-bW / 2, -bH / 2, bW, bH);
         wbCtx.setLineDash([]);
     }
@@ -1207,7 +1204,9 @@ function getElementAt(pos) {
                 if (distToSegment(pos, el.points[j], el.points[j + 1]) < threshold) return el;
             }
         } else if (el.type === 'component') {
-            const radius = el.compType === 'ir_sensor' ? 55 : (el.compType === 'power_supply' ? 65 : 45);
+            let radius = 45;
+            if (el.compType === 'ir_sensor') radius = 55;
+            else if (el.compType === 'power_supply') radius = 65;
             if (Math.hypot(el.x - pos.x, el.y - pos.y) < radius) return el;
         }
     }
@@ -1224,7 +1223,8 @@ function eraseElementAt(pos) {
                 wbElements = wbElements.filter(w => !(w.type === 'wire' && ((w.startTerm && w.startTerm.compId === el.id) || (w.endTerm && w.endTerm.compId === el.id))));
             }
             wbSaveState(); soundClick();
-            if (!wbIsRunning) wbRedraw(); else simulateCircuit();
+            if (wbIsRunning) simulateCircuit();
+            else wbRedraw();
         }
     }
 }
@@ -1248,7 +1248,7 @@ function distToSegmentSquared(p, v, w) {
 }
 function distToSegment(p, v, w) { return Math.sqrt(distToSegmentSquared(p, v, w)); }
 
-window.wbUpdatePropertiesPanel = () => {
+globalThis.wbUpdatePropertiesPanel = () => {
     const panel = document.getElementById('wbPropertiesPanel');
     if (!panel) return;
     document.getElementById('wbPropResistor').style.display = 'none';
@@ -1274,14 +1274,14 @@ window.wbUpdatePropertiesPanel = () => {
     } else if (wbSelectedElement.compType === 'bulb') {
         title.innerText = 'Incandescent Bulb';
         document.getElementById('wbPropBulb').style.display = 'flex';
-        const v = wbSelectedElement.ratedVoltage || 6.0;
+        const v = wbSelectedElement.ratedVoltage || 6;
         document.getElementById('wbBulbVoltage').value = v;
         document.getElementById('wbBulbVoltageValue').innerText = `${v.toFixed(1)} V`;
     } else if (wbSelectedElement.compType === 'power_supply') {
         title.innerText = 'Bench Power Supply';
         document.getElementById('wbPropPowerSupply').style.display = 'flex';
-        const v = (wbSelectedElement.voltage !== undefined) ? wbSelectedElement.voltage : 9.0;
-        const a = (wbSelectedElement.currentLimit !== undefined) ? wbSelectedElement.currentLimit : 2.0;
+        const v = wbSelectedElement.voltage ?? 9;
+        const a = wbSelectedElement.currentLimit ?? 2;
         document.getElementById('wbPSVoltage').value = v;
         document.getElementById('wbPSVoltageValue').innerText = `${v.toFixed(1)} V`;
         document.getElementById('wbPSAmp').value = a;
@@ -1295,13 +1295,13 @@ window.wbUpdatePropertiesPanel = () => {
     } else if (wbSelectedElement.compType === 'ldr') {
         title.innerText = 'LDR Photoresistor';
         document.getElementById('wbPropLDR').style.display = 'flex';
-        const l = (wbSelectedElement.lightLevel !== undefined) ? wbSelectedElement.lightLevel : 50;
+        const l = wbSelectedElement.lightLevel ?? 50;
         document.getElementById('wbLDRLight').value = l;
         document.getElementById('wbLDRLightValue').innerText = `${l}%`;
     } else if (wbSelectedElement.compType === 'potentiometer') {
         title.innerText = 'Rotary Potentiometer';
         document.getElementById('wbPropPotentiometer').style.display = 'flex';
-        const k = (wbSelectedElement.knobValue !== undefined) ? wbSelectedElement.knobValue : 50;
+        const k = wbSelectedElement.knobValue ?? 50;
         document.getElementById('wbPotKnob').value = k;
         document.getElementById('wbPotKnobValue').innerText = `${k}%`;
     } else {
@@ -1324,7 +1324,7 @@ window.wbUpdatePropertiesPanel = () => {
             else if (wbSelectedElement.active) statusText += `<br><span style="color:#FF4757; font-weight:bold; font-size:0.95rem;">💡 STATUS: GLOWING SAFE</span>`;
             else statusText += `<br><span style="color:var(--text-muted); font-size:0.95rem;">💤 STATUS: NO LOOP POWER</span>`;
         } else if (wbSelectedElement.compType === 'bulb') {
-            const vDrop = (wbSelectedElement.measuredVoltage || 0.0).toFixed(2);
+            const vDrop = (wbSelectedElement.measuredVoltage || 0).toFixed(2);
             if (wbSelectedElement.burned) statusText += `<br><span style="color:var(--red); font-weight:bold; font-size:0.95rem;">💥 STATUS: FILAMENT BLOWN</span>`;
             else if (wbSelectedElement.active) statusText += `<br><span style="color:var(--yellow); font-weight:bold; font-size:0.95rem;">💡 STATUS: GLOWING (${vDrop} V)</span>`;
             else statusText += `<br><span style="color:var(--text-muted); font-size:0.95rem;">💤 STATUS: NO POWER</span>`;
@@ -1349,34 +1349,34 @@ window.wbUpdatePropertiesPanel = () => {
     }
 };
 
-window.wbUpdateComponent = () => {
+globalThis.wbUpdateComponent = () => {
     if (!wbSelectedElement) return;
     if (wbSelectedElement.compType === 'resistor') {
-        let val = parseInt(document.getElementById('wbResistorValue').value);
-        if (isNaN(val) || val < 1) val = 1;
+        let val = Number.parseInt(document.getElementById('wbResistorValue').value);
+        if (Number.isNaN(val) || val < 1) val = 1;
         wbSelectedElement.resistance = val;
-        window.wbRegenerateResistorImage(wbSelectedElement);
+        globalThis.wbRegenerateResistorImage(wbSelectedElement);
     } else if (wbSelectedElement.compType === 'bulb') {
-        let v = parseFloat(document.getElementById('wbBulbVoltage').value);
+        let v = Number.parseFloat(document.getElementById('wbBulbVoltage').value);
         wbSelectedElement.ratedVoltage = v;
         document.getElementById('wbBulbVoltageValue').innerText = `${v.toFixed(1)} V`;
     } else if (wbSelectedElement.compType === 'power_supply') {
-        let v = parseFloat(document.getElementById('wbPSVoltage').value);
-        let a = parseFloat(document.getElementById('wbPSAmp').value);
+        let v = Number.parseFloat(document.getElementById('wbPSVoltage').value);
+        let a = Number.parseFloat(document.getElementById('wbPSAmp').value);
         wbSelectedElement.voltage = v;
         wbSelectedElement.currentLimit = a;
         document.getElementById('wbPSVoltageValue').innerText = `${v.toFixed(1)} V`;
         document.getElementById('wbPSAmpValue').innerText = `${a.toFixed(3)} A`;
     } else if (wbSelectedElement.compType === 'ir_sensor') {
-        let val = parseInt(document.getElementById('wbIRTriggerDist').value);
+        let val = Number.parseInt(document.getElementById('wbIRTriggerDist').value);
         wbSelectedElement.triggerDistance = val;
         document.getElementById('wbIRTriggerValue').innerText = `${val} px`;
     } else if (wbSelectedElement.compType === 'ldr') {
-        let val = parseInt(document.getElementById('wbLDRLight').value);
+        let val = Number.parseInt(document.getElementById('wbLDRLight').value);
         wbSelectedElement.lightLevel = val;
         document.getElementById('wbLDRLightValue').innerText = `${val}%`;
     } else if (wbSelectedElement.compType === 'potentiometer') {
-        let val = parseInt(document.getElementById('wbPotKnob').value);
+        let val = Number.parseInt(document.getElementById('wbPotKnob').value);
         wbSelectedElement.knobValue = val;
         document.getElementById('wbPotKnobValue').innerText = `${val}%`;
     }
@@ -1390,12 +1390,12 @@ function getResistorBands(ohms) {
     let s = ohms.toString();
     let d1, d2, mult;
     if (ohms < 10) { d1 = 0; d2 = ohms; mult = 0; }
-    else { d1 = parseInt(s[0]); d2 = parseInt(s[1]); mult = s.length - 2; }
+    else { d1 = Number.parseInt(s[0]); d2 = Number.parseInt(s[1]); mult = s.length - 2; }
     if (mult > 9) mult = 9;
     return { c1: colors[d1], c2: colors[d2], c3: colors[mult], c4: '#b8860b' };
 }
 
-window.wbRegenerateResistorImage = (el) => {
+globalThis.wbRegenerateResistorImage = (el) => {
     const bands = getResistorBands(el.resistance);
     const svgStr = `<svg width="120" height="60" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="27" width="120" height="6" fill="#e0e0e0" stroke="#000" stroke-width="2"/><path d="M 22 17 L 98 17 C 104 17 104 43 98 43 L 22 43 C 16 43 16 17 22 17 Z" fill="#d3a77a" stroke="#a67c52" stroke-width="2.5"/><rect x="35" y="17" width="7" height="26" fill="${bands.c1}"/><rect x="52" y="17" width="7" height="26" fill="${bands.c2}"/><rect x="69" y="17" width="7" height="26" fill="${bands.c3}"/><rect x="86" y="17" width="5" height="26" fill="${bands.c4}"/></svg>`;
     const img = new Image();
@@ -1407,7 +1407,7 @@ window.wbRegenerateResistorImage = (el) => {
 // =============================================
 //  Component Dropdown Selector & Buzzer Hum Helpers
 // =============================================
-window.wbToggleComponentList = () => {
+globalThis.wbToggleComponentList = () => {
     const list = document.getElementById('wbComponentList');
     const arrow = document.getElementById('wbCompArrow');
     if (!list) return;
@@ -1420,7 +1420,7 @@ window.wbToggleComponentList = () => {
     }
 };
 
-window.wbSelectComponent = (compName) => {
+globalThis.wbSelectComponent = (compName) => {
     wbSetMode('component', compName);
     // update button text to show selected component
     const toggleBtn = document.getElementById('wbCompToggleBtn');
@@ -1437,7 +1437,7 @@ window.wbSelectComponent = (compName) => {
         toggleBtn.innerHTML = `🔌 Component: ${compLabel} <span id="wbCompArrow">▼</span>`;
     }
     // close the list
-    window.wbToggleComponentList();
+    globalThis.wbToggleComponentList();
 };
 
 let buzzerOsc = null;
@@ -1466,7 +1466,7 @@ function startBuzzerHum() {
 
         tremolo.start();
         buzzerOsc.start();
-    } catch (e) { }
+    } catch (e) { console.warn('startBuzzerHum error:', e); }
 }
 
 function stopBuzzerHum() {
@@ -1476,7 +1476,7 @@ function stopBuzzerHum() {
             buzzerGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
             const localOsc = buzzerOsc;
             setTimeout(() => { localOsc.stop(); }, 80);
-        } catch (e) { }
+        } catch (e) { console.warn('stopBuzzerHum error:', e); }
         buzzerOsc = null;
         buzzerGain = null;
     }
@@ -1500,7 +1500,7 @@ function loadKidsProfiles() {
     if (saved) {
         try {
             kidsProfiles = JSON.parse(saved);
-        } catch (e) { }
+        } catch (e) { console.warn('loadKidsProfiles parse error:', e); }
     }
 }
 
@@ -1528,7 +1528,7 @@ function renderKidsProfiles() {
     if (avatarSelect) avatarSelect.value = currentKid.avatar;
 }
 
-window.wbUpdateCurrentPlayerName = () => {
+globalThis.wbUpdateCurrentPlayerName = () => {
     const nameInput = document.getElementById("kidNameInput");
     if (nameInput) {
         kidsProfiles[activeKidIndex].name = nameInput.value || `Kid ${activeKidIndex + 1}`;
@@ -1537,7 +1537,7 @@ window.wbUpdateCurrentPlayerName = () => {
     }
 };
 
-window.wbUpdateCurrentPlayerAvatar = () => {
+globalThis.wbUpdateCurrentPlayerAvatar = () => {
     const avatarSelect = document.getElementById("kidAvatarSelect");
     if (avatarSelect) {
         kidsProfiles[activeKidIndex].avatar = avatarSelect.value;
@@ -1599,8 +1599,8 @@ function loadActivePlayerCanvasState() {
             type: 'component',
             compType: 'power_supply',
             x: 100, y: 150,
-            voltage: 9.0,
-            currentLimit: 2.0,
+            voltage: 9,
+            currentLimit: 2,
             rotation: 0
         }];
     }
@@ -1626,13 +1626,13 @@ function loadActivePlayerCanvasState() {
         }
     }
     tuxHistory = kid.paintHistory || [];
-    tuxHistoryIndex = kid.paintHistoryIndex !== undefined ? kid.paintHistoryIndex : -1;
+    tuxHistoryIndex = kid.paintHistoryIndex ?? -1;
 }
 
 // =============================================
 //  TAB MODE SWITCHER ROUTING
 // =============================================
-window.wbSwitchModeTab = (mode) => {
+globalThis.wbSwitchModeTab = (mode) => {
     activeTabMode = mode;
 
     const btnCircuit = document.getElementById('wbTabCircuit');
@@ -1733,7 +1733,7 @@ function initTuxPaintCanvas() {
     loadStampImages();
 
     const resizeTuxCanvas = () => {
-        if (!tuxCanvas || !tuxCanvas.parentElement) return;
+        if (!tuxCanvas?.parentElement) return;
         const rect = tuxCanvas.parentElement.getBoundingClientRect();
 
         // Save current canvas content
@@ -1755,9 +1755,9 @@ function initTuxPaintCanvas() {
         tuxSavePaintState();
     };
 
-    if (!window.tuxResizeAttached) {
-        window.addEventListener('resize', resizeTuxCanvas);
-        window.tuxResizeAttached = true;
+    if (!globalThis.tuxResizeAttached) {
+        globalThis.addEventListener('resize', resizeTuxCanvas);
+        globalThis.tuxResizeAttached = true;
     }
     setTimeout(resizeTuxCanvas, 50);
 
@@ -1849,7 +1849,7 @@ function getRainbowColor() {
 
 function drawTuxStamp(x, y) {
     const img = tuxStampImages[tuxStamp];
-    if (img && img.complete) {
+    if (img?.complete) {
         const stampW = 50 + tuxSize * 1.5;
         const stampH = 50 + tuxSize * 1.5;
         tuxCtx.drawImage(img, x - stampW / 2, y - stampH / 2, stampW, stampH);
@@ -1915,7 +1915,7 @@ function tuxSavePaintState() {
     tuxHistoryIndex = tuxHistory.length - 1;
 }
 
-window.tuxUndo = () => {
+globalThis.tuxUndo = () => {
     if (tuxHistoryIndex > 0) {
         tuxHistoryIndex--;
         tuxRestoreState(tuxHistory[tuxHistoryIndex]);
@@ -1923,7 +1923,7 @@ window.tuxUndo = () => {
     }
 };
 
-window.tuxRedo = () => {
+globalThis.tuxRedo = () => {
     if (tuxHistoryIndex < tuxHistory.length - 1) {
         tuxHistoryIndex++;
         tuxRestoreState(tuxHistory[tuxHistoryIndex]);
@@ -1942,7 +1942,7 @@ function tuxRestoreState(dataUrl) {
     };
 }
 
-window.tuxClear = () => {
+globalThis.tuxClear = () => {
     if (!tuxCanvas) return;
     tuxCtx.fillStyle = '#FFFFFF';
     tuxCtx.fillRect(0, 0, tuxCanvas.width, tuxCanvas.height);
@@ -1963,12 +1963,11 @@ function tuxRedraw() {
 // =============================================
 function playChimeSound() {
     try {
-        const ctx = getAudioContext();
         const baseFreq = 261.63 + activeKidIndex * 65.4; // kids pitch escalations (C4, D4, E4, F4, G4 chords)
         playTone(baseFreq, 'sine', 0.08, 0.1);
         setTimeout(() => playTone(baseFreq * 1.25, 'sine', 0.08, 0.1), 60);
         setTimeout(() => playTone(baseFreq * 1.5, 'sine', 0.12, 0.1), 120);
-    } catch (e) { }
+    } catch (e) { console.warn('playChimeSound error:', e); }
 }
 
 let drawSoundTimer = 0;
@@ -2004,7 +2003,7 @@ function playStampPlopSound() {
         gain.connect(ctx.destination);
         osc.start();
         osc.stop(ctx.currentTime + 0.25);
-    } catch (e) { }
+    } catch (e) { console.warn('playStampPlopSound error:', e); }
 }
 
 let eraserSoundTimer = 0;

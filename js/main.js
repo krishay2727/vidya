@@ -53,13 +53,14 @@ async function loadProjects() {
 
 async function init() {
   try {
-    const siteRes = await fetch('site.json');
+    const siteRes = await fetch('data/site.json');
     SITE = await siteRes.json(); // NOSONAR
   } catch (e) {
-    console.error('Could not load site.json', e);
+    console.error('Could not load data/site.json', e);
     return;
   }
 
+  globalThis.initTheme();
   await Promise.all([loadSessions(), loadProjects()]);
 
   // Sort successfully loaded sessions and reconstruct SITE.sessions array for backward compatibility
@@ -180,3 +181,30 @@ window.addEventListener('scroll', () => {
 //  BOOT
 // =============================================
 document.addEventListener('DOMContentLoaded', init);
+
+// =============================================
+//  THEME TOGGLE
+// =============================================
+globalThis.initTheme = function() {
+  const saved = localStorage.getItem('vidya_theme') || 'dark';
+  if (saved === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = '🌙';
+  }
+};
+
+globalThis.toggleTheme = function() {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('vidya_theme', 'dark');
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = '☀️';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('vidya_theme', 'light');
+    const btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = '🌙';
+  }
+};

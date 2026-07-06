@@ -1,114 +1,170 @@
 <div id="page-whiteboard" class="page active">
-  <div class="wb-page-inner">
-    <div class="wb-page-hero">
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 1.8rem; line-height: 1;">📟</span>
-        <div style="display: flex; flex-direction: column;">
-          <h1 style="font-size: 1.3rem; margin: 0; font-family: var(--font-head); font-weight: 800; color: var(--green); text-shadow: 0 0 10px rgba(0, 255, 136, 0.2);">Circuit Board</h1>
-          <p style="font-size: 0.78rem; margin: 2px 0 0; color: var(--text-muted);">Place components, route tracks, and simulate in real-time</p>
-        </div>
-      </div>
-      
-      <!-- Compact Undo/Redo & Simulation Controls in title bar -->
-      <div style="display: flex; gap: 8px; align-items: center;">
-          <button class="btn-sm" onclick="wbUndo()" style="background: var(--surface2); border: 1px solid var(--border); padding: 6px 12px; font-size: 0.85rem; color: var(--text); border-radius: 6px;" title="Undo (Ctrl+Z)">↩️ Undo</button>
-          <button class="btn-sm" onclick="wbRedo()" style="background: var(--surface2); border: 1px solid var(--border); padding: 6px 12px; font-size: 0.85rem; color: var(--text); border-radius: 6px;" title="Redo (Ctrl+Y)">↪️ Redo</button>
-          <div class="wb-toolbar-divider" style="height: 24px; margin: 0 4px;"></div>
-          <button class="btn-sm" id="wbRunBtn" onclick="wbToggleRun()" style="background: var(--green); color: black; font-weight: bold; border-radius: 6px; padding: 6px 14px;">▶️ Run Circuit</button>
-      </div>
-    </div>
+    <div class="wb-page-inner">
+        <div class="wb-page-hero">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 1.8rem; line-height: 1;">📟</span>
+                <div style="display: flex; flex-direction: column;">
+                    <h1
+                        style="font-size: 1.3rem; margin: 0; font-family: var(--font-head); font-weight: 800; color: var(--green); text-shadow: 0 0 10px rgba(0, 255, 136, 0.2);">
+                        Circuit Board</h1>
+                    <p style="font-size: 0.78rem; margin: 2px 0 0; color: var(--text-muted);">Place components, route
+                        tracks, and simulate in real-time</p>
+                </div>
+            </div>
 
-    <!-- Tinkercad-like PCB Toolbar -->
-    <div class="wb-toolbar" style="margin-bottom: 12px; position: relative;">
-        <div class="wb-toolbar-row">
-            <span class="wb-toolbar-title" style="color: var(--cyan); font-size: 0.82rem; letter-spacing: 0.5px;">COMPONENTS:</span>
-            <button class="btn-sm" id="wbCompToggleBtn" onclick="wbToggleComponentList()" style="background: var(--cyan); color: black; font-weight: bold; font-size: 0.82rem; padding: 6px 12px; display: flex; align-items: center; gap: 6px; border: none; border-radius: 6px; cursor: pointer; transition: all 0.2s;">
-                🔌 Select Component <span id="wbCompArrow">▼</span>
-            </button>
-            
-            <!-- Floating Glassmorphic Components Dropdown -->
-            <div id="wbComponentList" class="wb-component-list" style="display: none;">
-                <button class="wb-comp-item" onclick="wbSelectComponent('led')" style="border-left: 4px solid #FF4757;">💡 LED</button>
-                <button class="wb-comp-item" onclick="wbSelectComponent('bulb')" style="border-left: 4px solid #FFD600;">💡 Bulb</button>
-                <button class="wb-comp-item" onclick="wbSelectComponent('resistor')" style="border-left: 4px solid #e8c396;">〰️ Resistor</button>
-                <button class="wb-comp-item" onclick="wbSelectComponent('motor')" style="border-left: 4px solid #ccc;">⚙️ Motor</button>
-                <button class="wb-comp-item" onclick="wbSelectComponent('buzzer')" style="border-left: 4px solid #9B6BFF;">🔊 Buzzer</button>
-                <button class="wb-comp-item" onclick="wbSelectComponent('ir_sensor')" style="border-left: 4px solid #00FF88;">📡 IR Sensor</button>
-                <button class="wb-comp-item" onclick="wbSelectComponent('ldr')" style="border-left: 4px solid #D4AF37;">☀️ LDR</button>
-                <button class="wb-comp-item" onclick="wbSelectComponent('potentiometer')" style="border-left: 4px solid #555;">🎛️ Potentiometer</button>
+            <!-- Compact Undo/Redo & Simulation Controls in title bar -->
+            <div style="display: flex; gap: 8px; align-items: center;">
+                <button class="btn-sm" onclick="wbUndo()"
+                    style="background: var(--surface2); border: 1px solid var(--border); padding: 6px 12px; font-size: 0.85rem; color: var(--text); border-radius: 6px;"
+                    title="Undo (Ctrl+Z)">↩️ Undo</button>
+                <button class="btn-sm" onclick="wbRedo()"
+                    style="background: var(--surface2); border: 1px solid var(--border); padding: 6px 12px; font-size: 0.85rem; color: var(--text); border-radius: 6px;"
+                    title="Redo (Ctrl+Y)">↪️ Redo</button>
+                <div class="wb-toolbar-divider" style="height: 24px; margin: 0 4px;"></div>
+                <button class="btn-sm" id="wbRunBtn" onclick="wbToggleRun()"
+                    style="background: var(--green); color: black; font-weight: bold; border-radius: 6px; padding: 6px 14px;">▶️
+                    Run Circuit</button>
             </div>
         </div>
-        <div class="wb-toolbar-row" style="border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 2px;">
-            <span class="wb-toolbar-title" style="color: var(--orange); font-size: 0.82rem; letter-spacing: 0.5px;">TRACKS / WIRES:</span>
-            <button class="btn-sm" onclick="wbSetMode('wire', '#FF4757')" style="background: transparent; color: #FF4757; border: 1px solid #FF4757; font-size: 0.82rem; padding: 5px 10px;">+ VCC Red</button>
-            <button class="btn-sm" onclick="wbSetMode('wire', '#000000')" style="background: transparent; color: #000; border: 1px solid #000; font-size: 0.82rem; padding: 5px 10px;">- GND Black</button>
-            <button class="btn-sm" onclick="wbSetMode('wire', '#00FF88')" style="background: transparent; color: #00FF88; border: 1px solid #00FF88; font-size: 0.82rem; padding: 5px 10px;">⚡ Signal Green</button>
-            
-            <div class="wb-toolbar-divider"></div>
-            
-            <span class="wb-toolbar-title" style="color: var(--text-muted); width: auto; margin-right: 8px; font-size: 0.82rem;">TOOLS:</span>
-            <button class="btn-sm" onclick="wbSetMode('move', null)" style="background: #007BFF; color: white; border: 1px solid #0056b3; font-size: 0.82rem; padding: 5px 10px;">🖱️ Pointer</button>
-            <button class="btn-sm" onclick="wbSetMode('pen', '#000000')" style="background: #333; color: white; font-size: 0.82rem; padding: 5px 10px;">✏️ Pen</button>
-            <button class="btn-sm" onclick="wbSetMode('erase', null)" style="background: #131629; color: white; border: 1px solid white; font-size: 0.82rem; padding: 5px 10px;">🧹 Eraser</button>
-            <button class="btn-sm" onclick="wbClear()" style="background: transparent; border: 1px solid var(--red); color: var(--red); font-size: 0.82rem; padding: 5px 10px;">🗑️ Clear</button>
+
+        <!-- Tinkercad-like PCB Toolbar -->
+        <div class="wb-toolbar" style="margin-bottom: 12px; position: relative;">
+            <div class="wb-toolbar-row">
+                <span class="wb-toolbar-title"
+                    style="color: var(--cyan); font-size: 0.82rem; letter-spacing: 0.5px;">COMPONENTS:</span>
+                <button class="btn-sm" id="wbCompToggleBtn" onclick="wbToggleComponentList()"
+                    style="background: var(--cyan); color: black; font-weight: bold; font-size: 0.82rem; padding: 6px 12px; display: flex; align-items: center; gap: 6px; border: none; border-radius: 6px; cursor: pointer; transition: all 0.2s;">
+                    🔌 Select Component <span id="wbCompArrow">▼</span>
+                </button>
+
+                <!-- Floating Glassmorphic Components Dropdown -->
+                <div id="wbComponentList" class="wb-component-list" style="display: none;">
+                    <button class="wb-comp-item" onclick="wbSelectComponent('led')"
+                        style="border-left: 4px solid #FF4757;">💡 LED</button>
+                    <button class="wb-comp-item" onclick="wbSelectComponent('bulb')"
+                        style="border-left: 4px solid #FFD600;">💡 Bulb</button>
+                    <button class="wb-comp-item" onclick="wbSelectComponent('resistor')"
+                        style="border-left: 4px solid #e8c396;">〰️ Resistor</button>
+                    <button class="wb-comp-item" onclick="wbSelectComponent('motor')"
+                        style="border-left: 4px solid #ccc;">⚙️ Motor</button>
+                    <button class="wb-comp-item" onclick="wbSelectComponent('buzzer')"
+                        style="border-left: 4px solid #9B6BFF;">🔊 Buzzer</button>
+                    <button class="wb-comp-item" onclick="wbSelectComponent('ir_sensor')"
+                        style="border-left: 4px solid #00FF88;">📡 IR Sensor</button>
+                    <button class="wb-comp-item" onclick="wbSelectComponent('ldr')"
+                        style="border-left: 4px solid #D4AF37;">☀️ LDR</button>
+                    <button class="wb-comp-item" onclick="wbSelectComponent('potentiometer')"
+                        style="border-left: 4px solid #555;">🎛️ Potentiometer</button>
+                </div>
+            </div>
+            <div class="wb-toolbar-row"
+                style="border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 2px;">
+                <span class="wb-toolbar-title"
+                    style="color: var(--orange); font-size: 0.82rem; letter-spacing: 0.5px;">TRACKS / WIRES:</span>
+                <button class="btn-sm" onclick="wbSetMode('wire', '#FF4757')"
+                    style="background: transparent; color: #FF4757; border: 1px solid #FF4757; font-size: 0.82rem; padding: 5px 10px;">+
+                    VCC Red</button>
+                <button class="btn-sm" onclick="wbSetMode('wire', '#000000')"
+                    style="background: transparent; color: #000; border: 1px solid #000; font-size: 0.82rem; padding: 5px 10px;">-
+                    GND Black</button>
+                <button class="btn-sm" onclick="wbSetMode('wire', '#00FF88')"
+                    style="background: transparent; color: #00FF88; border: 1px solid #00FF88; font-size: 0.82rem; padding: 5px 10px;">⚡
+                    Signal Green</button>
+
+                <div class="wb-toolbar-divider"></div>
+
+                <span class="wb-toolbar-title"
+                    style="color: var(--text-muted); width: auto; margin-right: 8px; font-size: 0.82rem;">TOOLS:</span>
+                <button class="btn-sm" onclick="wbSetMode('move', null)"
+                    style="background: #007BFF; color: white; border: 1px solid #0056b3; font-size: 0.82rem; padding: 5px 10px;">🖱️
+                    Pointer</button>
+                <button class="btn-sm" onclick="wbSetMode('pen', '#000000')"
+                    style="background: #333; color: white; font-size: 0.82rem; padding: 5px 10px;">✏️ Pen</button>
+                <button class="btn-sm" onclick="wbSetMode('erase', null)"
+                    style="background: #131629; color: white; border: 1px solid white; font-size: 0.82rem; padding: 5px 10px;">🧹
+                    Eraser</button>
+                <button class="btn-sm" onclick="wbClear()"
+                    style="background: transparent; border: 1px solid var(--red); color: var(--red); font-size: 0.82rem; padding: 5px 10px;">🗑️
+                    Clear</button>
+            </div>
+        </div>
+
+        <!-- Deep Green PCB Canvas Container -->
+        <div id="wbCanvasContainer" class="wb-canvas-container">
+            <canvas id="whiteboardCanvas" class="wb-canvas"></canvas>
+
+            <!-- Glassmorphic Properties Panel -->
+            <div id="wbPropertiesPanel" class="wb-properties-panel">
+                <h3 id="wbPropTitle">Properties</h3>
+
+                <div id="wbPropResistor" class="wb-prop-group">
+                    <label class="wb-prop-label" for="wbResistorValue">Resistance (Ohms):</label>
+                    <input type="number" id="wbResistorValue" value="220" onchange="wbUpdateComponent()"
+                        onkeyup="wbUpdateComponent()" class="wb-prop-input">
+                </div>
+
+                <div id="wbPropBulb" class="wb-prop-group" style="display: none;">
+                    <label class="wb-prop-label" for="wbBulbVoltage">Rated Voltage (V):</label>
+                    <input type="range" id="wbBulbVoltage" min="1.5" max="15.0" step="0.5" value="6.0"
+                        oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
+                    <span id="wbBulbVoltageValue"
+                        style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">6.0
+                        V</span>
+                </div>
+
+                <div id="wbPropPowerSupply" class="wb-prop-group" style="display: none;">
+                    <label class="wb-prop-label" for="wbPSVoltage">Voltage (V):</label>
+                    <input type="range" id="wbPSVoltage" min="0" max="30" step="0.1" value="9"
+                        oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
+                    <span id="wbPSVoltageValue"
+                        style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">9.0
+                        V</span>
+
+                    <label class="wb-prop-label" for="wbPSAmp" style="margin-top: 10px;">Max Current Limit (A):</label>
+                    <input type="range" id="wbPSAmp" min="0" max="5" step="0.001" value="2.000"
+                        oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
+                    <span id="wbPSAmpValue"
+                        style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">2.000
+                        A</span>
+                </div>
+
+                <div id="wbPropIRSensor" class="wb-prop-group" style="display: none;">
+                    <label class="wb-prop-label" for="wbIRTriggerDist">Trigger Range (Potentiometer):</label>
+                    <input type="range" id="wbIRTriggerDist" min="30" max="200" value="100"
+                        oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
+                    <span id="wbIRTriggerValue"
+                        style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">100
+                        px</span>
+                </div>
+
+                <div id="wbPropLDR" class="wb-prop-group" style="display: none;">
+                    <label class="wb-prop-label" for="wbLDRLight">Environment Light Level:</label>
+                    <input type="range" id="wbLDRLight" min="0" max="100" value="50" oninput="wbUpdateComponent()"
+                        class="wb-prop-input" style="padding: 0;">
+                    <span id="wbLDRLightValue"
+                        style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">50%</span>
+                </div>
+
+                <div id="wbPropPotentiometer" class="wb-prop-group" style="display: none;">
+                    <label class="wb-prop-label" for="wbPotKnob">Knob Position (%):</label>
+                    <input type="range" id="wbPotKnob" min="0" max="100" value="50" oninput="wbUpdateComponent()"
+                        class="wb-prop-input" style="padding: 0;">
+                    <span id="wbPotKnobValue"
+                        style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">50%</span>
+                </div>
+
+                <!-- Rotation & Edit Tools for Components -->
+                <div class="wb-prop-group"
+                    style="margin-top: 15px; border-top: 1px dashed var(--border); padding-top: 15px;">
+                    <label class="wb-prop-label">Component Action:</label>
+                    <button class="btn-sm" onclick="wbRotateSelected()"
+                        style="background: var(--cyan); color: black; font-weight: bold; border-radius: 6px; padding: 8px; width: 100%; border: none; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        🔄 Rotate 90°
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <!-- Deep Green PCB Canvas Container -->
-    <div id="wbCanvasContainer" class="wb-canvas-container">
-      <canvas id="whiteboardCanvas" class="wb-canvas"></canvas>
-      
-      <!-- Glassmorphic Properties Panel -->
-      <div id="wbPropertiesPanel" class="wb-properties-panel">
-          <h3 id="wbPropTitle">Properties</h3>
-          
-          <div id="wbPropResistor" class="wb-prop-group">
-              <label class="wb-prop-label">Resistance (Ohms):</label>
-              <input type="number" id="wbResistorValue" value="220" onchange="wbUpdateComponent()" onkeyup="wbUpdateComponent()" class="wb-prop-input">
-          </div>
-
-          <div id="wbPropBulb" class="wb-prop-group" style="display: none;">
-              <label class="wb-prop-label">Rated Voltage (V):</label>
-              <input type="range" id="wbBulbVoltage" min="1.5" max="15.0" step="0.5" value="6.0" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
-              <span id="wbBulbVoltageValue" style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">6.0 V</span>
-          </div>
-          
-          <div id="wbPropPowerSupply" class="wb-prop-group" style="display: none;">
-              <label class="wb-prop-label">Voltage (V):</label>
-              <input type="range" id="wbPSVoltage" min="0" max="30" step="0.1" value="9" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
-              <span id="wbPSVoltageValue" style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">9.0 V</span>
-              
-              <label class="wb-prop-label" style="margin-top: 10px;">Max Current Limit (A):</label>
-              <input type="range" id="wbPSAmp" min="0" max="5" step="0.001" value="2.000" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
-              <span id="wbPSAmpValue" style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">2.000 A</span>
-          </div>
-
-          <div id="wbPropIRSensor" class="wb-prop-group" style="display: none;">
-              <label class="wb-prop-label">Trigger Range (Potentiometer):</label>
-              <input type="range" id="wbIRTriggerDist" min="30" max="200" value="100" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
-              <span id="wbIRTriggerValue" style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">100 px</span>
-          </div>
-
-          <div id="wbPropLDR" class="wb-prop-group" style="display: none;">
-              <label class="wb-prop-label">Environment Light Level:</label>
-              <input type="range" id="wbLDRLight" min="0" max="100" value="50" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
-              <span id="wbLDRLightValue" style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">50%</span>
-          </div>
-
-          <div id="wbPropPotentiometer" class="wb-prop-group" style="display: none;">
-              <label class="wb-prop-label">Knob Position (%):</label>
-              <input type="range" id="wbPotKnob" min="0" max="100" value="50" oninput="wbUpdateComponent()" class="wb-prop-input" style="padding: 0;">
-              <span id="wbPotKnobValue" style="color: var(--cyan); font-family: monospace; font-size: 0.9rem; font-weight: bold;">50%</span>
-          </div>
-
-          <!-- Rotation & Edit Tools for Components -->
-          <div class="wb-prop-group" style="margin-top: 15px; border-top: 1px dashed var(--border); padding-top: 15px;">
-              <label class="wb-prop-label">Component Action:</label>
-              <button class="btn-sm" onclick="wbRotateSelected()" style="background: var(--cyan); color: black; font-weight: bold; border-radius: 6px; padding: 8px; width: 100%; border: none; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                  🔄 Rotate 90°
-              </button>
-          </div>
-      </div>
-    </div>
-  </div>
 </div>
+
+<!-- </body>

@@ -44,7 +44,7 @@ async function connectArduino(){
 
 async function readSerialLoop(){
   const textDecoder = new TextDecoderStream();
-  const readableStreamClosed = serialPort.readable.pipeTo(textDecoder.writable);
+  serialPort.readable.pipeTo(textDecoder.writable);
   serialReader = textDecoder.readable.getReader();
 
   let buffer = '';
@@ -69,7 +69,7 @@ async function readSerialLoop(){
 
 function parseSerialLine(line){
   const parts = line.split(',').map(Number);
-  if(parts.length < 4 || parts.some(isNaN)) return;
+  if(parts.length < 4 || parts.some(Number.isNaN)) return;
 
   const [rollRaw, pitchRaw, yawRaw, throttleRaw] = parts;
   rawData = { roll: rollRaw, pitch: pitchRaw, yaw: yawRaw, throttle: throttleRaw };
@@ -101,20 +101,24 @@ function flashLiveDot(){
 }
 
 function setConnUI(connected, label){
-  const dot = document.getElementById('conn-dot');
-  const text = document.getElementById('conn-text');
-  const btn1 = document.getElementById('btn-connect');
-  const btn2 = document.getElementById('btn-connect-2');
-  if(connected){
-    if(text) text.textContent = 'ARDUINO LINKED';
-    if(dot) dot.classList.add('live');
-    if(btn1) btn1.textContent = 'Disconnect';
-    if(btn2) btn2.textContent = 'Disconnect';
-  }else{
-    if(text) text.textContent = label || 'NO LINK';
-    if(dot) dot.classList.remove('live');
-    if(btn1) btn1.textContent = 'Connect Arduino';
-    if(btn2) btn2.textContent = 'Connect Arduino';
+  const el = id => document.getElementById(id);
+  const UI = {
+    dot: el('conn-dot'),
+    text: el('conn-text'),
+    btn1: el('btn-connect'),
+    btn2: el('btn-connect-2')
+  };
+  
+  if (connected) {
+    if (UI.text) UI.text.textContent = 'ARDUINO LINKED';
+    if (UI.dot) UI.dot.classList.add('live');
+    if (UI.btn1) UI.btn1.textContent = 'Disconnect';
+    if (UI.btn2) UI.btn2.textContent = 'Disconnect';
+  } else {
+    if (UI.text) UI.text.textContent = label || 'NO LINK';
+    if (UI.dot) UI.dot.classList.remove('live');
+    if (UI.btn1) UI.btn1.textContent = 'Connect Arduino';
+    if (UI.btn2) UI.btn2.textContent = 'Connect Arduino';
   }
 }
 
@@ -125,8 +129,8 @@ function useKeyboard(){
   hideSetup();
 }
 
-window.addEventListener('keydown', e=>{ Keys[e.code] = true; });
-window.addEventListener('keyup', e=>{ Keys[e.code] = false; });
+globalThis.addEventListener('keydown', e=>{ Keys[e.code] = true; });
+globalThis.addEventListener('keyup', e=>{ Keys[e.code] = false; });
 
 function updateKeyboardInput(dt){
   if(Input.source !== 'keyboard') return;
@@ -155,7 +159,7 @@ const SFX = {
   ctx: null, engineOsc: null, engineGain: null,
   init(){
     if(this.ctx) return;
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const AudioContext = globalThis.AudioContext || globalThis.webkitAudioContext;
     if(!AudioContext) return;
     this.ctx = new AudioContext();
 
@@ -247,8 +251,8 @@ function buildPitchLines(){
   for(let deg=-90; deg<=90; deg+=10){
     if(deg===0) continue;
     const line = document.createElement('div');
-    line.className = 'pitch-line' + (deg%20!==0 ? ' minor' : '');
-    line.style.top = (-deg * 3.0) + 'px';
+    line.className = 'pitch-line' + (deg%20 === 0 ? '' : ' minor');
+    line.style.top = (-deg * 3) + 'px';
     if(deg%20===0){
       const label = document.createElement('span');
       label.textContent = Math.abs(deg);
@@ -264,7 +268,7 @@ function updateHorizon(pitchRad, rollRad){
   const pitchDeg = pitchRad * 180/Math.PI;
   const rollDeg = rollRad * 180/Math.PI;
   const ball = document.getElementById('horizon-ball');
-  ball.style.transform = `rotate(${-rollDeg}deg) translateY(${pitchDeg * 3.0}px)`;
+  ball.style.transform = `rotate(${-rollDeg}deg) translateY(${pitchDeg * 3}px)`;
   const bankPointer = document.getElementById('bank-pointer');
   bankPointer.style.transform = `translateX(-50%) rotate(${-rollDeg}deg)`;
   bankPointer.style.transformOrigin = '50% 130px';
@@ -279,7 +283,7 @@ function updateCompass(yawRad){
     for(let d=-360; d<=720; d+=10){
       const norm = ((d%360)+360)%360;
       const dirs = {0:'N',90:'E',180:'S',270:'W'};
-      html += `<span class="compass-tick ${dirs[norm]!==undefined?'major':''}">${dirs[norm] !== undefined ? dirs[norm] : norm}</span>`;
+      html += `<span class="compass-tick ${dirs[norm] === undefined ? '' : 'major'}">${dirs[norm] === undefined ? norm : dirs[norm]}</span>`;
     }
     strip.innerHTML = html;
     strip.dataset.built = '1';

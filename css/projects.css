@@ -231,25 +231,33 @@
 .pd-header { margin-bottom: 24px; }
 .pd-back {
   display: inline-flex; align-items: center; gap: 8px;
-  color: var(--text-muted); font-size: 0.9rem; cursor: pointer;
-  margin-bottom: 24px; transition: color 0.2s; background: none; border: none;
-  font-family: var(--font-body); padding: 0;
+  color: var(--text); font-size: 0.95rem; cursor: pointer; font-weight: 600;
+  margin-bottom: 24px; background: var(--surface2); border: 1px solid var(--border);
+  padding: 8px 16px; border-radius: 20px; box-shadow: var(--shadow);
+  font-family: var(--font-body); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.pd-back:hover { color: var(--orange); }
+.pd-back:hover {
+  background: var(--surface);
+  color: var(--orange);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  border-color: var(--orange);
+}
 
 /* Banner Hero */
 .pd-banner {
   position: relative;
-  height: 420px;
+  height: 480px;
   background-size: cover;
   background-position: center;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
 }
 .pd-banner-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(13,15,26,1) 0%, rgba(13,15,26,0.5) 40%, transparent 100%);
 }
 .pd-banner-content {
   position: absolute; bottom: 32px; left: 36px; right: 36px;
@@ -330,7 +338,7 @@
 
 /* ====== OVERVIEW TAB — Two column ====== */
 .pd-overview-grid {
-  display: grid; grid-template-columns: 2fr 1fr; gap: 32px;
+  display: block; /* Removed grid restriction so overview spans full width */
 }
 .pd-overview-main { min-width: 0; }
 .pd-overview-sidebar { min-width: 0; }
@@ -636,3 +644,161 @@
 /* ====== WEATHER STATION SLIDER OVERRIDES ====== */
 .ws-slider-arrow:hover { background: rgba(0,212,255,0.8) !important; color: #000 !important; }
 .ws-slider-dots span:hover { background: #fff !important; }
+
+/* ====== PROBLEM & SOLUTION ANIMATED ARROW ====== */
+.pd-animated-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--cyan);
+  animation: pulseArrow 1.5s infinite;
+  text-shadow: 0 0 10px rgba(0,212,255,0.6);
+}
+@keyframes pulseArrow {
+  0% { transform: scale(1) translateX(0); opacity: 0.6; }
+  50% { transform: scale(1.1) translateX(10px); opacity: 1; text-shadow: 0 0 20px rgba(0,212,255,1); }
+  100% { transform: scale(1) translateX(0); opacity: 0.6; }
+}
+
+/* ====== GUIDE TIMELINE ====== */
+.pd-guide-section {
+  margin-top: 40px;
+  background: rgba(30,35,64,0.4);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid var(--border);
+}
+.pd-guide-title {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 24px;
+  font-family: var(--font-head);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pd-guide-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  padding-left: 10px;
+}
+.pd-guide-list::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cyan), var(--purple));
+  z-index: 0;
+}
+.pd-guide-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+.pd-guide-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 2px solid var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--cyan);
+  flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(0,212,255,0.3);
+}
+.pd-guide-text {
+  background: rgba(0,0,0,0.2);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+  color: var(--text);
+  line-height: 1.6;
+  width: 100%;
+}
+
+/* ====== VS CODE DARK CODE THEME ====== */
+.vscode-code-block {
+  background: #1e1e1e !important;
+  color: #d4d4d4 !important;
+  font-family: 'Consolas', 'Courier New', monospace !important;
+  padding: 24px !important;
+  border-radius: 12px !important;
+  border: 1px solid #333 !important;
+  overflow-x: auto !important;
+  line-height: 1.5 !important;
+  font-size: 0.95rem !important;
+}
+.vscode-code-block .keyword { color: #569cd6; }
+.vscode-code-block .function { color: #dcdcaa; }
+.vscode-code-block .string { color: #ce9178; }
+.vscode-code-block .number { color: #b5cea8; }
+.vscode-code-block .comment { color: #6a9955; font-style: italic; }
+.vscode-code-block .type { color: #4ec9b0; }
+.vscode-code-block .variable { color: #9cdcfe; }
+
+/* ====== FIRMWARE UPLOAD MODAL ====== */
+.firmware-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px); z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: all 0.3s ease;
+}
+.firmware-modal-overlay.active {
+  opacity: 1; visibility: visible;
+}
+.firmware-modal {
+  width: 90%; max-width: 600px;
+  background: #1e2336; border-radius: 16px;
+  border: 1px solid rgba(0,212,255,0.4);
+  box-shadow: 0 0 50px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,212,255,0.1);
+  overflow: hidden;
+  transform: translateY(20px); transition: all 0.3s ease;
+}
+.firmware-modal-overlay.active .firmware-modal { transform: translateY(0); }
+
+.firmware-header {
+  padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(0,0,0,0.2);
+}
+.firmware-header h3 { margin: 0; font-size: 1.2rem; color: #fff; }
+.firmware-close { background: none; border: none; color: var(--text-dim); font-size: 1.5rem; cursor: pointer; }
+.firmware-close:hover { color: #fff; }
+
+.firmware-body { padding: 24px; }
+.firmware-instructions { margin-bottom: 20px; font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
+
+.firmware-terminal {
+  background: #0d0f1a; border-radius: 8px; padding: 16px;
+  font-family: monospace; font-size: 0.85rem; color: #0f0;
+  height: 200px; overflow-y: auto; margin-bottom: 20px;
+  border: 1px solid #000; box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+}
+.firmware-terminal p { margin: 4px 0; }
+.term-info { color: #aaa; }
+.term-warn { color: #fa0; }
+.term-success { color: #0f0; }
+
+.firmware-progress-container {
+  height: 24px; background: rgba(0,0,0,0.3); border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1); overflow: hidden;
+  position: relative; margin-bottom: 8px;
+}
+.firmware-progress-bar {
+  height: 100%; width: 0%; background: linear-gradient(90deg, #00ff88, #00d4ff);
+  transition: width 0.1s linear;
+}
+.firmware-progress-text {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; font-weight: bold; color: #fff; text-shadow: 0 0 4px #000;
+}

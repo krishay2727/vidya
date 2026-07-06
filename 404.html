@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    // GitHub Pages SPA 404 Hack
+    var l = globalThis.location;
+    var pathSegments = l.pathname.split('/').filter(Boolean);
+    var repoIndex = pathSegments.indexOf('vidya');
+    
+    // Determine the route portion of the path
+    var routePath = '';
+    if (repoIndex >= 0) {
+      routePath = pathSegments.slice(repoIndex + 1).join('/');
+    } else {
+      routePath = pathSegments.join('/');
+    }
+    
+    var basePath = l.pathname.substring(0, l.pathname.indexOf(routePath));
+    var newUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + basePath + '?p=' + routePath;
+    if(l.search && l.search !== '?') {
+      newUrl += '&' + l.search.slice(1);
+    }
+    newUrl += l.hash;
+    
+    globalThis.location.replace(newUrl);
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>

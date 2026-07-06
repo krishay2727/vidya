@@ -55,8 +55,8 @@
   "componentRefs": [
     "dht11",
     "arduino-uno",
-    "lcd-16x2",
-    "potentiometer-10k"
+    "16x2lcd",
+    "potentiometer"
   ],
   "guide": [
     "Wire DHT11 data pin to Arduino D2, VCC to 5V, GND to GND",
@@ -96,17 +96,17 @@
   "dataVideos": [],
   "gallery": [
     {
-      "file": "data/carousel1f.jpg",
+      "file": "data/images/carousel1f.jpg",
       "caption": "Project Setup",
       "category": "Build"
     },
     {
-      "file": "data/carousel2.jpg",
+      "file": "data/images/carousel2.jpg",
       "caption": "Wiring",
       "category": "Hardware"
     },
     {
-      "file": "data/carousel3f.jpg",
+      "file": "data/images/carousel3f.jpg",
       "caption": "Testing",
       "category": "Demo"
     }

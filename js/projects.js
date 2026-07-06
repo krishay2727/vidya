@@ -230,32 +230,45 @@ async function renderProjectDetail() {
     <!-- Overview Tab -->
     <div id="ptab-overview" class="pd-tab-content active">
       <div class="pd-overview-grid">
-        <div class="pd-overview-main">
+        <div class="pd-overview-main" style="width: 100%;">
           ${p.innovation ? `<div class="pd-innovation-quote" style="--project-color: ${p.color || 'var(--orange)'};">"${p.innovation}"</div>` : ''}
           ${p.problemStatement || p.solutionApproach ? `
-            <div class="pd-problem-solution" style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: stretch; margin-bottom: 32px;">
-              <div class="pd-problem-card" style="background: rgba(255, 71, 87, 0.1); border: 1px solid rgba(255, 71, 87, 0.3); padding: 20px; border-radius: 12px;">
-                <h4 style="color: #FF4757; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">⚠️ Problem</h4>
-                <p style="font-size: 0.95rem;">${p.problemStatement || 'Not specified'}</p>
+            <div class="pd-problem-solution" style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; margin-bottom: 40px;">
+              <div class="pd-problem-card" style="background: rgba(255, 71, 87, 0.05); border: 1px solid rgba(255, 71, 87, 0.4); padding: 24px; border-radius: 16px; box-shadow: 0 0 20px rgba(255, 71, 87, 0.15); transition: transform 0.3s; height: 100%;">
+                <h4 style="color: #FF4757; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; text-shadow: 0 0 10px rgba(255, 71, 87, 0.3);">⚠️ Problem</h4>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text);">${p.problemStatement || 'Not specified'}</p>
               </div>
-              <div style="display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 1.5rem;">→</div>
-              <div class="pd-solution-card" style="background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3); padding: 20px; border-radius: 12px;">
-                <h4 style="color: #00FF88; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">✅ Solution</h4>
-                <p style="font-size: 0.95rem;">${p.solutionApproach || 'Not specified'}</p>
+              <div class="pd-animated-arrow" style="background: var(--bg); padding: 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">➔</div>
+              <div class="pd-solution-card" style="background: rgba(0, 255, 136, 0.05); border: 1px solid rgba(0, 255, 136, 0.4); padding: 24px; border-radius: 16px; box-shadow: 0 0 20px rgba(0, 255, 136, 0.15); transition: transform 0.3s; height: 100%;">
+                <h4 style="color: #00FF88; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 1.1rem; text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);">✅ Solution</h4>
+                <p style="font-size: 1rem; line-height: 1.6; color: var(--text);">${p.solutionApproach || 'Not specified'}</p>
               </div>
             </div>
           ` : ''}
           ${descHtml}
-        </div>
-        <div class="pd-overview-sidebar">
+          
+          ${p.guide && p.guide.length > 0 ? `
+            <div class="pd-guide-section">
+              <h3 class="pd-guide-title">🛠️ Step-by-Step Guide</h3>
+              <div class="pd-guide-list">
+                ${p.guide.map((step, idx) => `
+                  <div class="pd-guide-step">
+                    <div class="pd-guide-num">${idx + 1}</div>
+                    <div class="pd-guide-text">${step}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+          
           ${p.hardwareSpecs ? `
-            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
-              <h4 style="margin-bottom: 16px; color: ${p.color || 'var(--orange)'}; display: flex; align-items: center; gap: 8px;">⚙️ Hardware Specs</h4>
-              <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-top: 40px; margin-bottom: 24px;">
+              <h4 style="margin-bottom: 20px; font-size: 1.3rem; color: ${p.color || 'var(--orange)'}; display: flex; align-items: center; gap: 8px; font-family: var(--font-head);">⚙️ Hardware Specs</h4>
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
                 ${Object.entries(p.hardwareSpecs).map(([key, val]) => `
                   <tr>
-                    <td style="padding: 12px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); text-transform: capitalize;">${key.replace(/([A-Z])/g, ' $1')}</td>
-                    <td style="padding: 12px 0; border-bottom: 1px solid var(--border); text-align: right; color: var(--text);">${Array.isArray(val) ? val.join('<br>') : val}</td>
+                    <td style="padding: 14px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); text-transform: capitalize; width: 30%;">${key.replace(/([A-Z])/g, ' $1')}</td>
+                    <td style="padding: 14px 0; border-bottom: 1px solid var(--border); color: var(--text);">${Array.isArray(val) ? val.join('<br>') : val}</td>
                   </tr>
                 `).join('')}
               </table>
@@ -368,7 +381,7 @@ async function renderProjectDetail() {
         <div class="pd-code-list">
           ${p.codeFiles.map((c, i) => `
             <div class="pd-code-card" style="display:block; width:100%; background: var(--surface); padding:20px; border-radius:12px; border:1px solid var(--border); margin-bottom: 24px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap: wrap; gap: 12px;">
                 <div class="pd-code-info">
                   <div class="pd-code-name" style="font-size: 1.2rem;">📝 ${c.name}</div>
                   <div>
@@ -376,14 +389,12 @@ async function renderProjectDetail() {
                     <span class="pd-code-desc">${c.desc || ''}</span>
                   </div>
                 </div>
-                <a href="${c.url}" target="_blank" class="btn-primary" title="Download Code">⬇️ Download</a>
+                <div style="display: flex; gap: 12px;">
+                  <button onclick="openRealFirmwareFlasher('firmware.bin')" class="btn-primary" style="background: #00d4ff; border: none; box-shadow: 0 0 15px rgba(0,212,255,0.4); color: #000;">⚡ Upload Firmware</button>
+                  <a href="${c.url}" target="_blank" class="btn-outline" title="Download Code">⬇️ Download</a>
+                </div>
               </div>
-              <div class="code-preview" id="code-preview-${i}" style="background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; max-height: 400px; overflow-y: auto;">
-                Loading code...
-              </div>
-              <div style="text-align:center; margin-top:16px;">
-                <a href="${c.url}" target="_blank" class="btn-outline" style="border-color: var(--border); color: var(--text);">⬇️ Download File</a>
-              </div>
+              <pre class="code-preview vscode-code-block" id="code-preview-${i}">Loading code...</pre>
             </div>
           `).join('')}
         </div>
@@ -467,7 +478,13 @@ async function renderProjectDetail() {
         .then(res => res.text())
         .then(text => {
           const el = document.getElementById('code-preview-' + i);
-          if (el) el.textContent = text;
+          if (el) {
+             if (globalThis.highlightCode) {
+                 el.innerHTML = globalThis.highlightCode(text);
+             } else {
+                 el.textContent = text;
+             }
+          }
         })
         .catch(err => {
           const el = document.getElementById('code-preview-' + i);
@@ -758,3 +775,91 @@ function projectLightboxNav(dir) {
   lightboxIndex = (lightboxIndex + dir + p.gallery.length) % p.gallery.length;
   updateProjectLightbox(p.gallery);
 }
+
+// =============================================
+//  VS CODE SYNTAX HIGHLIGHTING (Basic)
+// =============================================
+globalThis.highlightCode = function(code) {
+  let highlighted = code
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/\b(int|float|double|char|void|bool|String|auto)\b/g, '<span class="type">$1</span>')
+    .replace(/\b(if|else|for|while|return|break|continue|switch|case|default|class|struct)\b/g, '<span class="keyword">$1</span>')
+    .replace(/\b(true|false|null|NULL)\b/g, '<span class="keyword">$1</span>')
+    .replace(/\b([A-Za-z0-9_]+)\s*\(/g, '<span class="function">$1</span>(')
+    .replace(/("[^"]*")/g, '<span class="string">$1</span>')
+    .replace(/(\b\d+(\.\d+)?\b)/g, '<span class="number">$1</span>')
+    .replace(/(\/\/[^\n]*)/g, '<span class="comment">$1</span>')
+    .replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="comment">$1</span>');
+  return highlighted;
+};
+
+// =============================================
+//  REAL FIRMWARE UPLOAD (esp-web-tools)
+// =============================================
+globalThis.openRealFirmwareFlasher = function(filename) {
+  // 1. Inject the esp-web-tools script if it doesn't exist
+  if (!document.getElementById('espWebToolsScript')) {
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.id = 'espWebToolsScript';
+    script.src = 'https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module';
+    document.head.appendChild(script);
+  }
+
+  // 2. Generate a dynamic manifest Blob URL for the specific firmware file
+  const manifest = {
+    name: currentProject ? currentProject.title : "Firmware",
+    version: "1.0.0",
+    builds: [
+      {
+        chipFamily: "ESP32",
+        parts: [
+          { path: filename, offset: 0 } // Standard offset for full ESP32 binaries
+        ]
+      }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+  const manifestUrl = URL.createObjectURL(blob);
+
+  // 3. Inject modal if it doesn't exist
+  if (!document.getElementById('firmwareModalOverlay')) {
+    const modalHtml = `
+      <div class="firmware-modal-overlay" id="firmwareModalOverlay">
+        <div class="firmware-modal">
+          <div class="firmware-header">
+            <h3>⚡ Upload Firmware via Web Serial</h3>
+            <button class="firmware-close" onclick="closeFirmwareModal()">✕</button>
+          </div>
+          <div class="firmware-body" style="text-align: center; padding: 40px 20px;">
+            <p class="firmware-instructions" style="margin-bottom: 30px;">
+              Connect your ESP32 board via USB. Click the button below, select your device's COM port, and the browser will natively erase and flash the <b id="fwFileName"></b> binary.
+            </p>
+            <div id="espInstallContainer" style="display: flex; justify-content: center; min-height: 50px;">
+              <!-- Web Install Button goes here -->
+            </div>
+            <p style="margin-top: 30px; font-size: 0.85rem; color: var(--text-dim);">Powered by ESP Web Tools. Requires Chrome/Edge desktop.</p>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+  }
+
+  document.getElementById('fwFileName').textContent = filename;
+  
+  // 4. Inject the Web Component dynamically to pick up the new manifest URL
+  const container = document.getElementById('espInstallContainer');
+  container.innerHTML = ''; // clear previous
+  const installButton = document.createElement('esp-web-install-button');
+  installButton.setAttribute('manifest', manifestUrl);
+  container.appendChild(installButton);
+
+  const overlay = document.getElementById('firmwareModalOverlay');
+  overlay.classList.add('active');
+};
+
+globalThis.closeFirmwareModal = function() {
+  const overlay = document.getElementById('firmwareModalOverlay');
+  if (overlay) overlay.classList.remove('active');
+};

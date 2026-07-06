@@ -10,13 +10,12 @@
   <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <title>VIDYA DIGI Education</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="css/home.css" />
-  <link rel="stylesheet" href="css/sessions.css" />
-  <link rel="stylesheet" href="css/projects.css" />
-  <link rel="stylesheet" href="css/about.css" />
-  <link rel="stylesheet" href="css/whiteboard.css" />
-  <link rel="stylesheet" href="css/live-quiz.css" />
+  <script>
+    // Automated Cache Busting: Appends a timestamp to force browsers to load fresh CSS
+    const _v = Date.now();
+    const _cssFiles = ['style.css', 'css/home.css', 'css/sessions.css', 'css/projects.css', 'css/about.css', 'css/whiteboard.css', 'css/live-quiz.css'];
+    _cssFiles.forEach(f => document.write(`<link rel="stylesheet" href="${f}?v=${_v}" />`));
+  </script>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#FF6B35" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -40,6 +39,7 @@
         <button onclick="showPage('projects')" class="nav-link" data-page="projects">Projects</button>
         <button onclick="showPage('whiteboard')" class="nav-link" data-page="whiteboard">📟 Circuit Board</button>
         <button onclick="showPage('about')" class="nav-link" data-page="about">About</button>
+        <button id="theme-toggle" class="nav-link" onclick="globalThis.toggleTheme()" style="font-size: 1.1rem; padding: 6px 10px;">☀️</button>
       </div>
       <button class="nav-hamburger" onclick="toggleMobileMenu()">☰</button>
     </div>
@@ -84,25 +84,34 @@
     </div>
   </footer>
 
-  <script src="js/state.js"></script>
-  <script src="js/routing.js"></script>
-  <script src="js/home.js"></script>
-  <script src="js/session.js"></script>
-  <script src="js/quiz.js"></script>
-  <script src="js/leaderboard.js"></script>
-  <script src="js/projects.js"></script>
-  <script src="js/about.js"></script>
-  <script src="js/whiteboard.js"></script>
-  <script src="js/main.js"></script>
-  <script type="module" src="js/live-quiz.js"></script>
+  <script>
+    // Automated Cache Busting for JS
+    const _jsFiles = ['js/state.js', 'js/routing.js', 'js/home.js', 'js/session.js', 'js/quiz.js', 'js/leaderboard.js', 'js/projects.js', 'js/about.js', 'js/whiteboard.js', 'js/main.js'];
+    _jsFiles.forEach(f => document.write(`<script src="${f}?v=${_v}"><\/script>`));
+    document.write(`<script type="module" src="js/live-quiz.js?v=${_v}"><\/script>`);
+  </script>
 
-  <!-- Service Worker Registration -->
+  <!-- Service Worker Registration (Cache-Busted) -->
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-          .then(reg => console.log('Service Worker registered!', reg.scope))
+      globalThis.addEventListener('load', () => {
+        // Cache-bust the SW file itself so browser always checks for updates
+        navigator.serviceWorker.register(`./sw.js?v=${_v}`)
+          .then(reg => {
+            console.log('Service Worker registered!', reg.scope);
+            // Check for updates periodically (every 60s)
+            setInterval(() => reg.update(), 60000);
+          })
           .catch(err => console.log('Service Worker registration failed:', err));
+      });
+
+      // Auto-reload page when a new Service Worker takes control
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          globalThis.location.reload();
+        }
       });
     }
   </script>

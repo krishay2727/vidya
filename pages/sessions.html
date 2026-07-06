@@ -5,14 +5,15 @@
       <h1>All Sessions</h1>
       <p>Explore slides, videos, resources, and take quizzes for every grade!</p>
     </div>
-    
+
     <!-- FILTER BAR -->
     <div class="sessions-filter-bar" id="sessionsFilterBar">
       <div class="sessions-search-wrap">
         <span class="search-icon">🔍</span>
-        <input type="text" id="sessionSearchInput" class="sessions-search" placeholder="Search sessions…" oninput="filterSessions()" />
+        <input type="text" id="sessionSearchInput" class="sessions-search" placeholder="Search sessions…" aria-label="Search Sessions"
+          oninput="filterSessions()" />
       </div>
-      
+
       <div class="sessions-filter-pills" id="gradeFilterPills">
         <button class="filter-pill active" data-grade="all" onclick="setSessionGrade('all', this)">All Grades</button>
         <button class="filter-pill" data-grade="grade-1" onclick="setSessionGrade('grade-1', this)">Grade 1</button>
@@ -25,14 +26,16 @@
         <button class="filter-pill" data-grade="grade-8" onclick="setSessionGrade('grade-8', this)">Grade 8</button>
         <button class="filter-pill" data-grade="grade-9" onclick="setSessionGrade('grade-9', this)">Grade 9</button>
       </div>
-      
+
       <div class="sessions-status-pills" id="phaseFilterPills">
         <!-- Dynamically populated by JS -->
       </div>
     </div>
-    
+
     <div class="sessions-count" id="sessionsCount"></div>
-    
+
     <div class="sessions-list-grid" id="sessionsListGrid"></div>
   </div>
 </div>
+
+<!-- </body> 

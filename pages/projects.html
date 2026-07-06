@@ -10,11 +10,13 @@
     <div class="projects-filter-bar" id="projectsFilterBar" style="flex-wrap: wrap;">
       <div class="projects-search-wrap" style="flex: 1; min-width: 250px;">
         <span class="search-icon">🔍</span>
-        <input type="text" id="projectSearchInput" class="projects-search" placeholder="Search by title, description, keywords..." oninput="filterProjects()" />
+        <input type="text" id="projectSearchInput" class="projects-search"
+          placeholder="Search by title, description, keywords..." aria-label="Search Projects" oninput="filterProjects()" />
       </div>
-      
+
       <div class="projects-dropdowns" style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <select id="filterDifficulty" class="projects-select" onchange="filterProjects()" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;">
+        <select id="filterDifficulty" class="projects-select" onchange="filterProjects()" aria-label="Filter by Difficulty"
+          style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;">
           <option value="all">All Difficulties</option>
           <option value="1">⭐ 1 Star</option>
           <option value="2">⭐⭐ 2 Stars</option>
@@ -23,11 +25,13 @@
           <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
         </select>
 
-        <select id="filterMicrocontroller" class="projects-select" onchange="filterProjects()" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;">
+        <select id="filterMicrocontroller" class="projects-select" onchange="filterProjects()" aria-label="Filter by Microcontroller"
+          style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;">
           <option value="all">All Microcontrollers</option>
         </select>
 
-        <select id="filterComponent" class="projects-select" onchange="filterProjects()" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;">
+        <select id="filterComponent" class="projects-select" onchange="filterProjects()" aria-label="Filter by Component"
+          style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;">
           <option value="all">All Components</option>
         </select>
       </div>
@@ -37,3 +41,4 @@
     <div class="projects-grid" id="projectsGrid"></div>
   </div>
 </div>
+<!-- </body> 
