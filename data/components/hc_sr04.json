@@ -1,0 +1,36 @@
+{
+  "id": "hc-sr04",
+  "name": "HC-SR04",
+  "fullName": "HC-SR04 Ultrasonic Distance Sensor",
+  "category": "Sensor",
+  "image": "data/components/images/hc_sr04.jpg",
+  "color": "#FF5733",
+  "tagline": "Measures distance (2cm to 400cm) using ultrasonic sound waves",
+  "description": "The HC-SR04 is a popular, low-cost ultrasonic distance sensor. It works by sending out an ultrasonic burst (40kHz sound waves) from the transmitter trigger pin, and measuring the time it takes for the echo pulse to bounce back and be received by the receiver pin. This time-of-flight value is then converted into a distance reading. Ideal for obstacle detection, robotics, and water level monitoring.",
+  "specs": {
+    "operatingVoltage": "5V DC",
+    "operatingCurrent": "15mA",
+    "ultrasonicFrequency": "40 kHz",
+    "range": "2cm to 400cm (accurate up to 3mm)",
+    "measuringAngle": "15 degrees",
+    "triggerInputSignal": "10µs TTL pulse"
+  },
+  "pinout": [
+    { "pin": "VCC", "name": "VCC", "desc": "Power supply +5V", "color": "#FF4444" },
+    { "pin": "Trig", "name": "Trigger", "desc": "Send trigger signal (digital output pin)", "color": "#00D4FF" },
+    { "pin": "Echo", "name": "Echo", "desc": "Receive echo return pulse (digital input pin)", "color": "#00FF88" },
+    { "pin": "GND", "name": "GND", "desc": "Ground", "color": "#222222" }
+  ],
+  "wiringNote": "Connect Trig pin to Arduino D2 and Echo pin to D3. The sensor operates strictly at 5V, so ensure a proper 5V power supply from the microcontroller.",
+  "libraryName": "No library required (can use PulseIn()), or HCSR04/NewPing",
+  "libraryInstall": "Standard pulseIn() is built-in. Optionally search for 'NewPing' in Arduino Library Manager for optimized multi-sensor usage.",
+  "codeSnippet": "#define TRIG_PIN 2\n#define ECHO_PIN 3\nvoid setup() {\n  Serial.begin(9600);\n  pinMode(TRIG_PIN, OUTPUT);\n  pinMode(ECHO_PIN, INPUT);\n}\nvoid loop() {\n  digitalWrite(TRIG_PIN, LOW);\n  delayMicroseconds(2);\n  digitalWrite(TRIG_PIN, HIGH);\n  delayMicroseconds(10);\n  digitalWrite(TRIG_PIN, LOW);\n  long duration = pulseIn(ECHO_PIN, HIGH);\n  float distance = (duration * 0.0343) / 2;\n  Serial.print(\"Distance: \");\n  Serial.print(distance);\n  Serial.println(\" cm\");\n  delay(500);\n}",
+  "commonMistakes": [
+    "Connecting VCC to 3.3V instead of 5V → incorrect or zero distance readings",
+    "Connecting Trig/Echo pins in reverse",
+    "Not waiting at least 60ms between measurements to avoid echo interference"
+  ],
+  "usedInProjects": ["assistive-tech-blind"],
+  "datasheetUrl": "https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf",
+  "buyLink": "https://www.robu.in/product/hc-sr04-ultrasonic-sensor-distance-measuring-module/"
+}
