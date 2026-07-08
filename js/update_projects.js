@@ -1,13 +1,15 @@
-
 const fs = require('node:fs');
 const path = require('node:path');
 
-const projectsDir = path.join(__dirname, 'projects');
-const files = fs.readdirSync(projectsDir).filter(f => f.endsWith('.json') && f !== 'projects.json');
+const rootDir = path.join(__dirname, '..');
+const projectsJsonPath = path.join(rootDir, 'projects', 'projects.json');
+const projectsIndex = JSON.parse(fs.readFileSync(projectsJsonPath, 'utf8'));
 
-for (const file of files) {
-  const filePath = path.join(projectsDir, file);
+for (const projPath of projectsIndex.projects) {
+  const filePath = path.join(rootDir, projPath);
+  if (!fs.existsSync(filePath)) continue;
   const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  const file = path.basename(projPath);
 
   // Remove icon
   if (data.icon) {

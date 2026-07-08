@@ -1,0 +1,33 @@
+{
+  "id": "theft-prevention-with-smart-sensors",
+  "title": "theft prevention with smart sensors",
+  "level": "Beginner",
+  "color": "#00D4FF",
+  "session": 29,
+  "desc": "Learn to build a theft prevention with smart sensors.",
+  "fullDesc": "In this project, we will build a theft prevention with smart sensors. This project will introduce you to the necessary components, coding logic, and assembly required.",
+  "image": "icons/vidya-logo.png",
+  "components": [],
+  "difficulty": 2,
+  "status": "Coming Soon",
+  "tags": [
+    "Electronics",
+    "New"
+  ],
+  "date": "2026-06-24",
+  "author": "Tinkering Lab",
+  "files3d": [],
+  "codeFiles": [
+    {
+      "name": "theft-prevention-with-smart-sensors.ino",
+      "language": "Arduino C++",
+      "desc": "Default sketch for theft prevention with smart sensors",
+      "url": "projects/theft-prevention-with-smart-sensors/code/theft-prevention-with-smart-sensors.ino"
+    }
+  ],
+  "youtubeVideos": [],
+  "dataVideos": [],
+  "gallery": [],
+  "resources": [],
+  "guide": []
+}

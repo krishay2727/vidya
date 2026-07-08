@@ -1,0 +1,141 @@
+{
+  "id": "robot-car",
+  "title": "Robot Car",
+  "subtitle": "ESP32 based smart robotic car with L298N motor control",
+  "level": "Intermediate",
+  "color": "#00D4FF",
+  "desc": "Build a wireless robot car using ESP32, motor driver and DC motors!",
+  "fullDesc": "A smart robotic car project using ESP32 microcontroller, L298N motor driver and four DC motors. The robot can move in different directions by controlling motor speed and direction.",
+  "image": "projects/images/robot-car.jpg",
+  "bannerImage": "projects/images/robot-car-banner.jpg",
+  "difficulty": 3,
+  "status": "Available",
+  "tags": [
+    "Robotics",
+    "ESP32",
+    "Motor Control",
+    "IoT"
+  ],
+  "date": "2026-06-26",
+  "author": "Atul Sawant",
+  "team": [
+    {
+      "name": "Atul Sawant",
+      "role": "Trainer & Project Guide"
+    }
+  ],
+  "innovation": "A low-cost educational robotic platform designed to teach students embedded systems, motor control and robotics concepts.",
+  "problemStatement": "Students need practical exposure to robotics hardware integration and real-time control systems.",
+  "solutionApproach": "Used ESP32 as the main controller with L298N motor driver to operate four DC motors. The system provides a flexible platform for robotics experiments and future IoT integration.",
+  "hardwareSpecs": {
+    "microcontroller": "ESP32 Development Board",
+    "motorDriver": "L298N Dual H-Bridge Motor Driver",
+    "powerConsumption": "Depends on motor load and battery capacity",
+    "operatingVoltage": "ESP32: 3.3V, Motors: 6V-12V",
+    "communicationProtocol": "GPIO based motor control, WiFi/Bluetooth supported by ESP32",
+    "dimensions": "Chassis dependent",
+    "motors": [
+      "4 × DC Gear Motors"
+    ],
+    "powerSource": [
+      "2 × Battery Pack"
+    ]
+  },
+  "components": [
+    "ESP32 Development Board",
+    "L298N Motor Driver Module",
+    "4 DC Motors",
+    "2 Battery Packs",
+    "Jumper Wires",
+    "Robot Car Chassis"
+  ],
+  "componentRefs": [
+    "esp32",
+    "l298n-motor-driver",
+    "dc-motor",
+    "battery",
+    "jumper-wire"
+  ],
+  "guide": [
+    "Connect ESP32 GPIO pins with L298N motor driver input pins",
+    "Connect four DC motors to L298N output terminals",
+    "Connect battery supply to motor driver power input",
+    "Provide regulated power supply to ESP32",
+    "Upload motor control program using Arduino IDE",
+    "Test forward, backward, left and right movement",
+    "Optimize motor speed using PWM control"
+  ],
+  "estimatedTime": "120 minutes",
+  "prerequisites": [
+    "Basic ESP32 programming",
+    "Basic electronics knowledge",
+    "Arduino IDE setup"
+  ],
+  "pdf": "data/robot-car-project.pdf",
+  "poster": "data/robot-car-poster.jpeg",
+  "ppt": "projects/docs/robot-car-presentation.pptx",
+  "researchPaper": "data/robot-car-research.pdf",
+  "circuitDiagram": "data/robot-car-circuit.jpg",
+  "files3d": [],
+  "codeFiles": [
+    {
+      "name": "robot_car_control.ino",
+      "language": "Arduino C++",
+      "desc": "ESP32 motor control program for robot car movement",
+      "url": "projects/robot-car/code/robot_car_control.ino"
+    }
+  ],
+  "youtubeVideos": [
+    {
+      "title": "Robot Car Demo",
+      "videoId": "",
+      "desc": "Demonstration of ESP32 based robot car movement"
+    }
+  ],
+  "dataVideos": [],
+  "gallery": [
+    {
+      "file": "data/robot-car-setup.jpg",
+      "caption": "Robot Car Assembly",
+      "category": "Build"
+    },
+    {
+      "file": "data/robot-car-wiring.jpg",
+      "caption": "ESP32 and Motor Driver Wiring",
+      "category": "Hardware"
+    },
+    {
+      "file": "data/robot-car-testing.jpg",
+      "caption": "Robot Movement Testing",
+      "category": "Demo"
+    }
+  ],
+  "liveUrl": "",
+  "resources": [
+    {
+      "icon": "📄",
+      "title": "ESP32 Technical Documentation",
+      "url": "data/components/esp32.json"
+    },
+    {
+      "icon": "📚",
+      "title": "L298N Motor Driver Reference",
+      "url": "data/components/l298n.json"
+    }
+  ],
+  "githubUrl": "",
+  "achievements": [
+    "Demonstrated in Robotics Training Program",
+    "Student Hands-on Embedded System Project"
+  ],
+  "keywords": [
+    "robot",
+    "robot car",
+    "ESP32",
+    "L298N",
+    "motor driver",
+    "DC motor",
+    "robotics",
+    "embedded system"
+  ]
+}

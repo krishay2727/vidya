@@ -1,0 +1,33 @@
+{
+  "id": "in-house-plant-watering-smart-system",
+  "title": "in house plant watering smart system",
+  "level": "Beginner",
+  "color": "#00D4FF",
+  "session": 27,
+  "desc": "Learn to build a in house plant watering smart system.",
+  "fullDesc": "In this project, we will build a in house plant watering smart system. This project will introduce you to the necessary components, coding logic, and assembly required.",
+  "image": "icons/vidya-logo.png",
+  "components": [],
+  "difficulty": 2,
+  "status": "Coming Soon",
+  "tags": [
+    "Electronics",
+    "New"
+  ],
+  "date": "2026-06-24",
+  "author": "Tinkering Lab",
+  "files3d": [],
+  "codeFiles": [
+    {
+      "name": "in-house-plant-watering-smart-system.ino",
+      "language": "Arduino C++",
+      "desc": "Default sketch for in house plant watering smart system",
+      "url": "projects/in-house-plant-watering-smart-system/code/in-house-plant-watering-smart-system.ino"
+    }
+  ],
+  "youtubeVideos": [],
+  "dataVideos": [],
+  "gallery": [],
+  "resources": [],
+  "guide": []
+}

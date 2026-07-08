@@ -1,0 +1,34 @@
+{
+  "id": "bus-tracking-system-at-bus-stop",
+  "title": "Bus tracking system at Bus Stop",
+  "level": "Beginner",
+  "color": "#00D4FF",
+  "session": 10,
+  "desc": "Learn to build a Bus tracking system at Bus Stop.",
+  "fullDesc": "In this project, we will build a Bus tracking system at Bus Stop. This project will introduce you to the necessary components, coding logic, and assembly required.",
+  "image": "icons/vidya-logo.png",
+  "components": [],
+  "difficulty": 2,
+  "status": "Available",
+  "tags": [
+    "Electronics",
+    "New"
+  ],
+  "date": "2026-06-24",
+  "author": "Tinkering Lab",
+  "files3d": [],
+  "codeFiles": [
+    {
+      "name": "bus-tracking-system-at-bus-stop.ino",
+      "language": "Arduino C++",
+      "desc": "Arduino TFT bus display controller code",
+      "url": "projects/bus-tracking-system-at-bus-stop/code/bus-tracking-system-at-bus-stop.ino"
+    }
+  ],
+  "youtubeVideos": [],
+  "dataVideos": [],
+  "gallery": [],
+  "resources": [],
+  "guide": [],
+  "liveUrl": "projects/bus-tracking-system-at-bus-stop/livebus.html"
+}
