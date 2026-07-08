@@ -79,7 +79,7 @@
   "researchPaper": "data/Siddharth_STEAM_V1.pdf",
   "circuitDiagram": "data/vawt-transistor-circuit.jpg",
   "files3d": [
-    "data/3dmodels/vawt_rotor.stl"
+    "data/3dmodels/3d.stl"
   ],
   "codeFiles": [
     {
@@ -99,12 +99,12 @@
   "dataVideos": [],
   "gallery": [
     {
-      "file": "data/vawt_build1.jpg",
+      "file": "data/1.jpg",
       "caption": "Dynamo Motor Integration",
       "category": "Build"
     },
     {
-      "file": "data/vawt_circuit.jpg",
+      "file": "data/2.jpg",
       "caption": "BC547 and LDR Circuit Assembly",
       "category": "Hardware"
     }

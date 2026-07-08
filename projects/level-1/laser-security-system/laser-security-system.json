@@ -79,5 +79,10 @@
       "url": "projects/laser-security-system/code/laser-security-system.ino"
     }
   ],
-  "image": "projects/images/laser-security-system.jpg"
+  "image": "projects/images/laser-security-system.jpg",
+  "difficulty": 1,
+  "level": "Beginner",
+  "status": "Available",
+  "desc": "Laser Security System using Arduino, LDR, and a laser module to detect intrusions.",
+  "tags": ["Arduino", "LDR", "Laser", "Security"]
 }
