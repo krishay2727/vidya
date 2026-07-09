@@ -76,7 +76,7 @@
                 <span class="wb-toolbar-title"
                     style="color: var(--text-muted); width: auto; margin-right: 8px; font-size: 0.82rem;">TOOLS:</span>
                 <button class="btn-sm" onclick="wbSetMode('move', null)"
-                    style="background: #007BFF; color: white; border: 1px solid #0056b3; font-size: 0.82rem; padding: 5px 10px;">🖱️
+                    style="background: #0056b3; color: white; border: 1px solid #0056b3; font-size: 0.82rem; padding: 5px 10px;">🖱️
                     Pointer</button>
                 <button class="btn-sm" onclick="wbSetMode('pen', '#000000')"
                     style="background: #333; color: white; font-size: 0.82rem; padding: 5px 10px;">✏️ Pen</button>
@@ -156,8 +156,8 @@
                 <!-- Rotation & Edit Tools for Components -->
                 <div class="wb-prop-group"
                     style="margin-top: 15px; border-top: 1px dashed var(--border); padding-top: 15px;">
-                    <label class="wb-prop-label">Component Action:</label>
-                    <button class="btn-sm" onclick="wbRotateSelected()"
+                    <label class="wb-prop-label" for="wbRotateBtn">Component Action:</label>
+                    <button id="wbRotateBtn" class="btn-sm" onclick="wbRotateSelected()"
                         style="background: var(--cyan); color: black; font-weight: bold; border-radius: 6px; padding: 8px; width: 100%; border: none; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
                         🔄 Rotate 90°
                     </button>
