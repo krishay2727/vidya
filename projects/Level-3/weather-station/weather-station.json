@@ -3,13 +3,9 @@
   "title": "Weather Station",
   "subtitle": "Real-time environmental monitoring with DHT11 + LCD",
   "level": "Intermediate",
-  "color": "#00D4FF",
   "desc": "Read temperature & humidity — display it on screen!",
   "fullDesc": "Build a real weather monitoring station using a DHT11 sensor...",
-  "image": "projects/images/weather-station.jpg",
-  "bannerImage": "projects/images/weather-station-banner.jpg",
   "difficulty": 3,
-  "status": "Available",
   "tags": [
     "Sensors",
     "LCD",
@@ -30,20 +26,7 @@
   ],
   "innovation": "First iteration of a low-cost room-scale weather monitor deployable in rural schools without internet.",
   "problemStatement": "Schools in semi-urban areas have no way to track indoor air conditions affecting student health and comfort.",
-  "solutionApproach": "Used DHT11 with an Arduino + 16x2 LCD to display live readings, powered off a USB wall adapter. No internet required.",
-  "hardwareSpecs": {
-    "microcontroller": "Arduino UNO (ATmega328P)",
-    "powerConsumption": "~80mA @ 5V",
-    "operatingVoltage": "5V DC",
-    "communicationProtocol": "1-Wire (DHT11), I2C or 4-bit parallel (LCD)",
-    "dimensions": "Breadboard prototype — 170×130mm",
-    "sensors": [
-      "DHT11 (Temp: ±2°C, Humidity: ±5%RH)"
-    ],
-    "displays": [
-      "16×2 LCD (HD44780 compatible)"
-    ]
-  },
+  "solution": "Used DHT11 with an Arduino + 16x2 LCD to display live readings, powered off a USB wall adapter. No internet required.",
   "components": [
     "Arduino UNO",
     "DHT11 Temperature & Humidity Sensor",
@@ -67,23 +50,30 @@
     "Verify sensor readings in Serial Monitor before checking LCD",
     "Modify code to format and display Temp + Humidity on two LCD rows"
   ],
-  "estimatedTime": "90 minutes",
   "prerequisites": [
     "Basic Arduino wiring",
     "Library installation"
   ],
-  "pdf": "data/Nik_STEAM_S1.pdf",
-  "poster": "data/student coding.jpeg",
-  "ppt": "projects/docs/weather-station-presentation.pptx",
-  "researchPaper": "data/Nik_STEAM_S1.pdf",
-  "circuitDiagram": "data/breadboard-circuit.jpg",
-  "files3d": [],
+  "pdf": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+  "poster": "projects/Level-3/weather-station/students-computer-lab.jpg",
+  "files3d": [
+    {
+      "name": "arduino-flight-sim. arm.stl",
+      "url": "projects/Level-3/arduino-flight-simulator/arm.stl"
+    }
+  ],
   "codeFiles": [
     {
       "name": "weather_station_basic.ino",
       "language": "Arduino C++",
       "desc": "Basic DHT11 read + LCD display",
-      "url": "projects/weather-station/code/weather_station_basic.ino"
+      "url": "projects/Level-3/weather-station/weather_station_basic.ino"
+    }
+  ],
+  "firmware": [
+    {
+      "name": "firmware.bin",
+      "url": "projects/Level-3/weather-station/firmware.bin"
     }
   ],
   "youtubeVideos": [
@@ -93,42 +83,86 @@
       "desc": "Demonstrating the completed weather station"
     }
   ],
-  "dataVideos": [],
   "gallery": [
     {
-      "file": "data/images/carousel1f.jpg",
-      "caption": "Project Setup",
-      "category": "Build"
+      "file": "projects/Level-3/weather-station/Tablet.jpg",
+      "caption": "Tablet"
     },
     {
-      "file": "data/images/carousel2.jpg",
-      "caption": "Wiring",
-      "category": "Hardware"
+      "file": "projects/Level-3/weather-station/students-computer-lab.jpg",
+      "caption": "Students Computer Lab"
     },
     {
-      "file": "data/images/carousel3f.jpg",
-      "caption": "Testing",
-      "category": "Demo"
+      "file": "projects/Level-3/weather-station/students-making-light.jpg",
+      "caption": "Students Making Light"
+    },
+    {
+      "file": "projects/Level-3/weather-station/students-typing.jpg",
+      "caption": "Students Typing"
+    },
+    {
+      "file": "projects/Level-3/weather-station/switch-off.jpg",
+      "caption": "Switch Off"
+    },
+    {
+      "file": "projects/Level-3/weather-station/switch.jpg",
+      "caption": "Switch"
+    },
+    {
+      "file": "projects/Level-3/weather-station/tablet copy.jpg",
+      "caption": "Tablet Copy"
     }
   ],
+  "image": "projects/Level-3/weather-station/Tablet.jpg",
+  "bannerImage": "projects/Level-3/weather-station/students-computer-lab.jpg",
+  "icon": "projects/Level-3/weather-station/switch.jpg",
   "liveUrl": "https://pnikv.github.io/sim-flight/",
   "resources": [
     {
+      "title": "Arduino UNO",
+      "ref": "arduino-uno",
+      "url": "https://store.arduino.cc/products/arduino-uno-rev3"
+    },
+    {
+      "title": "DHT11 Temperature & Humidity Sensor",
+      "ref": "dht11",
+      "url": "https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf"
+    },
+    {
+      "title": "16x2 LCD Display",
+      "ref": "16x2lcd",
+      "url": "https://www.sparkfun.com/datasheets/LCD/HD44780.pdf"
+    },
+    {
+      "title": "10kΩ Potentiometer",
+      "ref": "potentiometer",
+      "url": "https://en.wikipedia.org/wiki/Potentiometer"
+    },
+    {
+      "title": "Breadboard",
+      "url": "https://en.wikipedia.org/wiki/Breadboard"
+    },
+    {
+      "title": "Jumper wires",
+      "url": "https://en.wikipedia.org/wiki/Jump_wire"
+    },
+    {
       "icon": "📄",
       "title": "DHT11 Datasheet",
-      "url": "data/components/dht11.json"
+      "url": "https://www.mouser.com/datasheet/2/758/DHT11-Technical-Data-Sheet-Translated-Version-1143054.pdf"
     },
     {
       "icon": "📚",
       "title": "LiquidCrystal Library Docs",
       "url": "https://www.arduino.cc/reference/en/libraries/liquidcrystal/"
+    },
+    {
+      "icon": "🌐",
+      "title": "Arduino Language Reference",
+      "url": "https://www.arduino.cc/reference/en/"
     }
   ],
-  "githubUrl": "",
-  "achievements": [
-    "Displayed at School Science Fair 2026",
-    "Shortlisted — InfraTech Student Demo"
-  ],
+  "githubUrl": "https://github.com/arduino/Arduino",
   "keywords": [
     "weather",
     "DHT11",

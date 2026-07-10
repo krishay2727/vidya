@@ -360,15 +360,22 @@ async function renderProjectDetail() {
     <!-- 3D Files Tab -->
     <div id="ptab-3d" class="pd-tab-content">
       ${files3dCount === 0 ? renderProjectEmptyState('🖨️', 'No 3D Files Yet', '3D printable files will appear here.') : `
-        <div class="pd-files-grid">
-          ${p.files3d.map(f => `
-            <div class="pd-file-card">
-              <div class="pd-file-icon">🖨️</div>
-              <div class="pd-file-info">
-                <div class="pd-file-name" title="${f.name}">${f.name}</div>
-                <div class="pd-file-size">${f.size || 'Unknown Size'}</div>
+        <div class="pd-files-grid" style="grid-template-columns: 1fr; gap: 24px;">
+          ${p.files3d.map((f, idx) => `
+            <div class="pd-file-card" style="display:flex; flex-direction:column; gap:16px; background:var(--surface); padding:20px; border-radius:12px; border:1px solid var(--border);">
+              <div style="display:flex; justify-content:space-between; align-items:center; width: 100%;">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="pd-file-icon" style="font-size:2rem;">🖨️</div>
+                  <div class="pd-file-info">
+                    <div class="pd-file-name" title="${f.name}" style="font-weight:bold; font-size:1.1rem;">${f.name}</div>
+                    <div class="pd-file-size" style="color:var(--text-muted);">${f.size || 'STL Format'}</div>
+                  </div>
+                </div>
+                <a href="${f.url}" download target="_blank" class="pd-file-download btn-outline" style="padding:10px 16px; border-radius:8px; border:1px solid var(--border); color:var(--text); text-decoration:none;">⬇️ Download STL</a>
               </div>
-              <a href="${f.url}" target="_blank" class="pd-file-download" title="Download">⬇️</a>
+              <div id="stl-viewer-container-${idx}" class="stl-viewer-container" data-url="${f.url}" style="width:100%; height:400px; background:#1e1e1e; border-radius:12px; overflow:hidden; position:relative; display:flex; justify-content:center; align-items:center; border: 1px solid #333;">
+                <div class="stl-loading" style="color:#888;">Loading 3D Viewer...</div>
+              </div>
             </div>
           `).join('')}
         </div>
@@ -377,9 +384,19 @@ async function renderProjectDetail() {
 
     <!-- Code Tab -->
     <div id="ptab-code" class="pd-tab-content">
-      ${codeCount === 0 ? renderProjectEmptyState('💻', 'No Code Files Yet', 'Arduino sketches and scripts will appear here.') : `
+      ${(codeCount === 0 && !(p.firmware && p.firmware.length > 0)) ? renderProjectEmptyState('💻', 'No Code Files Yet', 'Arduino sketches and scripts will appear here.') : `
         <div class="pd-code-list">
-          ${p.codeFiles.map((c, i) => `
+          ${p.firmware && p.firmware.length > 0 ? `
+            <div style="margin-bottom: 24px; padding: 20px; background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.3); border-radius: 12px;">
+              <h4 style="margin-bottom: 16px; color: #00d4ff;">⚡ Pre-compiled Firmware</h4>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                ${p.firmware.map(fw => `
+                  <button onclick="openRealFirmwareFlasher('${fw.url}')" class="btn-primary" style="background: #00d4ff; border: none; box-shadow: 0 0 15px rgba(0,212,255,0.4); color: #000; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer;">Flash ${fw.name || 'Firmware'}</button>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+          ${p.codeFiles ? p.codeFiles.map((c, i) => `
             <div class="pd-code-card" style="display:block; width:100%; background: var(--surface); padding:20px; border-radius:12px; border:1px solid var(--border); margin-bottom: 24px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap: wrap; gap: 12px;">
                 <div class="pd-code-info">
@@ -390,13 +407,12 @@ async function renderProjectDetail() {
                   </div>
                 </div>
                 <div style="display: flex; gap: 12px;">
-                  <button onclick="openRealFirmwareFlasher('firmware.bin')" class="btn-primary" style="background: #00d4ff; border: none; box-shadow: 0 0 15px rgba(0,212,255,0.4); color: #000;">⚡ Upload Firmware</button>
-                  <a href="${c.url}" target="_blank" class="btn-outline" title="Download Code">⬇️ Download</a>
+                  <a href="${c.url}" target="_blank" class="btn-outline" title="Download Code" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); color: var(--text); text-decoration: none;">⬇️ Download</a>
                 </div>
               </div>
               <pre class="code-preview vscode-code-block" id="code-preview-${i}">Loading code...</pre>
             </div>
-          `).join('')}
+          `).join('') : ''}
         </div>
       `}
     </div>
@@ -498,6 +514,11 @@ async function renderProjectDetail() {
     window._wsSliderIndex = 0;
     window._wsSliderCount = slideImages.length;
     window._wsSliderInterval = setInterval(() => { wsSliderNav(1); }, 4000);
+  }
+
+  // Initialize STL viewers if needed
+  if (files3dCount > 0) {
+    setTimeout(globalThis.initStlViewers, 100);
   }
 }
 
@@ -863,3 +884,121 @@ globalThis.closeFirmwareModal = function() {
   const overlay = document.getElementById('firmwareModalOverlay');
   if (overlay) overlay.classList.remove('active');
 };
+
+// =============================================
+//  STL VIEWER INITIALIZATION
+// =============================================
+globalThis.initStlViewers = function() {
+  const containers = document.querySelectorAll('.stl-viewer-container');
+  if (containers.length === 0) return;
+
+  // Load Three.js if not loaded
+  if (typeof THREE === 'undefined') {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    script.onload = () => {
+      // Load STLLoader
+      const stlScript = document.createElement('script');
+      stlScript.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js';
+      stlScript.onload = () => {
+        // Load OrbitControls
+        const controlsScript = document.createElement('script');
+        controlsScript.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js';
+        controlsScript.onload = () => {
+          renderAllStlViewers(containers);
+        };
+        document.head.appendChild(controlsScript);
+      };
+      document.head.appendChild(stlScript);
+    };
+    document.head.appendChild(script);
+  } else {
+    renderAllStlViewers(containers);
+  }
+};
+
+function renderAllStlViewers(containers) {
+  containers.forEach(container => {
+    if (container.dataset.initialized) return;
+    container.dataset.initialized = "true";
+    
+    const url = container.dataset.url;
+    container.innerHTML = ''; // clear loading text
+
+    const width = container.clientWidth || 800;
+    const height = container.clientHeight || 400;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x1e1e1e);
+
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(width, height);
+    container.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight(0x404040, 1.5);
+    scene.add(ambientLight);
+    const dirLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+    dirLight1.position.set(1, 1, 1);
+    scene.add(dirLight1);
+    const dirLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+    dirLight2.position.set(-1, -1, -1);
+    scene.add(dirLight2);
+
+    const loader = new THREE.STLLoader();
+    loader.load(url, function (geometry) {
+      const material = new THREE.MeshPhongMaterial({ color: 0x00d4ff, specular: 0x111111, shininess: 200 });
+      const mesh = new THREE.Mesh(geometry, material);
+
+      // Center and scale
+      geometry.computeBoundingBox();
+      const center = new THREE.Vector3();
+      geometry.boundingBox.getCenter(center);
+      mesh.position.sub(center);
+
+      const size = new THREE.Vector3();
+      geometry.boundingBox.getSize(size);
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scale = 150 / maxDim;
+      mesh.scale.set(scale, scale, scale);
+
+      scene.add(mesh);
+      
+      // Update position after scale
+      mesh.position.multiplyScalar(scale);
+      
+      camera.position.set(0, 0, 250);
+      controls.update();
+
+    }, undefined, function (error) {
+      console.error(error);
+      container.innerHTML = '<div style="color:#ff4757; text-align:center;">Failed to load STL model.<br>Please ensure the path is correct.</div>';
+    });
+
+    const animate = function () {
+      // only animate if container is visible to save resources
+      if(container.offsetParent !== null) {
+          controls.update();
+          renderer.render(scene, camera);
+      }
+      requestAnimationFrame(animate);
+    };
+    animate();
+
+    // Resize handling
+    window.addEventListener('resize', () => {
+      const newWidth = container.clientWidth;
+      const newHeight = container.clientHeight;
+      if (newWidth > 0 && newHeight > 0) {
+        camera.aspect = newWidth / newHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newWidth, newHeight);
+      }
+    });
+  });
+}
