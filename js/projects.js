@@ -8,7 +8,7 @@ function initProjectFilters() {
   if (tagsInitialized || typeof PROJECTS === 'undefined' || !PROJECTS) return;
   const mcSet = new Set();
   const compSet = new Set();
-  
+
   PROJECTS.forEach(p => {
     if (p.hardwareSpecs?.microcontroller) {
       mcSet.add(p.hardwareSpecs.microcontroller);
@@ -20,18 +20,18 @@ function initProjectFilters() {
 
   const mcSelect = document.getElementById('filterMicrocontroller');
   if (mcSelect) {
-    Array.from(mcSet).sort((a,b) => a.localeCompare(b)).forEach(mc => {
+    Array.from(mcSet).sort((a, b) => a.localeCompare(b)).forEach(mc => {
       mcSelect.innerHTML += `<option value="${mc}">${mc}</option>`;
     });
   }
 
   const compSelect = document.getElementById('filterComponent');
   if (compSelect) {
-    Array.from(compSet).sort((a,b) => a.localeCompare(b)).forEach(c => {
+    Array.from(compSet).sort((a, b) => a.localeCompare(b)).forEach(c => {
       compSelect.innerHTML += `<option value="${c}">${c}</option>`;
     });
   }
-  
+
   tagsInitialized = true;
 }
 
@@ -49,13 +49,13 @@ function renderProjects() {
 
   const searchInput = document.getElementById('projectSearchInput');
   const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
-  
+
   const diffSelect = document.getElementById('filterDifficulty');
   const diffVal = diffSelect ? diffSelect.value : 'all';
-  
+
   const mcSelect = document.getElementById('filterMicrocontroller');
   const mcVal = mcSelect ? mcSelect.value : 'all';
-  
+
   const compSelect = document.getElementById('filterComponent');
   const compVal = compSelect ? compSelect.value : 'all';
 
@@ -65,9 +65,9 @@ function renderProjects() {
     const matchesSearch = searchTerm === '' || searchString.includes(searchTerm);
 
     const matchesDiff = diffVal === 'all' || p.difficulty == diffVal;
-    
+
     const matchesMc = mcVal === 'all' || (p.hardwareSpecs && p.hardwareSpecs.microcontroller === mcVal);
-    
+
     const matchesComp = compVal === 'all' || p.componentRefs?.includes(compVal);
 
     return matchesSearch && matchesDiff && matchesMc && matchesComp;
@@ -139,21 +139,22 @@ async function renderProjectDetail() {
   const ytVideoCount = p.youtubeVideos?.length || 0;
   const imgCount = p.gallery?.length || 0;
   const resCount = p.resources?.length || 0;
-  
-  const hasPoster = !!p.poster;
-  const hasResearch = !!p.researchPaper;
+
+  const hasPoster = !!p.poster || (p.posters && p.posters.length > 0);
+  const hasResearch = !!p.researchPaper || (p.presentationPdfs && p.presentationPdfs.length > 0);
   const hasCircuit = !!p.circuitDiagram;
   const hasComponents = (p.componentRefs && p.componentRefs.length > 0) || (p.components && p.components.length > 0);
   const hasAchievements = p.achievements && p.achievements.length > 0;
-  const hasPresentationTab = !!p.poster || hasResearch || hasCircuit || ytVideoCount > 0;
-  
-  // Custom slider for weather station or general
-  const isWeatherStation = p.id === 'weather-station';
-  const slideImages = isWeatherStation && p.gallery && p.gallery.length > 0 
-    ? p.gallery.map(g => g.file) 
-    : [p.bannerImage || p.image || ''];
+  const hasPresentationTab = hasPoster || hasResearch || hasCircuit || ytVideoCount > 0;
 
-  const bannerContent = (isWeatherStation && slideImages.length > 1) ? `
+  // Custom slider for banner images
+  const slideImages = p.bannerImages && p.bannerImages.length > 0
+    ? p.bannerImages
+    : [p.image || ''];
+
+  const hasMultipleBanners = slideImages.length > 1;
+
+  const bannerContent = hasMultipleBanners ? `
     <div class="ws-slider" id="wsSliderTrack" style="position:absolute; top:0; left:0; width:${slideImages.length * 100}%; height:100%; display:flex; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);">
         ${slideImages.map((src, i) => `
           <div style="width:${100 / slideImages.length}%; height:100%; flex-shrink:0;">
@@ -203,7 +204,7 @@ async function renderProjectDetail() {
       <div class="pd-team-section" style="margin-bottom: 32px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
         ${(p.team || []).length > 0 ? p.team.map(member => `
           <div class="pd-team-member" style="display: flex; align-items: center; gap: 10px;">
-            <div class="pd-team-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid ${p.color || 'var(--orange)'};">${member.name.substring(0,2).toUpperCase()}</div>
+            <div class="pd-team-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid ${p.color || 'var(--orange)'};">${member.name.substring(0, 2).toUpperCase()}</div>
             <div>
               <div style="font-weight: bold; font-size: 0.95rem;">${member.name}</div>
               <div style="font-size: 0.8rem; color: var(--text-muted);">${member.role}</div>
@@ -284,7 +285,7 @@ async function renderProjectDetail() {
         
         <!-- Square grid for poster, circuit, research -->
         <div class="presentation-grid">
-          ${hasPoster ? `
+          ${p.poster ? `
             <div class="presentation-box" onclick="openFullscreenMedia('${p.poster}', 'img')">
               <div class="presentation-box-img">
                 <img src="${p.poster}" alt="Poster" onerror="this.parentElement.innerHTML='<div class=&quot;pd-placeholder&quot; style=&quot;height:100%;&quot;>Image not found</div>'" />
@@ -295,6 +296,18 @@ async function renderProjectDetail() {
               </div>
             </div>
           ` : ''}
+
+          ${p.posters ? p.posters.map(poster => `
+            <div class="presentation-box" onclick="openFullscreenMedia('${poster.file}', 'img')">
+              <div class="presentation-box-img">
+                <img src="${poster.file}" alt="${poster.caption}" onerror="this.parentElement.innerHTML='<div class=&quot;pd-placeholder&quot; style=&quot;height:100%;&quot;>Image not found</div>'" />
+              </div>
+              <div class="presentation-box-label">
+                <span class="presentation-box-icon">📊</span>
+                <span>${poster.caption}</span>
+              </div>
+            </div>
+          `).join('') : ''}
           
           ${hasCircuit ? `
             <div class="presentation-box" onclick="openFullscreenMedia('${p.circuitDiagram}', 'img')">
@@ -308,7 +321,7 @@ async function renderProjectDetail() {
             </div>
           ` : ''}
           
-          ${hasResearch ? `
+          ${p.researchPaper ? `
             <div class="presentation-box" onclick="openFullscreenMedia('${p.researchPaper}', 'pdf')">
               <div class="presentation-box-img" style="background: #fff;">
                 <iframe src="${p.researchPaper}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="Research Paper"></iframe>
@@ -320,6 +333,19 @@ async function renderProjectDetail() {
               </div>
             </div>
           ` : ''}
+
+          ${p.presentationPdfs ? p.presentationPdfs.map(pdf => `
+            <div class="presentation-box" onclick="openFullscreenMedia('${pdf.file}', 'pdf')">
+              <div class="presentation-box-img" style="background: #fff;">
+                <iframe src="${pdf.file}#toolbar=0&navpanes=0&scrollbar=0&view=Fit" style="width: 100%; height: 100%; border: none; pointer-events: none;" title="${pdf.name}"></iframe>
+              </div>
+              <div class="presentation-box-label">
+                <span class="presentation-box-icon">🔬</span>
+                <span>${pdf.name}</span>
+                <a href="${pdf.file}" target="_blank" onclick="event.stopPropagation()" class="presentation-box-dl">↗</a>
+              </div>
+            </div>
+          `).join('') : ''}
         </div>
         
         ${ytVideoCount > 0 ? `
@@ -396,23 +422,28 @@ async function renderProjectDetail() {
               </div>
             </div>
           ` : ''}
-          ${p.codeFiles ? p.codeFiles.map((c, i) => `
-            <div class="pd-code-card" style="display:block; width:100%; background: var(--surface); padding:20px; border-radius:12px; border:1px solid var(--border); margin-bottom: 24px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap: wrap; gap: 12px;">
-                <div class="pd-code-info">
-                  <div class="pd-code-name" style="font-size: 1.2rem;">📝 ${c.name}</div>
-                  <div>
-                    ${c.language ? `<span class="pd-code-lang">${c.language}</span>` : ''}
-                    <span class="pd-code-desc">${c.desc || ''}</span>
-                  </div>
+          <div class="gallery-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+            ${p.codeFiles ? p.codeFiles.map((c, i) => `
+              <div class="gallery-item" onclick="toggleCodePreview(${i})" style="cursor:pointer;">
+                <div class="gallery-img-wrap" style="background: #1e1e2e; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 20px; min-height: 120px;">
+                  <span style="font-size: 2.5rem; margin-bottom: 8px;">📝</span>
+                  <span style="font-size: 0.85rem; font-weight: 700; color: #e0e0e0; text-align:center; word-break:break-all;">${c.name}</span>
+                  ${c.language ? `<span style="font-size: 0.7rem; color: ${p.color || 'var(--orange)'}; margin-top: 6px; padding: 2px 8px; border: 1px solid ${p.color || 'var(--orange)'}44; border-radius: 4px;">${c.language}</span>` : ''}
                 </div>
-                <div style="display: flex; gap: 12px;">
-                  <a href="${c.url}" target="_blank" class="btn-outline" title="Download Code" style="padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); color: var(--text); text-decoration: none;">⬇️ Download</a>
+                <div class="gallery-caption" style="display:flex; justify-content:space-between; align-items:center; padding: 8px 12px;">
+                  <p style="margin:0; font-size: 0.8rem;">${c.name}</p>
+                  <a href="${c.url}" target="_blank" onclick="event.stopPropagation()" style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none;" title="Download">⬇️</a>
                 </div>
               </div>
-              <pre class="code-preview vscode-code-block" id="code-preview-${i}">Loading code...</pre>
+            `).join('') : ''}
+          </div>
+          <div id="code-expanded-preview" style="display:none; margin-top: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding: 12px 20px; border-bottom: 1px solid var(--border);">
+              <span id="code-expanded-name" style="font-weight: bold;"></span>
+              <button onclick="document.getElementById('code-expanded-preview').style.display='none'" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.2rem;">✕</button>
             </div>
-          `).join('') : ''}
+            <pre class="code-preview vscode-code-block" id="code-expanded-content" style="margin:0; padding: 16px 20px; max-height: 500px; overflow: auto;">Select a file to preview</pre>
+          </div>
         </div>
       `}
     </div>
@@ -482,35 +513,15 @@ async function renderProjectDetail() {
       ` : ''}
     </div>
   `;
-  
+
   if (hasComponents) {
     loadComponentCards(p);
   }
-  
-  // Fetch code contents
-  if (codeCount > 0) {
-    p.codeFiles.forEach((c, i) => {
-      fetch(c.url)
-        .then(res => res.text())
-        .then(text => {
-          const el = document.getElementById('code-preview-' + i);
-          if (el) {
-             if (globalThis.highlightCode) {
-                 el.innerHTML = globalThis.highlightCode(text);
-             } else {
-                 el.textContent = text;
-             }
-          }
-        })
-        .catch(err => {
-          const el = document.getElementById('code-preview-' + i);
-          if (el) el.textContent = 'Error loading code preview.';
-        });
-    });
-  }
 
-  // Initialize Weather Station slider auto-play
-  if (isWeatherStation && slideImages.length > 1) {
+  // Code preview is now loaded on-demand via toggleCodePreview()
+
+  // Initialize slider auto-play if there are multiple banners
+  if (hasMultipleBanners) {
     window._wsSliderIndex = 0;
     window._wsSliderCount = slideImages.length;
     window._wsSliderInterval = setInterval(() => { wsSliderNav(1); }, 4000);
@@ -522,8 +533,43 @@ async function renderProjectDetail() {
   }
 }
 
+// =============================================
+//  CODE PREVIEW (click-to-expand)
+// =============================================
+globalThis.toggleCodePreview = function (idx) {
+  const p = currentProject;
+  if (!p || !p.codeFiles || !p.codeFiles[idx]) return;
+
+  const c = p.codeFiles[idx];
+  const preview = document.getElementById('code-expanded-preview');
+  const nameEl = document.getElementById('code-expanded-name');
+  const contentEl = document.getElementById('code-expanded-content');
+
+  if (!preview || !contentEl) return;
+
+  nameEl.textContent = `📝 ${c.name}`;
+  contentEl.textContent = 'Loading...';
+  preview.style.display = 'block';
+
+  // Scroll to preview
+  preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  fetch(c.url)
+    .then(res => res.text())
+    .then(text => {
+      if (globalThis.highlightCode) {
+        contentEl.innerHTML = globalThis.highlightCode(text);
+      } else {
+        contentEl.textContent = text;
+      }
+    })
+    .catch(() => {
+      contentEl.textContent = 'Error loading code preview.';
+    });
+};
+
 // Lightbox for media (Poster, Circuit, PDF)
-globalThis.openFullscreenMedia = function(url, type) {
+globalThis.openFullscreenMedia = function (url, type) {
   let modal = document.getElementById('mediaFullscreenModal');
   if (!modal) {
     modal = document.createElement('div');
@@ -535,7 +581,7 @@ globalThis.openFullscreenMedia = function(url, type) {
       <div style="color:var(--text-muted); font-size:0.9rem; margin-top:10px;">Press ESC to close</div>
     `;
     document.body.appendChild(modal);
-    
+
     // Keydown event
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -546,18 +592,18 @@ globalThis.openFullscreenMedia = function(url, type) {
       }
     });
   }
-  
+
   const content = document.getElementById('mediaFullscreenContent');
   if (type === 'img') {
     content.innerHTML = `<img src="${url}" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);" />`;
   } else if (type === 'pdf') {
     content.innerHTML = `<iframe src="${url}#toolbar=0&navpanes=0&view=Fit" style="width:100%; height:100%; border:none; border-radius:8px; background:white;"></iframe>`;
   }
-  
+
   modal.style.display = 'flex';
 };
 
-globalThis.closeFullscreenMedia = function() {
+globalThis.closeFullscreenMedia = function () {
   const modal = document.getElementById('mediaFullscreenModal');
   if (modal) {
     modal.style.display = 'none';
@@ -572,7 +618,7 @@ globalThis.closeFullscreenMedia = function() {
 globalThis._wsSliderIndex = 0;
 globalThis._wsSliderCount = 0;
 
-globalThis.wsSliderNav = function(dir) {
+globalThis.wsSliderNav = function (dir) {
   const track = document.getElementById('wsSliderTrack');
   const dots = document.getElementById('wsSliderDots');
   if (!track) return;
@@ -591,7 +637,7 @@ globalThis.wsSliderNav = function(dir) {
   globalThis._wsSliderInterval = setInterval(() => { globalThis.wsSliderNav(1); }, 4000);
 };
 
-globalThis.wsSliderGoTo = function(idx) {
+globalThis.wsSliderGoTo = function (idx) {
   const track = document.getElementById('wsSliderTrack');
   const dots = document.getElementById('wsSliderDots');
   if (!track) return;
@@ -702,8 +748,8 @@ async function loadComponentCards(project) {
                 `).join('')}
               </div>
               ${(() => {
-                return comp.wiringNote ? `<div style="margin-top: 10px; padding: 10px 14px; background: rgba(255, 200, 0, 0.1); border: 1px solid rgba(255, 200, 0, 0.3); border-radius: 8px; font-size: 0.85rem; color: #FFC800;">⚠️ ${comp.wiringNote}</div>` : '';
-              })()}
+          return comp.wiringNote ? `<div style="margin-top: 10px; padding: 10px 14px; background: rgba(255, 200, 0, 0.1); border: 1px solid rgba(255, 200, 0, 0.3); border-radius: 8px; font-size: 0.85rem; color: #FFC800;">⚠️ ${comp.wiringNote}</div>` : '';
+        })()}
             </div>
           ` : ''}
 
@@ -712,8 +758,8 @@ async function loadComponentCards(project) {
             <div style="margin-bottom: 20px;">
               <h5 style="font-size: 0.85rem; color: ${comp.color || 'var(--orange)'}; margin-bottom: 10px;">💻 Quick Start Code</h5>
               ${(() => {
-                return comp.libraryName ? `<div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">📦 Library: ${comp.libraryName}</div>` : '';
-              })()}
+          return comp.libraryName ? `<div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">📦 Library: ${comp.libraryName}</div>` : '';
+        })()}
               <pre style="background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; max-height: 250px; overflow-y: auto;">${comp.codeSnippet.replaceAll('\\n', '\n')}</pre>
             </div>
           ` : ''}
@@ -800,7 +846,7 @@ function projectLightboxNav(dir) {
 // =============================================
 //  VS CODE SYNTAX HIGHLIGHTING (Basic)
 // =============================================
-globalThis.highlightCode = function(code) {
+globalThis.highlightCode = function (code) {
   let highlighted = code
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/\b(int|float|double|char|void|bool|String|auto)\b/g, '<span class="type">$1</span>')
@@ -817,7 +863,7 @@ globalThis.highlightCode = function(code) {
 // =============================================
 //  REAL FIRMWARE UPLOAD (esp-web-tools)
 // =============================================
-globalThis.openRealFirmwareFlasher = function(filename) {
+globalThis.openRealFirmwareFlasher = function (filename) {
   // 1. Inject the esp-web-tools script if it doesn't exist
   if (!document.getElementById('espWebToolsScript')) {
     const script = document.createElement('script');
@@ -868,7 +914,7 @@ globalThis.openRealFirmwareFlasher = function(filename) {
   }
 
   document.getElementById('fwFileName').textContent = filename;
-  
+
   // 4. Inject the Web Component dynamically to pick up the new manifest URL
   const container = document.getElementById('espInstallContainer');
   container.innerHTML = ''; // clear previous
@@ -880,7 +926,7 @@ globalThis.openRealFirmwareFlasher = function(filename) {
   overlay.classList.add('active');
 };
 
-globalThis.closeFirmwareModal = function() {
+globalThis.closeFirmwareModal = function () {
   const overlay = document.getElementById('firmwareModalOverlay');
   if (overlay) overlay.classList.remove('active');
 };
@@ -888,7 +934,7 @@ globalThis.closeFirmwareModal = function() {
 // =============================================
 //  STL VIEWER INITIALIZATION
 // =============================================
-globalThis.initStlViewers = function() {
+globalThis.initStlViewers = function () {
   const containers = document.querySelectorAll('.stl-viewer-container');
   if (containers.length === 0) return;
 
@@ -921,7 +967,7 @@ function renderAllStlViewers(containers) {
   containers.forEach(container => {
     if (container.dataset.initialized) return;
     container.dataset.initialized = "true";
-    
+
     const url = container.dataset.url;
     container.innerHTML = ''; // clear loading text
 
@@ -968,10 +1014,10 @@ function renderAllStlViewers(containers) {
       mesh.scale.set(scale, scale, scale);
 
       scene.add(mesh);
-      
+
       // Update position after scale
       mesh.position.multiplyScalar(scale);
-      
+
       camera.position.set(0, 0, 250);
       controls.update();
 
@@ -982,9 +1028,9 @@ function renderAllStlViewers(containers) {
 
     const animate = function () {
       // only animate if container is visible to save resources
-      if(container.offsetParent !== null) {
-          controls.update();
-          renderer.render(scene, camera);
+      if (container.offsetParent !== null) {
+        controls.update();
+        renderer.render(scene, camera);
       }
       requestAnimationFrame(animate);
     };

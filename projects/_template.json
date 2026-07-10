@@ -1,0 +1,81 @@
+{
+  "//_comment1": "This is a template project file. You only need to fill in these manual fields.",
+  "//_comment2": "DO NOT manually add fields for image, bannerImage, gallery, posters, codeFiles, files3d, firmware, presentationPdfs, dataVideos.",
+  "//_comment3": "Those fields will be AUTOMATICALLY populated when you run `node js/update_projects.js`.",
+  
+  "id": "my-new-project-id",
+  "title": "My Awesome Project Title",
+  "subtitle": "A catchy subtitle for the project",
+  "level": "Level 1 / Intermediate / Advanced",
+  "color": "#FF6B35",
+  "desc": "Short description shown on the project card.",
+  "fullDesc": "Longer description shown on the project detail page. Can span multiple lines.",
+  "difficulty": 3,
+  "status": "Available",
+  
+  "tags": [
+    "Arduino",
+    "IoT"
+  ],
+  "date": "2026-07-10",
+  "author": "Author Name",
+  "team": [
+    {
+      "name": "Team Member 1",
+      "role": "Role Description"
+    }
+  ],
+  
+  "innovation": "What makes this project innovative?",
+  "problemStatement": "What problem does it solve?",
+  "solutionApproach": "How does it solve it?",
+  
+  "hardwareSpecs": {
+    "microcontroller": "Arduino UNO",
+    "operatingVoltage": "5V DC"
+  },
+  
+  "components": [
+    "Arduino UNO",
+    "Jumper Wires"
+  ],
+  "componentRefs": [
+    "arduino-uno"
+  ],
+  
+  "guide": [
+    "Step 1: Connect X to Y",
+    "Step 2: Upload code",
+    "Step 3: Test the system"
+  ],
+  
+  "estimatedTime": "60 minutes",
+  "prerequisites": [
+    "Basic Arduino knowledge"
+  ],
+  
+  "resources": [
+    {
+      "icon": "📄",
+      "title": "Datasheet for Sensor",
+      "url": "https://example.com/datasheet.pdf"
+    }
+  ],
+  
+  "githubUrl": "https://github.com/your-repo",
+  "youtubeVideos": [
+    {
+      "videoId": "dQw4w9WgXcQ",
+      "title": "Project Demo",
+      "desc": "A quick demo of the final project."
+    }
+  ],
+  
+  "achievements": [
+    "Won 1st place in Science Fair"
+  ],
+  "keywords": [
+    "keyword1",
+    "keyword2"
+  ]
+}

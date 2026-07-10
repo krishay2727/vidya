@@ -7,9 +7,5 @@
   "description": "Expert-level projects requiring advanced robotics, custom wireless communication, inverse kinematics, or full-stack IoT dashboards. These are capstone-level builds.",
   "color": "#9C27B0",
   "icon": "🏆",
-  "projects": [
-    "projects/Level-5/hexapod/hexapod.json",
-    "projects/Level-5/air-mouse/air-mouse.json",
-    "projects/Level-5/iot-dashboard/iot-dashboard.json"
-  ]
+  "projects": []
 }

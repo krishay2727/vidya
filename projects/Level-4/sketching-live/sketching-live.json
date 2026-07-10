@@ -6,7 +6,6 @@
   "session": 5,
   "desc": "Sketch on your browser and display it live on a physical TFT screen over USB!",
   "fullDesc": "Draw on a digital canvas and watch your art render live on a physical TFT LCD display! Paint Connect Studio Pro connects to your hardware over Web Serial, using custom Run-Length Encoding (RLE) to stream paint commands directly to an ESP32 or Arduino. Choose from various tools, shapes, colors, and line thicknesses.",
-  "image": "projects/sketching-live-main/screenshot.png",
   "components": [
     "Web Browser with Web Serial API support",
     "ESP32 or Arduino microcontroller",
@@ -25,18 +24,7 @@
   "date": "2026-06-12",
   "author": "Amogha",
   "liveUrl": "projects/Level-4/sketching-live/index.html",
-  "files3d": [],
-  "codeFiles": [
-    {
-      "name": "sketching-live.ino",
-      "language": "Arduino C++",
-      "desc": "Default sketch for Sketching Live",
-      "url": "projects/Level-4/sketching-live/draw.ino"
-    }
-  ],
   "youtubeVideos": [],
-  "dataVideos": [],
-  "gallery": [],
   "resources": [],
   "guide": [
     "Connect your microcontroller to the computer via USB",

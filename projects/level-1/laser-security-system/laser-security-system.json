@@ -71,18 +71,14 @@
   ],
   "arduino_code": "int ldr = A0;\nint buzzer = 9;\nint led = 8;\nint threshold = 500;\n\nvoid setup() {\n  pinMode(buzzer, OUTPUT);\n  pinMode(led, OUTPUT);\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int value = analogRead(ldr);\n\n  if (value > threshold) {\n    digitalWrite(led, HIGH);\n    tone(buzzer, 1000);\n  } else {\n    digitalWrite(led, LOW);\n    noTone(buzzer);\n  }\n  delay(100);\n}",
   "conclusion": "The Laser Security System successfully detects any interruption in the laser beam and provides an alert through buzzer and LED. It is simple, cost-effective and useful for home and office security applications. This project helps in understanding Arduino interfacing, LDR sensors and basic security systems.",
-  "codeFiles": [
-    {
-      "name": "laser-security-system.ino",
-      "language": "Arduino C++",
-      "desc": "Default sketch for Laser Security System",
-      "url": "projects/laser-security-system/code/laser-security-system.ino"
-    }
-  ],
-  "image": "projects/images/laser-security-system.jpg",
   "difficulty": 1,
   "level": "Beginner",
   "status": "Available",
   "desc": "Laser Security System using Arduino, LDR, and a laser module to detect intrusions.",
-  "tags": ["Arduino", "LDR", "Laser", "Security"]
+  "tags": [
+    "Arduino",
+    "LDR",
+    "Laser",
+    "Security"
+  ]
 }

@@ -6,8 +6,6 @@
   "color": "#FF6B35",
   "desc": "Build a custom flight controller using dual joysticks and fly in a web simulator!",
   "fullDesc": "Build a real flight simulator controller using two joystick modules and an Arduino UNO. The controller reads analog input from both joysticks and streams data over Serial to a flight simulator application running on your PC.",
-  "image": "projects/images/flight-simulator.jpg",
-  "bannerImage": "projects/images/flight-simulator-banner.jpg",
   "difficulty": 3,
   "status": "Available",
   "tags": [
@@ -73,25 +71,9 @@
     "Familiarity with Serial Monitor"
   ],
   "pdf": "",
-  "poster": "",
-  "ppt": "",
-  "researchPaper": "",
+  "ppt": "projects/level-3/arduino-flight-simulator",
   "circuitDiagram": "",
-  "files3d": [
-    "projects/Level-3/arduino-flight-simulator/3d/arm.stl"
-  ],
-  "codeFiles": [
-    {
-      "name": "flight_simulator_controller.ino",
-      "language": "Arduino C++",
-      "desc": "Reads dual joystick analog inputs and streams X/Y values over Serial at 9600 baud",
-      "code": "const int joy1X = A0;\nconst int joy1Y = A1;\nconst int joy2X = A2;\nconst int joy2Y = A3;\n\nvoid setup() {\n  Serial.begin(9600);\n}\n\nvoid loop() {\n  int x1 = analogRead(joy1X);\n  int y1 = analogRead(joy1Y);\n  int x2 = analogRead(joy2X);\n  int y2 = analogRead(joy2Y);\n\n  Serial.print(x1);\n  Serial.print(\",\");\n  Serial.print(y1);\n  Serial.print(\",\");\n  Serial.print(x2);\n  Serial.print(\",\");\n  Serial.println(y2);\n\n  delay(20);\n}",
-      "url": "projects/Level-3/arduino-flight-simulator/flight_simulator_controller.ino"
-    }
-  ],
   "youtubeVideos": [],
-  "dataVideos": [],
-  "gallery": [],
   "liveUrl": "projects/Level-3/arduino-flight-simulator/index.html",
   "resources": [
     {

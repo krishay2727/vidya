@@ -6,8 +6,6 @@
   "color": "#FF3B30",
   "desc": "Detect vehicle accidents using an IMU and instantly send emergency alerts over Wi-Fi.",
   "fullDesc": "This project uses an ESP8266 NodeMCU and an MPU6050 IMU sensor to monitor vehicle motion in real time. The system continuously analyzes acceleration and gyroscope data to detect severe impacts, sudden orientation changes, and post-impact inactivity. Once an accident is confirmed, it activates a warning countdown allowing the driver to cancel false alarms. If no cancellation is made, the ESP8266 connects to Wi-Fi and sends an emergency notification to predefined contacts through an online service such as Telegram, Firebase, or a custom web server. The system provides a low-cost IoT-based accident detection solution for improving emergency response.",
-  "image": "projects/images/weather-station.jpg",
-  "bannerImage": "projects/images/weather-station-banner.jpg",
   "difficulty": 4,
   "status": "Available",
   "tags": [
@@ -90,42 +88,13 @@
     "Wi-Fi Network"
   ],
   "pdf": "",
-  "poster": "",
   "ppt": "",
-  "researchPaper": "",
   "circuitDiagram": "",
-  "files3d": [],
-  "codeFiles": [
-    {
-      "name": "accident_detection.ino",
-      "language": "Arduino C++",
-      "desc": "Complete ESP8266 + MPU6050 Accident Detection and Wi-Fi Alert System",
-      "url": "projects/Level-4/accident-detection-system/ADS.ino"
-    }
-  ],
   "youtubeVideos": [
     {
       "title": "Smart Accident Detection System Demo",
       "videoId": "YOUR_VIDEO_ID",
       "desc": "Demonstration of accident detection and emergency alert notification."
-    }
-  ],
-  "dataVideos": [],
-  "gallery": [
-    {
-      "file": "projects/Level-4/accident-detection-system/ADS.png",
-      "caption": "Hardware Assembly",
-      "category": "Build"
-    },
-    {
-      "file": "projects/Level-4/accident-detection-system/ADS.png",
-      "caption": "ESP8266 and MPU6050 Wiring",
-      "category": "Hardware"
-    },
-    {
-      "file": "projects/Level-4/accident-detection-system/ADS.png",
-      "caption": "Accident Detection Testing",
-      "category": "Demo"
     }
   ],
   "liveUrl": "",
