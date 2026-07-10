@@ -79,7 +79,7 @@
   "researchPaper": "data/Siddharth_STEAM_V1.pdf",
   "circuitDiagram": "data/vawt-transistor-circuit.jpg",
   "files3d": [
-    "data/3dmodels/3d.stl"
+    "projects/Level-3/vawt-hybrid-generator/3d.stl"
   ],
   "codeFiles": [
     {

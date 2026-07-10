@@ -24,14 +24,14 @@
   ],
   "date": "2026-06-12",
   "author": "Amogha",
-  "liveUrl": "projects/sketching-live-main/index.html",
+  "liveUrl": "projects/Level-4/sketching-live/index.html",
   "files3d": [],
   "codeFiles": [
     {
       "name": "sketching-live.ino",
       "language": "Arduino C++",
       "desc": "Default sketch for Sketching Live",
-      "url": "projects/sketching-live/code/sketching-live.ino"
+      "url": "projects/Level-4/sketching-live/draw.ino"
     }
   ],
   "youtubeVideos": [],
