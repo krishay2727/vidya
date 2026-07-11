@@ -122,7 +122,7 @@ function filterProjects() {
 // =============================================
 
 function openProject(id) {
-  currentProject = PROJECTS.find(p => p.id === id);
+  let currentProject = PROJECTS.find(p => p.id === id);
   if (!currentProject) return;
   renderProjectDetail();
   showPage('project-detail', id);

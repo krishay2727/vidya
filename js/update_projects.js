@@ -275,7 +275,8 @@ let projectsIndex = { _instructions: { file: "projects/datafolder/projects.json"
 if (fs.existsSync(projectsJsonPath)) {
   try {
     projectsIndex = JSON.parse(fs.readFileSync(projectsJsonPath, 'utf8'));
-  } catch(e) {
+  } catch (e) {
+    console.error("An error occurred during execution:", error);
     // Ignore parse error and overwrite
   }
 }
