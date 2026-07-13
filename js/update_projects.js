@@ -259,31 +259,26 @@ for (const proj of discoveredProjects) {
 }
 
 // ── Write compiled output ──
-const datafolderPath = path.join(projectsDir, 'datafolder');
-if (!fs.existsSync(datafolderPath)) {
-  fs.mkdirSync(datafolderPath, { recursive: true });
-}
-
-const outputPath = path.join(datafolderPath, 'compiled_projects.json');
+const outputPath = path.join(projectsDir, 'compiled_projects.json');
 fs.writeFileSync(outputPath, JSON.stringify(compiledProjects, null, 2) + '\n');
-console.log(`\n📦 Wrote ${compiledProjects.length} projects → projects/datafolder/compiled_projects.json`);
+console.log(`\n📦 Wrote ${compiledProjects.length} projects → projects/compiled_projects.json`);
 
 // ── Auto-update projects.json index ──
-const projectsJsonPath = path.join(datafolderPath, 'projects.json');
-let projectsIndex = { _instructions: { file: "projects/datafolder/projects.json", purpose: "Index of all project files" } };
+const projectsJsonPath = path.join(projectsDir, 'projects.json');
+let projectsIndex = { _instructions: { file: "projects/projects.json", purpose: "Index of all project files" } };
 
 if (fs.existsSync(projectsJsonPath)) {
   try {
     projectsIndex = JSON.parse(fs.readFileSync(projectsJsonPath, 'utf8'));
   } catch (e) {
-    console.error("An error occurred during execution:", error);
+    console.error("An error occurred during execution:", e);
     // Ignore parse error and overwrite
   }
 }
 
 projectsIndex.projects = projectPaths;
 fs.writeFileSync(projectsJsonPath, JSON.stringify(projectsIndex, null, 2) + '\n');
-console.log(`📋 Updated projects/datafolder/projects.json with ${projectPaths.length} entries`);
+console.log(`📋 Updated projects/projects.json with ${projectPaths.length} entries`);
 
 // ══════════════════════════════════════════════════════════════
 //  TEST MODE: Validate compiled output

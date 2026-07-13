@@ -1,4 +1,4 @@
-const BUILD_TIMESTAMP = '2026-07-06T01:31Z';
+const BUILD_TIMESTAMP = '2026-07-13T10:14Z';
 const CACHE_NAME = `vidya-steam-${BUILD_TIMESTAMP}`;
 
 // Assets to pre-cache on install
@@ -99,6 +99,14 @@ globalThis.addEventListener('fetch', event => {
         }
 
         const networkResponse = await fetch(fetchUrl);
+
+        // SPA fallback: if a navigation request returns 404, serve index.html instead
+        // so the client-side router can handle the route (e.g. /project/some-id)
+        if (!networkResponse.ok && event.request.mode === 'navigate') {
+          const cachedIndex = await caches.match('./index.html');
+          if (cachedIndex) return cachedIndex;
+        }
+
         // Only cache successful GET requests
         if (networkResponse?.status === 200 && event.request.method === 'GET') {
           const cache = await caches.open(CACHE_NAME);
@@ -115,6 +123,8 @@ globalThis.addEventListener('fetch', event => {
         }
         // If navigation request (HTML) fails and not in cache, show offline page
         if (event.request.mode === 'navigate') {
+          const cachedIndex = await caches.match('./index.html');
+          if (cachedIndex) return cachedIndex;
           return caches.match('./pages/offline.html');
         }
       }

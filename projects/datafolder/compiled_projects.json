@@ -632,6 +632,11 @@
         "name": "sfinal.ino",
         "url": "projects/Level-3/vawt-hybrid-generator/sfinal.ino",
         "language": "Arduino C++"
+      },
+      {
+        "name": "wayside_firmware.ino",
+        "url": "projects/Level-3/vawt-hybrid-generator/wayside_firmware.ino",
+        "language": "Arduino C++"
       }
     ],
     "bannerImages": [
