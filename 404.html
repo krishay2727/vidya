@@ -5,26 +5,49 @@
   <title>Redirecting...</title>
   <script>
     // GitHub Pages SPA 404 Hack
-    var l = globalThis.location;
-    var pathSegments = l.pathname.split('/').filter(Boolean);
-    var repoIndex = pathSegments.indexOf('vidya');
-    
-    // Determine the route portion of the path
-    var routePath = '';
-    if (repoIndex >= 0) {
-      routePath = pathSegments.slice(repoIndex + 1).join('/');
-    } else {
-      routePath = pathSegments.join('/');
-    }
-    
-    var basePath = l.pathname.substring(0, l.pathname.indexOf(routePath));
-    var newUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + basePath + '?p=' + routePath;
-    if(l.search && l.search !== '?') {
-      newUrl += '&' + l.search.slice(1);
-    }
-    newUrl += l.hash;
-    
-    globalThis.location.replace(newUrl);
+    // When GitHub Pages can't find a file, it serves this 404.html.
+    // We redirect to index.html with a ?p= query param so the SPA router can handle it.
+    (function() {
+      var loc = globalThis.location;
+      var pathSegments = loc.pathname.split('/').filter(Boolean);
+
+      // Detect if we're on GitHub Pages (repo is in the path) or local dev (no repo prefix)
+      var repo = 'vidya';
+      var repoIndex = pathSegments.indexOf(repo);
+      var basePath = '/';
+      var routePath = '';
+
+      if (repoIndex >= 0) {
+        // GitHub Pages: path looks like /vidya/explore-projects
+        basePath = '/' + repo + '/';
+        routePath = pathSegments.slice(repoIndex + 1).join('/');
+      } else {
+        // Local dev server: path looks like /explore-projects
+        basePath = '/';
+        routePath = pathSegments.join('/');
+      }
+
+      // If there's no route, just go to the root
+      if (!routePath) {
+        globalThis.location.replace(loc.protocol + '//' + loc.host + basePath);
+        return;
+      }
+
+      // Build the redirect URL: <basePath>?p=<route>
+      var target = loc.protocol + '//' + loc.host + basePath + '?p=' + encodeURIComponent(routePath);
+
+      // Preserve any existing search params (but strip the leading ?)
+      if (loc.search && loc.search.length > 1) {
+        target += '&' + loc.search.slice(1);
+      }
+
+      // Preserve the hash
+      if (loc.hash) {
+        target += loc.hash;
+      }
+
+      globalThis.location.replace(target);
+    })();
   </script>
 </head>
 <body>

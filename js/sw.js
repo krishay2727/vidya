@@ -103,8 +103,23 @@ globalThis.addEventListener('fetch', event => {
         // SPA fallback: if a navigation request returns 404, serve index.html instead
         // so the client-side router can handle the route (e.g. /project/some-id)
         if (!networkResponse.ok && event.request.mode === 'navigate') {
-          const cachedIndex = await caches.match('./index.html');
+          // Try multiple cache key formats since the SW scope affects how relative URLs resolve
+          const cachedIndex = await caches.match('./index.html')
+            || await caches.match('/vidya/index.html')
+            || await caches.match('/vidya/')
+            || await caches.match('/index.html')
+            || await caches.match('/');
           if (cachedIndex) return cachedIndex;
+
+          // If cache miss, redirect to root with ?p= so the 404.html or index.html can handle it
+          const reqUrl = new URL(event.request.url);
+          const pathSegments = reqUrl.pathname.split('/').filter(Boolean);
+          const repoIdx = pathSegments.indexOf('vidya');
+          const basePath = repoIdx >= 0 ? '/vidya/' : '/';
+          const route = repoIdx >= 0 ? pathSegments.slice(repoIdx + 1).join('/') : pathSegments.join('/');
+          if (route) {
+            return Response.redirect(reqUrl.origin + basePath + '?p=' + encodeURIComponent(route), 302);
+          }
         }
 
         // Only cache successful GET requests
@@ -123,7 +138,11 @@ globalThis.addEventListener('fetch', event => {
         }
         // If navigation request (HTML) fails and not in cache, show offline page
         if (event.request.mode === 'navigate') {
-          const cachedIndex = await caches.match('./index.html');
+          const cachedIndex = await caches.match('./index.html')
+            || await caches.match('/vidya/index.html')
+            || await caches.match('/vidya/')
+            || await caches.match('/index.html')
+            || await caches.match('/');
           if (cachedIndex) return cachedIndex;
           return caches.match('./pages/offline.html');
         }
