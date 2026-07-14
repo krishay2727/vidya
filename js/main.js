@@ -83,11 +83,17 @@ async function init() {
   if (redirectPage) {
     const base = globalThis.BASE_PATH || '/';
     // Check if the redirect is a project deep link like "project/weather-station"
-    const projectMatch = /^project\/(.+)$/.exec(redirectPage);
+    const projectMatch = /^view-project\/(.+)$/.exec(redirectPage);
     if (projectMatch) {
       targetPage = 'project-detail';
       targetParam = decodeURIComponent(projectMatch[1]);
-      globalThis.history.replaceState(null, null, base + 'project/' + encodeURIComponent(targetParam));
+      globalThis.history.replaceState(null, null, base + 'view-project/' + encodeURIComponent(targetParam));
+    } else if (redirectPage === 'explore-projects') {
+      targetPage = 'projects';
+      globalThis.history.replaceState(null, null, base + 'explore-projects');
+    } else if (redirectPage === 'explore-sessions') {
+      targetPage = 'sessions';
+      globalThis.history.replaceState(null, null, base + 'explore-sessions');
     } else if (validPages.has(redirectPage)) {
       targetPage = redirectPage;
       // Clean up the URL in history (removes ?p=live-quiz)
@@ -99,12 +105,16 @@ async function init() {
     const repoIndex = pathSegments.indexOf('vidya');
     const routeSegments = repoIndex >= 0 ? pathSegments.slice(repoIndex + 1) : pathSegments;
 
-    if (routeSegments.length >= 2 && routeSegments.at(-2) === 'project') {
+    if (routeSegments.length >= 2 && routeSegments.at(-2) === 'view-project') {
       targetPage = 'project-detail';
       targetParam = decodeURIComponent(routeSegments.at(-1));
     } else {
       const pathSegment = routeSegments.pop();
-      if (pathSegment && validPages.has(pathSegment) && pathSegment !== 'VIDYA') {
+      if (pathSegment === 'explore-projects') {
+        targetPage = 'projects';
+      } else if (pathSegment === 'explore-sessions') {
+        targetPage = 'sessions';
+      } else if (pathSegment && validPages.has(pathSegment) && pathSegment !== 'VIDYA') {
         targetPage = pathSegment;
       }
     }
@@ -134,7 +144,7 @@ globalThis.addEventListener('popstate', () => {
   const repoIndex = pathSegments.indexOf('vidya');
   const routeSegments = repoIndex >= 0 ? pathSegments.slice(repoIndex + 1) : pathSegments;
 
-  if (routeSegments.length >= 2 && routeSegments.at(-2) === 'project') {
+  if (routeSegments.length >= 2 && routeSegments.at(-2) === 'view-project') {
     const targetParam = decodeURIComponent(routeSegments.at(-1));
     currentProject = PROJECTS.find(p => p.id === targetParam);
     if (currentProject) {
@@ -144,7 +154,11 @@ globalThis.addEventListener('popstate', () => {
   }
 
   const pathSegment = routeSegments.pop();
-  if (pathSegment && validPages.includes(pathSegment) && pathSegment !== 'VIDYA') {
+  if (pathSegment === 'explore-projects') {
+    showPage('projects');
+  } else if (pathSegment === 'explore-sessions') {
+    showPage('sessions');
+  } else if (pathSegment && validPages.includes(pathSegment) && pathSegment !== 'VIDYA') {
     showPage(pathSegment);
   } else {
     showPage('home');

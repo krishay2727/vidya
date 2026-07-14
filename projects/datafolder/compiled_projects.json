@@ -422,13 +422,13 @@
     ]
   },
   {
-    "id": "arduino-flight-simulator",
-    "title": "Arduino Flight Simulator",
-    "subtitle": "Dual joystick flight controller with Arduino + Web Simulator",
+    "id": "vawt-hybrid-generator",
+    "title": "VAWT Hybrid Generator",
+    "subtitle": "Roadside VAWT energy & traffic monitor",
     "level": "Intermediate",
     "color": "#FF6B35",
-    "desc": "Build a custom flight controller using dual joysticks and fly in a web simulator!",
-    "fullDesc": "Build a real flight simulator controller using two joystick modules and an Arduino UNO. The controller reads analog input from both joysticks and streams data over Serial to a flight simulator application running on your PC.",
+    "desc": "Build a Vertical Axis Wind Turbine that generates power from wind and vehicle wake.",
+    "fullDesc": "Build a real roadside VAWT energy and traffic monitor. The VAWT (Vertical Axis Wind Turbine) spins from passing vehicle wake and ambient wind, turning a small generator. A voltage divider and current sensor measure electricity production.",
     "difficulty": 3,
     "status": "Available",
     "tags": [
@@ -454,9 +454,9 @@
         "role": "Team Member"
       }
     ],
-    "innovation": "A low-cost, student-built flight controller using off-the-shelf components and a 3D printed enclosure, bridging hardware and simulation software.",
-    "problemStatement": "Commercial flight simulator controllers are expensive and inaccessible for student learning environments.",
-    "solutionApproach": "Used dual joystick modules with an Arduino UNO to capture analog flight inputs and stream them via Serial to a web-based flight simulator. Housed in a custom 3D printed controller box for a professional feel.",
+    "innovation": "A low-cost, student-built VAWT demonstrating renewable energy generation and traffic-based wind harvesting.",
+    "problemStatement": "Renewable energy education often lacks hands-on, accessible wind turbine models.",
+    "solutionApproach": "Built a Vertical Axis Wind Turbine using 3D printed parts and a small generator to capture both ambient wind and vehicle wake. Used an Arduino to monitor voltage and current generation.",
     "hardwareSpecs": {
       "microcontroller": "Arduino UNO (ATmega328P)",
       "powerConsumption": "~50mA @ 5V",

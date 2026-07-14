@@ -11,7 +11,11 @@ async function showPage(name, pathParam = null) {
   if (name === 'home') {
     globalThis.history.pushState(null, null, base);
   } else if (name === 'project-detail' && pathParam) {
-    globalThis.history.pushState(null, null, base + 'project/' + encodeURIComponent(pathParam));
+    globalThis.history.pushState(null, null, base + 'view-project/' + encodeURIComponent(pathParam));
+  } else if (name === 'projects') {
+    globalThis.history.pushState(null, null, base + 'explore-projects');
+  } else if (name === 'sessions') {
+    globalThis.history.pushState(null, null, base + 'explore-sessions');
   } else {
     globalThis.history.pushState(null, null, base + name);
   }
